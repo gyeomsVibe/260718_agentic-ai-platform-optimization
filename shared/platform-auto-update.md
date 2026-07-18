@@ -26,7 +26,9 @@ Windows 로그인 직후 사용자에게 창을 표시하지 않고 다음 개�
 | `Codex CLI Logon Updater` | `Update-CodexCliAtLogon.vbs` | `npm install -g @openai/codex@latest --no-audit --no-fund` |
 | `Antigravity Sequential Logon Updater` | `Update-AntigravityAtLogon.vbs` | IDE → 2.0 → CLI 순차 갱신 |
 
-현재 활성 스크립트와 로그는 운영 워크스페이스 `260713_pc-optimization/.codex-tools/`에 있다. 이 문서는 구성 원본의 운영 설명서이며, 로그와 npm 캐시는 Git에 포함하지 않는다.
+활성 스크립트의 정본은 이 저장소의 [platform-auto-update/](platform-auto-update/)에 있다. Windows 시작 프로그램은 `scripts/` 아래의 두 VBS 파일을 직접 실행한다. 로그와 npm 캐시는 스크립트 옆에 자동 생성되며 Git에 포함하지 않는다.
+
+처음 사용하는 사람은 [platform-auto-update/README.md](platform-auto-update/README.md)를 먼저 읽는다. 자동 실행 흐름, 알림 의미, 가장 쉬운 점검 방법을 비개발자 기준으로 설명한다.
 
 ## Windows 완료 알림
 

@@ -5,6 +5,7 @@
 Thumbs.db
 .DS_Store
 *.log
+shared/platform-auto-update/scripts/npm-cache/
 
 # 비밀 정보 (안전장치)
 .env
