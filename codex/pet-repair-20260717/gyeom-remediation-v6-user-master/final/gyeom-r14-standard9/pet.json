@@ -1,0 +1,6 @@
+{
+  "id": "gyeom-r14-standard9",
+  "displayName": "Gyeom (Standard 9)",
+  "description": "Compatibility test using Gyeom's verified nine standard Codex pet motions.",
+  "spritesheetPath": "spritesheet.webp"
+}

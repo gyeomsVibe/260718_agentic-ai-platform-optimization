@@ -1,0 +1,142 @@
+{
+  "ok": true,
+  "frames_root": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames",
+  "states": [
+    "running-left"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "running-left",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9205,
+          "bbox": [
+            50,
+            5,
+            142,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 169
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7642,
+          "bbox": [
+            63,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 117
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8027,
+          "bbox": [
+            41,
+            5,
+            151,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 140
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7985,
+          "bbox": [
+            55,
+            5,
+            137,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 144
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9682,
+          "bbox": [
+            45,
+            5,
+            147,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 173
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10184,
+          "bbox": [
+            38,
+            5,
+            154,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 201
+        },
+        {
+          "index": 6,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 12513,
+          "bbox": [
+            31,
+            5,
+            160,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 246
+        },
+        {
+          "index": 7,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\running-left\\frames\\running-left\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9297,
+          "bbox": [
+            49,
+            5,
+            142,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 177
+        }
+      ]
+    }
+  ]
+}

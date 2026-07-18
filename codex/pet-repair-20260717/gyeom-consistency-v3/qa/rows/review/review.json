@@ -1,0 +1,112 @@
+{
+  "ok": true,
+  "frames_root": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\review\\frames",
+  "states": [
+    "review"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "review",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\review\\frames\\review\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9063,
+          "bbox": [
+            63,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 120
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\review\\frames\\review\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8856,
+          "bbox": [
+            63,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 128
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\review\\frames\\review\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9014,
+          "bbox": [
+            64,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 117
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\review\\frames\\review\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8791,
+          "bbox": [
+            63,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 111
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\review\\frames\\review\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9047,
+          "bbox": [
+            64,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 119
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\review\\frames\\review\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9065,
+          "bbox": [
+            63,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 127
+        }
+      ]
+    }
+  ]
+}

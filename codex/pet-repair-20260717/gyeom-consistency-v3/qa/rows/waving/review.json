@@ -1,0 +1,82 @@
+{
+  "ok": true,
+  "frames_root": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\waving\\frames",
+  "states": [
+    "waving"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "waving",
+      "expected_frames": 4,
+      "actual_frames": 4,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\waving\\frames\\waving\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9030,
+          "bbox": [
+            63,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 103
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\waving\\frames\\waving\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9082,
+          "bbox": [
+            57,
+            5,
+            135,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 100
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\waving\\frames\\waving\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8905,
+          "bbox": [
+            54,
+            5,
+            138,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 94
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\qa\\rows\\waving\\frames\\waving\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9036,
+          "bbox": [
+            63,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 114
+        }
+      ]
+    }
+  ]
+}

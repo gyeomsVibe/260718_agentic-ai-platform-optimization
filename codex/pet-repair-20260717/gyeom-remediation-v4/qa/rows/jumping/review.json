@@ -1,0 +1,97 @@
+{
+  "ok": true,
+  "frames_root": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\jumping\\frames",
+  "states": [
+    "jumping"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "jumping",
+      "expected_frames": 5,
+      "actual_frames": 5,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\jumping\\frames\\jumping\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9953,
+          "bbox": [
+            65,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 205
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\jumping\\frames\\jumping\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 13311,
+          "bbox": [
+            50,
+            5,
+            142,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 331
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\jumping\\frames\\jumping\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11112,
+          "bbox": [
+            55,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 282
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\jumping\\frames\\jumping\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11907,
+          "bbox": [
+            50,
+            5,
+            141,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 254
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\jumping\\frames\\jumping\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 12293,
+          "bbox": [
+            54,
+            5,
+            138,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 312
+        }
+      ]
+    }
+  ]
+}

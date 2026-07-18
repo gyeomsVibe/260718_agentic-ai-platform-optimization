@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "chroma_key": {
+    "hex": "#FF00FF",
+    "rgb": [
+      255,
+      0,
+      255
+    ],
+    "threshold": 96.0
+  },
+  "rows": [
+    {
+      "state": "look-row-10",
+      "frames": [
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\00.png",
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\01.png",
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\02.png",
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\03.png",
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\04.png",
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\05.png",
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\06.png",
+        "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\frames\\look-row-10\\07.png"
+      ],
+      "method": "stable-slots"
+    }
+  ]
+}

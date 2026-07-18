@@ -1,0 +1,110 @@
+{
+  "ok": false,
+  "states": [
+    {
+      "state": "look-row-10",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-10.png",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "pixel_exact": true,
+        "partial_alpha_pixels": 16624,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "exact": true,
+            "mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-10.webp",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "pixel_exact": true,
+        "partial_alpha_pixels": 16624,
+        "transparent_rgb_residue_pixels": 15286,
+        "frame_results": [
+          {
+            "frame": 0,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "exact": true,
+            "mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "exact": true,
+            "mismatch_pixels": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1346 @@
+{
+  "ok": true,
+  "states": [
+    {
+      "state": "idle",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\idle.png",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16170,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\idle.webp",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16170,
+        "transparent_rgb_residue_pixels": 12668,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "running-right",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running-right.png",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 24844,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running-right.webp",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 24844,
+        "transparent_rgb_residue_pixels": 47743,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "running-left",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running-left.png",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 24844,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running-left.webp",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 24844,
+        "transparent_rgb_residue_pixels": 69486,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "waving",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\waving.png",
+        "frames": 4,
+        "expected_frames": 4,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 10425,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\waving.webp",
+        "frames": 4,
+        "expected_frames": 4,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 10425,
+        "transparent_rgb_residue_pixels": 24075,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "jumping",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\jumping.png",
+        "frames": 5,
+        "expected_frames": 5,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16696,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\jumping.webp",
+        "frames": 5,
+        "expected_frames": 5,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16696,
+        "transparent_rgb_residue_pixels": 33440,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "failed",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\failed.png",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 20479,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\failed.webp",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 20479,
+        "transparent_rgb_residue_pixels": 18474,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "waiting",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\waiting.png",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 13005,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\waiting.webp",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 13005,
+        "transparent_rgb_residue_pixels": 12803,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "running",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running.png",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 12810,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running.webp",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 12810,
+        "transparent_rgb_residue_pixels": 11577,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "review",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\review.png",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 17359,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\review.webp",
+        "frames": 6,
+        "expected_frames": 6,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 17359,
+        "transparent_rgb_residue_pixels": 53790,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "look-row-9",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-9.png",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16799,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-9.webp",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16799,
+        "transparent_rgb_residue_pixels": 18220,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    },
+    {
+      "state": "look-row-10",
+      "apng": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-10.png",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": true,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16624,
+        "transparent_rgb_residue_pixels": 0,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": true,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      },
+      "webp": {
+        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-10.webp",
+        "frames": 8,
+        "expected_frames": 8,
+        "frame_count_ok": true,
+        "raw_pixel_exact": false,
+        "alpha_exact": true,
+        "visible_pixel_exact": true,
+        "partial_alpha_pixels": 16624,
+        "transparent_rgb_residue_pixels": 15286,
+        "frame_results": [
+          {
+            "frame": 0,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 1,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 2,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 3,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 4,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 5,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 6,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          },
+          {
+            "frame": 7,
+            "raw_exact": false,
+            "alpha_exact": true,
+            "visible_exact": true,
+            "visible_mismatch_pixels": 0
+          }
+        ]
+      }
+    }
+  ]
+}

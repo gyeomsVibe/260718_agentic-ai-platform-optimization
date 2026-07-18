@@ -1,0 +1,7 @@
+{
+  "id": "gyeom-v2",
+  "displayName": "Gyeom",
+  "description": "Gyeom custom pet with nine standard motions and sixteen directional gaze frames.",
+  "spriteVersionNumber": 2,
+  "spritesheetPath": "spritesheet.webp"
+}

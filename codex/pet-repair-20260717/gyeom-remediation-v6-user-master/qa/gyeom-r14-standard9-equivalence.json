@@ -1,0 +1,17 @@
+{
+  "source_top9_size": [
+    1536,
+    1872
+  ],
+  "standard9_size": [
+    1536,
+    1872
+  ],
+  "pixel_identical_to_r12_top9": false,
+  "difference_bbox": [
+    1217,
+    5,
+    1278,
+    203
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "ok": true,
+  "installed_atlas": "C:\\Users\\Kimyoongyeom\\.codex\\pets\\gyeom-v2\\spritesheet.webp",
+  "installed_sha256": "FD597CEB99805A618410F6E29E24EE36BAD2D7324EAE4D529909D5B3A3DB94C8",
+  "candidate_sha256": "FD597CEB99805A618410F6E29E24EE36BAD2D7324EAE4D529909D5B3A3DB94C8",
+  "installed_matches_candidate": true,
+  "atlas": {
+    "width": 1536,
+    "height": 2288,
+    "columns": 8,
+    "rows": 11
+  },
+  "states": [
+    {
+      "state": "idle",
+      "row": 0,
+      "frames": 6,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 5,
+      "transition_changed_pixels": [
+        8653,
+        8651,
+        8366,
+        8437,
+        8685,
+        8653
+      ],
+      "occupied_extra_cells": [
+        6
+      ],
+      "repeated_transition_indices": [],
+      "warnings": [
+        "extra occupied cells outside runtime range: [6]"
+      ],
+      "ok": true
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "frames": 8,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 8,
+      "transition_changed_pixels": [
+        9845,
+        8794,
+        9455,
+        8746,
+        9478,
+        8635,
+        9569,
+        9383
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [],
+      "warnings": [],
+      "ok": true
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "frames": 8,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 8,
+      "transition_changed_pixels": [
+        9711,
+        8735,
+        9218,
+        8922,
+        9485,
+        8794,
+        9791,
+        9293
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [],
+      "warnings": [],
+      "ok": true
+    },
+    {
+      "state": "waving",
+      "row": 3,
+      "frames": 4,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 4,
+      "transition_changed_pixels": [
+        9488,
+        12734,
+        8672,
+        11961
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [],
+      "warnings": [],
+      "ok": true
+    },
+    {
+      "state": "jumping",
+      "row": 4,
+      "frames": 5,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 4,
+      "transition_changed_pixels": [
+        12838,
+        14489,
+        14267,
+        12395,
+        0
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [
+        4
+      ],
+      "warnings": [
+        "intentional/review-needed repeated transitions: [4]"
+      ],
+      "ok": true
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "frames": 8,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 8,
+      "transition_changed_pixels": [
+        8182,
+        8111,
+        8351,
+        10021,
+        9807,
+        9757,
+        8107,
+        8310
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [],
+      "warnings": [],
+      "ok": true
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "frames": 6,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 6,
+      "transition_changed_pixels": [
+        10484,
+        9536,
+        8321,
+        8574,
+        8523,
+        8463
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [],
+      "warnings": [],
+      "ok": true
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "frames": 6,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 6,
+      "transition_changed_pixels": [
+        8364,
+        8466,
+        8850,
+        8987,
+        8737,
+        8993
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [],
+      "warnings": [],
+      "ok": true
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "frames": 6,
+      "all_used_frames_nonempty": true,
+      "unique_frames": 5,
+      "transition_changed_pixels": [
+        11118,
+        10545,
+        10993,
+        10419,
+        10702,
+        0
+      ],
+      "occupied_extra_cells": [],
+      "repeated_transition_indices": [
+        5
+      ],
+      "warnings": [
+        "intentional/review-needed repeated transitions: [5]"
+      ],
+      "ok": true
+    }
+  ],
+  "look_directions": {
+    "frames": 16,
+    "unique_frames": 16,
+    "transition_changed_pixels": [
+      8588,
+      8847,
+      8853,
+      8773,
+      8724,
+      8749,
+      8758,
+      9285,
+      8831,
+      8551,
+      8485,
+      8550,
+      8937,
+      8966,
+      8517,
+      9108
+    ],
+    "ok": true
+  },
+  "artifacts": {
+    "standard_apng": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\gyeom-v2-gaze-candidate\\qa\\runtime-self-test\\all-standard-motions.png",
+    "direction_apng": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\gyeom-v2-gaze-candidate\\qa\\runtime-self-test\\all-look-directions.png",
+    "interactive_html": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\gyeom-v2-gaze-candidate\\qa\\runtime-self-test\\all-motions-live.html"
+  }
+}

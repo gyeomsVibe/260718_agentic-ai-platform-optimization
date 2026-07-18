@@ -1,0 +1,1237 @@
+{
+  "ok": true,
+  "frames_root": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames",
+  "states": [
+    "idle",
+    "running-right",
+    "running-left",
+    "waving",
+    "jumping",
+    "failed",
+    "waiting",
+    "running",
+    "review",
+    "look-row-9",
+    "look-row-10"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "idle",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8336,
+          "bbox": [
+            64,
+            1,
+            126,
+            203
+          ],
+          "edge_pixels": 19,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8271,
+          "bbox": [
+            66,
+            1,
+            126,
+            203
+          ],
+          "edge_pixels": 15,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8304,
+          "bbox": [
+            64,
+            1,
+            126,
+            203
+          ],
+          "edge_pixels": 18,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8288,
+          "bbox": [
+            64,
+            1,
+            126,
+            203
+          ],
+          "edge_pixels": 16,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8403,
+          "bbox": [
+            64,
+            1,
+            126,
+            203
+          ],
+          "edge_pixels": 17,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8271,
+          "bbox": [
+            66,
+            1,
+            126,
+            203
+          ],
+          "edge_pixels": 15,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "running-right",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8632,
+          "bbox": [
+            42,
+            18,
+            151,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7876,
+          "bbox": [
+            50,
+            18,
+            142,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8388,
+          "bbox": [
+            46,
+            18,
+            146,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8082,
+          "bbox": [
+            46,
+            18,
+            147,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8213,
+          "bbox": [
+            44,
+            18,
+            148,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8140,
+          "bbox": [
+            48,
+            18,
+            142,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7912,
+          "bbox": [
+            51,
+            18,
+            140,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7877,
+          "bbox": [
+            42,
+            18,
+            148,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "running-left",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7877,
+          "bbox": [
+            42,
+            18,
+            148,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7912,
+          "bbox": [
+            51,
+            18,
+            140,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8140,
+          "bbox": [
+            48,
+            18,
+            142,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8213,
+          "bbox": [
+            44,
+            18,
+            148,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8082,
+          "bbox": [
+            46,
+            18,
+            147,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8388,
+          "bbox": [
+            46,
+            18,
+            146,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7876,
+          "bbox": [
+            50,
+            18,
+            142,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8632,
+          "bbox": [
+            42,
+            18,
+            151,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "waving",
+      "expected_frames": 4,
+      "actual_frames": 4,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8347,
+          "bbox": [
+            58,
+            5,
+            133,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8498,
+          "bbox": [
+            55,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8287,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8152,
+          "bbox": [
+            57,
+            5,
+            135,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "jumping",
+      "expected_frames": 5,
+      "actual_frames": 5,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8589,
+          "bbox": [
+            66,
+            10,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 9781,
+          "bbox": [
+            38,
+            10,
+            154,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11484,
+          "bbox": [
+            28,
+            4,
+            167,
+            185
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10606,
+          "bbox": [
+            30,
+            14,
+            163,
+            195
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8589,
+          "bbox": [
+            66,
+            10,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "failed",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7735,
+          "bbox": [
+            66,
+            8,
+            125,
+            201
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7575,
+          "bbox": [
+            67,
+            12,
+            125,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7741,
+          "bbox": [
+            66,
+            16,
+            125,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7749,
+          "bbox": [
+            66,
+            23,
+            125,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7783,
+          "bbox": [
+            56,
+            64,
+            135,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8334,
+          "bbox": [
+            62,
+            29,
+            131,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7740,
+          "bbox": [
+            66,
+            8,
+            125,
+            202
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7870,
+          "bbox": [
+            66,
+            7,
+            125,
+            201
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "waiting",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7477,
+          "bbox": [
+            66,
+            5,
+            125,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8081,
+          "bbox": [
+            55,
+            5,
+            137,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7480,
+          "bbox": [
+            68,
+            5,
+            124,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7699,
+          "bbox": [
+            67,
+            5,
+            124,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7487,
+          "bbox": [
+            68,
+            5,
+            124,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7505,
+          "bbox": [
+            69,
+            5,
+            123,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "running",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7705,
+          "bbox": [
+            67,
+            5,
+            124,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7915,
+          "bbox": [
+            65,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7888,
+          "bbox": [
+            67,
+            5,
+            124,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8016,
+          "bbox": [
+            65,
+            5,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7981,
+          "bbox": [
+            65,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7989,
+          "bbox": [
+            67,
+            5,
+            125,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "review",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8464,
+          "bbox": [
+            42,
+            5,
+            150,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8610,
+          "bbox": [
+            50,
+            5,
+            141,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8164,
+          "bbox": [
+            61,
+            5,
+            131,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8664,
+          "bbox": [
+            32,
+            5,
+            159,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8655,
+          "bbox": [
+            59,
+            5,
+            132,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8464,
+          "bbox": [
+            42,
+            5,
+            150,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "look-row-9",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8347,
+          "bbox": [
+            68,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8399,
+          "bbox": [
+            68,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8560,
+          "bbox": [
+            68,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8438,
+          "bbox": [
+            68,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8601,
+          "bbox": [
+            68,
+            5,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8557,
+          "bbox": [
+            68,
+            7,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8358,
+          "bbox": [
+            69,
+            9,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8401,
+          "bbox": [
+            68,
+            12,
+            128,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "look-row-10",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": null,
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8593,
+          "bbox": [
+            66,
+            7,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8498,
+          "bbox": [
+            67,
+            7,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8329,
+          "bbox": [
+            67,
+            8,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8409,
+          "bbox": [
+            67,
+            8,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8468,
+          "bbox": [
+            67,
+            7,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8500,
+          "bbox": [
+            67,
+            8,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8314,
+          "bbox": [
+            67,
+            9,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8170,
+          "bbox": [
+            68,
+            8,
+            126,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    }
+  ]
+}
