@@ -1,0 +1,12 @@
+# 로컬 전용 에이전트 설정 (권한 등)
+.claude/settings.local.json
+
+# OS / 편집기 잡파일
+Thumbs.db
+.DS_Store
+*.log
+
+# 비밀 정보 (안전장치)
+.env
+*.pem
+*.key
