@@ -1,0 +1,6 @@
+interface:
+  display_name: "기획·검토·실행 모드"
+  short_description: "MIA모드 발동으로 시작하는 품질 회로 기반 의사결정 흐름"
+  default_prompt: "MIA모드 발동: 기획 <목표>"
+policy:
+  allow_implicit_invocation: true
