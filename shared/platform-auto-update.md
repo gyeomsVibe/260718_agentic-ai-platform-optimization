@@ -28,6 +28,20 @@ Windows 로그인 직후 사용자에게 창을 표시하지 않고 다음 개�
 
 현재 활성 스크립트와 로그는 운영 워크스페이스 `260713_pc-optimization/.codex-tools/`에 있다. 이 문서는 구성 원본의 운영 설명서이며, 로그와 npm 캐시는 Git에 포함하지 않는다.
 
+## Windows 완료 알림
+
+Codex CLI와 Antigravity 순차 업데이터는 각 실행이 끝나면 Windows 기본 알림 센터에 토스트 알림을 보낸다. `wscript.exe //B`와 `powershell.exe -WindowStyle Hidden`을 사용하므로 업데이트 중 콘솔 창은 표시하지 않는다.
+
+| 알림 제목 | 표시 내용 | 의미 |
+| --- | --- | --- |
+| `Codex CLI auto-update` | 업데이트 점검 완료, 건너뜀 또는 실패 코드 | Codex CLI 갱신 결과 |
+| `Antigravity auto-update` | IDE·2.0·CLI 각각의 완료, 최신, 건너뜀 또는 실패 상태 | 순차 갱신 결과 |
+
+- `completed`는 업데이트 명령이 정상 종료했음을 뜻하며, 실제 새 버전 설치 여부는 패키지 관리자 로그에서 확인한다.
+- `latest`는 winget에서 적용할 업그레이드가 없었다는 정상 상태다.
+- 알림이 보이지 않으면 Windows의 **설정 > 시스템 > 알림**에서 `Windows PowerShell` 알림이 허용되어 있는지 확인한다. 알림 센터에서도 최근 결과를 확인할 수 있다.
+- 점검용으로는 `cscript //NoLogo <script> /test /notify`를 실행한다. 실제 패키지 갱신은 수행하지 않고 토스트 호출만 시험한다.
+
 ## 플랫폼별 동작
 
 ### Codex CLI

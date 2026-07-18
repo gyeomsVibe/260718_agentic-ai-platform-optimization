@@ -1,6 +1,6 @@
 # 나만의 커스텀 반려동물(Pet) 자료실
 
-상태: `MIGRATION_IN_PROGRESS`
+상태: `VERIFIED_RESULT`
 대상: Codex App 반려동물 커스터마이징의 설계·프롬프트·시각 QA·복구 기록
 
 ## 이 자료가 Codex 섹션에 있는 이유
@@ -41,4 +41,4 @@
 - `custom-pet-manual/RUNTIME_STATUS_LIMITS.md`
 - `custom-pet-manual/codex-image-viewer-sandbox-fix/README.md`
 
-대상 저장소의 커밋·원격 푸시가 확인된 뒤에만 원본 저장소의 동일 추적 경로를 삭제 커밋한다.
+대상 저장소 커밋 `bb275a6`와 원격 푸시, 원본 저장소의 삭제 커밋 `36b7ee8`과 원격 푸시까지 확인했다.
