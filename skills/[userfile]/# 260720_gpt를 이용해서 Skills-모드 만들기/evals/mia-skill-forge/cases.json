@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "candidate": "mia-skill-forge",
-  "status": "planned",
+  "status": "ready_for_runtime",
   "cases": [
     {
       "id": "explicit-01",
@@ -11,8 +11,14 @@
     },
     {
       "id": "transform-01",
-      "category": "should_trigger",
+      "category": "should_not_trigger",
       "prompt": "이 커스텀 챗봇 지시문을 Codex와 Claude Code용 Skill 후보로 정제해줘",
+      "expected": "do_not_trigger_without_explicit_invocation"
+    },
+    {
+      "id": "explicit-02",
+      "category": "should_trigger",
+      "prompt": "$mia-skill-forge 이 커스텀 챗봇 지시문을 Codex와 Claude Code용 Skill 후보로 정제해줘",
       "expected": "transform_candidate"
     },
     {

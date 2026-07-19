@@ -1,6 +1,6 @@
 ---
 name: mia-skill-forge
-description: Convert a GPT, chatbot, prompt system, or document-based Skill design into a compact cross-platform Agent Skill static candidate with explicit triggers, progressive disclosure, safety boundaries, platform adapters, and validation handoff. Use only when the user explicitly invokes $mia-skill-forge or asks to transform an existing GPT or chatbot design into a Claude Code, Codex, or Antigravity Skill candidate. Do not use for ordinary Skill creation from scratch, installation, deployment, or runtime certification.
+description: Convert a GPT, chatbot, prompt system, or document-based Skill design into a compact cross-platform Agent Skill static candidate with explicit triggers, progressive disclosure, safety boundaries, platform adapters, and validation handoff. Use only when the user explicitly invokes $mia-skill-forge to transform an existing GPT or chatbot design into a Claude Code, Codex, or Antigravity Skill candidate. Do not use for ordinary Skill creation from scratch, installation, deployment, or runtime certification.
 ---
 
 # MIA Skill Forge

@@ -29,6 +29,11 @@
       "check": "redteam_data_review",
       "result": "pass_with_runtime_gap",
       "evidence": "redteam-data-review.json"
+    },
+    {
+      "check": "trigger_contract_consistency",
+      "result": "pass",
+      "evidence": "SKILL.md requires explicit $mia-skill-forge invocation, agents/openai.yaml disables implicit invocation, and transform-01 expects no trigger without explicit invocation."
     }
   ],
   "note": "No runtime trigger, task, safety, or cross-platform evaluation has been performed."
