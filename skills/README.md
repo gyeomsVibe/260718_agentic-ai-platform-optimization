@@ -78,4 +78,5 @@ npx skills remove -g -s <스킬이름> -y            ← 제거
 
 - [MIA_SKILLS_EXPLORATION_2026-07-19.md](MIA_SKILLS_EXPLORATION_2026-07-19.md) — 왜 이 5종을 골랐고 무엇을 기각했는지 (리서치 근거·기각 사유)
 - [MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md](MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md) — 전수조사·슬림화 감사 (제거 근거·복원 방법·재발 방지 수칙)
+- [GPT를 이용해서 Skills-모드 만들기](<gpt를 이용해서 Skills-모드 만들기/>) — 설계항해·제작항해 챗봇으로 Skill 정적 후보를 만들고 세 도구에서 검증하는 파이프라인
 - [`../shared/skills/`](../shared/skills/) — 우리가 **직접 만든** 스킬의 정본 (plan-review-execute). 외부에서 받아온 스킬은 이 섹션(skills/)에서 관리.
