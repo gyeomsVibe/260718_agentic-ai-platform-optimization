@@ -20,6 +20,8 @@
 | 문서 | 내용 |
 |---|---|
 | [MIA_GPT_CHATBOT_SKILLS_CAPABILITY_REVIEW_2026-07-20.md](MIA_GPT_CHATBOT_SKILLS_CAPABILITY_REVIEW_2026-07-20.md) | **챗봇 역량 검토 보고서** — "이 챗봇으로 얼마나 훌륭한 Skill을 만들 수 있는가?" /CRITIC·/REDTEAM 분석과 보강 권고 |
+| [MIA_GPT_CHATBOT_SKILLS_IMPLEMENTATION_PLAN_2026-07-20.md](MIA_GPT_CHATBOT_SKILLS_IMPLEMENTATION_PLAN_2026-07-20.md) | **실제 구현 계획** — 후보군 선별, 데이터 추출·제외 기준, `mia-skill-forge` 단계별 제작·평가·승격 계획 |
+| [MIA_SKILL_FORGE_USER_GUIDE_2026-07-20.md](MIA_SKILL_FORGE_USER_GUIDE_2026-07-20.md) | **사용자 학습 가이드** — Skill을 처음 접하는 사람을 위한 개념·사용법·최적화 절차·결과 판독법 |
 | [기획·검토·실행 모드 보고서](<../[userfile]/%23%20260720_gpt를 이용해서 Skills-모드 만들기/기획·검토·실행 모드 보고서.md>) | 사용자 작업 폴더 — MIA(plan-review-execute) 스킬 정본 설계 보고서 (이 파이프라인의 첫 후보 사례) |
 
 ## 챗봇 원본 위치 (로컬)

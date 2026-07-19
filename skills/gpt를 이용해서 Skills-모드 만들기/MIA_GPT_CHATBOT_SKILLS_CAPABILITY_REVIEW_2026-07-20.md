@@ -288,3 +288,18 @@ SKILL.md에는 name, description, 명령형 절차, 입력, 출력, 중단 조�
 - 재검토 조건: 실제 Skill 1종을 이 파이프라인으로 제작하고 세 도구에서 평가 결과를 확보했을 때
 
 첫 실험은 기존 `plan-review-execute`를 새로 만들기보다, 현재 정본을 이 평가 계약으로 다시 측정하는 것이 가장 싸고 신뢰도 높은 방법이다.
+
+## 10. 후속 구현 후보 선별
+
+역량 검토 이후 후보를 실제 제작 단위로 다시 비교했다.
+
+| 후보 | 판정 | 처리 |
+|---|---|---|
+| `mia-skill-forge` | Go | GPT 산출물을 공통 Agent Skill 정적 후보로 정제하는 1차 구현 대상 |
+| `mia-skill-evaluator` | 보류 | 첫 후보 평가에서 반복 병목이 확인될 때 분리 |
+| `mia-skill-distributor` | 병합 | 별도 Skill 대신 forge의 플랫폼 계약과 기존 동기화 도구로 처리 |
+| 전 과정 단일 `mia-skill-factory` | No-Go | 권한·실패 범위·컨텍스트가 과도함 |
+
+가져올 데이터는 적응형 확인 질문, 근거 Gate, REDTEAM·SELFREFINE, 논리 책임 기반 파일 분리, 안전 경계, 금지 상태 전이, 오류 피드백 회로로 제한한다. Package A 업로드 구조, 8,000자 Core 프레임, 20파일 상한, Apps·Actions, 원본 JSON과 생성 overlay는 이식하지 않는다.
+
+구체적인 파일 구조·데이터 추출표·평가 기준·승격 절차는 [MIA GPT 챗봇 Skills 구현 계획](MIA_GPT_CHATBOT_SKILLS_IMPLEMENTATION_PLAN_2026-07-20.md)에 기록했다.
