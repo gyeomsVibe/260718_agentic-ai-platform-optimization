@@ -64,24 +64,27 @@ cscript //NoLogo .\shared\platform-auto-update\scripts\Update-AntigravityAtLogon
 - 이 구성은 현재 사용자 계정에만 적용된다. 다른 Windows 계정에는 별도로 등록해야 한다.
 - Claude Code는 제품 내장 자동업데이트를 사용하므로 이 폴더에 별도 업데이트 스크립트가 없다.
 
-## GitHub CLI 주간 갱신 (2026-07-19 재설계)
+## 하루 1회 정시 갱신 체계 (2026-07-19 최종 재설계)
 
-Claude Code의 **자체 업데이트**는 제품 내장 기능으로 유지한다. GitHub CLI는 작업 스케줄러
-`GitHub CLI Weekly Update`가 **매주 일요일 12:00** winget으로 갱신한다.
+모든 자동업데이트는 **로그온마다가 아니라 하루 1회**, 작업 스케줄러가 정시에 실행한다.
+Claude Code의 **자체 업데이트**만 제품 내장 기능으로 유지한다.
 
-> **왜 바꿨나?** 이전의 "Claude Code 시작 감시" 방식은 ① 15초마다 PowerShell 프로세스를
-> 만들어 상시 CPU를 소모하고 ② Claude Code를 여는 순간 winget을 돌려 **앱 시작이 밀리는
-> 병목**을 만들었다. CLI 도구는 주 1회 갱신이면 충분하다.
+| 작업 스케줄러 이름 | 시각 | 무엇을 갱신 |
+|---|---|---|
+| `Codex CLI Daily Update` | 매일 **15:00** | Codex CLI (npm) |
+| `Antigravity Daily Update` | 매일 **15:10** | Antigravity IDE·2.0·CLI (winget) |
+| `GitHub CLI Daily Update` | 매일 **15:20** | GitHub CLI (winget) |
 
-- 점검: `schtasks /query /tn "GitHub CLI Weekly Update"`
-- 구 스크립트([Update-GitHubCliOnClaudeStart.vbs](scripts/Update-GitHubCliOnClaudeStart.vbs) ·
+> **왜 15시대인가?** 30일 부팅·종료 이벤트 분석 결과: 부팅 피크가 **14시**(49회 중 11회),
+> 사용 창은 14시~새벽 3시, 오전은 거의 꺼져 있음. 15:00은 ① 켜져 있을 확률이 가장 높은
+> 구간의 시작이고 ② 부팅 피크 1시간 뒤라 시작 경합이 없다. 10분 시차로 npm·winget이
+> 서로 겹치지 않는다.
+
+- 그날 15시에 PC가 꺼져 있었으면 **다음에 켜질 때 한 번 보충 실행**된다(StartWhenAvailable).
+- 점검: `schtasks /query /tn "Codex CLI Daily Update"` (다른 두 작업도 동일)
+- 로그온 Run 레지스트리 키와 "Claude Code 시작 감시" 방식(15초 폴링 + 열 때 winget)은
+  시작 병목을 만들어 **모두 폐지**됨. 구 스크립트
+  ([Update-GitHubCliOnClaudeStart.vbs](scripts/Update-GitHubCliOnClaudeStart.vbs) ·
   [Install-GitHubCliClaudeStartUpdater.ps1](scripts/Install-GitHubCliClaudeStartUpdater.ps1))는
   이력 참고용 — **다시 등록하지 말 것**.
-
-## 로그온 업데이터 지연 (2026-07-19 추가)
-
-로그온 즉시 npm·winget이 돌면 Windows 시작과 경합해 전체가 느려진다. 이제 시차를 둔다:
-
-- Codex 업데이터: 로그온 **5분 후** 실행
-- Antigravity 업데이터: 로그온 **10분 후** 실행 (Codex와도 겹치지 않음)
-- `/test` 점검 모드는 지연 없이 즉시 응답한다.
+- `/test` 점검 모드는 언제나 즉시 응답한다.

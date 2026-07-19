@@ -106,12 +106,13 @@ Antigravity 로그에서 마지막 실행이 `Antigravity IDE is already up to d
 - 로그, 다운로드 캐시, 인증 정보는 저장소에 커밋하지 않는다.
 - 활성 스크립트를 다른 워크스페이스로 옮길 때는 레지스트리 경로를 명시적으로 변경하고 `cscript //NoLogo <script> /test`로 먼저 검증한다.
 
-### GitHub CLI (주간 업데이트 — 2026-07-19 재설계)
+### 하루 1회 정시 갱신 체계 (2026-07-19 최종)
 
 - Claude Code 자체는 Native 설치본의 내장 업데이트를 계속 사용한다.
-- ~~시작 감시 방식~~은 **폐기됨**: 15초 폴링(매번 PowerShell 프로세스 생성, 일 ~5,760회)과
-  Claude Code를 여는 순간의 winget 실행이 **앱 시작 병목의 주원인**으로 확인되어 제거했다.
-- 현재 방식: 작업 스케줄러 `GitHub CLI Weekly Update`가 **매주 일요일 12:00**에
-  `winget upgrade --id GitHub.cli --exact`를 무인 실행한다. 폴링·감시 프로세스 없음.
-- 구 스크립트 `Update-GitHubCliOnClaudeStart.vbs`는 이력 참고용으로만 보존한다 (등록 금지).
-- 점검: `schtasks /query /tn "GitHub CLI Weekly Update"` 로 다음 실행 시각 확인.
+- 로그온 트리거(Run 키)와 "Claude Code 시작 감시"(15초 폴링 + 열 때 winget)는
+  **앱 시작 병목의 주원인**으로 확인되어 전부 폐지했다.
+- 현재 방식 — 작업 스케줄러 일일 정시 실행 (30일 사용 로그 분석으로 15시대 선정):
+  `Codex CLI Daily Update`(15:00) · `Antigravity Daily Update`(15:10) ·
+  `GitHub CLI Daily Update`(15:20). 꺼져 있던 날은 다음 부팅 때 1회 보충 실행.
+- 상세 설계·근거: `platform-auto-update/README.md`의 "하루 1회 정시 갱신 체계" 절.
+- 점검: `schtasks /query /tn "Codex CLI Daily Update"` (다른 두 작업 동일).
