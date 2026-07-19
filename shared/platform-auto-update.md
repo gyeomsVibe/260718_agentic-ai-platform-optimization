@@ -105,3 +105,10 @@ Antigravity 로그에서 마지막 실행이 `Antigravity IDE is already up to d
 - 새 설치 관리자·패키지 관리자를 추가하지 않는다.
 - 로그, 다운로드 캐시, 인증 정보는 저장소에 커밋하지 않는다.
 - 활성 스크립트를 다른 워크스페이스로 옮길 때는 레지스트리 경로를 명시적으로 변경하고 `cscript //NoLogo <script> /test`로 먼저 검증한다.
+
+### GitHub CLI (Claude Code 시작 감시)
+
+- Claude Code 자체는 Native 설치본의 내장 업데이트를 계속 사용한다.
+- 별도 작업 스케줄러 `Claude Code GitHub CLI Update Monitor`가 Claude Code 프로세스 시작을 감지한 뒤 `winget upgrade --id GitHub.cli --exact`를 무인 실행한다.
+- 정본 스크립트는 `platform-auto-update/scripts/Update-GitHubCliOnClaudeStart.vbs`이며, 결과는 `GitHub CLI auto-update` Windows 알림과 `scripts/logs/github-cli-claude-start-updater.log`에 남는다.
+- 점검: `cscript //NoLogo .\shared\platform-auto-update\scripts\Update-GitHubCliOnClaudeStart.vbs /test /notify` (실제 갱신 없음).

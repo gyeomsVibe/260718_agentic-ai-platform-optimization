@@ -63,3 +63,13 @@ cscript //NoLogo .\shared\platform-auto-update\scripts\Update-AntigravityAtLogon
 - 스크립트 이름이나 폴더 위치를 바꾸면 Windows 시작 프로그램의 경로도 함께 바꿔야 한다.
 - 이 구성은 현재 사용자 계정에만 적용된다. 다른 Windows 계정에는 별도로 등록해야 한다.
 - Claude Code는 제품 내장 자동업데이트를 사용하므로 이 폴더에 별도 업데이트 스크립트가 없다.
+
+## Claude Code 시작 시 GitHub CLI 갱신
+
+Claude Code의 **자체 업데이트**는 제품 내장 기능으로 유지한다. 별도로 `Claude Code GitHub CLI Update Monitor` 작업 스케줄러가 Claude Code 시작을 감지하면 [scripts/Update-GitHubCliOnClaudeStart.vbs](scripts/Update-GitHubCliOnClaudeStart.vbs)를 실행해 GitHub CLI만 갱신한다.
+
+- 완료: `GitHub CLI update completed`
+- 최신: `GitHub CLI is already up to date`
+- 실패: 오류 코드와 함께 알림 센터·`scripts/logs/github-cli-claude-start-updater.log`에 기록
+- 설치·경로 전환: [scripts/Install-GitHubCliClaudeStartUpdater.ps1](scripts/Install-GitHubCliClaudeStartUpdater.ps1)
+- 무변경 점검: `cscript //NoLogo .\shared\platform-auto-update\scripts\Update-GitHubCliOnClaudeStart.vbs /test /notify`
