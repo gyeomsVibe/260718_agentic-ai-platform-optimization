@@ -1,0 +1,5 @@
+# Local-only Store application binaries and runtime output
+backup/app.asar.original
+staging/app.asar.patched
+install-after-exit.log
+install-patch.log

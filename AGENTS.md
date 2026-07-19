@@ -17,3 +17,20 @@ Claude Code / Codex / Antigravity 세 플랫폼의 최적화·유지관리 워�
 - **파손 시 복구 순서**: ① `nlm login` 재실행 → ② `uv tool upgrade notebooklm-mcp-cli`
   → ③ 예비 서버(PleasePrompto `npx notebooklm-mcp@latest`)로 전환.
 - **업그레이드 주의**: NotebookLM UI/API 개편 뉴스 후 24~72시간 기다렸다가 업그레이드.
+
+---
+
+# Workspace artifact delivery
+
+- Do not rely on the Codex image-preview download button for local files. The
+  current Windows app does not reliably download local-path image sources.
+- Keep the canonical artifact inside this workspace.
+- When 윤겸스 asks to download or retain an artifact, export the actual file and
+  a ZIP bundle to `C:\Users\Kimyoongyeom\Downloads\Codex-Exports` after the
+  required filesystem approval.
+- Report the absolute export path, file count, size, and verification result.
+- A preview image is evidence for review, not the downloadable deliverable.
+- Codex does not preview ZIP contents. Open the exported ZIP in Explorer or an
+  archive app; do not present the Codex ZIP preview as a failed download.
+- Make exported HTML artifacts standalone: copy their local assets into the
+  export bundle and verify every relative asset path after copying.
