@@ -7,12 +7,15 @@
 
 ## 1. 내 PC의 스킬은 어디에 있나
 
-| 도구 | 전역(모든 프로젝트) 위치 | 현재 보유 |
+| 도구 | 전역(모든 프로젝트) 위치 | 현재 보유 (2026-07-19 슬림화 후) |
 |---|---|---|
-| Claude Code | `~/.claude/skills/` | 기존 50종 + 신규 4종 |
-| Codex | `~/.codex/skills/` | 기존 28종 + 신규 5종 |
-| Antigravity | `~/.gemini/antigravity/skills/` | 기존 20종 + 신규 5종 |
-| (범용) | `~/.agents/skills/` | 여러 도구가 함께 읽는 새 표준 위치 |
+| Claude Code | `~/.claude/skills/` | 37종 |
+| Codex | `~/.codex/skills/` | 16종 |
+| Antigravity | `~/.gemini/antigravity/skills/` | 14종 |
+| (범용) | `~/.agents/skills/` | 37종 — 여러 도구가 함께 읽는 새 표준 위치 |
+
+> 안 쓰는 GCP 데이터 팩 17종은 격리 제거했습니다 — 무엇을 왜 뺐는지는
+> [MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md](MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md) 참조.
 
 > `~`는 내 사용자 폴더(`C:\Users\Kimyoongyeom`)입니다.
 
@@ -74,4 +77,5 @@ npx skills remove -g -s <스킬이름> -y            ← 제거
 ## 6. 관련 문서
 
 - [MIA_SKILLS_EXPLORATION_2026-07-19.md](MIA_SKILLS_EXPLORATION_2026-07-19.md) — 왜 이 5종을 골랐고 무엇을 기각했는지 (리서치 근거·기각 사유)
+- [MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md](MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md) — 전수조사·슬림화 감사 (제거 근거·복원 방법·재발 방지 수칙)
 - [`../shared/skills/`](../shared/skills/) — 우리가 **직접 만든** 스킬의 정본 (plan-review-execute). 외부에서 받아온 스킬은 이 섹션(skills/)에서 관리.
