@@ -18,6 +18,10 @@ If WScript.Arguments.Named.Exists("test") Then
     WScript.Quit 0
 End If
 
+' 로그온 직후 Windows 시작 프로세스와의 CPU·디스크 경합을 피한다 (10분 지연).
+' Codex 업데이터(5분 지연)가 끝난 뒤에 시작되도록 시차를 둔다.
+WScript.Sleep 600000
+
 WriteLog "Logon update sequence started."
 ideResult = UpdatePackage("Google.AntigravityIDE", "Antigravity IDE")
 antigravityResult = UpdatePackage("Google.Antigravity", "Antigravity 2.0")

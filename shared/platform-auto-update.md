@@ -106,9 +106,12 @@ Antigravity 로그에서 마지막 실행이 `Antigravity IDE is already up to d
 - 로그, 다운로드 캐시, 인증 정보는 저장소에 커밋하지 않는다.
 - 활성 스크립트를 다른 워크스페이스로 옮길 때는 레지스트리 경로를 명시적으로 변경하고 `cscript //NoLogo <script> /test`로 먼저 검증한다.
 
-### GitHub CLI (Claude Code 시작 감시)
+### GitHub CLI (주간 업데이트 — 2026-07-19 재설계)
 
 - Claude Code 자체는 Native 설치본의 내장 업데이트를 계속 사용한다.
-- 별도 작업 스케줄러 `Claude Code GitHub CLI Update Monitor`가 Claude Code 프로세스 시작을 감지한 뒤 `winget upgrade --id GitHub.cli --exact`를 무인 실행한다.
-- 정본 스크립트는 `platform-auto-update/scripts/Update-GitHubCliOnClaudeStart.vbs`이며, 결과는 `GitHub CLI auto-update` Windows 알림과 `scripts/logs/github-cli-claude-start-updater.log`에 남는다.
-- 점검: `cscript //NoLogo .\shared\platform-auto-update\scripts\Update-GitHubCliOnClaudeStart.vbs /test /notify` (실제 갱신 없음).
+- ~~시작 감시 방식~~은 **폐기됨**: 15초 폴링(매번 PowerShell 프로세스 생성, 일 ~5,760회)과
+  Claude Code를 여는 순간의 winget 실행이 **앱 시작 병목의 주원인**으로 확인되어 제거했다.
+- 현재 방식: 작업 스케줄러 `GitHub CLI Weekly Update`가 **매주 일요일 12:00**에
+  `winget upgrade --id GitHub.cli --exact`를 무인 실행한다. 폴링·감시 프로세스 없음.
+- 구 스크립트 `Update-GitHubCliOnClaudeStart.vbs`는 이력 참고용으로만 보존한다 (등록 금지).
+- 점검: `schtasks /query /tn "GitHub CLI Weekly Update"` 로 다음 실행 시각 확인.

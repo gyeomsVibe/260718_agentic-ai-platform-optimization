@@ -19,6 +19,10 @@ If WScript.Arguments.Named.Exists("test") Then
     WScript.Quit 0
 End If
 
+' 로그온 직후 Windows 시작 프로세스와의 CPU·디스크 경합을 피한다 (5분 지연).
+' Antigravity 업데이터는 10분 지연이라 서로 겹치지 않는다.
+WScript.Sleep 300000
+
 If Not fileSystem.FolderExists(npmCacheDirectory) Then
     fileSystem.CreateFolder(npmCacheDirectory)
 End If

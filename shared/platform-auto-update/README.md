@@ -64,12 +64,24 @@ cscript //NoLogo .\shared\platform-auto-update\scripts\Update-AntigravityAtLogon
 - 이 구성은 현재 사용자 계정에만 적용된다. 다른 Windows 계정에는 별도로 등록해야 한다.
 - Claude Code는 제품 내장 자동업데이트를 사용하므로 이 폴더에 별도 업데이트 스크립트가 없다.
 
-## Claude Code 시작 시 GitHub CLI 갱신
+## GitHub CLI 주간 갱신 (2026-07-19 재설계)
 
-Claude Code의 **자체 업데이트**는 제품 내장 기능으로 유지한다. 별도로 `Claude Code GitHub CLI Update Monitor` 작업 스케줄러가 Claude Code 시작을 감지하면 [scripts/Update-GitHubCliOnClaudeStart.vbs](scripts/Update-GitHubCliOnClaudeStart.vbs)를 실행해 GitHub CLI만 갱신한다.
+Claude Code의 **자체 업데이트**는 제품 내장 기능으로 유지한다. GitHub CLI는 작업 스케줄러
+`GitHub CLI Weekly Update`가 **매주 일요일 12:00** winget으로 갱신한다.
 
-- 완료: `GitHub CLI update completed`
-- 최신: `GitHub CLI is already up to date`
-- 실패: 오류 코드와 함께 알림 센터·`scripts/logs/github-cli-claude-start-updater.log`에 기록
-- 설치·경로 전환: [scripts/Install-GitHubCliClaudeStartUpdater.ps1](scripts/Install-GitHubCliClaudeStartUpdater.ps1)
-- 무변경 점검: `cscript //NoLogo .\shared\platform-auto-update\scripts\Update-GitHubCliOnClaudeStart.vbs /test /notify`
+> **왜 바꿨나?** 이전의 "Claude Code 시작 감시" 방식은 ① 15초마다 PowerShell 프로세스를
+> 만들어 상시 CPU를 소모하고 ② Claude Code를 여는 순간 winget을 돌려 **앱 시작이 밀리는
+> 병목**을 만들었다. CLI 도구는 주 1회 갱신이면 충분하다.
+
+- 점검: `schtasks /query /tn "GitHub CLI Weekly Update"`
+- 구 스크립트([Update-GitHubCliOnClaudeStart.vbs](scripts/Update-GitHubCliOnClaudeStart.vbs) ·
+  [Install-GitHubCliClaudeStartUpdater.ps1](scripts/Install-GitHubCliClaudeStartUpdater.ps1))는
+  이력 참고용 — **다시 등록하지 말 것**.
+
+## 로그온 업데이터 지연 (2026-07-19 추가)
+
+로그온 즉시 npm·winget이 돌면 Windows 시작과 경합해 전체가 느려진다. 이제 시차를 둔다:
+
+- Codex 업데이터: 로그온 **5분 후** 실행
+- Antigravity 업데이터: 로그온 **10분 후** 실행 (Codex와도 겹치지 않음)
+- `/test` 점검 모드는 지연 없이 즉시 응답한다.
