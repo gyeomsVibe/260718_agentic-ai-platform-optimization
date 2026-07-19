@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-07-20T00:00:00+09:00",
+  "scope": "mia-skill-forge runnable instructions and directly linked references",
+  "method": [
+    "Inventory each file's distinct responsibility.",
+    "Search repeated authority, maturity, recovery, and delivery rules.",
+    "Keep intentional safety repetition only at an execution boundary.",
+    "Require a source-to-destination trace for the first pilot."
+  ],
+  "line_counts_before": {
+    "SKILL.md": 86,
+    "mia-quality-gates.md": 89,
+    "optimization-procedure.md": 94,
+    "output-contract.md": 56,
+    "platform-contracts.md": 45,
+    "total": 370
+  },
+  "line_counts_after": {
+    "SKILL.md": 87,
+    "mia-quality-gates.md": 89,
+    "optimization-procedure.md": 92,
+    "output-contract.md": 54,
+    "platform-contracts.md": 45,
+    "total": 367
+  },
+  "findings": [
+    {
+      "id": "RD-01",
+      "risk": "Reference routing was scattered across prose, increasing the chance of loading irrelevant documents.",
+      "action": "Merged routing into one need-to-reference map in SKILL.md.",
+      "status": "resolved"
+    },
+    {
+      "id": "RD-02",
+      "risk": "Maturity and recovery rules appeared in both quality gates and the optimization procedure.",
+      "action": "Retained canonical definitions in mia-quality-gates.md and replaced procedure copies with direct links.",
+      "status": "resolved"
+    },
+    {
+      "id": "RD-03",
+      "risk": "The first pilot had a baseline but no compact source-rule trace.",
+      "action": "Added fixtures/plan-review-execute/source-rule-trace.json with preserve, adapt, and omit decisions.",
+      "status": "resolved"
+    },
+    {
+      "id": "RD-04",
+      "risk": "External-action warnings remain in both the execution body and output contract.",
+      "action": "Retained as intentional boundary repetition because either document can be loaded independently before a side effect.",
+      "status": "accepted"
+    }
+  ],
+  "redteam_verdict": "pass_with_runtime_gap",
+  "remaining_gap": "No actual Codex, Claude Code, or Antigravity invocation evidence exists yet."
+}

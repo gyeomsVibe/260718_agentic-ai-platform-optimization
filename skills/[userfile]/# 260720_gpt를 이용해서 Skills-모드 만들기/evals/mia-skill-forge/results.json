@@ -24,6 +24,11 @@
       "check": "official_quick_validate",
       "result": "blocked_by_environment",
       "reason": "PyYAML is unavailable in both inspected local Python runtimes; no package was installed without approval."
+    },
+    {
+      "check": "redteam_data_review",
+      "result": "pass_with_runtime_gap",
+      "evidence": "redteam-data-review.json"
     }
   ],
   "note": "No runtime trigger, task, safety, or cross-platform evaluation has been performed."

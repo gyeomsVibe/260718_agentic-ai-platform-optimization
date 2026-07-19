@@ -4,7 +4,7 @@ Use this procedure to improve an existing Skill without confusing activity with 
 
 ## 0. Lock intent and authority
 
-Record the requested outcome, target users, target platforms, permitted writes, non-goals, and success threshold. Separate permission to inspect or edit locally from permission to install, publish, deploy, commit, or push.
+Record the requested outcome, target users, target platforms, permitted writes, non-goals, and success threshold.
 
 Output: an execution card with scope, exclusions, evidence needed, and rollback path.
 
@@ -17,8 +17,6 @@ Capture before editing:
 - representative task and safety cases
 - structure, line count, resource count, and platform adapters
 - known failures and unverified assumptions
-
-Do not copy private source instructions into evidence. Record safe identifiers and extracted rules only.
 
 Gate: stop if the baseline cannot be reproduced or the supposed defect has no evidence.
 
@@ -63,7 +61,7 @@ Run the cheapest valid layer first:
 4. no-Skill baseline comparison
 5. named-platform smoke tests
 
-After a failure, use one failure, one cause, smallest fix, and rerun. Never weaken a check to manufacture a pass.
+Use the recovery loop in [MIA quality gates](mia-quality-gates.md) after a failure.
 
 ## 6. Measure net improvement
 
@@ -89,6 +87,6 @@ Choose one outcome:
 - `stop`: the concept is invalid, unsafe, or not worth its complexity
 - `no-change`: the baseline is adequate and modification lacks evidence
 
-Keep the artifact `STATIC_CANDIDATE` after authoring and `STRUCTURE_VALIDATED` after deterministic checks. Use `VERIFIED_RESULT` only after the claimed runtime, safety, and cross-platform behavior has been observed.
+Use the maturity meanings and forbidden status transitions in [MIA quality gates](mia-quality-gates.md).
 
 Report changed files, checks run and not run, remaining risks, rollback, and the next approval boundary.

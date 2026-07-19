@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-07-20T00:00:00+09:00",
+  "source": {
+    "path": "shared/skills/plan-review-execute/SKILL.md",
+    "sha256": "8076D5D401F53747BA3C188A5C4675E70D96CD6623790AB492A3BA716EFA540A"
+  },
+  "target": "candidates/mia-skill-forge",
+  "records": [
+    {
+      "source_anchor": "Select a stage, lines 14-24",
+      "decision": "adapt",
+      "normalized_rule": "Lock the requested scope, allowed writes, and the one unknown that changes the decision.",
+      "destination": "SKILL.md: Establish the contract",
+      "evidence": "verified",
+      "reason": "Forge creates a Skill candidate rather than running MIA's four decision stages."
+    },
+    {
+      "source_anchor": "Planning evidence map, lines 30-41",
+      "decision": "preserve",
+      "normalized_rule": "Separate verified facts, assumptions, unknowns, and recommendations.",
+      "destination": "references/mia-quality-gates.md: Evidence gate",
+      "evidence": "verified",
+      "reason": "The distinction prevents unsupported portability and maturity claims."
+    },
+    {
+      "source_anchor": "Review lenses, lines 43-54",
+      "decision": "adapt",
+      "normalized_rule": "Compare no-change, simplify, repair, and split by net complexity and evidence.",
+      "destination": "references/optimization-procedure.md: Compare the smallest candidate portfolio",
+      "evidence": "verified",
+      "reason": "Forge evaluates a Skill change rather than a product or business option."
+    },
+    {
+      "source_anchor": "Execution delivery card, lines 56-65",
+      "decision": "adapt",
+      "normalized_rule": "Use a smallest reversible candidate change with acceptance criteria and rollback.",
+      "destination": "references/optimization-procedure.md: Apply one reversible change",
+      "evidence": "verified",
+      "reason": "The delivery unit changes from a general experiment to a candidate Skill artifact."
+    },
+    {
+      "source_anchor": "Validation learning loop, lines 67-70",
+      "decision": "preserve",
+      "normalized_rule": "Decide from observed evidence and retain the next experiment.",
+      "destination": "references/optimization-procedure.md: Decide and hand off",
+      "evidence": "verified",
+      "reason": "Candidate quality must be measured rather than inferred from document polish."
+    },
+    {
+      "source_anchor": "Execution gates, lines 73-83",
+      "decision": "preserve",
+      "normalized_rule": "Invocation does not authorize side effects; use separate approval and reversible checks.",
+      "destination": "references/mia-quality-gates.md: Safety and permission gate",
+      "evidence": "verified",
+      "reason": "The same authority boundary applies across all target platforms."
+    },
+    {
+      "source_anchor": "Output by stage, lines 85-94",
+      "decision": "adapt",
+      "normalized_rule": "Return a candidate tree, source trace, checks, risks, and next approval boundary.",
+      "destination": "references/output-contract.md: Candidate handoff",
+      "evidence": "verified",
+      "reason": "Forge outputs a portability candidate rather than a MIA stage report."
+    },
+    {
+      "source_anchor": "Quality circuit, lines 95-132",
+      "decision": "preserve",
+      "normalized_rule": "Use intent, evidence, complexity, maturity, and regression gates only to the degree justified by risk.",
+      "destination": "references/mia-quality-gates.md",
+      "evidence": "verified",
+      "reason": "These gates are the durable reasoning core for candidate construction."
+    },
+    {
+      "source_anchor": "Exact MIA mode activation wording",
+      "decision": "omit",
+      "normalized_rule": null,
+      "destination": null,
+      "evidence": "verified",
+      "reason": "Forge has a separate explicit trigger and must not inherit another Skill's activation contract."
+    },
+    {
+      "source_anchor": "MIA-specific stage labels and report names",
+      "decision": "omit",
+      "normalized_rule": null,
+      "destination": null,
+      "evidence": "verified",
+      "reason": "Retaining them would falsely imply that every Skill candidate is a MIA decision workflow."
+    }
+  ]
+}

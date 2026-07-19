@@ -32,7 +32,7 @@ Keep review material beside, not inside, the candidate:
 
 ## Required trace
 
-For every source family, record the source identifier, `preserve` or `adapt` or `omit`, normalized rule or omission reason, destination when retained, and evidence status. Reference private local assets by safe name or path only; never reproduce their confidential instruction bodies.
+For every source family, record its safe identifier, `preserve` or `adapt` or `omit`, normalized rule or omission reason, retained destination, and evidence status. Never reproduce private instruction bodies.
 
 ## Candidate handoff
 
@@ -49,8 +49,6 @@ Return:
 
 ## Promotion boundary
 
-The forge ends at `STATIC_CANDIDATE` or, after deterministic checks, `STRUCTURE_VALIDATED`.
+Use the maturity meanings in [MIA quality gates](mia-quality-gates.md). Promotion needs retained evidence for explicit trigger and non-trigger behavior, representative task success, incomplete-input handling, safety refusal, no-Skill baseline comparison, and named-platform smoke tests.
 
-Promotion requires a separate workflow with retained evidence for explicit trigger and non-trigger behavior, representative task success, incomplete-input handling, safety refusal, no-Skill baseline comparison, and named-platform smoke tests.
-
-Do not install globally, overwrite a canonical Skill, modify synchronization rules, publish, deploy, commit, or push unless the user separately authorizes that action.
+Require separate approval before installation, canonical overwrite, synchronization changes, publication, deployment, commit, or push.
