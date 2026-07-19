@@ -12,7 +12,7 @@
 | 시작점 | 용도 | 권장 사용 시점 |
 | --- | --- | --- |
 | [custom-pet-manual/](custom-pet-manual/) | 런타임 제약과 이미지 뷰어 문제 해결을 포함한 기본 매뉴얼 | 새 Pet 제작 또는 설치 전 |
-| [# 문서 — 나만의 커스텀 반려동물 만들기/](<# [문서] 나만의 커스텀 반려동물 만들기>) | 기획·제작 흐름을 설명하는 사용자 문서 | 전체 과정을 빠르게 이해할 때 |
+| [사용자 문서 보관함](https://github.com/gyeomsVibe/260718_agentic-ai-platform-optimization/tree/main/codex/%23%20%5B문서%5D%20나만의%20커스텀%20반려동물%20만들기) | 기획·제작 흐름을 설명하는 사용자 문서 | 전체 과정을 빠르게 이해할 때 |
 | [MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md](MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md) | 최적화 판단과 품질 기준 | 작업 방향을 다시 결정할 때 |
 | [HANDOFF_GYEOM_PET_2026-07-16.md](HANDOFF_GYEOM_PET_2026-07-16.md) | 다음 작업자를 위한 인수인계 | 기존 작업을 이어갈 때 |
 | [pet-repair-20260717/](pet-repair-20260717/) | 반복 보정의 프롬프트·행별 재시도·QA 이력 | 특정 포즈나 시선 오류를 복구할 때 |

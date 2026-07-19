@@ -139,8 +139,8 @@ claude        # 대화형 실행
 ---
 
 ## 6. 관련 기록
-- 개발 스택(파이썬·노드·git 등): [`optimization_result.md`](optimization_result.md) 3차 섹션
-- 전원/발열 최적화: [`optimization_result.md`](optimization_result.md), [`scratch/cpu_boost_optimizer.ps1`](scratch/cpu_boost_optimizer.ps1)
+- 개발 스택(파이썬·노드·git 등): [optimization_result.md](https://github.com/gyeomsVibe/260713_pc-optimization/blob/main/notebook/00_Project_Management/optimization_result.md) 3차 섹션
+- 전원/발열 최적화: [optimization_result.md](https://github.com/gyeomsVibe/260713_pc-optimization/blob/main/notebook/00_Project_Management/optimization_result.md), [cpu_boost_optimizer.ps1](https://github.com/gyeomsVibe/260713_pc-optimization/blob/main/notebook/scratch/cpu_boost_optimizer.ps1)
 - 상위 통합 개요: [`../README.md`](../README.md)
 
 > 보안 주의: 이 문서에는 토큰·비밀키·머신ID 등 민감정보를 포함하지 않는다. `.credentials.json` 등 인증 파일은 조회·수정하지 않았다.

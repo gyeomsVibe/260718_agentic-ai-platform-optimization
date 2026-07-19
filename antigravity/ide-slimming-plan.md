@@ -26,7 +26,7 @@
 
 ### Antigravity IDE Extensions
 
-#### [MODIFY] [Extensions Configuration](file:///C:/Users/Kimyoongyeom/.gemini/antigravity-ide)
+#### [MODIFY] Extensions Configuration (`~/.gemini/antigravity-ide`, 로컬 전용)
 
 **1. 삭제 대상 확장 프로그램 (총 39개) 및 삭제 사유**
 

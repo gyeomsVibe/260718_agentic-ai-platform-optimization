@@ -11,7 +11,7 @@
 ## 1. Codex란 (학습모드)
 
 Codex는 대화 중 사용할 도구·스킬·지침을 확장하는 에이전트다. Claude Code와 마찬가지로
-확장은 **3층위**로 이해하면 관리가 쉽다. (개념 표는 [노트북 README](README.md#에이전트-환경-학습모드) 참조)
+확장은 **3층위**로 이해하면 관리가 쉽다. (개념 표는 [노트북 PC 개요](https://github.com/gyeomsVibe/260713_pc-optimization/blob/main/notebook/README.md) 참조)
 
 | 층위 | Codex에서의 위치 |
 |---|---|
@@ -79,7 +79,7 @@ codex plugin enable  <id>  # 원복
 
 - 이 문서와 Codex는 **`~/.codex/` 만** 다룬다.
 - Claude 설정(`.claude/`)·Antigravity 설정(`.agents/`)은 **건드리지 않는다.**
-- 관련: [Claude 환경](claude-agent-environment.md) · [Antigravity 환경](antigravity-agent-environment.md)
+- 관련: [Claude 환경](../claude/environment-notebook.md) · [Antigravity 환경](../antigravity/environment-notebook.md)
 
 > 보안 주의: 이 문서에는 토큰·API 키·머신 고유 경로를 포함하지 않는다. `config.toml` 등 인증 파일은 열람·커밋하지 않았다.
 

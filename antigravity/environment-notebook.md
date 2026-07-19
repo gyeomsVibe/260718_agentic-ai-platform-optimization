@@ -11,7 +11,7 @@
 ## 1. Antigravity란 (학습모드)
 
 Antigravity는 IDE 통합형 AI 에이전트다. 확장은 다른 에이전트와 같은 **3층위**로 이해한다.
-(개념 표는 [노트북 README](README.md#에이전트-환경-학습모드) 참조)
+(개념 표는 [노트북 PC 개요](https://github.com/gyeomsVibe/260713_pc-optimization/blob/main/notebook/README.md) 참조)
 
 | 층위 | Antigravity에서의 위치 |
 |---|---|
@@ -34,7 +34,7 @@ Antigravity가 이 노트북에서 정상 작동하기 위한 기본 스택 (개
 | uv | 0.11.28 |
 | Python (`py` 런처) | 3.14.6 |
 
-> 상세 셋업 내역은 [`optimization_result.md`](optimization_result.md) 3차 섹션 참조.
+> 상세 셋업 내역은 [optimization_result.md](https://github.com/gyeomsVibe/260713_pc-optimization/blob/main/notebook/00_Project_Management/optimization_result.md) 3차 섹션 참조.
 
 ---
 
@@ -75,8 +75,8 @@ Antigravity의 워크스페이스 로컬 설정은 `.agents/` 에 있다. **호�
 
 백그라운드 리소스(CPU/RAM)를 점유하는 불필요 확장을 정리한 기록:
 
-- 📋 계획: [`antigravity-ide-slimming-plan.md`](antigravity-ide-slimming-plan.md)
-- ✅ 결과: [`antigravity-ide-slimming-result.md`](antigravity-ide-slimming-result.md)
+- 📋 계획: [`ide-slimming-plan.md`](ide-slimming-plan.md)
+- ✅ 결과: [`ide-slimming-result.md`](ide-slimming-result.md)
 
 핵심 방향: 미사용 언어 서버(Java/PHP/Ruby/Rust/Go 등)·중복 AI 도구·중복 Pyright 정리, 무거운
 SonarLint·GitLens를 경량 대체. (상세 수치는 결과 문서 참조)
@@ -88,6 +88,6 @@ SonarLint·GitLens를 경량 대체. (상세 수치는 결과 문서 참조)
 - 이 문서와 Antigravity는 **`.agents/` · IDE 확장 · `~/.antigravity-ide/` 만** 다룬다.
 - **Claude 설정(`.claude/`)·Codex 설정(`~/.codex/`)은 건드리지 않는다.**
   (이전에 Antigravity가 `.claude/settings.local.json` 추적을 변경했던 이력이 있어, 본 정리에서 도메인 경계를 명문화함.)
-- 관련: [Claude 환경](claude-agent-environment.md) · [Codex 환경](codex-agent-environment.md)
+- 관련: [Claude 환경](../claude/environment-notebook.md) · [Codex 환경](../codex/environment-notebook.md)
 
 > 보안 주의: 이 문서에는 머신 고유 경로·호스트명 실값을 포함하지 않는다.
