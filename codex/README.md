@@ -1,16 +1,56 @@
 # Codex 작업·관리 섹션
 
-Codex(OpenAI) 환경설정 기록과 최적화 자료를 관리한다.
+> **Codex**는 OpenAI가 만든 AI 코딩 에이전트(데스크톱 앱)입니다. 이 폴더는 Codex를
+> 잘 쓰기 위한 **환경설정 기록**, **앱 문제해결**, 그리고 Codex 앱을 개인화하는
+> **커스텀 반려동물(Pet) 제작 자료**를 모아 둡니다.
+
+## 이 섹션은 크게 3덩어리
+
+| 덩어리 | 무엇인가 | 진입 문서 |
+|---|---|---|
+| 🧩 **환경설정** | Codex의 플러그인·MCP·계정 연동 구조와 정리 원칙, 샌드박스 문제해결 | [environment-notebook.md](environment-notebook.md) |
+| 🐾 **커스텀 반려동물** | 내 캐릭터를 Codex 앱 안에서 움직이는 펫으로 만드는 전 과정 | [PET_LIBRARY.md](PET_LIBRARY.md) |
+| 🛠 **앱 진단·패치** | Codex 앱 자체의 버그(로컬 이미지 다운로드 등) 재현·수정 기록 | 아래 "앱 진단" 참조 |
+
+---
+
+## 🧩 환경설정
 
 | 문서 | 내용 |
 |---|---|
-| [environment-notebook.md](environment-notebook.md) | 노트북 환경설정 기록 — `~/.codex/` 구조, 정리 원칙, **트러블슈팅 3건** (샌드박스 gh 인증 실패 해결, 압축 파일 우회 절차, write root ACL 체크리스트) |
-| [PET_LIBRARY.md](PET_LIBRARY.md) | 나만의 커스텀 반려동물(Pet) 제작·복구·QA 자료의 단일 진입점 |
+| [environment-notebook.md](environment-notebook.md) | 노트북 환경설정 기록 — `~/.codex/` 구조, "안 쓰는 건 비활성화" 정리 원칙, **트러블슈팅 3건**(샌드박스에서 `gh` 인증 실패 해결, 압축 파일 미리보기 우회, write-root 권한(ACL) 체크리스트) |
 
-데스크톱 환경 기록은 아직 없다 (필요 시 `environment-desktop.md`로 추가).
-공용 자료(글로벌 룰 정본, MIA 플러그인)는 [`../shared/`](../shared/) 참조.
+> 데스크톱 환경 기록은 아직 없습니다 (필요하면 `environment-desktop.md`로 추가).
+> 세 도구가 함께 쓰는 전역 규칙·플러그인은 [`../shared/`](../shared/)에 있습니다.
 
-## 최근 Codex 앱 진단
+## 🐾 커스텀 반려동물 (Custom Pet)
 
-- [codex-image-download-fix-20260719/](codex-image-download-fix-20260719/) — 로컬 이미지 다운로드 동작을 재현·검증하는 ASAR 패치 스테이징과 롤백 절차.
-- [HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md) — Claude Code에서 이어받는 분석 근거와 승인 경계.
+**"반려동물"이 뭔가요?** Codex 앱 화면 구석에서 움직이는 작은 캐릭터입니다. 내 캐릭터
+그림을 여러 동작(대기·달리기·인사·점프 등)의 **스프라이트 시트**로 만들어 넣으면, 앱이
+작업 상태에 맞춰 그 캐릭터를 움직입니다. 그림 한 장이 아니라 "모든 동작에서 같은 캐릭터를
+유지하는 일"이 핵심이라 제작·검수·복구 기록이 함께 필요합니다.
+
+**여기부터 보세요 → [PET_LIBRARY.md](PET_LIBRARY.md)** (펫 자료 전체의 안내판)
+
+| 자료 | 무엇인가 | 언제 보나 |
+|---|---|---|
+| [PET_LIBRARY.md](PET_LIBRARY.md) | 펫 자료 전체의 **단일 진입점**(목차·읽는 순서) | 무엇부터 볼지 모를 때 |
+| [custom-pet-manual/](custom-pet-manual/) | 초보자용 **제작 매뉴얼** — 완료 기준, 9행 모션 설계, 런타임 제약, 이미지 뷰어 문제해결 | 새로 만들거나 설치하기 전 |
+| [# [문서] 나만의 커스텀 반려동물 만들기/](<# [문서] 나만의 커스텀 반려동물 만들기>) | 기획·제작 흐름을 그림과 함께 설명한 **사용자 문서** + 앱 확장 모드 노트 | 전체 과정을 빠르게 훑을 때 |
+| [MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md](MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md) | 품질 기준·최적화 판단 결정문 | 작업 방향을 다시 정할 때 |
+| [HANDOFF_GYEOM_PET_2026-07-16.md](HANDOFF_GYEOM_PET_2026-07-16.md) | 다음 작업자를 위한 인수인계 | 남이 하던 작업을 이어받을 때 |
+| [pet-repair-20260717/](pet-repair-20260717/) | 색·크기·시선 오류를 반복 보정한 **복구 이력**(프롬프트·QA) | 특정 포즈/시선이 틀렸을 때 |
+| [pet-rebuild-20260718/](pet-rebuild-20260718/) | 새 기준으로 다시 만든 **후보와 최종 시각 QA** | 기준을 바꿔 다시 제작할 때 |
+
+## 🛠 앱 진단·패치
+
+Codex 앱 자체에서 겪은 문제를 재현·수정한 기록입니다. (앱 바이너리를 건드리므로 백업·롤백 포함)
+
+| 자료 | 내용 |
+|---|---|
+| [codex-image-download-fix-20260719/](codex-image-download-fix-20260719/) | 로컬 이미지 다운로드 버튼이 동작하지 않는 문제를 재현·검증한 **ASAR 패치 스테이징**과 설치·롤백 절차 (192MB 앱 바이너리는 폴더 `.gitignore`로 제외) |
+| [HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md) | 위 작업을 Claude Code가 이어받기 위한 분석 근거와 승인 경계 |
+
+> ⚠️ 앱 패치는 되돌리기 어려운 작업입니다. 반드시 백업(`restore-original.ps1`)을 확인하고
+> 진행하세요. 로컬 파일 다운로드가 필요할 땐 미리보기 대신 실제 파일을 export 하는 것이
+> 원칙입니다(루트 [AGENTS.md](../AGENTS.md)의 아티팩트 전달 수칙 참조).

@@ -1,21 +1,42 @@
-# 260718_agentic-ai-platform-optimization
+# 에이전틱 AI 플랫폼 최적화 워크스페이스
 
-Claude Code / Codex / Antigravity 세 에이전틱 AI 플랫폼의 최적화·유지관리 워크스페이스.
+> Claude Code · Codex · Antigravity — 세 가지 "AI 코딩 에이전트"를 빠르고 안정적으로
+> 쓰기 위한 설정·최적화·문제해결 기록을 한곳에 모은 저장소입니다.
 
-## 구조
+## 이 저장소가 처음이라면 (30초 안내)
 
-- `claude/` — Claude Code 작업·관리 섹션 (노트북·데스크톱 환경설정 기록)
-- `codex/` — Codex 작업·관리 섹션 (환경설정 기록 + 샌드박스 트러블슈팅)
-- `antigravity/` — Antigravity 작업·관리 섹션 (환경설정 기록 + IDE 슬림화)
-- `shared/` — 3개 플랫폼 공용 정본 (global-rules v2.0.1, MIA 플러그인, 스킬)
-- `notebooklm-mcp-optimization_2026-07-19/` — NotebookLM MCP 연결 워크스페이스 (설계·실행 기록)
-- `research-vault/` — NotebookLM 질의 답변 캐시 (쿼터 절약용)
-- `CLAUDE.md` / `AGENTS.md` — 에이전트 운영 수칙 (NotebookLM MCP 운영 규칙 포함)
+- **"에이전틱 AI 플랫폼"이 뭔가요?** 사람이 코드를 한 줄씩 치는 대신, 자연어로 시키면
+  AI가 대신 파일을 읽고 고치고 실행해 주는 도구입니다. 이 저장소는 그런 도구 **3종**을
+  다룹니다: **Claude Code**(터미널형), **Codex**(OpenAI 데스크톱 앱), **Antigravity**(구글 IDE).
+- **이 저장소는 앱이 아닙니다.** 실행하는 프로그램이 아니라, 위 3종 도구를 잘 쓰기 위한
+  **설정 기록·가이드·문제해결 노트**를 모은 문서 창고입니다.
+- **무엇부터 볼까?** 아래 지도에서 관심 있는 폴더의 README를 먼저 여세요. 각 폴더 README가
+  "이게 뭔지 모르는 사람"도 이해할 수 있게 다시 설명해 줍니다.
 
-> 플랫폼 환경 기록은 `260713_pc-optimization` 워크스페이스에서 2026-07-19에 이관해 왔다.
-> 노트북과 데스크톱은 별개 환경이므로 문서를 `-notebook` / `-desktop`으로 구분한다.
+## 폴더 지도
 
-## NotebookLM MCP
+| 폴더 | 무엇인가 | 언제 보나 |
+|---|---|---|
+| [claude/](claude/) | **Claude Code** 플랫폼 섹션 — 플러그인·MCP·계정 커넥터 정리 기록 (노트북/데스크톱) | Claude Code 설정을 재현·복구·정리할 때 |
+| [codex/](codex/) | **Codex** 플랫폼 섹션 — 환경설정, 샌드박스 문제해결, **커스텀 반려동물(Pet) 제작**, 앱 패치 | Codex 설정·앱 문제·펫 커스터마이징 |
+| [antigravity/](antigravity/) | **Antigravity** 플랫폼 섹션 — 환경설정, IDE 확장 슬림화(다이어트) | Antigravity IDE를 가볍게 만들 때 |
+| [mcp/](mcp/) | **MCP 섹션** — AI 도구에 외부 기능을 연결하는 서버들 (현재 NotebookLM) | AI에 외부 자료·도구를 붙일 때 |
+| [shared/](shared/) | **3플랫폼 공용 정본** — 전역 규칙, MIA 플러그인, 스킬, 자동업데이트 | 세 도구가 함께 쓰는 규칙·자동화를 손볼 때 |
 
-세 플랫폼 공용으로 `notebooklm-mcp`(jacob-bd/notebooklm-mcp-cli) 서버가 연결되어 있다.
-설계 근거와 복구 절차는 `notebooklm-mcp-optimization_2026-07-19/MIA_NOTEBOOKLM_MCP_OPTIMIZATION_2026-07-19.md` 참조.
+> **왜 이렇게 나눴나?** `claude/`·`codex/`·`antigravity/`는 **도구 하나에만** 해당하는 자료,
+> `mcp/`·`shared/`는 **세 도구가 함께** 쓰는 자료입니다. 개별 MCP는 최상위에 흩어 두지 않고
+> 반드시 `mcp/` 아래 하위 폴더로 넣습니다 (예: `mcp/notebooklm/`).
+
+## 루트 파일
+
+- [CLAUDE.md](CLAUDE.md) / [AGENTS.md](AGENTS.md) — AI 에이전트가 이 저장소에서 일할 때 따르는
+  **운영 수칙**입니다. (사람이 읽는 안내가 아니라 AI에게 주는 규칙. NotebookLM 캐시 우선,
+  아티팩트 전달 방식 등이 적혀 있습니다.)
+
+## 배경 메모
+
+- 이 저장소의 플랫폼 환경 기록은 원래 `260713_pc-optimization` 워크스페이스에 섞여 있던 것을
+  2026-07-19에 **에이전트 자료만 골라 이관**해 온 것입니다. PC 디스크·하드웨어 최적화 자료는
+  그쪽에 남아 있습니다.
+- **노트북**(MSI GL75)과 **데스크톱**(i7-6700K)은 서로 다른 PC이므로, 환경 문서를
+  `-notebook` / `-desktop`으로 구분합니다. 한쪽 설정을 다른 쪽에 그대로 적용하지 마세요.

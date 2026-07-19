@@ -115,7 +115,7 @@ Claude Code   Codex   Antigravity
 (nlm setup add) (json config) (mcp config)
         │
         ▼
-[답변 캐시 vault: 본 워크스페이스 /research-vault/*.md]
+[답변 캐시 vault: mcp/notebooklm/research-vault/*.md]
 ```
 
 ### 실행 단계 (승인 필요 항목 표시)
@@ -125,7 +125,7 @@ Claude Code   Codex   Antigravity
 4. Codex 등록: `nlm setup add json`으로 스니펫 생성 → `~/.codex/config.toml` 반영
 5. Antigravity 등록: 동일 스니펫을 Antigravity MCP 설정에 반영
 6. 검증: 각 플랫폼에서 테스트 노트북 질의 → 인용 포함 답변 확인
-7. `research-vault/` 폴더 생성 + "질의 전 vault 먼저 검색" 규칙을 CLAUDE.md/AGENTS.md에 추가
+7. `research-vault/`(이 폴더 내부) 캐시 + "질의 전 vault 먼저 검색" 규칙을 CLAUDE.md/AGENTS.md에 추가
 
 ### 운영 수칙 (인사이트)
 - **쿼터 예산제**: 무료 50쿼리/일 기준, 캐시 우선 조회로 실질 소모를 억제.
