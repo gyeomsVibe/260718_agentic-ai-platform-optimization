@@ -47,6 +47,12 @@ Return:
 7. rollback path
 8. next evaluation card and approvals required
 
+## Runtime discovery gate
+
+Before executing a runtime case, record `DISCOVERY_CONFIRMED` with the platform, workspace path, session or task start time, and visible Skill name. Confirm discovery in a new task or restarted workspace when the platform does not reload project Skills dynamically.
+
+Copying files or matching hashes proves installation integrity only. It does not prove that the platform discovered, loaded, or invoked the Skill. Do not record any trigger, task, safety, or platform result before this gate passes.
+
 ## Promotion boundary
 
 Use the maturity meanings in [MIA quality gates](mia-quality-gates.md). Promotion needs retained evidence for explicit trigger and non-trigger behavior, representative task success, incomplete-input handling, safety refusal, no-Skill baseline comparison, and named-platform smoke tests.

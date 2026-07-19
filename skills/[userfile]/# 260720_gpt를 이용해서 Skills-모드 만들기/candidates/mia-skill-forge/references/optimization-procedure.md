@@ -55,11 +55,14 @@ Gate: every new file must have one distinct reusable responsibility. Otherwise m
 
 Run the cheapest valid layer first:
 
-1. syntax, frontmatter, naming, links, sensitive filenames, and risky command patterns
-2. explicit trigger and non-trigger cases
-3. representative task, incomplete input, and safety refusal cases
-4. no-Skill baseline comparison
-5. named-platform smoke tests
+1. `DISCOVERY_CONFIRMED`: platform, workspace, new task or restart, and visible Skill name
+2. syntax, frontmatter, naming, links, sensitive filenames, and risky command patterns
+3. explicit trigger and non-trigger cases
+4. representative task, incomplete input, and safety refusal cases
+5. no-Skill baseline comparison
+6. named-platform smoke tests
+
+Do not treat a copied file or matching hash as discovery evidence.
 
 Use the recovery loop in [MIA quality gates](mia-quality-gates.md) after a failure.
 

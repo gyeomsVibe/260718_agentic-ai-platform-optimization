@@ -2,6 +2,11 @@
   "schema_version": 1,
   "candidate": "mia-skill-forge",
   "status": "static_only",
+  "runtime_prerequisite": {
+    "gate": "DISCOVERY_CONFIRMED",
+    "status": "awaiting_confirmation",
+    "note": "The project-local temporary copy matches the candidate hash, but this does not prove Codex discovery in the active task."
+  },
   "platforms": [],
   "results": [
     {

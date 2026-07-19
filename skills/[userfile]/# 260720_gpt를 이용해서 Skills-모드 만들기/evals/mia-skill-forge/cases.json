@@ -1,7 +1,18 @@
 {
   "schema_version": 1,
   "candidate": "mia-skill-forge",
-  "status": "ready_for_runtime",
+  "status": "awaiting_discovery_confirmation",
+  "runtime_prerequisite": {
+    "gate": "DISCOVERY_CONFIRMED",
+    "status": "awaiting_confirmation",
+    "required_evidence": [
+      "platform name",
+      "workspace path",
+      "new task or workspace restart",
+      "visible Skill name before the first test prompt"
+    ],
+    "note": "File copy and SHA-256 equality prove installation integrity only."
+  },
   "cases": [
     {
       "id": "explicit-01",
