@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "supersedes": "mia-skill-forge",
+  "records": [
+    {
+      "decision": "adapt",
+      "source_rule": "GPT 또는 챗봇 설계를 정적 Skill 후보로 변환",
+      "destination": "SKILL.md: 입력과 목표 정하기, 후보 컴파일하기",
+      "reason": "GPT 변환을 아이디어·문서·코드·URL·기존 Skill까지 포괄하는 입력 경로 중 하나로 확장",
+      "evidence": "user_directive"
+    },
+    {
+      "decision": "preserve",
+      "source_rule": "사용자 대상 출력과 생성 후보의 기본 언어는 한국어",
+      "destination": "SKILL.md: 사용자 계약",
+      "evidence": "user_directive"
+    },
+    {
+      "decision": "adapt",
+      "source_rule": "설치와 런타임 승격을 별도 Skill로 분리",
+      "destination": "SKILL.md: 검증하고 승격하기",
+      "reason": "하나의 사용자 흐름으로 통합하되 작업별 승인 경계는 유지",
+      "evidence": "user_directive"
+    },
+    {
+      "decision": "preserve",
+      "source_rule": "설계항해식 입력·조사·차별화·PRD·검증 상태 머신",
+      "destination": "references/research-prd-contract.md 및 SKILL.md: PRD로 설계하기",
+      "evidence": "verified_local_source"
+    },
+    {
+      "decision": "preserve",
+      "source_rule": "SELFREFINE, REDTEAM, ELI10, DEEPDIVE, ALT3, CRITIC, OPTIMIZE, STEPBYSTEP, EXPERT, STRUCTURED FEW-SHOT",
+      "destination": "references/thinking-modes.md",
+      "evidence": "user_directive"
+    },
+    {
+      "decision": "omit",
+      "source_rule": "한 번의 호출을 모든 설치·외부 실행의 포괄 승인으로 해석",
+      "destination": null,
+      "reason": "보안 및 복구 가능한 작업별 승인 경계를 유지",
+      "evidence": "safety_constraint"
+    },
+    {
+      "decision": "preserve",
+      "source_rule": "빠른 기획·실행, 예산 낭비 방지, 최적화 절차와 지름길을 기본 동작으로 사용",
+      "destination": "SKILL.md: 빠른 경로를 기본값으로 사용하기 및 references/fast-path-budget.md",
+      "evidence": "user_directive"
+    },
+    {
+      "decision": "preserve",
+      "source_rule": "사용자 시간·노동·인지·검토·재시도·토큰·검색 충돌을 함께 줄이는 운영 비용 원칙",
+      "destination": "references/fast-path-budget.md 및 references/research-prd-contract.md: 품질 회귀 점수표",
+      "evidence": "verified_local_corpus"
+    },
+    {
+      "decision": "adapt",
+      "source_rule": "GPT Core Instructions와 지식 업로드 자료를 분리하는 얇은 코어 구조",
+      "destination": "SKILL.md: 지식 모듈 라우터 및 references/module-architecture.md",
+      "reason": "GPT Builder의 업로드 모델을 Agent Skill의 SKILL.md와 references/scripts/assets 구조로 전환",
+      "evidence": "verified_local_corpus"
+    },
+    {
+      "decision": "preserve",
+      "source_rule": "논리 모듈과 물리 파일을 구분하고 소유권 충돌 시 승격을 중단",
+      "destination": "references/module-architecture.md: 모듈 계약 및 분리·병합 게이트",
+      "evidence": "verified_local_corpus"
+    },
+    {
+      "decision": "adapt",
+      "source_rule": "R0-R3 적응형 근거 깊이와 근거·주장·모순·회귀검사 순환",
+      "destination": "references/research-prd-contract.md: 적응형 근거 깊이 및 품질 회귀 점수표",
+      "reason": "고정된 심층 조사를 피하고 Agent Skill의 위험과 불확실성에 맞춰 조사 비용을 조절",
+      "evidence": "verified_local_corpus"
+    },
+    {
+      "decision": "preserve",
+      "source_rule": "구조는 상속하되 근거, PASS, 릴리스와 런타임 상태는 다시 만든다",
+      "destination": "references/module-architecture.md 및 references/output-promotion-contract.md",
+      "evidence": "verified_local_corpus"
+    },
+    {
+      "decision": "adapt",
+      "source_rule": "GPT Preview와 Release를 통한 검증",
+      "destination": "references/platform-skill-contracts.md 및 references/output-promotion-contract.md",
+      "reason": "세 Agent 플랫폼별 설치 무결성, 새 작업 발견, 호출, 작업, 안전과 기준선 평가로 교체",
+      "evidence": "verified_local_corpus_and_official_platform_docs"
+    },
+    {
+      "decision": "omit",
+      "source_rule": "GPT Builder 지식 업로드, 8000자 Core 프레임, 대화 스타터, GPT Actions, Preview, Package A, Child GPT와 HTML-first 산출물",
+      "destination": null,
+      "reason": "목표 산출물은 GPT 챗봇이 아니라 Antigravity·Claude Code·Codex용 Agent Skill이며 플랫폼 계약과 맞지 않음",
+      "evidence": "user_directive_and_platform_boundary"
+    }
+  ]
+}

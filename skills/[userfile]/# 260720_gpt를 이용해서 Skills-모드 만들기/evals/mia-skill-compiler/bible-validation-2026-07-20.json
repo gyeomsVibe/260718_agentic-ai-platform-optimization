@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "artifact": "candidates/mia-skill-compiler/references/skill-creation-bible.md",
+  "validated_at": "2026-07-20",
+  "status": "STATIC_REFERENCE_VALIDATED",
+  "scope": "Static structure, source coverage, internal consistency, and maintenance contract only",
+  "checks": [
+    {
+      "id": "eli10_entry",
+      "result": "pass",
+      "evidence": "A plain-language one-page explanation, five beginner questions, and concrete folder metaphors are present."
+    },
+    {
+      "id": "agent_skill_boundary",
+      "result": "pass",
+      "evidence": "The artifact targets Antigravity, Claude Code, and Codex Agent Skills and explicitly rejects GPT Builder outputs."
+    },
+    {
+      "id": "constitutional_completeness",
+      "result": "pass",
+      "expected_principles": 20,
+      "observed_principles": 20
+    },
+    {
+      "id": "module_governance",
+      "result": "pass",
+      "evidence": "Logical versus physical modules, owner_namespace, split and merge gates, owner_collision, and inheritance are covered."
+    },
+    {
+      "id": "quality_and_budget",
+      "result": "pass",
+      "evidence": "FAST, STANDARD, DEEP, R0-R3 evidence depth, quality floor, baseline comparison, and budget stop rules are covered."
+    },
+    {
+      "id": "status_integrity",
+      "result": "pass",
+      "evidence": "Static, installation, discovery, runtime, verified, and cross-platform states are separate."
+    },
+    {
+      "id": "freshness_contract",
+      "result": "pass",
+      "evidence": "180-day principle review, 30-day platform review, event-driven source reanalysis, and local ownership updates are defined."
+    },
+    {
+      "id": "source_coverage",
+      "result": "pass",
+      "local_physical_files": 11,
+      "unique_text_hashes": 86,
+      "binary_documents_reviewed": 3,
+      "official_sources_reviewed": 6
+    },
+    {
+      "id": "candidate_static_audit",
+      "result": "pass",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "id": "internal_links",
+      "result": "pass",
+      "broken_links": 0
+    }
+  ],
+  "critic_findings": [
+    {
+      "severity": "high",
+      "finding": "The source corpus mixes reusable design principles with GPT Builder-specific packaging and release mechanics.",
+      "resolution": "Preserve principle logic but reject GPT chatbot packaging as an Agent Skill output."
+    },
+    {
+      "severity": "high",
+      "finding": "Static structure can be mistaken for runtime or cross-platform success.",
+      "resolution": "Use an explicit evidence ladder and prohibit status inheritance."
+    },
+    {
+      "severity": "medium",
+      "finding": "A large bible can duplicate operational references and create owner collisions.",
+      "resolution": "The bible owns constitutional principles; specialized references own executable procedures."
+    },
+    {
+      "severity": "medium",
+      "finding": "Platform paths and fields age faster than architectural principles.",
+      "resolution": "Apply separate freshness windows and reverify official sources before installation."
+    }
+  ],
+  "official_sources": [
+    "https://agentskills.io/specification",
+    "https://openai.com/academy/skills/",
+    "https://code.claude.com/docs/en/slash-commands",
+    "https://code.claude.com/docs/en/agent-sdk/skills",
+    "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
+    "https://codelabs.developers.google.com/codelabs/evaluate-agent-skills-using-open-source-frameworks"
+  ],
+  "not_proven": [
+    "Skill discovery in a new task",
+    "Trigger quality",
+    "Task success",
+    "Safety behavior at runtime",
+    "Cross-platform runtime compatibility"
+  ]
+}

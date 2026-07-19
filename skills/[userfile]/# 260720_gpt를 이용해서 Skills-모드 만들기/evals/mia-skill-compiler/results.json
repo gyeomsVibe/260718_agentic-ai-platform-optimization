@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "status": "static_only",
+  "platforms": [],
+  "results": [
+    {
+      "check": "candidate_static_audit",
+      "result": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "evidence": "static-audit.json"
+    },
+    {
+      "check": "evaluation_json_parse",
+      "result": "pass",
+      "files": 7
+    },
+    {
+      "check": "fast_deep_budget_contract_static_review",
+      "result": "pass",
+      "evaluation_cases": 36,
+      "evidence": "cases.json"
+    },
+    {
+      "check": "meta_gpt_common_logic_corpus_analysis",
+      "result": "pass",
+      "physical_files": 11,
+      "unique_text_files": 86,
+      "binary_documents": 3,
+      "evidence": "meta-gpt-common-logic-analysis-2026-07-20.json"
+    },
+    {
+      "check": "skill_creation_bible_static_review",
+      "result": "pass",
+      "principles": 20,
+      "lines": 401,
+      "required_sections_missing": 0,
+      "evidence": "bible-validation-2026-07-20.json"
+    },
+    {
+      "check": "candidate_reference_links",
+      "result": "pass",
+      "broken_links": 0
+    },
+    {
+      "check": "candidate_trailing_whitespace",
+      "result": "pass",
+      "findings": 0
+    },
+    {
+      "check": "official_quick_validate",
+      "result": "blocked_by_environment",
+      "reason": "PyYAML is unavailable in the bundled runtime; no package was installed without approval."
+    },
+    {
+      "check": "runtime_evaluation",
+      "result": "not_run",
+      "reason": "DISCOVERY_CONFIRMED has not been recorded for mia-skill-compiler."
+    }
+  ],
+  "note": "No discovery, trigger, task, safety, installation, external-execution, or cross-platform runtime evaluation has been performed."
+}

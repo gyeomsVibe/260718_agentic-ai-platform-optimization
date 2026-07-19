@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "analysis_id": "meta-gpt-common-logic-2026-07-20",
+  "candidate": "mia-skill-compiler",
+  "status": "STATIC_ANALYSIS_COMPLETE",
+  "source": {
+    "path": "D:\\D_Workspace_NB\\(Ai) Prompt Engineering\\3-1. Meta GPT 공통로직",
+    "access": "read_only",
+    "analyzed_at": "2026-07-20",
+    "authority": "design_evidence_not_runtime_instruction"
+  },
+  "inventory": {
+    "physical_files": 11,
+    "zip_files": 8,
+    "markdown_files": 3,
+    "physical_bytes": 39783386,
+    "expanded_files_by_extension": {
+      "md": 61,
+      "json": 56,
+      "txt": 3,
+      "pdf": 2,
+      "docx": 1,
+      "html": 1,
+      "zip": 1
+    },
+    "unique_text_files_by_sha256": 86,
+    "unique_text_bytes": 1230128,
+    "sensitive_looking_filenames_found": 0,
+    "duplicate_pdf": {
+      "copies": 2,
+      "pages_per_copy": 31,
+      "sha256": "cc9684bd3d958c95c9904e5d5077c31a59b3af75e19c5dbb11fbc6c268d1d341"
+    },
+    "docx": {
+      "paragraphs": 467,
+      "text_characters": 29308,
+      "sha256": "5dd594d8a6bb4f7c6d2539cd93b974c4344ba7fbdc83732869433cbcc30583a1",
+      "role": "markdown_source_copy"
+    }
+  },
+  "critic_boundary": {
+    "target_products": [
+      "Antigravity Agent Skill",
+      "Claude Code Agent Skill",
+      "Codex Agent Skill"
+    ],
+    "forbidden_primary_output": [
+      "GPT chatbot",
+      "GPT Builder upload package",
+      "conversation starters package",
+      "GPT Actions package",
+      "GPT Preview or Release package"
+    ],
+    "rule": "GPT and chatbot materials may be analyzed only as evidence; the compiler output remains a three-platform Agent Skill candidate."
+  },
+  "adopted_logic": [
+    "thin core plus selectively loaded knowledge modules",
+    "logical module and physical file separation",
+    "single owner namespace and promotion stop on owner collision",
+    "structure inheritance without evidence or status inheritance",
+    "R0-R3 adaptive evidence depth",
+    "unknown-unknown user support with at most one blocking question",
+    "user cost includes time labor cognition review retries tokens and retrieval collisions",
+    "evidence claim contradiction draft regression local repair circuit",
+    "one canonical source instead of manual Markdown HTML JSON triplication",
+    "separate static install discovery runtime safety and cross-platform states"
+  ],
+  "adapted_logic": [
+    {
+      "from": "GPT Core Instructions and Knowledge uploads",
+      "to": "SKILL.md router plus references scripts and assets"
+    },
+    {
+      "from": "GPT Preview and Release",
+      "to": "platform-specific installation integrity discovery invocation task safety and baseline evaluation"
+    },
+    {
+      "from": "child GPT inheritance",
+      "to": "child Agent Skill candidate inheriting structure but recreating evidence and status"
+    }
+  ],
+  "rejected_logic": [
+    "fixed 8000-character GPT core frame",
+    "fixed knowledge upload file count",
+    "GPT Builder fields and conversation starters",
+    "GPT Actions and Apps configuration",
+    "GPT Preview Release and Package A workflow",
+    "HTML-first delivery",
+    "automatic inheritance of PASS release discovery or runtime status"
+  ],
+  "implementation_targets": [
+    "candidates/mia-skill-compiler/SKILL.md",
+    "candidates/mia-skill-compiler/references/module-architecture.md",
+    "candidates/mia-skill-compiler/references/platform-skill-contracts.md",
+    "candidates/mia-skill-compiler/references/research-prd-contract.md",
+    "candidates/mia-skill-compiler/references/output-promotion-contract.md",
+    "fixtures/mia-skill-compiler/source-rule-trace.json",
+    "evals/mia-skill-compiler/cases.json"
+  ],
+  "runtime_claims": {
+    "installed": false,
+    "discovery_confirmed": false,
+    "runtime_evaluated": false,
+    "cross_platform_verified": false
+  },
+  "reanalysis_note": "Direct recursive ZIP analysis on 2026-07-20 identified 86 unique text hashes. PDF and DOCX evidence was analyzed separately and was not counted as plain text artifacts."
+}

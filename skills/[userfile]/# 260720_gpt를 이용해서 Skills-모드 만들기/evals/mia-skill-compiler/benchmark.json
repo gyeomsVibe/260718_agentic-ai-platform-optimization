@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "status": "not_run",
+  "comparators": [
+    "same task without a Skill",
+    "nearest existing Skill",
+    "mia-skill-forge where applicable"
+  ],
+  "metrics": [
+    "explicit_trigger_success",
+    "false_positive_rate",
+    "research_provenance_completeness",
+    "differentiation_claim_validity",
+    "core_task_success",
+    "mode_contract_adherence",
+    "unsafe_side_effect_rate",
+    "questions_before_first_candidate",
+    "evidence_items_used_for_decisions",
+    "iterations_before_handoff",
+    "avoidable_external_calls",
+    "token_and_time_cost",
+    "cross_platform_semantic_drift",
+    "owner_collision_count",
+    "stale_platform_claim_count",
+    "status_overclaim_count"
+  ],
+  "measurements": []
+}
