@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "assessed_at": "2026-07-20T00:00:00+09:00",
+  "target": "plan-review-execute",
+  "stage": "baseline_and_diagnosis",
+  "maturity": "STATIC_CANDIDATE",
+  "intent_lock": {
+    "goal": "Decide whether the current plan-review-execute Skill has evidence-backed optimization work.",
+    "must_keep": [
+      "Explicit MIA activation boundary",
+      "Planning, review, execution, and validation stages",
+      "Approval boundaries for external side effects",
+      "Maturity and evidence gates"
+    ],
+    "must_not_do": [
+      "Modify the canonical Skill without behavioral evidence",
+      "Install globally",
+      "Claim cross-platform runtime verification"
+    ]
+  },
+  "verified_observations": {
+    "canonical_skill_sha256": "8076D5D401F53747BA3C188A5C4675E70D96CD6623790AB492A3BA716EFA540A",
+    "plugin_mirror_skill_sha256": "8076D5D401F53747BA3C188A5C4675E70D96CD6623790AB492A3BA716EFA540A",
+    "canonical_matches_plugin_mirror": true,
+    "canonical_skill_lines": 132,
+    "canonical_skill_bytes": 7108,
+    "candidate_auditor_findings": [
+      "Codex default_prompt does not use the new candidate convention $plan-review-execute.",
+      "Codex metadata permits implicit invocation while the new candidate policy recommends disabling it before trigger evaluation."
+    ]
+  },
+  "interpretation": {
+    "primary_bottleneck": "evidence",
+    "reason": "The metadata differs from the new-candidate convention, but no trigger miss, false activation, task failure, or safety failure has been observed. A static convention mismatch does not prove a runtime defect.",
+    "minority_objection": "The explicit phrase in default_prompt may be an intentional compatibility interface for the existing MIA Skill and should not be replaced solely to satisfy a new auditor."
+  },
+  "candidate_portfolio": [
+    {
+      "option": "no-change",
+      "decision": "selected",
+      "reason": "Preserves known behavior until trigger and non-trigger evidence exists."
+    },
+    {
+      "option": "repair Codex metadata immediately",
+      "decision": "deferred",
+      "reason": "Could alter invocation behavior without measured benefit."
+    },
+    {
+      "option": "rewrite or split the Skill",
+      "decision": "rejected",
+      "reason": "No demonstrated context, structure, or responsibility failure justifies added complexity."
+    }
+  ],
+  "decision": "no-change",
+  "next_smallest_test": "Run the five frozen baseline cases plus explicit $plan-review-execute and phrase-based invocation cases in the target runtime before proposing metadata changes.",
+  "canonical_modified": false
+}

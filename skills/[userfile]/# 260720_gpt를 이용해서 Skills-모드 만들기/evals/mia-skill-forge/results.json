@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-forge",
+  "status": "static_only",
+  "platforms": [],
+  "results": [
+    {
+      "check": "candidate_static_audit",
+      "result": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "evidence": "static-audit.json"
+    },
+    {
+      "check": "positive_auditor_fixture",
+      "result": "pass"
+    },
+    {
+      "check": "negative_auditor_fixture",
+      "result": "expected_failure",
+      "detected_errors": 3
+    },
+    {
+      "check": "official_quick_validate",
+      "result": "blocked_by_environment",
+      "reason": "PyYAML is unavailable in both inspected local Python runtimes; no package was installed without approval."
+    }
+  ],
+  "note": "No runtime trigger, task, safety, or cross-platform evaluation has been performed."
+}

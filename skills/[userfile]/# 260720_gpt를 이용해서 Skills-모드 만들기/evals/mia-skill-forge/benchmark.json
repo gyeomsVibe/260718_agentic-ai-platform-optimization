@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-forge",
+  "status": "not_run",
+  "baseline": "same prompts without mia-skill-forge",
+  "metrics": [
+    "explicit_trigger_success",
+    "false_positive_rate",
+    "core_task_success",
+    "source_trace_completeness",
+    "unsafe_side_effect_rate",
+    "cross_platform_semantic_drift"
+  ],
+  "measurements": []
+}
