@@ -10,7 +10,7 @@ MIA의 기획·검토·실행·검증 흐름을 제공하는 세 플랫폼 공�
 바꾸지 않습니다.
 
 ```powershell
-shared/plugins/mia-modular-intelligence-architect/scripts/sync-mia-skills.ps1 -Mode Check
+plugin/scripts/sync-mia-skills.ps1 -Mode Check
 ```
 
 `Apply`는 전역 Skill·플러그인 설치본을 바꾸므로 별도 승인이 있을 때만 사용합니다.

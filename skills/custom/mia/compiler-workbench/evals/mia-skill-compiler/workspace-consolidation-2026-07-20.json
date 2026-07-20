@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_at": "2026-07-20",
   "decision": "consolidate_semantically_overlapping_workspaces",
-  "canonical_root": "skills/mia-skill-compiler-workbench",
+  "canonical_root": "skills/custom/mia/compiler-workbench",
   "previous_roots": [
     "skills/gpt를 이용해서 Skills-모드 만들기",
     "skills/[userfile]/# 260720_gpt를 이용해서 Skills-모드 만들기"

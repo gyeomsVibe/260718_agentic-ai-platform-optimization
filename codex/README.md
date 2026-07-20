@@ -21,7 +21,7 @@
 | [environment-notebook.md](environment-notebook.md) | 노트북 환경설정 기록 — `~/.codex/` 구조, "안 쓰는 건 비활성화" 정리 원칙, **트러블슈팅 3건**(샌드박스에서 `gh` 인증 실패 해결, 압축 파일 미리보기 우회, write-root 권한(ACL) 체크리스트) |
 
 > 데스크톱 환경 기록은 아직 없습니다 (필요하면 `environment-desktop.md`로 추가).
-> 세 도구가 함께 쓰는 전역 규칙·플러그인은 [`../shared/`](../shared/)에 있습니다.
+> 세 도구가 함께 쓰는 전역 규칙·자동화는 [`../shared/`](../shared/)에 있습니다.
 
 ## 🐾 커스텀 반려동물 (Custom Pet)
 
@@ -35,12 +35,9 @@
 | 자료 | 무엇인가 | 언제 보나 |
 |---|---|---|
 | [PET_LIBRARY.md](PET_LIBRARY.md) | 펫 자료 전체의 **단일 진입점**(목차·읽는 순서) | 무엇부터 볼지 모를 때 |
-| [custom-pet-manual/](custom-pet-manual/) | 초보자용 **제작 매뉴얼** — 완료 기준, 9행 모션 설계, 런타임 제약, 이미지 뷰어 문제해결 | 새로 만들거나 설치하기 전 |
-| [# [문서] 나만의 커스텀 반려동물 만들기/](<# [문서] 나만의 커스텀 반려동물 만들기>) | 기획·제작 흐름을 그림과 함께 설명한 **사용자 문서** + 앱 확장 모드 노트 | 전체 과정을 빠르게 훑을 때 |
-| [MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md](MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md) | 품질 기준·최적화 판단 결정문 | 작업 방향을 다시 정할 때 |
-| [HANDOFF_GYEOM_PET_2026-07-16.md](HANDOFF_GYEOM_PET_2026-07-16.md) | 다음 작업자를 위한 인수인계 | 남이 하던 작업을 이어받을 때 |
-| [pet-repair-20260717/](pet-repair-20260717/) | 색·크기·시선 오류를 반복 보정한 **복구 이력**(프롬프트·QA) | 특정 포즈/시선이 틀렸을 때 |
-| [pet-rebuild-20260718/](pet-rebuild-20260718/) | 새 기준으로 다시 만든 **후보와 최종 시각 QA** | 기준을 바꿔 다시 제작할 때 |
+| [custom-pet-manual/](custom-pet-manual/) | 초보자용 제작·설치 매뉴얼과 현재 런타임 규격 | 새로 만들거나 설치하기 전 |
+| [pet-repair-20260717/](pet-repair-20260717/) · [pet-rebuild-20260718/](pet-rebuild-20260718/) | 복구·재제작 이력과 시각 QA | 특정 오류를 재현하거나 기준을 바꿀 때 |
+| [MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md](MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md) · [HANDOFF_GYEOM_PET_2026-07-16.md](HANDOFF_GYEOM_PET_2026-07-16.md) | 의사결정·인수인계 기록 | 이전 작업의 이유를 확인할 때 |
 
 ## 🛠 앱 진단·패치
 

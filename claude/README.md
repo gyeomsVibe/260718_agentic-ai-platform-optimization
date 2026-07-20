@@ -25,5 +25,5 @@ Claude Code의 "확장"(기능 추가)은 세 층위로 나뉩니다. 이 구분
 
 ## 관련
 
-- 세 도구 공용 규칙·플러그인: [`../shared/`](../shared/)
+- 세 도구 공용 규칙·자동화: [`../shared/`](../shared/)
 - NotebookLM MCP 연결: [`../mcp/notebooklm/`](../mcp/notebooklm/)

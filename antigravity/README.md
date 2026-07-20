@@ -24,5 +24,5 @@ IDE에 확장 프로그램이 많으면, 안 써도 백그라운드에서 CPU·�
 
 ## 관련
 
-- 세 도구 공용 규칙·플러그인: [`../shared/`](../shared/)
+- 세 도구 공용 규칙·자동화: [`../shared/`](../shared/)
 - NotebookLM MCP 연결: [`../mcp/notebooklm/`](../mcp/notebooklm/)

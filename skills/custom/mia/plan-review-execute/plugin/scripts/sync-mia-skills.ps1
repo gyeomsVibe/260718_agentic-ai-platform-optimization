@@ -7,8 +7,8 @@ param(
 
 $utf8 = [System.Text.UTF8Encoding]::new($false)
 $pluginRoot = Split-Path -Parent $PSScriptRoot
-$repositoryRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $pluginRoot))
-$canonicalPath = Join-Path $repositoryRoot 'skills\plan-review-execute\SKILL.md'
+$skillRoot = Split-Path -Parent $pluginRoot
+$canonicalPath = Join-Path $skillRoot 'SKILL.md'
 $pluginManifestPath = Join-Path $pluginRoot 'plugin.json'
 $versionPath = Join-Path $pluginRoot 'VERSION'
 foreach ($requiredPath in @($canonicalPath, $pluginManifestPath, $versionPath)) {
@@ -37,7 +37,7 @@ $antigravityPluginRoot = Join-Path $env:USERPROFILE '.gemini\config\plugins\mia-
 $legacyAntigravitySkill = Join-Path $env:USERPROFILE '.gemini\config\skills\plan-review-execute'
 $targets = @(
     @{ Name = 'Codex'; Path = (Join-Path $env:USERPROFILE '.codex\skills\plan-review-execute\SKILL.md'); Content = $canonical },
-    @{ Name = 'Claude adapter'; Path = (Join-Path $repositoryRoot 'skills\plan-review-execute\CLAUDE-SKILL.md'); Content = $claudeSkill },
+    @{ Name = 'Claude adapter'; Path = (Join-Path $skillRoot 'CLAUDE-SKILL.md'); Content = $claudeSkill },
     @{ Name = 'Claude'; Path = (Join-Path $env:USERPROFILE '.claude\skills\plan-review-execute\SKILL.md'); Content = $claudeSkill },
     @{ Name = 'Plugin package mirror'; Path = (Join-Path $pluginRoot 'skills\plan-review-execute\SKILL.md'); Content = $canonical },
     @{ Name = 'Antigravity plugin skill'; Path = (Join-Path $antigravityPluginRoot 'skills\plan-review-execute\SKILL.md'); Content = $canonical },

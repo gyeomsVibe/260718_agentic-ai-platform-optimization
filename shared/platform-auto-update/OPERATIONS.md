@@ -26,9 +26,9 @@ Windows 로그인 직후 사용자에게 창을 표시하지 않고 다음 개�
 | `Codex CLI Logon Updater` | `Update-CodexCliAtLogon.vbs` | `npm install -g @openai/codex@latest --no-audit --no-fund` |
 | `Antigravity Sequential Logon Updater` | `Update-AntigravityAtLogon.vbs` | IDE → 2.0 → CLI 순차 갱신 |
 
-활성 스크립트의 정본은 이 저장소의 [platform-auto-update/](platform-auto-update/)에 있다. Windows 시작 프로그램은 `scripts/` 아래의 두 VBS 파일을 직접 실행한다. 로그와 npm 캐시는 스크립트 옆에 자동 생성되며 Git에 포함하지 않는다.
+활성 스크립트의 정본은 이 [폴더](./)에 있다. Windows 시작 프로그램은 `scripts/` 아래의 두 VBS 파일을 직접 실행한다. 로그와 npm 캐시는 스크립트 옆에 자동 생성되며 Git에 포함하지 않는다.
 
-처음 사용하는 사람은 [platform-auto-update/README.md](platform-auto-update/README.md)를 먼저 읽는다. 자동 실행 흐름, 알림 의미, 가장 쉬운 점검 방법을 비개발자 기준으로 설명한다.
+처음 사용하는 사람은 [README.md](README.md)를 먼저 읽는다. 자동 실행 흐름, 알림 의미, 가장 쉬운 점검 방법을 비개발자 기준으로 설명한다.
 
 ## Windows 완료 알림
 
@@ -114,5 +114,5 @@ Antigravity 로그에서 마지막 실행이 `Antigravity IDE is already up to d
 - 현재 방식 — 작업 스케줄러 일일 정시 실행 (30일 사용 로그 분석으로 15시대 선정):
   `Codex CLI Daily Update`(15:00) · `Antigravity Daily Update`(15:10) ·
   `GitHub CLI Daily Update`(15:20). 꺼져 있던 날은 다음 부팅 때 1회 보충 실행.
-- 상세 설계·근거: `platform-auto-update/README.md`의 "하루 1회 정시 갱신 체계" 절.
+- 상세 설계·근거: [README.md](README.md)의 "하루 1회 정시 갱신 체계" 절.
 - 점검: `schtasks /query /tn "Codex CLI Daily Update"` (다른 두 작업 동일).

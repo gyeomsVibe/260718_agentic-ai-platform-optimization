@@ -11,7 +11,7 @@
 - `scripts/sync-global-rules.ps1`: 정본 생성, 백업, 장착, 정합성 검사
 - `VERSION`: 정본 버전
 
-MIA(Modular Intelligence Architect)는 별도 플러그인 정본이므로 글로벌 룰에 포함하지 않는다. MIA의 발동과 전체 절차는 `plugins/mia-modular-intelligence-architect/`에서만 관리한다.
+MIA(Modular Intelligence Architect)는 별도 사용자 제작 Skill이므로 글로벌 룰에 포함하지 않는다. MIA의 발동과 전체 절차는 [`../../skills/custom/mia/`](../../skills/custom/mia/)에서 관리한다.
 
 ## 완성형 영문 정본과 장착 위치
 

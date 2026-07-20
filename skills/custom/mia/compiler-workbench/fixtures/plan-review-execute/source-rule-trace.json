@@ -3,7 +3,7 @@
   "captured_at": "2026-07-20T00:00:00+09:00",
   "source": {
     "historical_path": "shared/skills/plan-review-execute/SKILL.md",
-    "current_path": "skills/plan-review-execute/SKILL.md",
+    "current_path": "skills/custom/mia/plan-review-execute/SKILL.md",
     "sha256": "8076D5D401F53747BA3C188A5C4675E70D96CD6623790AB492A3BA716EFA540A"
   },
   "target": "candidates/mia-skill-forge",

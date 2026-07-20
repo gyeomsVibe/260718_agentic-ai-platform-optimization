@@ -249,17 +249,17 @@ mia-modular-intelligence-architect/
 ### 현재 구현과 설치 판단
 
 MIA는 이제 **Skill 정본(Source of Truth)** 과 플러그인 배포 어댑터를 분리해 운영한다.
-정본은 저장소의 `skills/plan-review-execute/SKILL.md`이며, 플러그인 버전은
-`shared/plugins/mia-modular-intelligence-architect/VERSION`에서 관리한다.
+정본은 저장소의 `skills/custom/mia/plan-review-execute/SKILL.md`이며, 플러그인
+버전은 같은 Skill의 `plugin/VERSION`에서 관리한다.
 
 ```text
-skills/
+skills/custom/mia/
 └── plan-review-execute/
     ├── SKILL.md  ← 유일한 편집 정본
     ├── agents/openai.yaml
     └── CLAUDE-SKILL.md
 
-shared/plugins/mia-modular-intelligence-architect/
+skills/custom/mia/plan-review-execute/plugin/
 ├── plugin.json
 ├── VERSION
 ├── skills/plan-review-execute/SKILL.md  ← 패키징 배포본
@@ -276,18 +276,18 @@ MIA는 외부 서비스, 자동 실행, MCP, 훅을 필요로 하지 않는 순�
 
 | 구분 | 위치 | 역할 |
 |---|---|---|
-| 정본 | `skills/plan-review-execute/SKILL.md` | MIA 로직을 수정하는 유일한 원본 |
-| 플러그인 패키지 | `shared/plugins/mia-modular-intelligence-architect/` | 매니페스트·버전·배포 스크립트와 생성된 패키징 Skill |
+| 정본 | `skills/custom/mia/plan-review-execute/SKILL.md` | MIA 로직을 수정하는 유일한 원본 |
+| 플러그인 패키지 | `skills/custom/mia/plan-review-execute/plugin/` | 매니페스트·버전·배포 스크립트와 생성된 패키징 Skill |
 | Antigravity 런타임 | `~/.gemini/config/plugins/mia-modular-intelligence-architect/` | 플러그인으로 활성화되는 실제 실행본 |
 | Codex 런타임 | `~/.codex/skills/plan-review-execute/SKILL.md` | 정본에서 동기화되는 전역 스킬 |
 | Claude 런타임 | `~/.claude/skills/plan-review-execute/SKILL.md` | Claude 전용 헤더와 정본 전체 로직을 포함한 동기화본 |
 
 ### 업데이트 절차
 
-1. `skills/plan-review-execute/SKILL.md`만 수정한다.
+1. `skills/custom/mia/plan-review-execute/SKILL.md`만 수정한다.
 2. 의미 있는 변경이면 `VERSION`과 `.codex-plugin/plugin.json`의 버전을 함께 올린다.
 3. `scripts/sync-mia-skills.ps1 -Mode Check`로 배포본이 정본과 같은지 확인한다.
-4. `shared/plugins/mia-modular-intelligence-architect/scripts/sync-mia-skills.ps1 -Mode Apply -MigrateAntigravity`로 Codex·Claude·Antigravity와 플러그인 패키지를 동기화한다.
+4. `skills/custom/mia/plan-review-execute/plugin/scripts/sync-mia-skills.ps1 -Mode Apply -MigrateAntigravity`로 Codex·Claude·Antigravity와 플러그인 패키지를 동기화한다.
 5. 새 세션에서 `MIA모드 발동: 기획 <목표>`를 입력해 발동을 확인한다.
 
 동기화 스크립트는 먼저 모두 복사·검증하고, Antigravity의 예전 독립 설치본만 마지막에 제거한다. 따라서 복사 실패로 정본 없는 상태가 되는 것을 막는다. 현재 Antigravity 독립 설치본은 이미 제거되어 중복 발동 경로가 없다.

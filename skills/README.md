@@ -5,6 +5,17 @@
 > 에이전트가 관련 작업을 할 때 그 카드를 꺼내 읽고 그대로 따라 합니다.
 > 세 도구(Claude Code · Codex · Antigravity) 모두 같은 카드 형식(`SKILL.md` 개방 표준)을 읽습니다.
 
+## 0. 정본 위치 — 출처가 다르면 관리 방식도 다릅니다
+
+| 분류 | 위치 | 관리 원칙 |
+|---|---|---|
+| 직접 제작 MIA | [custom/mia/](custom/mia/) | 여기의 `SKILL.md`만 직접 수정하고, 플랫폼용 패키지는 하위 `plugin/`에서 동기화합니다. |
+| 외부 도입 | [external/](external/) | 원 제작자·라이선스·가져온 버전·정제 내용을 함께 기록합니다. |
+| 조사·근거 | [research/](research/) | 설치 대상이 아닌 선택·감사 근거만 둡니다. |
+
+외부 Skill과 사용자 제작 Skill을 같은 폴더에 섞지 않습니다. 새 Skill을 넣기 전에는
+먼저 이 표에서 소유 분류를 정합니다.
+
 ## 1. 내 PC의 스킬은 어디에 있나
 
 | 도구 | 전역(모든 프로젝트) 위치 | 현재 보유 (2026-07-19 슬림화 후) |
@@ -78,8 +89,7 @@ npx skills remove -g -s <스킬이름> -y            ← 제거
 
 - [MIA_SKILLS_EXPLORATION_2026-07-19.md](research/MIA_SKILLS_EXPLORATION_2026-07-19.md) — 왜 이 5종을 골랐고 무엇을 기각했는지 (리서치 근거·기각 사유)
 - [MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md](research/MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md) — 전수조사·슬림화 감사 (제거 근거·복원 방법·재발 방지 수칙)
-- [MIA Skill Compiler 작업대](mia-skill-compiler-workbench/) — 초기 아이디어·문서·기존 Skill을 세 도구용 후보로 설계·검증하는 파이프라인
-- [plan-review-execute](plan-review-execute/) — 우리가 직접 만든 검증 대상 공용 Skill의 유일한 편집 정본
+- [MIA Skill Compiler 작업대](custom/mia/compiler-workbench/) — 초기 아이디어·문서·기존 Skill을 세 도구용 후보로 설계·검증하는 파이프라인
+- [MIA plan-review-execute](custom/mia/plan-review-execute/) — 우리가 직접 만든 검증 대상 공용 Skill의 유일한 편집 정본
 
-모든 Skill 정본과 후보는 이 `skills/` 아래에 둡니다. `shared/plugins/` 안의
-Skill 파일은 플러그인 패키징·배포에 필요한 생성본이며 직접 수정하지 않습니다.
+모든 Skill 정본·후보·플러그인 패키지는 이 `skills/` 아래에 둡니다.
