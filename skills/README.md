@@ -22,6 +22,11 @@
 출처가 불분명하면 먼저 `external/`로 분류합니다. 사용자 제작으로 확인되기 전에는
 `custom/`으로 옮기지 않습니다.
 
+이 저장소의 `custom`과 `external`은 소유권을 구분하는 관리 계층입니다. 실제로 배포할
+각 Skill 폴더는 공식 규격처럼 `SKILL.md`를 필수 정본으로 갖고, 필요한 경우에만
+`scripts/`, `references/`, `assets/`를 둡니다. 자세한 형식은
+[Agent Skills 공식 규격](https://agentskills.io/specification)을 따릅니다.
+
 ## 폴더 구조
 
 ```text
@@ -62,3 +67,4 @@ Available skills 노출을 확인하기 전에는 런타임 성공으로 기록�
 - [외부 Skill 반입 계약](external/)
 - [Skill 조사 기록](research/MIA_SKILLS_EXPLORATION_2026-07-19.md)
 - [플랫폼 Skill 슬림화 감사](research/MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md)
+- [GitHub README 공식 안내](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)

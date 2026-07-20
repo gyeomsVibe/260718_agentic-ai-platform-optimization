@@ -102,7 +102,7 @@ flowchart LR
 |---|---|---|
 | Codex | `~/.codex/skills/plan-review-execute/` | 스킬 설명과 UI 안내에 `MIA모드 발동`을 단일 진입 문구로 기록 |
 | Claude | `~/.claude/skills/plan-review-execute/` | 정확한 문구만 인식하도록 설정하고, `/plan-review-execute` 메뉴 호출은 숨김 |
-| Antigravity | `~/.gemini/config/skills/plan-review-execute/` 및 `~/.gemini/GEMINI.md` | 전역 라우팅이 정확한 문구에서만 스킬을 선택하도록 제한 |
+| Antigravity | `~/.gemini/config/plugins/mia-modular-intelligence-architect/` | 플러그인에 포함된 Skill이 정확한 문구에서만 선택되도록 제한 |
 
 플랫폼의 자연어 인식은 명령 파서처럼 완전히 결정적이지 않을 수 있다. 그래서 항상 문장의 첫 부분에 정확한 문구를 쓰고 콜론 뒤에 단계·목표를 붙이는 방식을 표준으로 한다.
 

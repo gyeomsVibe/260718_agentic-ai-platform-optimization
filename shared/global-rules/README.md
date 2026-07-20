@@ -33,11 +33,11 @@ Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. �
 
 공식 기준:
 
-- https://antigravity.google/docs/ide-rules
-- https://antigravity.google/docs/ide-settings
-- https://developers.openai.com/codex/guides/agents-md
-- https://code.claude.com/docs/en/best-practices
-- https://code.claude.com/docs/en/features-overview
+- [Antigravity IDE 규칙](https://antigravity.google/docs/ide-rules)
+- [Antigravity IDE 설정](https://antigravity.google/docs/ide-settings)
+- [OpenAI Codex AGENTS.md 안내](https://developers.openai.com/codex/guides/agents-md)
+- [Claude Code 모범 사례](https://code.claude.com/docs/en/best-practices)
+- [Claude Code 기능 개요](https://code.claude.com/docs/en/features-overview)
 
 ## 운영
 
