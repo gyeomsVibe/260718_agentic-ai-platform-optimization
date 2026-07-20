@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [switch]$Interactive
 )
@@ -114,30 +114,66 @@ foreach ($path in $targetPaths) {
 }
 
 
-# 4. 최근 샌드박스 로그 에러 스캔
+# 4. 최근 샌드박스 로그 에러 스캔 (최신 setup refresh 시점 기준 판정)
+#    핵심 개선: "ACL이 지금 OK"만으로 과거 에러를 넘기지 않는다.
+#    로그의 setup refresh 줄을 시간순으로 파싱해, '마지막 에러' 이후 '무오류 setup'이
+#    실제로 실행됐는지를 근거로 판정한다 → 오탐(복구됨을 실패로)·미탐(재발을 합격으로) 동시 방지.
 Write-Host "`n[4/4] 최근 샌드박스 실행 로그 에러 스캔 중..." -ForegroundColor Yellow
 $sandboxLogDir = Join-Path $env:USERPROFILE ".codex\.sandbox"
 if (Test-Path -LiteralPath $sandboxLogDir) {
-    $recentLog = Get-ChildItem -Path $sandboxLogDir -Filter "sandbox.*.log" | 
-                  Sort-Object LastWriteTime -Descending | 
+    $recentLog = Get-ChildItem -Path $sandboxLogDir -Filter "sandbox.*.log" |
+                  Sort-Object LastWriteTime -Descending |
                   Select-Object -First 1
-                  
+
     if ($recentLog) {
         Write-Host "   - 최신 로그 파일 검사 중: $($recentLog.Name)" -ForegroundColor Gray
-        $logErrors = Select-String -Path $recentLog.FullName -Pattern 'errors=\["[^\]]+"'
-        if ($logErrors) {
-            Write-Host "⚠️ 경고: 샌드박스 로그에서 최근 쓰기/설정 에러가 기록되어 있습니다:" -ForegroundColor Yellow
-            foreach ($err in $logErrors) {
-                Write-Host "   - $($err.Line)" -ForegroundColor Yellow
+
+        # setup refresh 줄만 뽑아 [타임스탬프 + 에러 여부]로 파싱하고 시간순 정렬
+        $refreshEvents = Select-String -Path $recentLog.FullName -Pattern 'setup refresh' | ForEach-Object {
+            $line = $_.Line
+            $ts = $null
+            if ($line -match '^\[([^\]]+)\]') {
+                try { $ts = [datetimeoffset]::Parse($matches[1]) } catch { $ts = $null }
             }
-            if (-not $aclCheckPassed) {
-                Write-Host "   -> 현재 [3/4] 권한 검사도 실패했으므로 샌드박스 오류 상태가 확실합니다." -ForegroundColor Red
-                $hasErrors = $true
-            } else {
-                Write-Host "   -> [3/4] 단계에서 권한이 정상으로 확인되었으므로, 이 로그 에러는 권한 복구 이전의 과거 기록이거나 일시적 오류일 수 있습니다." -ForegroundColor Green
+            [pscustomobject]@{
+                Time     = $ts
+                HasError = ($line -match 'errors=\["')
+                Line     = $line
             }
+        } | Where-Object { $_.Time -ne $null } | Sort-Object Time
+
+        if (-not $refreshEvents) {
+            Write-Host "ℹ️ 정보: 최신 로그에 setup refresh 기록이 없어 로그 기반 판정을 건너뜁니다." -ForegroundColor Gray
         } else {
-            Write-Host "✅ 최근 샌드박스 로그에서 기록된 쓰기 권한(SetNamedSecurityInfoW) 관련 차단 에러가 없습니다." -ForegroundColor Green
+            $lastRefresh = $refreshEvents[-1]
+            $lastError   = ($refreshEvents | Where-Object {      $_.HasError } | Select-Object -Last 1)
+            $lastSuccess = ($refreshEvents | Where-Object { -not $_.HasError } | Select-Object -Last 1)
+
+            if (-not $lastError) {
+                Write-Host "✅ 최근 샌드박스 로그에 쓰기 권한(SetNamedSecurityInfoW) 관련 차단 에러가 없습니다." -ForegroundColor Green
+            }
+            elseif (-not $lastRefresh.HasError -and $lastSuccess -and ($lastSuccess.Time -gt $lastError.Time)) {
+                # 에러가 있었지만 '그 이후' 무오류 setup이 실행됨 → 근본 원인 복구 확인
+                Write-Host "✅ 과거 쓰기 에러가 있었으나, 그 이후 정상 setup(무오류)이 실행되어 해결이 확인되었습니다." -ForegroundColor Green
+                Write-Host "   - 마지막 에러 시각 : $($lastError.Time.ToString('u'))" -ForegroundColor Gray
+                Write-Host "   - 이후 정상 setup  : $($lastSuccess.Time.ToString('u')) (무오류) ← 복구 이후 재발 없음" -ForegroundColor Gray
+            }
+            else {
+                # 가장 최근 setup refresh가 여전히 에러 → 현재 진행형 실패 (미탐 방지)
+                Write-Host "❌ 오류: 가장 최근 샌드박스 setup에서도 쓰기 에러가 발생 중입니다 (현재 진행형)." -ForegroundColor Red
+                Write-Host "   - 최근 에러: $($lastError.Line)" -ForegroundColor Yellow
+                if ($lastSuccess) {
+                    Write-Host "   - 마지막 정상 setup: $($lastSuccess.Time.ToString('u')) → 그 이후 다시 실패함" -ForegroundColor Yellow
+                } else {
+                    Write-Host "   - 이 로그에는 아직 무오류 setup 기록이 없습니다." -ForegroundColor Yellow
+                }
+                if (-not $aclCheckPassed) {
+                    Write-Host "   -> [3/4] 권한 검사도 실패 → fix-sandbox-acl.bat로 권한을 복구하세요." -ForegroundColor Red
+                } else {
+                    Write-Host "   -> [3/4] ACL은 지금 정상이나 setup 재적용 전입니다. Codex 재시작 후 재진단하세요." -ForegroundColor Yellow
+                }
+                $hasErrors = $true
+            }
         }
     } else {
         Write-Host "ℹ️ 정보: 샌드박스 로그 파일이 존재하지 않습니다." -ForegroundColor Gray
