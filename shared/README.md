@@ -16,6 +16,7 @@
 |---|---|
 | [global-rules/](global-rules/) | 전역 행동 규칙 영문 정본 v2.0.1 — `core.md` + 도구별 어댑터 → `dist/`(CLAUDE.md·AGENTS.md·GEMINI.md) 생성. 동기화: `scripts/sync-global-rules.ps1` |
 | [global-rules/history.md](global-rules/history.md) | 글로벌 룰 작성·적용 이력 |
+| [repository-sync/](repository-sync/) | 워크스페이스와 GitHub를 안전하게 최신 상태로 유지하는 SAFE-SYNC 정본·연구보고서·운영 매뉴얼 |
 | [platform-auto-update/OPERATIONS.md](platform-auto-update/OPERATIONS.md) | Codex·Claude Code·Antigravity 로그인 자동업데이트 운영 가이드 및 검증 절차 |
 | [platform-auto-update/](platform-auto-update/) | Windows 시작 프로그램이 실행하는 VBS 스크립트 정본과 처음 사용하는 사람을 위한 알림·점검 안내 |
 
