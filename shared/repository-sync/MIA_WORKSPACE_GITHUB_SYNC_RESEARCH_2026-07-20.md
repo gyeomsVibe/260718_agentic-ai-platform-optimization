@@ -26,6 +26,7 @@
 
 - Claude Code, Codex, Antigravity가 같은 작업 폴더를 편집할 수 있습니다.
 - 저장소에는 사용자 변경과 에이전트 변경이 동시에 남을 수 있습니다.
+- 둘 이상의 동기화 주체가 같은 인덱스와 브랜치를 동시에 갱신할 수 있습니다.
 - 자동 커밋과 push는 최신성을 높이지만 외부 유출과 이력 충돌 위험도 함께 높입니다.
 - 변경이 없을 때 실행되는 타이머는 사용자 가치 없이 비용만 만듭니다.
 
@@ -34,6 +35,7 @@
 - 변경이 없으면 아무 작업도 하지 않습니다.
 - 변경이 있으면 이번 실행이 만든 파일만 커밋합니다.
 - 사용자 변경과 비밀정보는 자동으로 제외합니다.
+- 저장소마다 지정된 한 동기화 주체만 스테이징, 커밋, push를 수행합니다.
 - 원격이 앞서거나 분기되면 자동 병합하지 않고 멈춥니다.
 - 세 도구가 같은 판정 용어와 완료 보고 형식을 사용합니다.
 
@@ -100,6 +102,7 @@ Ruleset은 브랜치 보호를 강화할 수 있습니다. 조직(Organization)�
 
 - 타이머가 아니라 실제 변경 완료 사건으로 시작합니다.
 - 실행 전 변경과 실행 중 변경을 분리합니다.
+- 저장소별 단일 동기화 주체가 임대를 획득한 뒤 Git 인덱스를 변경합니다.
 - 소유 경로만 검증하고 명시적으로 스테이징합니다.
 - 원격 선행, 분기, 민감성, 소유권이 불명확하면 중단합니다.
 
@@ -111,6 +114,7 @@ Ruleset은 브랜치 보호를 강화할 수 있습니다. 조직(Organization)�
 
 - 원격과 보호 브랜치
 - 검증 명령
+- 동기화 주체와 임대 방식
 - 추가 제외 경로
 - 생성 산출물 정책
 - 대용량 검토 기준
@@ -177,6 +181,7 @@ Ruleset은 브랜치 보호를 강화할 수 있습니다. 조직(Organization)�
 | 위험 | 대응 |
 |---|---|
 | 검사와 push 사이 원격 변경 | push 직전 재-fetch와 기준점 비교 |
+| 둘 이상의 주체가 동시에 커밋 | 단일 동기화 주체와 작업 트리 밖 임대 잠금 |
 | 사용자 변경의 혼입 | 기준 상태 저장, 소유 경로 목록, 명시 스테이징 |
 | 비밀정보 노출 | 경로 하드 제외, staged diff 검사, GitHub secret scanning |
 | 규칙 복제본 불일치 | 정본 링크와 어댑터 버전 고정 |
@@ -190,6 +195,7 @@ Ruleset은 브랜치 보호를 강화할 수 있습니다. 조직(Organization)�
 |---|---|
 | 시간 기반 폴링 | 폐기 |
 | 사건 기반 실행 | 채택 |
+| 다중 에이전트의 독립 커밋 | 금지, 저장소별 단일 작성자 채택 |
 | 사용자 변경과 에이전트 변경 혼합 커밋 | 금지 |
 | 원격 선행 시 자동 rebase 또는 merge | 전역 기본 금지 |
 | force push | 자동화에서 금지 |
@@ -216,4 +222,3 @@ Ruleset은 브랜치 보호를 강화할 수 있습니다. 조직(Organization)�
 - [GitHub secret scanning 설명](https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning)
 - [GitHub 기본 커뮤니티 파일](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
 - [GitHub 재사용 워크플로](https://docs.github.com/en/actions/reference/workflows-and-actions/reusing-workflow-configurations)
-
