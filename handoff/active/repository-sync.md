@@ -53,6 +53,8 @@ revalidate_when:
 
 `work_sha`에는 루트 handoff 정본, 세 대안 결정, handoff 확정 지점, JSON Schema, SELFREFINE 검증기, 도구별 발견 규칙이 포함됩니다.
 
+상세 구현 경위와 복구 절차는 [자동동기화와 GitHub handoff 인계보고서](../records/2026/07/repository-sync-handoff-20260720-001.md)에 기록했습니다.
+
 ## 다음 행동
 
 저장소 루트에서 `npm run handoff:check`를 실행합니다. 실패하면 다음 구현을 시작하지 말고 이 레코드를 `BLOCKED`로 전환합니다.
