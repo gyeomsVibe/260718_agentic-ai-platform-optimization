@@ -3,7 +3,8 @@
   "captured_at": "2026-07-19T00:00:00+09:00",
   "status": "baseline_only",
   "canonical": {
-    "path": "shared/skills/plan-review-execute/SKILL.md",
+    "historical_path": "shared/skills/plan-review-execute/SKILL.md",
+    "current_path": "skills/plan-review-execute/SKILL.md",
     "sha256": "8076D5D401F53747BA3C188A5C4675E70D96CD6623790AB492A3BA716EFA540A"
   },
   "plugin_mirror": {
@@ -12,7 +13,8 @@
     "matches_canonical": true
   },
   "codex_metadata": {
-    "path": "shared/skills/plan-review-execute/agents/openai.yaml",
+    "historical_path": "shared/skills/plan-review-execute/agents/openai.yaml",
+    "current_path": "skills/plan-review-execute/agents/openai.yaml",
     "sha256": "6EA672D4B20993C52F265B8A31C1A060596591DFB26CECB238ED95751322E65B"
   },
   "representative_cases": [

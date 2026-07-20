@@ -25,7 +25,7 @@ Windows 로그인
 | --- | --- |
 | [scripts/Update-CodexCliAtLogon.vbs](scripts/Update-CodexCliAtLogon.vbs) | npm으로 Codex CLI의 최신 버전을 확인하고 Windows 알림을 보낸다. |
 | [scripts/Update-AntigravityAtLogon.vbs](scripts/Update-AntigravityAtLogon.vbs) | Antigravity IDE → 2.0 → CLI 순서로 갱신하고 결과를 하나의 알림으로 보낸다. |
-| [../platform-auto-update.md](../platform-auto-update.md) | 명령, 로그, 복구 방법을 포함한 상세 운영 가이드다. |
+| [OPERATIONS.md](OPERATIONS.md) | 명령, 로그, 복구 방법을 포함한 상세 운영 가이드다. |
 
 ## 알림 읽는 법
 

@@ -248,19 +248,25 @@ mia-modular-intelligence-architect/
 
 ### 현재 구현과 설치 판단
 
-MIA는 이제 **플러그인 정본(Source of Truth)** 으로 운영한다. 정본은 다음 경로의 `skills/plan-review-execute/SKILL.md`이며 버전은 `VERSION`과 Codex 플러그인 매니페스트의 `version`으로 함께 관리한다.
+MIA는 이제 **Skill 정본(Source of Truth)** 과 플러그인 배포 어댑터를 분리해 운영한다.
+정본은 저장소의 `skills/plan-review-execute/SKILL.md`이며, 플러그인 버전은
+`shared/plugins/mia-modular-intelligence-architect/VERSION`에서 관리한다.
 
 ```text
-notebook/03_Agent_Environments/plugins/
-└── mia-modular-intelligence-architect/
-    ├── VERSION
-    ├── .codex-plugin/plugin.json
-    ├── plugin.json
-    ├── skills/plan-review-execute/SKILL.md  ← 유일한 정본
-    └── scripts/sync-mia-skills.ps1
+skills/
+└── plan-review-execute/
+    ├── SKILL.md  ← 유일한 편집 정본
+    ├── agents/openai.yaml
+    └── CLAUDE-SKILL.md
+
+shared/plugins/mia-modular-intelligence-architect/
+├── plugin.json
+├── VERSION
+├── skills/plan-review-execute/SKILL.md  ← 패키징 배포본
+└── scripts/sync-mia-skills.ps1
 ```
 
-Antigravity에는 이 번들을 `~/.gemini/config/plugins/mia-modular-intelligence-architect/`로 배포했다. 이전의 독립 전역 스킬 `~/.gemini/config/skills/plan-review-execute/`는 제거했으므로, Antigravity에서 MIA는 플러그인 한 곳에서만 활성화된다. Codex와 Claude의 전역 스킬은 플러그인 정본으로부터 동기화되는 런타임 배포본이다.
+Antigravity에는 플러그인 번들을 `~/.gemini/config/plugins/mia-modular-intelligence-architect/`로 배포한다. 이전의 독립 전역 스킬 `~/.gemini/config/skills/plan-review-execute/`는 제거 대상이며, Antigravity에서 MIA는 플러그인 한 곳에서만 활성화한다. Codex와 Claude의 전역 스킬도 이 Skill 정본에서 동기화되는 런타임 배포본이다.
 
 MIA는 외부 서비스, 자동 실행, MCP, 훅을 필요로 하지 않는 순수 절차형 스킬이므로 플러그인에는 필요한 스킬·매니페스트·동기화 스크립트만 둔다. 이는 기능을 부풀리지 않으면서도 노트북·데스크톱과 세 도구의 버전을 일관되게 유지하기 위한 구성이다.
 
@@ -270,18 +276,18 @@ MIA는 외부 서비스, 자동 실행, MCP, 훅을 필요로 하지 않는 순�
 
 | 구분 | 위치 | 역할 |
 |---|---|---|
-| 정본 | `notebook/03_Agent_Environments/plugins/mia-modular-intelligence-architect/skills/plan-review-execute/SKILL.md` | MIA 로직을 수정하는 유일한 원본 |
+| 정본 | `skills/plan-review-execute/SKILL.md` | MIA 로직을 수정하는 유일한 원본 |
+| 플러그인 패키지 | `shared/plugins/mia-modular-intelligence-architect/` | 매니페스트·버전·배포 스크립트와 생성된 패키징 Skill |
 | Antigravity 런타임 | `~/.gemini/config/plugins/mia-modular-intelligence-architect/` | 플러그인으로 활성화되는 실제 실행본 |
 | Codex 런타임 | `~/.codex/skills/plan-review-execute/SKILL.md` | 정본에서 동기화되는 전역 스킬 |
 | Claude 런타임 | `~/.claude/skills/plan-review-execute/SKILL.md` | Claude 전용 헤더와 정본 전체 로직을 포함한 동기화본 |
-| 작업공간 미러 | `notebook/03_Agent_Environments/skills/plan-review-execute/SKILL.md` | 저장소에서 읽기 쉬운 관리용 사본 |
 
 ### 업데이트 절차
 
-1. 플러그인 정본의 `SKILL.md`만 수정한다.
+1. `skills/plan-review-execute/SKILL.md`만 수정한다.
 2. 의미 있는 변경이면 `VERSION`과 `.codex-plugin/plugin.json`의 버전을 함께 올린다.
 3. `scripts/sync-mia-skills.ps1 -Mode Check`로 배포본이 정본과 같은지 확인한다.
-4. `scripts/sync-mia-skills.ps1 -Mode Apply -MigrateAntigravity`로 Codex·Claude·Antigravity·작업공간 미러를 동기화한다.
+4. `shared/plugins/mia-modular-intelligence-architect/scripts/sync-mia-skills.ps1 -Mode Apply -MigrateAntigravity`로 Codex·Claude·Antigravity와 플러그인 패키지를 동기화한다.
 5. 새 세션에서 `MIA모드 발동: 기획 <목표>`를 입력해 발동을 확인한다.
 
 동기화 스크립트는 먼저 모두 복사·검증하고, Antigravity의 예전 독립 설치본만 마지막에 제거한다. 따라서 복사 실패로 정본 없는 상태가 되는 것을 막는다. 현재 Antigravity 독립 설치본은 이미 제거되어 중복 발동 경로가 없다.

@@ -7,7 +7,8 @@ param(
 
 $utf8 = [System.Text.UTF8Encoding]::new($false)
 $pluginRoot = Split-Path -Parent $PSScriptRoot
-$canonicalPath = Join-Path $pluginRoot 'skills\plan-review-execute\SKILL.md'
+$repositoryRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $pluginRoot))
+$canonicalPath = Join-Path $repositoryRoot 'skills\plan-review-execute\SKILL.md'
 $pluginManifestPath = Join-Path $pluginRoot 'plugin.json'
 $versionPath = Join-Path $pluginRoot 'VERSION'
 foreach ($requiredPath in @($canonicalPath, $pluginManifestPath, $versionPath)) {
@@ -32,14 +33,13 @@ user-invocable: false
 "@
 $claudeSkill = $claudeFrontmatter + $body
 
-$agentRoot = Split-Path -Parent (Split-Path -Parent $pluginRoot)
 $antigravityPluginRoot = Join-Path $env:USERPROFILE '.gemini\config\plugins\mia-modular-intelligence-architect'
 $legacyAntigravitySkill = Join-Path $env:USERPROFILE '.gemini\config\skills\plan-review-execute'
 $targets = @(
-    @{ Name = 'Workspace mirror'; Path = (Join-Path $agentRoot 'skills\plan-review-execute\SKILL.md'); Content = $canonical },
     @{ Name = 'Codex'; Path = (Join-Path $env:USERPROFILE '.codex\skills\plan-review-execute\SKILL.md'); Content = $canonical },
-    @{ Name = 'Claude source mirror'; Path = (Join-Path $agentRoot 'skills\plan-review-execute\CLAUDE-SKILL.md'); Content = $claudeSkill },
+    @{ Name = 'Claude adapter'; Path = (Join-Path $repositoryRoot 'skills\plan-review-execute\CLAUDE-SKILL.md'); Content = $claudeSkill },
     @{ Name = 'Claude'; Path = (Join-Path $env:USERPROFILE '.claude\skills\plan-review-execute\SKILL.md'); Content = $claudeSkill },
+    @{ Name = 'Plugin package mirror'; Path = (Join-Path $pluginRoot 'skills\plan-review-execute\SKILL.md'); Content = $canonical },
     @{ Name = 'Antigravity plugin skill'; Path = (Join-Path $antigravityPluginRoot 'skills\plan-review-execute\SKILL.md'); Content = $canonical },
     @{ Name = 'Antigravity plugin manifest'; Path = (Join-Path $antigravityPluginRoot 'plugin.json'); Content = [System.IO.File]::ReadAllText($pluginManifestPath) },
     @{ Name = 'Antigravity plugin version'; Path = (Join-Path $antigravityPluginRoot 'VERSION'); Content = [System.IO.File]::ReadAllText($versionPath) }

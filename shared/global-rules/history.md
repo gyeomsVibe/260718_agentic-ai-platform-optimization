@@ -98,7 +98,7 @@
 
 ## 8. 구현 결과
 
-- 정본 경로: `notebook/03_Agent_Environments/global-rules/`
+- 정본 경로: `shared/global-rules/`
 - 현재 버전: `2.0.1` (`1.0.0` 한글 정본에서 시작, `2.0.0`부터 영문 정본)
 - 공통 핵심, Vibe Check 라우팅, 도구별 어댑터를 분리했다.
 - MIA 관련 발동·절차·경로는 전역 규칙에서 제거하고 별도 MIA 플러그인 정본에만 유지했다.

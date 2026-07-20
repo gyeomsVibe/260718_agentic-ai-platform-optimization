@@ -34,4 +34,8 @@
 불명확했습니다. 통합 판단과 제거한 낡은 문서의 해시는
 `evals/mia-skill-compiler/workspace-consolidation-2026-07-20.json`에 기록했습니다.
 
+`evals/`와 `fixtures/`의 `historical_path`, 이전 절대 경로, 과거 작업 폴더 이름은
+당시 검증이 어디에서 수행됐는지를 보존하는 증거입니다. 현재 편집 대상 경로를 뜻하지
+않습니다. 현재 MIA 런타임 Skill의 편집 정본은 `../plan-review-execute/`입니다.
+
 `.agents/`는 임시 설치 영역이므로 이 작업대의 정본이나 커밋 대상이 아닙니다.
