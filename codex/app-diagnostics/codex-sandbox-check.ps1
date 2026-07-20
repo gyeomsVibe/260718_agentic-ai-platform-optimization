@@ -88,9 +88,12 @@ if ($envGithubToken) {
 
 
 # 3. 샌드박스 쓰기 경로 ACL(Modify ACE) 권한 검사
+#    이 스크립트는 codex/app-diagnostics/ 안에 있으므로 워크스페이스 루트는 두 단계 위다.
 Write-Host "`n[3/4] 샌드박스 쓰기 대상 디렉터리 권한 검증 중..." -ForegroundColor Yellow
-$repoSyncPath = Join-Path $PSScriptRoot "..\shared\repository-sync"
-$targetPaths = @("C:\tmp", $PSScriptRoot, $repoSyncPath)
+$workspaceRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
+$codexDir      = Join-Path $workspaceRoot "codex"
+$repoSyncPath  = Join-Path $workspaceRoot "shared\repository-sync"
+$targetPaths = @("C:\tmp", $codexDir, $repoSyncPath)
 $aclCheckPassed = $true
 
 foreach ($path in $targetPaths) {
@@ -187,7 +190,7 @@ if ($hasErrors) {
     Write-Host "❌ 진단 완료: 일부 환경에 경고/오류가 발견되었습니다. 위의 조치 가이드를 따라주세요." -ForegroundColor Red
     
     # 대화식 세션이고 배치 파일이 존재할 경우 자동 복구 권장
-    $batchPath = Join-Path $PSScriptRoot "..\fix-sandbox-acl.bat"
+    $batchPath = Join-Path $PSScriptRoot "fix-sandbox-acl.bat"
     if (Test-Path -LiteralPath $batchPath) {
         Write-Host "`n💡 꼬인 권한과 소유권을 한 번에 복구할 수 있는 배치 스크립트가 준비되어 있습니다." -ForegroundColor Yellow
         Write-Host "   스크립트 경로: $batchPath" -ForegroundColor Cyan
