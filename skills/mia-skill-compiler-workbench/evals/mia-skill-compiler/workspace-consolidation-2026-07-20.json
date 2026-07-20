@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-07-20",
+  "decision": "consolidate_semantically_overlapping_workspaces",
+  "canonical_root": "skills/mia-skill-compiler-workbench",
+  "previous_roots": [
+    "skills/gpt를 이용해서 Skills-모드 만들기",
+    "skills/[userfile]/# 260720_gpt를 이용해서 Skills-모드 만들기"
+  ],
+  "analysis": {
+    "files_scanned": 65,
+    "exact_duplicate_groups": 0,
+    "semantic_overlap": true,
+    "problem": "두 폴더가 같은 Agent Skill 생성 작업을 GPT 중심 이름과 사용자 파일 이름으로 나눠 관리해 정본과 현재 세대를 혼동시켰다."
+  },
+  "actions": [
+    "mia-skill-compiler, mia-skill-forge와 관련 평가·근거를 단일 작업대로 이동",
+    "hybrid-image-production-architect 정적 후보와 평가·근거를 예제로 보존",
+    "독립 promoter 후보의 읽기 전용 사전검사를 mia-skill-compiler에 흡수",
+    "GPT 챗봇 중심의 낡은 설명 문서를 현재 Compiler 바이블과 작업대 README로 대체"
+  ],
+  "removed_untracked_documents": [
+    {
+      "name": "MIA_GPT_CHATBOT_SKILLS_CAPABILITY_REVIEW_2026-07-20.md",
+      "sha256": "C0F08CE9464BA3DD151596C29E32EADE758AD5F575C63A9F7DC9524F4ABEA974"
+    },
+    {
+      "name": "MIA_GPT_CHATBOT_SKILLS_IMPLEMENTATION_PLAN_2026-07-20.md",
+      "sha256": "D8B76243688370D9D07E282C5B1B6483A4DF1B826356C9B21708D82B117EA474"
+    },
+    {
+      "name": "MIA_SKILL_FORGE_USER_GUIDE_2026-07-20.md",
+      "sha256": "2873F08BA404BABEA363FAFF49FE617D2B6F5542E2C50876D69CA79455591880"
+    },
+    {
+      "name": "README.md",
+      "sha256": "8EBE940FB4DD18CC0B65ED5DC4546EA291AFED09474C7316CDF96993574196E8"
+    }
+  ],
+  "replacements": [
+    "README.md",
+    "candidates/mia-skill-compiler/references/skill-creation-bible.md",
+    "candidates/mia-skill-compiler/references/research-prd-contract.md"
+  ],
+  "preservation_rules": {
+    "historical_evidence_paths_rewritten": false,
+    "temporary_agents_installation_committed": false,
+    "runtime_success_claimed": false
+  },
+  "git_baseline": {
+    "local_head": "4ae62c721d72f77308aa3037c4602abca11c96e4",
+    "origin_main": "4ae62c721d72f77308aa3037c4602abca11c96e4"
+  }
+}

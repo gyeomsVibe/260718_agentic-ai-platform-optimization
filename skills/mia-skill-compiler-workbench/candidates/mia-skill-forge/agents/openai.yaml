@@ -1,0 +1,7 @@
+interface:
+  display_name: "MIA Skill Forge"
+  short_description: "GPT 설계를 검증 가능한 공통 Agent Skill 후보로 정제"
+  default_prompt: "$mia-skill-forge 이 GPT 설계를 크로스 플랫폼 Agent Skill 후보로 바꿔줘."
+
+policy:
+  allow_implicit_invocation: false

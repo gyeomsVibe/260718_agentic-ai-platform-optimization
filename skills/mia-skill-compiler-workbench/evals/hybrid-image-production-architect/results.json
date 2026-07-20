@@ -1,0 +1,14 @@
+{
+  "skill": "hybrid-image-production-architect",
+  "maturity": "STATIC_CANDIDATE",
+  "runtime_status": "not_run",
+  "discovery_status": "not_run",
+  "static_audit_status": "passed: 0 errors, 0 warnings",
+  "official_validator_status": "not_run: PyYAML is unavailable in the local Python environment; no package installation was authorized",
+  "result_records": [],
+  "known_limitations": [
+    "No platform has confirmed discovery of this candidate.",
+    "No explicit-trigger, non-trigger, core-task, or safety case has run in Claude Code, Codex, or Antigravity.",
+    "Image-tool availability and permission behavior can differ by platform."
+  ]
+}

@@ -7,6 +7,10 @@ Thumbs.db
 *.log
 shared/platform-auto-update/scripts/npm-cache/
 
+# 로컬 검증·임시 Skill 설치 영역
+node_modules/
+.agents/
+
 # 비밀 정보 (안전장치)
 .env
 *.pem

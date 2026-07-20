@@ -1,0 +1,14 @@
+{
+  "name": "agentic-ai-platform-optimization",
+  "private": true,
+  "version": "0.0.0",
+  "description": "MIA Skill Compiler workbench validation tools",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --no-warn-ignored"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0"
+  }
+}

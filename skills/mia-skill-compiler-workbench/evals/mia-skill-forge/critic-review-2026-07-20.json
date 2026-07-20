@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-forge",
+  "reviewed_at": "2026-07-20T00:00:00+09:00",
+  "review_type": "CRITIC",
+  "maturity": "STATIC_CANDIDATE",
+  "scope": [
+    "candidates/mia-skill-forge",
+    "evals/mia-skill-forge"
+  ],
+  "checks": [
+    {
+      "name": "static_auditor_with_temporary_copy_body_comparison",
+      "result": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "note": "The comparison checks static body parity only; it is not discovery or runtime evidence."
+    },
+    {
+      "name": "core_job_file_responsibility_and_link_review",
+      "result": "pass",
+      "note": "The candidate has one conversion job; runnable files and external evidence remain separated; directly linked references have distinct roles."
+    },
+    {
+      "name": "maturity_and_completion_claim_review",
+      "result": "pass_with_runtime_gap",
+      "note": "The candidate and evidence retain STATIC_CANDIDATE/static-only boundaries and do not claim runtime certification."
+    }
+  ],
+  "findings": [
+    {
+      "id": "CR-01",
+      "severity": "minor",
+      "category": "evaluation_contract_precision",
+      "evidence": "cases.json explicit-01 says '3도구', while the requested first runtime test says '세 도구'.",
+      "impact": "The trigger intent is equivalent, but a retained evaluation must preserve the exact requested prompt for reproducibility.",
+      "smallest_next_correction": "In SELFREFINE, decide which wording is canonical and record that exact prompt without altering past static results."
+    },
+    {
+      "id": "CR-02",
+      "severity": "minor",
+      "category": "discovery_evidence_completeness",
+      "evidence": "runtime-discovery-2026-07-20.json records the observation time but not the new task or restarted-workspace start time required by output-contract.md.",
+      "impact": "The current unconfirmed result remains valid, but this record could not become DISCOVERY_CONFIRMED evidence unchanged.",
+      "smallest_next_correction": "In SELFREFINE, add a distinct task/session start-time field with an explicit unknown value when it cannot be observed; only mark discovery confirmed after the Skill is visibly listed."
+    }
+  ],
+  "decision": "advance_to_selfrefine",
+  "runtime_statement": "No runtime case was executed because DISCOVERY_CONFIRMED remains unconfirmed."
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-forge",
+  "reviewed_at": "2026-07-20T00:00:00+09:00",
+  "review_type": "OPTIMIZE",
+  "maturity": "STATIC_CANDIDATE",
+  "baseline_evidence": "redteam-data-review.json",
+  "options_considered": [
+    {
+      "option": "no-change",
+      "decision": "selected",
+      "reason": "The candidate's common workflow, four directly linked references, Codex metadata, and deterministic auditor have distinct responsibilities."
+    },
+    {
+      "option": "simplify",
+      "decision": "rejected",
+      "reason": "Removing a reference or merging the remaining safety-boundary wording would reduce progressive disclosure or leave a document unsafe when read independently."
+    },
+    {
+      "option": "repair",
+      "decision": "rejected",
+      "reason": "SELFREFINE resolved the two supported evaluation-evidence defects; the static auditor reports no remaining finding."
+    },
+    {
+      "option": "split",
+      "decision": "rejected",
+      "reason": "No responsibility is currently overloaded enough to justify another file or layer of indirection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "direct_reference_routing",
+      "result": "pass",
+      "detail": "SKILL.md links once each to quality gates, platform contracts, optimization procedure, and output contract."
+    },
+    {
+      "name": "static_auditor_with_temporary_copy_body_comparison",
+      "result": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "detail": "Static body parity does not prove discovery or runtime behavior."
+    }
+  ],
+  "candidate_change": "none",
+  "decision": "no_change",
+  "next_step": "Obtain DISCOVERY_CONFIRMED before the first runtime case.",
+  "runtime_statement": "No runtime case was executed and no runtime claim is made."
+}

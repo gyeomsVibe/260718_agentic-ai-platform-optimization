@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hybrid Image Production Architect"
+  short_description: "명시 호출형 멀티모달 이미지 제작·진단 설계"
+  default_prompt: "$hybrid-image-production-architect: 이 이미지 요청을 안전한 제작 계획으로 정리해줘"
+policy:
+  allow_implicit_invocation: false

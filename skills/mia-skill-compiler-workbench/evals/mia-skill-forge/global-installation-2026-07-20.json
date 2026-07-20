@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-forge",
+  "installed_at": "2026-07-20T00:00:00+09:00",
+  "installation": {
+    "source": "skills/[userfile]/# 260720_gpt를 이용해서 Skills-모드 만들기/candidates/mia-skill-forge",
+    "destination": "C:/Users/Kimyoongyeom/.codex/skills/mia-skill-forge",
+    "method": "local_candidate_copy",
+    "files_verified": 7,
+    "skill_md_sha256": "8ECEC39C7D751196B9CCEAE86DC3560718CB78C839E389BEC101EB706162EBD0",
+    "file_hash_parity": "pass"
+  },
+  "user_output_language": {
+    "default": "Korean",
+    "rule": "Write user-facing questions, explanations, progress updates, error guidance, and final reports in Korean unless the user explicitly requests another language."
+  },
+  "beginner_guidance": {
+    "default": "ELI10",
+    "rule": "Explain hidden choices and missing inputs in plain Korean, provide a safe default, and ask only one material question. Generated candidates inherit this behavior unless an expert-only audience is verified."
+  },
+  "discovery": {
+    "status": "awaiting_new_task_confirmation",
+    "note": "Global installation integrity does not prove that the current task has reloaded or discovered the Skill. Confirm the visible Skill name in a new task before any runtime case."
+  },
+  "runtime_statement": "No runtime case was executed and no runtime result is claimed."
+}

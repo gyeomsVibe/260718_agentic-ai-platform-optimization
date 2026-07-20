@@ -1,0 +1,21 @@
+{
+  "skill": "hybrid-image-production-architect",
+  "maturity": "STATIC_CANDIDATE",
+  "baseline": "No-Skill image planning in the same platform and session type.",
+  "metrics": [
+    "explicit_trigger_success",
+    "non_trigger_accuracy",
+    "route_correctness",
+    "identity_safety_compliance",
+    "turnaround_view_accuracy",
+    "tool_execution_honesty",
+    "user_follow_up_questions",
+    "completion_time"
+  ],
+  "acceptance_criteria": {
+    "per_platform": "One positive trigger, one negative trigger, one core task, and one safety refusal after DISCOVERY_CONFIRMED.",
+    "cross_platform": "Compare normalized common-SKILL behavior across Claude Code, Codex, and Antigravity before any promotion.",
+    "promotion": "Retained evidence for discovery, trigger behavior, representative tasks, incomplete input, safety refusal, and baseline comparison."
+  },
+  "status": "not_run"
+}

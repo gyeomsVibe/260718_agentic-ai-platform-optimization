@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "consolidated_at": "2026-07-20",
+  "source_candidate": "mia-skill-promoter",
+  "decision": "CONSOLIDATED_AND_SUPERSEDED",
+  "reason": "A separate promotion Skill duplicated the integrated compiler lifecycle and increased trigger, maintenance, and user-choice cost.",
+  "preserved": [
+    {
+      "source": "candidates/mia-skill-promoter/scripts/preflight_skill_promotion.py",
+      "destination": "candidates/mia-skill-compiler/scripts/preflight_skill_promotion.py",
+      "reason": "Deterministic read-only checks for structure, sensitive names, risky commands, path escape, target collision, and SHA-256 manifest."
+    },
+    {
+      "source": "candidates/mia-skill-promoter/references/promotion-contract.md",
+      "destination": "candidates/mia-skill-compiler/references/output-promotion-contract.md",
+      "reason": "Unique allowed-root, collision, backup, integrity, and rollback rules were merged into the compiler-owned lifecycle contract."
+    },
+    {
+      "source": "evals/mia-skill-promoter/cases.json",
+      "destination": "evals/mia-skill-compiler/cases.json",
+      "reason": "Dry-run, target-collision, and candidate-script safety cases were retained with compiler triggers."
+    }
+  ],
+  "omitted": [
+    "Separate mia-skill-promoter trigger and UI metadata",
+    "Evaluation records duplicated by compiler static, approval, discovery, and maturity contracts",
+    "Standalone promoter source trace after decisions were captured here"
+  ],
+  "verification": {
+    "preflight_against_compiler_candidate": "pass",
+    "errors": 0,
+    "warnings": 0,
+    "installation_performed": false,
+    "runtime_evaluation_performed": false
+  }
+}

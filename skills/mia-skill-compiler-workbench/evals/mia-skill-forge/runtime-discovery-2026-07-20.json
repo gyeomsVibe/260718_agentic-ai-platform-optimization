@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-forge",
+  "recorded_at": "2026-07-20T00:00:00+09:00",
+  "platform": "Codex desktop",
+  "workspace_path": "D:/D_Workspace_NB/-google-workspace/-antigravity-workspace/260718_agentic-ai-platform-optimization",
+  "task_context": "delegated new task",
+  "task_started_at": "unknown",
+  "discovery": {
+    "gate": "DISCOVERY_CONFIRMED",
+    "status": "unconfirmed",
+    "visible_skill_name_before_test": false,
+    "available_skills_result": "mia-skill-forge and MIA Skill Forge were not present in this task's Available skills list.",
+    "local_installation_observation": ".agents/skills/mia-skill-forge/SKILL.md exists, but it is a temporary local installation and does not prove active-task discovery."
+  },
+  "requested_case": {
+    "id": "explicit-01",
+    "prompt": "$mia-skill-forge 이 GPT 설계를 세 도구 공통 Skill 후보로 바꿔줘.",
+    "execution": "not_run",
+    "reason": "Runtime execution is prohibited until DISCOVERY_CONFIRMED."
+  },
+  "conclusion": "DISCOVERY_UNCONFIRMED: no runtime trigger, task-output, safety, or cross-platform claim is made.",
+  "static_evidence_preserved": [
+    "benchmark.json",
+    "cases.json",
+    "results.json",
+    "static-audit.json",
+    "redteam-data-review.json"
+  ]
+}

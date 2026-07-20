@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-forge",
+  "reviewed_at": "2026-07-20T00:00:00+09:00",
+  "review_type": "SELFREFINE",
+  "maturity": "STATIC_CANDIDATE",
+  "source_review": "critic-review-2026-07-20.json",
+  "corrections": [
+    {
+      "finding": "CR-01",
+      "result": "resolved",
+      "change": "Aligned cases.json explicit-01 with the exact user-requested first-test prompt using '세 도구' and the final period.",
+      "scope": "evaluation input only",
+      "runtime_execution": "not_run"
+    },
+    {
+      "finding": "CR-02",
+      "result": "resolved_for_current_unconfirmed_record",
+      "change": "Added task_started_at as 'unknown' instead of inferring an unavailable timestamp.",
+      "scope": "discovery evidence completeness",
+      "runtime_execution": "not_run"
+    }
+  ],
+  "decision": "advance_to_optimize",
+  "runtime_statement": "DISCOVERY_CONFIRMED remains unconfirmed; no runtime result is claimed."
+}
