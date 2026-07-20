@@ -28,7 +28,7 @@
     "handoff_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{5,79}$" },
     "status": {
       "type": "string",
-      "enum": ["DRAFT", "VALIDATED", "HANDOFF_READY", "CLAIMED", "BLOCKED", "STALE", "CLOSED"]
+      "enum": ["DRAFT", "VALIDATED", "HANDOFF_READY", "CLAIMED", "BLOCKED", "STALE", "SUPERSEDED", "CLOSED"]
     },
     "workstream": { "type": "string", "minLength": 1 },
     "objective": { "type": "string", "minLength": 1 },

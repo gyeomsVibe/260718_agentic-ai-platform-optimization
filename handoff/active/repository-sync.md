@@ -1,6 +1,6 @@
 ---
 handoff_id: repository-sync-20260720-001
-status: HANDOFF_READY
+status: STALE
 workstream: repository-sync
 objective: SAFE-SYNC와 GitHub handoff의 다음 실행 지점을 전달한다
 repository: gyeomsVibe/260718_agentic-ai-platform-optimization
@@ -22,6 +22,7 @@ completed:
   - handoff 계약 스키마와 SELFREFINE 검증기를 추가함
   - Claude Code와 Codex가 활성 인계를 발견하도록 프로젝트 규칙을 연결함
 remaining:
+  - work_sha 이후 AGENTS.md가 변경되어 repository-sync 인계를 새 기준점에서 재발행함
   - 같은 활성 인계를 Claude Code와 Codex와 Antigravity에서 10회 재개 검증함
   - 검증 완료 후 GitHub Issue Form과 Pull Request 템플릿을 평가함
 verification:
@@ -45,9 +46,10 @@ revalidate_when:
   - 더 최신 repository-sync handoff_id가 생성됨
 ---
 
-# Repository sync 인계
+# Repository sync 인계 (오래된 기준점)
 
-이 레코드는 SAFE-SYNC와 GitHub handoff 파일럿이 반영된 기준점을 전달합니다. 수신자는 `work_sha`를 기준으로 구현과 검증 결과를 다시 확인합니다.
+이 레코드는 SAFE-SYNC와 GitHub handoff 파일럿의 이전 기준점입니다. `AGENTS.md`가
+`work_sha` 이후 변경되어 새 기준점이 발행되기 전까지 재개 기준으로 사용하지 않습니다.
 
 ## 완료 근거
 
@@ -57,4 +59,5 @@ revalidate_when:
 
 ## 다음 행동
 
-저장소 루트에서 `npm run handoff:check`를 실행합니다. 실패하면 다음 구현을 시작하지 말고 이 레코드를 `BLOCKED`로 전환합니다.
+저장소 루트에서 `npm run handoff:check`를 실행한 뒤, 더 최신 `repository-sync` handoff를
+발행합니다. 이 레코드를 다시 `HANDOFF_READY`로 올리지 않습니다.

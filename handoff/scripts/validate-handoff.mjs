@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
-import { dirname, isAbsolute, join, resolve } from "node:path";
+import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
@@ -15,16 +15,29 @@ const forbiddenContent = [
   ["GitHub token shape", /\b(?:ghp_|github_pat_)[A-Za-z0-9_]{20,}\b/],
   ["API key shape", /\bsk-[A-Za-z0-9_-]{20,}\b/]
 ];
+const remoteRequiredStatuses = new Set(["HANDOFF_READY", "CLAIMED"]);
 
-function runGit(argumentsList) {
+function runGit(argumentsList, root = repositoryRoot) {
   try {
     execFileSync("git", argumentsList, {
-      cwd: repositoryRoot,
+      cwd: root,
       stdio: "ignore"
     });
     return true;
   } catch {
     return false;
+  }
+}
+
+function readGit(argumentsList, root = repositoryRoot) {
+  try {
+    return execFileSync("git", argumentsList, {
+      cwd: root,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"]
+    }).trim();
+  } catch {
+    return null;
   }
 }
 
@@ -116,7 +129,18 @@ function validateContract(metadata, source) {
   return failures;
 }
 
-function validateGitEvidence(metadata) {
+function normalizeRepositoryPath(value) {
+  return value.replaceAll("\\", "/").replace(/^\.\//, "").replace(/\/+$/, "");
+}
+
+function ownsPath(ownedPath, changedPath) {
+  const normalizedOwnedPath = normalizeRepositoryPath(ownedPath);
+  const normalizedChangedPath = normalizeRepositoryPath(changedPath);
+  return normalizedChangedPath === normalizedOwnedPath ||
+    normalizedChangedPath.startsWith(`${normalizedOwnedPath}/`);
+}
+
+function validateGitEvidence(metadata, root) {
   const failures = [];
   const ownedPaths = metadata.owned_paths ?? [];
 
@@ -126,28 +150,61 @@ function validateGitEvidence(metadata) {
     }
   }
 
-  if (!runGit(["cat-file", "-e", `${metadata.base_sha}^{commit}`])) {
+  if (!runGit(["cat-file", "-e", `${metadata.base_sha}^{commit}`], root)) {
     failures.push("base_sha is not a local commit");
   }
-  if (!runGit(["cat-file", "-e", `${metadata.work_sha}^{commit}`])) {
+  if (!runGit(["cat-file", "-e", `${metadata.work_sha}^{commit}`], root)) {
     failures.push("work_sha is not a local commit");
     return failures;
   }
-  if (!runGit(["merge-base", "--is-ancestor", metadata.base_sha, metadata.work_sha])) {
+  if (!runGit(["merge-base", "--is-ancestor", metadata.base_sha, metadata.work_sha], root)) {
     failures.push("base_sha is not an ancestor of work_sha");
   }
-  if (!runGit(["merge-base", "--is-ancestor", metadata.work_sha, "HEAD"])) {
+  if (!runGit(["merge-base", "--is-ancestor", metadata.work_sha, "HEAD"], root)) {
     failures.push("work_sha is not an ancestor of HEAD");
   }
-  if (metadata.status === "HANDOFF_READY" &&
-      !runGit(["merge-base", "--is-ancestor", metadata.work_sha, `origin/${metadata.branch}`])) {
+  if (remoteRequiredStatuses.has(metadata.status) &&
+      !runGit(["merge-base", "--is-ancestor", metadata.work_sha, `origin/${metadata.branch}`], root)) {
     failures.push("work_sha is not present on the remote-tracking branch");
   }
 
+  const workChanges = readGit(
+    ["diff", "--name-only", metadata.base_sha, metadata.work_sha],
+    root
+  );
+  if (workChanges === null) {
+    failures.push("cannot inspect changes between base_sha and work_sha");
+  } else {
+    for (const changedPath of workChanges.split("\n").filter(Boolean)) {
+      if (!ownedPaths.some((ownedPath) => ownsPath(ownedPath, changedPath))) {
+        failures.push(`work change is outside owned_paths: ${changedPath}`);
+      }
+    }
+  }
+
   for (const ownedPath of ownedPaths) {
-    if (!runGit(["diff", "--quiet", metadata.work_sha, "--", ownedPath])) {
+    if (remoteRequiredStatuses.has(metadata.status) &&
+        !runGit(["diff", "--quiet", metadata.work_sha, "--", ownedPath], root)) {
       failures.push(`owned path changed after work_sha: ${ownedPath}`);
     }
+  }
+
+  return failures;
+}
+
+function validateRemoteRecord(path, metadata, root) {
+  if (!remoteRequiredStatuses.has(metadata.status)) return [];
+
+  const failures = [];
+  const remoteRef = `origin/${metadata.branch}`;
+  const relativePath = normalizeRepositoryPath(relative(root, path));
+  const remoteBlob = readGit(["rev-parse", `${remoteRef}:${relativePath}`], root);
+  const localBlob = readGit(["hash-object", relativePath], root);
+
+  if (remoteBlob === null) {
+    failures.push("active handoff record is not present on the remote-tracking branch");
+  } else if (localBlob === null || remoteBlob !== localBlob) {
+    failures.push("active handoff record differs from the remote-tracking branch");
   }
 
   return failures;
@@ -175,39 +232,63 @@ function validateRestart(metadata) {
   return failures;
 }
 
-const files = readdirSync(activeDirectory).filter((file) => file.endsWith(".md"));
-let failureCount = 0;
+export function validateHandoffs({
+  root = repositoryRoot,
+  verifyRemote = false,
+  refreshRemote = false
+} = {}) {
+  const activePath = join(root, "handoff", "active");
+  const files = readdirSync(activePath).filter((file) => file.endsWith(".md"));
+  const results = [];
 
-for (const file of files) {
-  const path = join(activeDirectory, file);
-  const source = readFileSync(path, "utf8");
-  let metadata;
+  for (const file of files) {
+    const path = join(activePath, file);
+    const source = readFileSync(path, "utf8");
+    let metadata;
 
-  try {
-    metadata = parseFrontmatter(source);
-  } catch (error) {
-    console.error(`handoff/active/${file}: ${error.message}`);
-    failureCount += 1;
-    continue;
+    try {
+      metadata = parseFrontmatter(source);
+    } catch (error) {
+      results.push({ file, failures: [error.message] });
+      continue;
+    }
+
+    const failures = [
+      ...validateContract(metadata, source),
+      ...validateGitEvidence(metadata, root),
+      ...validateRestart(metadata)
+    ];
+
+    if (verifyRemote && remoteRequiredStatuses.has(metadata.status)) {
+      if (refreshRemote && !runGit(["fetch", "origin", metadata.branch], root)) {
+        failures.push("cannot refresh the remote-tracking branch");
+      }
+      failures.push(...validateRemoteRecord(path, metadata, root));
+    }
+
+    results.push({ file, failures });
   }
 
-  const passOne = [
-    ...validateContract(metadata, source),
-    ...validateGitEvidence(metadata)
-  ];
-  const passTwo = validateRestart(metadata);
-  const failures = [...passOne, ...passTwo];
-
-  if (failures.length === 0) {
-    console.log(`handoff/active/${file}: PASS`);
-    continue;
-  }
-
-  failureCount += failures.length;
-  for (const failure of failures) {
-    console.error(`handoff/active/${file}: ${failure}`);
-  }
+  return results;
 }
 
-if (failureCount > 0) process.exit(1);
-console.log(`Validated ${files.length} active handoff record(s).`);
+function main() {
+  const verifyRemote = process.argv.includes("--verify-remote");
+  const results = validateHandoffs({ verifyRemote, refreshRemote: verifyRemote });
+  const failureCount = results.reduce((count, result) => count + result.failures.length, 0);
+
+  for (const result of results) {
+    if (result.failures.length === 0) {
+      console.log(`handoff/active/${result.file}: PASS`);
+      continue;
+    }
+    for (const failure of result.failures) {
+      console.error(`handoff/active/${result.file}: ${failure}`);
+    }
+  }
+
+  if (failureCount > 0) process.exitCode = 1;
+  else console.log(`Validated ${results.length} active handoff record(s).`);
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

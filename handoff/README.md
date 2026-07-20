@@ -30,8 +30,9 @@ handoff/
 2. 작업 변경을 검증한 `work_sha`가 원격 브랜치에 존재합니다.
 3. handoff 레코드가 별도 커밋으로 원격 브랜치에 존재합니다.
 4. 레코드의 `owned_paths`와 실제 작업 변경이 일치합니다.
-5. `npm run handoff:check`가 사실성, 안전성, 최신성 검사를 통과합니다.
-6. 수신자가 `work_sha`와 `next_action`을 재확인합니다.
+5. `npm run handoff:check`가 로컬 사실성·안전성·최신성 검사를 통과합니다.
+6. push 뒤 `npm run handoff:verify-remote`가 활성 레코드와 `work_sha`의 원격 존재를 확인합니다.
+7. 수신자가 `work_sha`와 `next_action`을 재확인합니다.
 
 인계 레코드는 자신의 커밋 SHA를 미리 기록할 수 없습니다. 따라서 작업 커밋과 인계 레코드 커밋을 분리합니다. GitHub의 고정 SHA 링크를 사용하면 수신자가 같은 파일 버전을 봅니다.
 
@@ -79,6 +80,7 @@ sequenceDiagram
 - `base_sha`와 `work_sha`의 Git 포함 관계 확인
 - `work_sha`의 원격 브랜치 존재 확인
 - `owned_paths`의 상대 경로와 최신성 확인
+- `base_sha..work_sha`의 실제 변경이 `owned_paths` 아래에 모두 포함되는지 확인
 - `completed`와 `remaining`의 중복 확인
 - 절대 경로, 자격증명 형태, 머신 전용 설정 확인
 
@@ -98,6 +100,13 @@ sequenceDiagram
 
 ```powershell
 npm run handoff:check
+```
+
+원격 기준점까지 증명하려면 push 뒤 다음 명령을 실행합니다. 이 명령은 `origin/<branch>`를
+갱신한 뒤 활성 handoff 파일의 blob과 `work_sha`가 원격에 있는지 비교합니다.
+
+```powershell
+npm run handoff:verify-remote
 ```
 
 전체 저장소 검사는 handoff 검증까지 포함합니다:

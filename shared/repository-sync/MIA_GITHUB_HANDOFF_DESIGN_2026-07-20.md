@@ -71,15 +71,12 @@ GitHub는 커밋 SHA를 특정 변경과 시점의 고유 식별자로 사용합
 stateDiagram-v2
   [*] --> DRAFT
   DRAFT --> VALIDATED: 계약과 증거 검사 통과
-  VALIDATED --> LEASE_ACQUIRED: 동기화 주체 임대 확인
-  LEASE_ACQUIRED --> WORK_PUSHED: work_sha 원격 확인
-  WORK_PUSHED --> HANDOFF_READY: 인계 레코드 원격 확인
+  VALIDATED --> HANDOFF_READY: 임대·work_sha·원격 레코드 확인
   HANDOFF_READY --> CLAIMED: 수신자가 기준점 재검증
   CLAIMED --> CLOSED: 다음 작업 완료
   CLAIMED --> SUPERSEDED: 더 최신 인계가 대체
   DRAFT --> BLOCKED: 승인·환경·증거 부족
-  VALIDATED --> BLOCKED: 동기화 게이트 실패
-  LEASE_ACQUIRED --> BLOCKED: 임대 상실·인덱스 외부 변경
+  VALIDATED --> BLOCKED: 임대·동기화 게이트 실패
   HANDOFF_READY --> STALE: 소유 경로 또는 기준점 변경
 ```
 
@@ -87,8 +84,7 @@ stateDiagram-v2
 
 - `DRAFT`: 작성 중이며 후속 작업의 기준으로 사용하지 않음
 - `VALIDATED`: 필수 필드, 보안, 검증 증거가 맞음
-- `LEASE_ACQUIRED`: 지정된 동기화 주체가 인덱스 변경 권한을 확보함
-- `WORK_PUSHED`: `work_sha`가 원격에 존재함
+- `VALIDATED` 이후의 임대 획득과 `work_sha` 원격 확인은 영속 상태가 아니라 실행 이벤트로 기록함
 - `HANDOFF_READY`: 인계 레코드도 원격에 존재해 인계가 성립함
 - `CLAIMED`: 수신자가 기준점과 다음 행동을 확인함
 - `BLOCKED`: 승인이나 환경 변화가 없으면 진행할 수 없음
@@ -151,7 +147,7 @@ revalidate_when:
 
 다음을 기계적으로 확인합니다:
 
-1. `work_sha`가 원격 브랜치에 존재함
+1. `work_sha`와 활성 handoff 파일이 원격 브랜치에 존재하고 같은 blob임
 2. `owned_paths`가 실제 변경 목록과 일치함
 3. 검증 명령과 결과가 실행 로그와 일치함
 4. `completed`와 `remaining`이 같은 항목을 동시에 주장하지 않음
