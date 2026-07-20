@@ -10,7 +10,7 @@
 |---|---|---|
 | 🧩 **환경설정** | Codex의 플러그인·MCP·계정 연동 구조와 정리 원칙, 샌드박스 문제해결 | [environment-notebook.md](environment-notebook.md) |
 | 🐾 **커스텀 반려동물** | 내 캐릭터를 Codex 앱 안에서 움직이는 펫으로 만드는 전 과정 | [PET_LIBRARY.md](PET_LIBRARY.md) |
-| 🛠 **앱 진단·패치** | Codex 앱 자체의 버그(로컬 이미지 다운로드 등) 재현·수정 기록 | 아래 "앱 진단" 참조 |
+| 🛠 **앱 진단·패치** | Codex 샌드박스 권한·이미지 다운로드 등 앱 문제의 진단·복구 도구와 기록 | [docs/](docs/) |
 
 ---
 
@@ -41,13 +41,19 @@
 
 ## 🛠 앱 진단·패치
 
-Codex 앱 자체에서 겪은 문제를 재현·수정한 기록입니다. (앱 바이너리를 건드리므로 백업·롤백 포함)
+Codex 앱 자체에서 겪은 문제(파일 쓰기 거부·이미지 다운로드·압축 미리보기)를 **진단·복구**하는
+도구와 기록입니다. 위험한 앱 바이너리 패치는 폐기하고, **순정 앱 유지 + 권한(ACL) 복구** 정공법을 씁니다.
+
+**여기부터 보세요 → [docs/](docs/)** (샌드박스·앱 진단 섹션의 안내판)
 
 | 자료 | 내용 |
 |---|---|
-| [codex-image-download-fix-20260719/](codex-image-download-fix-20260719/) | 로컬 이미지 다운로드 버튼이 동작하지 않는 문제를 재현·검증한 **ASAR 패치 스테이징**과 설치·롤백 절차 (192MB 앱 바이너리는 폴더 `.gitignore`로 제외) |
-| [HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md) | 위 작업을 Claude Code가 이어받기 위한 분석 근거와 승인 경계 |
+| [docs/](docs/) | 샌드박스·앱 진단 **섹션 진입점** — 원인 설명, 도구 사용법, [4/4] 판정 방식 |
+| [docs/…검증 완료 보고서 (Walkthrough).md](<docs/1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md>) | 문제 원인·조치·검증 결과 **완료 보고서** |
+| [codex-sandbox-check.ps1](codex-sandbox-check.ps1) | **자가진단 스크립트** — app.asar 무결성·gh 인증·폴더 권한·로그 에러 4단계 점검 (PS 5.1·pwsh 7 공용) |
+| [`../fix-sandbox-acl.bat`](../fix-sandbox-acl.bat) | **권한 복구 배치** — `CodexSandboxUsers` 수정 권한·소유권 일괄 재지정(관리자 권한) |
+| [HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md) | 이미지 다운로드 이슈의 분석 근거와 승인 경계(인수인계) |
 
-> ⚠️ 앱 패치는 되돌리기 어려운 작업입니다. 반드시 백업(`restore-original.ps1`)을 확인하고
-> 진행하세요. 로컬 파일 다운로드가 필요할 땐 미리보기 대신 실제 파일을 export 하는 것이
-> 원칙입니다(루트 [AGENTS.md](../AGENTS.md)의 아티팩트 전달 수칙 참조).
+> ⚠️ 이전의 `codex-image-download-fix-20260719/`(ASAR 패치) 방식은 스토어 서명 손상 위험으로 **삭제**됨.
+> 로컬 파일 다운로드가 필요할 땐 미리보기 대신 실제 파일을 export 하는 것이 원칙입니다
+> (루트 [AGENTS.md](../AGENTS.md)의 아티팩트 전달 수칙 참조).
