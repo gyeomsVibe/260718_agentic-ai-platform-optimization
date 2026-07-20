@@ -1,7 +1,7 @@
-# Shared — 3개 플랫폼 공용 자료
+# Shared 공용 기반시설
 
-> Claude Code · Codex · Antigravity가 **함께 쓰는** 규칙과 자동화를 모아 둡니다.
-> 특정 도구 하나에만 해당하는 자료는 각 도구 폴더(`claude/`·`codex/`·`antigravity/`)에 있습니다.
+> Claude Code, Codex, Antigravity가 함께 쓰는 전역 규칙과 자동화만 둡니다.
+> Skill 정본과 패키지는 이곳에 두지 않고 [`../skills/`](../skills/)에서 관리합니다.
 
 ## 먼저 알아둘 개념
 
@@ -21,3 +21,13 @@
 
 > 장착 위치: Claude `~/.claude/CLAUDE.md` · Codex `~/.codex/AGENTS.md` · Antigravity `~/.gemini/GEMINI.md`
 > 규칙 수정은 반드시 이 정본에서 하고 sync 스크립트로 배포한다. dist를 직접 고치지 않는다.
+
+## 분류 경계
+
+- 세 플랫폼 공통 행동 규칙과 자동화는 `shared/`에 둡니다.
+- 특정 플랫폼의 설정과 문제 해결은 `claude/`, `codex/`, `antigravity/`에 둡니다.
+- Skill 정본, 후보, 플러그인 패키지, 평가 자료는 모두 `skills/`에 둡니다.
+- MCP 서버 운영 자료는 `mcp/`에 둡니다.
+
+이 경계를 벗어난 자료를 발견하면 링크만 고치지 말고 정본을 알맞은 상위 섹션으로
+옮긴 뒤, 이전 경로가 저장소와 원격 브랜치에서 사라졌는지 확인합니다.

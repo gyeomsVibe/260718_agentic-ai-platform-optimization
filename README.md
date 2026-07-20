@@ -28,6 +28,14 @@
 > `mcp/`·`shared/`는 **세 도구가 함께** 쓰는 자료입니다. 개별 MCP는 최상위에 흩어 두지 않고
 > 반드시 `mcp/` 아래 하위 폴더로 넣습니다 (예: `mcp/notebooklm/`).
 
+## 자료를 새로 넣는 기준
+
+- 실행 Skill, 후보, 플러그인 패키지, 평가 증거는 출처와 관계없이 `skills/` 아래에서
+  분류합니다.
+- 직접 만든 Skill은 `skills/custom/`, 외부에서 가져온 Skill은 `skills/external/`에 둡니다.
+- `shared/`에는 Skill을 두지 않습니다. 세 플랫폼 공통 규칙과 자동화만 둡니다.
+- 사용자 홈의 전역 설치본은 배포 결과입니다. 이 저장소의 정본을 대신하지 않습니다.
+
 ## 루트 파일
 
 - [CLAUDE.md](CLAUDE.md) / [AGENTS.md](AGENTS.md) — AI 에이전트가 이 저장소에서 일할 때 따르는

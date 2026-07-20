@@ -1,95 +1,64 @@
-# Skills 섹션 — 세 도구의 "기술 카드" 관리
+# Skills 관리 안내
 
-> **스킬(Skill)이 뭔가요?** AI 에이전트에게 주는 **요리 레시피 카드**입니다.
-> "글 감사는 이 80가지 규칙으로 해" 같은 전문 절차를 카드 한 장(폴더 하나)에 적어 두면,
-> 에이전트가 관련 작업을 할 때 그 카드를 꺼내 읽고 그대로 따라 합니다.
-> 세 도구(Claude Code · Codex · Antigravity) 모두 같은 카드 형식(`SKILL.md` 개방 표준)을 읽습니다.
+> 이 폴더는 Claude Code, Codex, Antigravity에서 사용할 Skill의 정본과 검증 근거를
+> 관리합니다. 직접 만든 Skill과 외부에서 가져온 Skill은 섞지 않습니다.
 
-## 0. 정본 위치 — 출처가 다르면 관리 방식도 다릅니다
+## 30초 안내
 
-| 분류 | 위치 | 관리 원칙 |
-|---|---|---|
-| 직접 제작 MIA | [custom/mia/](custom/mia/) | 여기의 `SKILL.md`만 직접 수정하고, 플랫폼용 패키지는 하위 `plugin/`에서 동기화합니다. |
-| 외부 도입 | [external/](external/) | 원 제작자·라이선스·가져온 버전·정제 내용을 함께 기록합니다. |
-| 조사·근거 | [research/](research/) | 설치 대상이 아닌 선택·감사 근거만 둡니다. |
+- 내가 만든 MIA Skill을 찾거나 고치려면 [`custom/mia/`](custom/mia/)로 갑니다.
+- 외부 Skill을 들여오거나 정제하려면 [`external/`](external/)의 반입 계약부터 읽습니다.
+- 조사 기록과 선택 근거는 `research/`에 둡니다. 이 파일들은 설치 대상이 아닙니다.
+- 사용자 홈의 `.codex/skills`, `.claude/skills`, `.agents/skills`는 배포 위치입니다.
+  저장소 정본을 대신하지 않습니다.
 
-외부 Skill과 사용자 제작 Skill을 같은 폴더에 섞지 않습니다. 새 Skill을 넣기 전에는
-먼저 이 표에서 소유 분류를 정합니다.
+## 분류 기준
 
-## 1. 내 PC의 스킬은 어디에 있나
-
-| 도구 | 전역(모든 프로젝트) 위치 | 현재 보유 (2026-07-19 슬림화 후) |
-|---|---|---|
-| Claude Code | `~/.claude/skills/` | 37종 |
-| Codex | `~/.codex/skills/` | 16종 |
-| Antigravity | `~/.gemini/antigravity/skills/` | 14종 |
-| (범용) | `~/.agents/skills/` | 37종 — 여러 도구가 함께 읽는 새 표준 위치 |
-
-> 안 쓰는 GCP 데이터 팩 17종은 격리 제거했습니다 — 무엇을 왜 뺐는지는
-> [MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md](research/MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md) 참조.
-
-> `~`는 내 사용자 폴더(`C:\Users\Kimyoongyeom`)입니다.
-
-## 2. 발동법 — 스킬은 어떻게 켜지나
-
-- **자동 발동**: 요청 내용이 스킬 설명과 맞으면 에이전트가 알아서 꺼내 씁니다.
-  예: "이 글 문체 검토해줘" → `writing-guidelines`가 자동 발동.
-- **수동 발동**: 이름을 직접 부릅니다.
-  - Claude Code: `/스킬이름` (예: `/grill-me`)
-  - Codex: `/skills` 로 목록 확인, 또는 `$스킬이름` 멘션
-  - Antigravity: 채팅에 스킬 이름을 언급하거나 요청 내용으로 자동 매칭
-
-## 3. 이번에 새로 설치한 스킬 5종 (2026-07-19)
-
-| 스킬 | 무엇을 해주나 | 이렇게 말하면 발동 | 대상 도구 |
+| 분류 | 위치 | 소유권 | 직접 수정 위치 |
 |---|---|---|---|
-| **grill-me** (+의존: grilling) | 계획을 실행하기 **전에** 에이전트가 나를 집요하게 인터뷰해서 애매한 부분·빠진 결정을 전부 찾아냄. "모르는 걸 모르는" 상태를 없애는 스킬 | "이 계획 그릴미 해줘", `/grill-me` | 3도구 모두 |
-| **writing-guidelines** | 문서·블로그·전자책 원고를 **80+ 규칙**으로 감사 (어조, 구조, 타이포그래피) | "이 글 문체 검토해줘", "docs 리뷰해줘" | 3도구 모두 |
-| **vercel-react-best-practices** | React/Next.js 코드를 Vercel 엔지니어링의 **성능 규칙 40+**로 점검·작성 | Next.js 코드 작업 시 자동 발동 | 3도구 모두 |
-| **frontend-design** | 템플릿 티가 나지 않는 **독창적 UI 디자인** 방향·타이포·색 선택 가이드 (설치 수 67만+, Anthropic 공식) | UI 새로 만들 때 자동 발동 | Codex·Antigravity만* |
+| 사용자 제작 | [`custom/`](custom/) | 윤겸스가 설계하고 유지 | 각 Skill의 정본 `SKILL.md` |
+| 외부 도입 | [`external/`](external/) | 외부 제작자, 로컬 정제 이력 별도 | 원본 사본과 `SOURCE.md` |
+| 조사·근거 | `research/` | 저장소 운영 기록 | 보고서와 감사 기록 |
 
-> *Claude Code에는 같은 내용의 `frontend-design` 플러그인이 이미 활성화되어 있어 중복 설치하지 않았습니다.
+출처가 불분명하면 먼저 `external/`로 분류합니다. 사용자 제작으로 확인되기 전에는
+`custom/`으로 옮기지 않습니다.
 
-### 활용 예시 (그대로 따라 해보세요)
+## 폴더 구조
 
-```
-① 새 기능을 만들기 전:  "블로그에 구독 기능을 넣고 싶어. grill-me 해줘."
-   → 에이전트가 질문 공세로 요구사항을 확정한 뒤에 만들기 시작합니다.
-② 전자책 원고를 쓴 후:  "이 챕터 writing-guidelines로 감사해줘."
-③ Next.js 페이지가 느릴 때: "이 페이지 성능 점검해줘."  (react-best-practices 자동 발동)
-```
-
-## 4. 스킬 추가·업데이트·제거 (셀프서비스)
-
-[skills.sh](https://skills.sh) 디렉터리에서 찾고, 한 줄로 설치합니다:
-
-```
-npx skills find 검색어                          ← 스킬 찾기
-npx skills add <소유자/저장소> -g -s <스킬이름> -a claude-code codex antigravity -y --copy
-npx skills update                               ← 전체 업데이트
-npx skills remove -g -s <스킬이름> -y            ← 제거
+```text
+skills/
+├─ custom/
+│  └─ mia/
+│     ├─ plan-review-execute/   # 현재 실행 Skill 정본과 배포 패키지
+│     └─ compiler-workbench/    # 새 Skill 후보와 평가 증거
+├─ external/                    # 외부 Skill과 출처 추적
+└─ research/                    # 설치하지 않는 조사·감사 자료
 ```
 
-> `--copy`는 Windows에서 심링크 문제를 피하는 안전 옵션입니다.
-> 설치기가 Codex·Antigravity 몫을 `~/.agents/skills/`에 넣는 경우, 확실한 인식을 위해
-> `~/.codex/skills/`와 `~/.gemini/antigravity/skills/`에도 복사해 둡니다(이번 적용 방식).
+## 상태를 읽는 법
 
-## 5. ⚠️ 보안 수칙 — 스킬은 "에이전트 권한으로 실행되는 남의 지시문"
+| 상태 | 의미 | 아직 주장할 수 없는 것 |
+|---|---|---|
+| `STATIC_CANDIDATE` | 파일 구조와 정적 계약을 검사한 후보 | 실제 발견, 발동, 작업 성공 |
+| `DISCOVERY_CONFIRMED` | 새 작업의 Available skills에서 실제 노출 확인 | 전체 작업 품질과 안전성 |
+| `VERIFIED_RESULT` | 발견·발동·작업·안전·회귀 평가 통과 | 다른 환경에서의 영구적 성공 |
 
-2026-02 Snyk 조사에서 공개 스킬 3,984개 중 **13.4%가 치명 결함**(멀웨어 배포, 프롬프트
-인젝션, 비밀정보 노출)으로 확인됐습니다. 반드시 지키세요:
+파일이 복사됐다는 사실과 AI가 Skill을 발견했다는 사실은 다릅니다. 새 작업에서
+Available skills 노출을 확인하기 전에는 런타임 성공으로 기록하지 않습니다.
 
-1. **신뢰 배포자만**: `anthropics/`, `openai/`, `vercel-labs/`, 검증된 유명 개발자(예: mattpocock) 위주.
-2. **설치 전 내용 보기**: `npx skills add <저장소> -l` 로 목록만 먼저 확인. 설치 후 `SKILL.md`를 열어
-   이상한 명령(curl로 뭘 내려받기, base64, 비밀번호 요구)이 없는지 확인. (이번 5종은 전수 스캔 완료 — 이상 없음)
-3. **적을수록 좋다**: 스킬이 많으면 컨텍스트가 무거워지고 잘못 발동할 확률이 올라갑니다.
-   "안 쓰는 스킬은 제거"가 원칙입니다.
+## 변경 순서
 
-## 6. 관련 문서
+1. `custom` 또는 `external` 중 소유 분류를 먼저 정합니다.
+2. 정본과 출처 파일만 수정합니다. 생성본과 전역 설치본은 직접 고치지 않습니다.
+3. 정적 검사와 JSON·YAML 파싱을 실행합니다.
+4. 새 작업에서 발견과 명시 발동을 평가합니다.
+5. 전역 설치·배포·외부 실행은 영향 범위를 설명하고 별도 승인 후 수행합니다.
+6. 검증 결과와 남은 위험을 가까운 `evals/` 또는 README에 기록합니다.
 
-- [MIA_SKILLS_EXPLORATION_2026-07-19.md](research/MIA_SKILLS_EXPLORATION_2026-07-19.md) — 왜 이 5종을 골랐고 무엇을 기각했는지 (리서치 근거·기각 사유)
-- [MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md](research/MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md) — 전수조사·슬림화 감사 (제거 근거·복원 방법·재발 방지 수칙)
-- [MIA Skill Compiler 작업대](custom/mia/compiler-workbench/) — 초기 아이디어·문서·기존 Skill을 세 도구용 후보로 설계·검증하는 파이프라인
-- [MIA plan-review-execute](custom/mia/plan-review-execute/) — 우리가 직접 만든 검증 대상 공용 Skill의 유일한 편집 정본
+## 관련 문서
 
-모든 Skill 정본·후보·플러그인 패키지는 이 `skills/` 아래에 둡니다.
+- [MIA 사용자 제작 Skill](custom/mia/)
+- [MIA plan-review-execute 정본](custom/mia/plan-review-execute/)
+- [MIA Skill Compiler 작업대](custom/mia/compiler-workbench/)
+- [외부 Skill 반입 계약](external/)
+- [Skill 조사 기록](research/MIA_SKILLS_EXPLORATION_2026-07-19.md)
+- [플랫폼 Skill 슬림화 감사](research/MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md)
