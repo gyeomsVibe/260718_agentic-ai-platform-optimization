@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('Check', 'Apply')]
+    [ValidateSet('Check', 'Build', 'Apply')]
     [string]$Mode = 'Check',
 
     [switch]$SkipBackup
@@ -24,6 +24,15 @@ function Read-SourceFile {
     return [System.IO.File]::ReadAllText((Resolve-Path -LiteralPath $Path).Path).Trim()
 }
 
+function Normalize-RuleContent {
+    param([AllowEmptyString()][string]$Content)
+
+    # Generated rules use LF. Normalize reads so Git's CRLF checkout policy does
+    # not create a false drift report for otherwise identical content.
+    $normalized = $Content -replace "`r`n", "`n" -replace "`r", "`n"
+    return $normalized.TrimEnd("`n") + "`n"
+}
+
 function New-GeneratedRule {
     param(
         [Parameter(Mandatory)][string]$ToolName,
@@ -31,10 +40,11 @@ function New-GeneratedRule {
     )
 
     $core = Read-SourceFile (Join-Path $root 'core.md')
-    $route = Read-SourceFile (Join-Path $root 'routes\vibe-check.md')
+    $vibeCheckRoute = Read-SourceFile (Join-Path $root 'routes\vibe-check.md')
+    $repositorySyncRoute = Read-SourceFile (Join-Path $root 'routes\repository-sync.md')
     $adapter = Read-SourceFile $AdapterPath
     $header = "# $ToolName Global Rules`n`n<!-- GENERATED from English canonical rules v$version. Edit the source files, not this deployment. -->"
-    return "$header`n`n$core`n`n$route`n`n$adapter`n"
+    return "$header`n`n$core`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
 }
 
 $targets = @(
@@ -67,6 +77,7 @@ $targets = @(
 $sourceParts = @(
     (Read-SourceFile (Join-Path $root 'core.md'))
     (Read-SourceFile (Join-Path $root 'routes\vibe-check.md'))
+    (Read-SourceFile (Join-Path $root 'routes\repository-sync.md'))
 )
 $sourceParts += @($targets | ForEach-Object { Read-SourceFile $_.Adapter })
 $sourceText = $sourceParts -join "`n"
@@ -76,7 +87,7 @@ if ($sourceText -match '(?i)\bMIA\b|plan-review-execute') {
 }
 
 $rendered = foreach ($target in $targets) {
-    $content = New-GeneratedRule -ToolName $target.Name -AdapterPath $target.Adapter
+    $content = Normalize-RuleContent (New-GeneratedRule -ToolName $target.Name -AdapterPath $target.Adapter)
     [PSCustomObject]@{
         Name = $target.Name
         RuntimePath = $target.RuntimePath
@@ -84,6 +95,13 @@ $rendered = foreach ($target in $targets) {
         Content = $content
         MaxCharacters = $target.MaxCharacters
         MaxLines = $target.MaxLines
+    }
+}
+
+if ($Mode -in @('Build', 'Apply')) {
+    foreach ($target in $rendered) {
+        [System.IO.Directory]::CreateDirectory((Split-Path -Parent $target.MasterPath)) | Out-Null
+        [System.IO.File]::WriteAllText($target.MasterPath, $target.Content, $utf8)
     }
 }
 
@@ -112,10 +130,8 @@ if ($Mode -eq 'Apply') {
     }
 
     foreach ($target in $rendered) {
-        foreach ($destination in @($target.MasterPath, $target.RuntimePath)) {
-            [System.IO.Directory]::CreateDirectory((Split-Path -Parent $destination)) | Out-Null
-            [System.IO.File]::WriteAllText($destination, $target.Content, $utf8)
-        }
+        [System.IO.Directory]::CreateDirectory((Split-Path -Parent $target.RuntimePath)) | Out-Null
+        [System.IO.File]::WriteAllText($target.RuntimePath, $target.Content, $utf8)
     }
 
     if (Test-Path -LiteralPath $legacyAntigravityRulePath -PathType Leaf) {
@@ -127,8 +143,8 @@ if ($Mode -eq 'Apply') {
 $results = foreach ($target in $rendered) {
     $masterExists = Test-Path -LiteralPath $target.MasterPath -PathType Leaf
     $runtimeExists = Test-Path -LiteralPath $target.RuntimePath -PathType Leaf
-    $master = if ($masterExists) { [System.IO.File]::ReadAllText($target.MasterPath) } else { '' }
-    $runtime = if ($runtimeExists) { [System.IO.File]::ReadAllText($target.RuntimePath) } else { '' }
+    $master = if ($masterExists) { Normalize-RuleContent ([System.IO.File]::ReadAllText($target.MasterPath)) } else { '' }
+    $runtime = if ($runtimeExists) { Normalize-RuleContent ([System.IO.File]::ReadAllText($target.RuntimePath)) } else { '' }
     $lineCount = ($target.Content -split "`n").Count
     $withinCharacterLimit = $target.MaxCharacters -eq 0 -or $target.Content.Length -le $target.MaxCharacters
     $withinLineLimit = $target.MaxLines -eq 0 -or $lineCount -le $target.MaxLines
@@ -141,13 +157,22 @@ $results = foreach ($target in $rendered) {
         Lines = $lineCount
         WithinLimit = $withinCharacterLimit -and $withinLineLimit
         MiaReference = $target.Content -match '(?i)\bMIA\b|plan-review-execute'
+        RepositorySyncRouteCount = ([regex]::Matches($target.Content, '(?m)^## Repository synchronization$')).Count
         DuplicateGlobalRule = $target.Name -eq 'Antigravity' -and (Test-Path -LiteralPath $legacyAntigravityRulePath -PathType Leaf)
     }
 }
 
 $results | Format-Table -AutoSize
 
-if ($results | Where-Object { -not $_.MasterMatches -or -not $_.RuntimeMatches -or -not $_.WithinLimit -or $_.MiaReference -or $_.DuplicateGlobalRule }) {
+$requiresRuntimeMatch = $Mode -ne 'Build'
+if ($results | Where-Object {
+    -not $_.MasterMatches -or
+    ($requiresRuntimeMatch -and -not $_.RuntimeMatches) -or
+    -not $_.WithinLimit -or
+    $_.MiaReference -or
+    $_.RepositorySyncRouteCount -ne 1 -or
+    $_.DuplicateGlobalRule
+}) {
     exit 1
 }
 

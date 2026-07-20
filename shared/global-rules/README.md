@@ -6,6 +6,7 @@
 
 - `core.md`: 세 도구가 공유하는 영어 핵심 규칙
 - `routes/vibe-check.md`: Vibe Check의 영어 라우팅과 원문 트리거
+- `routes/repository-sync.md`: 자동 Git 동기화·명시형 handoff의 공통 안전 계약
 - `adapters/`: 각 도구의 로딩·권한·컨텍스트 특성에 맞춘 영어 어댑터
 - `dist/`: 세 도구에 장착되는 완성형 영어 정본
 - `scripts/sync-global-rules.ps1`: 정본 생성, 백업, 장착, 정합성 검사
@@ -45,11 +46,16 @@ Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. �
 # 저장소 영문 정본과 실제 장착본의 일치 여부 확인
 ./scripts/sync-global-rules.ps1 -Mode Check
 
+# 실제 사용자 홈을 건드리지 않고 저장소의 완성형 영문 정본만 다시 생성
+./scripts/sync-global-rules.ps1 -Mode Build
+
 # 현재 장착본을 사용자 홈에 백업하고 영문 정본 생성·장착
 ./scripts/sync-global-rules.ps1 -Mode Apply
 ```
 
-규칙을 변경할 때는 `dist/`나 실제 장착 파일을 직접 편집하지 않는다. `core.md`, `routes/`, `adapters/`를 수정하고 `VERSION`을 올린 뒤 동기화한다.
+규칙을 변경할 때는 `dist/`나 실제 장착 파일을 직접 편집하지 않는다. `core.md`, `routes/`, `adapters/`를 수정하고 `VERSION`을 올린 뒤 `Build`로 저장소 정본을 확인한다. 실제 사용자 홈에 적용할 때만 `Apply`를 사용한다.
+
+`Check`는 LF와 CRLF의 줄바꿈 차이를 정규화해 비교한다. 따라서 실제 내용이 같은데 운영체제 줄바꿈만 달라서 동기화 실패로 오인하지 않는다. 세 완성형 정본에는 `Repository synchronization` 섹션이 정확히 한 번만 있어야 한다.
 
 ## 한글본 백업
 

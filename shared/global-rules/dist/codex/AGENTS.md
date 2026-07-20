@@ -1,6 +1,6 @@
 # Codex Global Rules
 
-<!-- GENERATED from English canonical rules v2.0.1. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v2.2.0. Edit the source files, not this deployment. -->
 
 # Canonical Global Agent Rules
 
@@ -48,7 +48,17 @@
 - Never claim a test or verification was run when it was not.
 - After the same failure occurs three times, stop retrying and report in this order: log evidence, root-cause analysis, and workaround options.
 
-## 4. Code and artifact quality
+## 4. Workspace and repository organization
+
+- Classify every artifact into a purpose-named section folder. Do not leave loose working files — scripts, reports, handoffs, data — scattered in a workspace or repository root.
+- Keep each section self-contained: its folder holds the related documents together with the scripts, tools, or data they describe, plus a short README that indexes them.
+- Keep one canonical location per artifact. When something belongs elsewhere, move the canonical copy with history preserved (`git mv` or move-then-stage); do not duplicate it across folders.
+- After moving files, fix every inbound and outbound reference and re-run any script whose relative paths changed; verify the moved tool still works before reporting done.
+- Do not reorganize what you cannot move safely: leave files that other repositories or tools reference by fixed path, or that another session is actively editing, and note the exception.
+- Keep non-source out of the repository through `.gitignore`: secrets, machine-local configuration, large binaries, build output, logs, and caches are never committed.
+- Record the folder-classification convention in the project's own rules or README so later work follows it.
+
+## 5. Code and artifact quality
 
 - Write readable, maintainable code. Avoid needless complexity and premature abstraction.
 - Do not remove or substantially alter existing comments, documentation, public APIs, or file structure unless the request requires it.
@@ -57,14 +67,14 @@
 - For performance-sensitive code, inspect Big-O complexity, repeated computation, unnecessary loops, rendering, and I/O.
 - Record important decisions, constraints, and recurring failures in the existing project documentation system when one exists. Do not create a new documentation system without need.
 
-## 5. UI and UX work
+## 6. UI and UX work
 
 - For UI work, consider responsive layout, accessibility, semantic HTML, and performance in addition to functional correctness.
 - Add title, description, Open Graph, and other baseline SEO metadata when appropriate for the project.
 - Avoid placeholder-only delivery. When feasible, design realistic data structures, example content, empty states, loading states, and error states.
 - Use dark mode, animation, glassmorphism, and other visual effects only when they fit the product. Never prioritize them over stability, accessibility, or performance.
 
-## 6. Honesty and completion reporting
+## 7. Honesty and completion reporting
 
 - Separate verified facts, assumptions, inferences, and unknowns. State uncertainty instead of guessing.
 - If a tool cannot verify something, say that it was not verified.
@@ -78,6 +88,17 @@
 - Use `1 failure -> 1 cause -> smallest fix -> re-run -> report`. Never weaken a diagnostic to manufacture a pass.
 - Separate approval for local edits and checks from approval for package installation, `git push`, publication, or deployment. Never request, store, or expose real secrets.
 - Report what ran, what was found, what changed, re-verification results, what did not run, and the next approval required.
+
+## Repository synchronization
+
+- Treat a meaningful completed work unit or an explicit user sync request as the only synchronization trigger. File saves, minor edits, timers, and an unchanged worktree are not triggers.
+- Before staging, identify the baseline and separate paths created by the current agent from user, other-session, tool-generated, or unknown changes. Preserve every non-owned path.
+- Stage only explicit owned paths. Never use `git add .` or `git add -A` for synchronization.
+- Run the repository's relevant checks and inspect the staged diff for secrets, machine-local configuration, unexpected binaries, or destructive changes. If any check or ownership decision is uncertain, hold and report.
+- Fetch before a push. If the remote is ahead or the history diverged, stop and report; never auto-pull, rebase, merge, force-push, or rewrite history to continue.
+- A global rule does not grant standing push approval. A named repository may grant it only in its own scoped rules; otherwise ask at the push boundary.
+- For ordinary work, use at most one work commit and one normal push per meaningful work unit. Do not create a handoff record merely because work ended or an agent changed.
+- Use a work-commit plus handoff-commit protocol only when the user explicitly requests `handoff`, `인계`, or cross-platform resumption. A handoff never expands approvals for deployment, releases, account changes, or other repositories.
 
 ## Codex adapter
 
