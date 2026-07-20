@@ -3,6 +3,13 @@
 Claude Code / Codex / Antigravity 세 플랫폼의 최적화·유지관리 워크스페이스.
 플랫폼별 작업은 `claude/`, `codex/`, `antigravity/` 폴더에서 관리한다.
 
+## 저장소 동기화 원칙
+
+- 이 워크스페이스에서 사용자가 요청한 저장소 변경을 완료하면, 검증 후 현재 GitHub
+  원격 브랜치와 동기화 상태를 확인하고 필요한 커밋·푸시까지 수행한다.
+- 전역 Skill 설치, 배포, 계정·권한·외부 서비스 변경은 저장소 동기화와 별개다. 해당
+  범위는 영향과 복구 방법을 설명한 뒤 별도 승인을 받아야 한다.
+
 ## NotebookLM MCP 운영 수칙
 
 이 워크스페이스에는 `notebooklm-mcp` MCP 서버(jacob-bd/notebooklm-mcp-cli, 쿠키+내부 API 방식)가

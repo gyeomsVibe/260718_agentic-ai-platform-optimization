@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "MIA Skill Compiler workbench validation tools",
   "scripts": {
+    "check": "npm run typecheck && npm run lint",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --no-warn-ignored"
   },

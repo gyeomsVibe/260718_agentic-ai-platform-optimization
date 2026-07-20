@@ -36,11 +36,30 @@
 - `shared/`에는 Skill을 두지 않습니다. 세 플랫폼 공통 규칙과 자동화만 둡니다.
 - 사용자 홈의 전역 설치본은 배포 결과입니다. 이 저장소의 정본을 대신하지 않습니다.
 
-## 루트 파일
+## 루트 운영 파일
 
-- [CLAUDE.md](CLAUDE.md) / [AGENTS.md](AGENTS.md) — AI 에이전트가 이 저장소에서 일할 때 따르는
-  **운영 수칙**입니다. (사람이 읽는 안내가 아니라 AI에게 주는 규칙. NotebookLM 캐시 우선,
-  아티팩트 전달 방식 등이 적혀 있습니다.)
+GitHub는 폴더보다 루트 파일을 먼저 보여 줍니다. 아래 파일은 흩어진 문서가 아니라,
+저장소를 열자마자 각 도구가 자동 발견해야 하는 최소 운영 파일입니다.
+
+| 파일 | 루트에 있어야 하는 이유 |
+|---|---|
+| [README.md](README.md) | 사람에게 저장소 구조와 시작 위치를 안내합니다. |
+| [AGENTS.md](AGENTS.md) | Codex가 프로젝트 규칙을 자동 발견합니다. |
+| [CLAUDE.md](CLAUDE.md) | Claude Code가 프로젝트 규칙을 자동 발견합니다. |
+| [.gitignore](.gitignore) | 임시 설치본, 의존성, 비밀정보 파일의 커밋을 막습니다. |
+| [package.json](package.json) | 저장소 검증 명령과 검사 도구 버전을 고정합니다. |
+| [package-lock.json](package-lock.json) | 같은 검사 도구 버전을 다시 설치하게 합니다. |
+| [eslint.config.mjs](eslint.config.mjs) | 저장소 JavaScript·설정 파일의 정적 검사 범위를 정합니다. |
+| [tsconfig.json](tsconfig.json) | TypeScript 엄격 검사 기준과 검증 입력을 지정합니다. |
+
+한 번에 검사하려면 저장소 루트에서 실행합니다.
+
+```powershell
+npm run check
+```
+
+이 파일들을 하위 폴더로 옮기면 GitHub 화면은 짧아지지만 자동 규칙 발견과 표준 `npm`
+명령이 깨질 수 있으므로 루트에 유지합니다. 실제 자료는 상위 분류 폴더에만 둡니다.
 
 ## 배경 메모
 

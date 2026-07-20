@@ -10,6 +10,9 @@ shared/platform-auto-update/scripts/npm-cache/
 # 로컬 검증·임시 Skill 설치 영역
 node_modules/
 .agents/
+.analysis-tmp/
+*.tsbuildinfo
+coverage/
 
 # 비밀 정보 (안전장치)
 .env
