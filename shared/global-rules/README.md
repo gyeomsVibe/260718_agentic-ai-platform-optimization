@@ -9,6 +9,7 @@
 - `routes/repository-sync.md`: 자동 Git 동기화·명시형 handoff의 공통 안전 계약
 - `adapters/`: 각 도구의 로딩·권한·컨텍스트 특성에 맞춘 영어 어댑터
 - `dist/`: 세 도구에 장착되는 완성형 영어 정본
+- `GLOBAL_RULES.ko.md`: 사용자가 읽는 통합 한글 해설본. 런타임에는 포함하지 않음
 - `scripts/sync-global-rules.ps1`: 정본 생성, 백업, 장착, 정합성 검사
 - `VERSION`: 정본 버전
 
@@ -31,6 +32,9 @@ Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. �
 - Claude Code: 항상 로드되는 `CLAUDE.md`를 200줄 이하로 유지하고 절차는 스킬로 분리한다.
 - 공통: 짧고 명령형이며 검증 가능한 문장만 항상 로드하고, 장기 절차는 전용 스킬에 둔다.
 - 중복 방지: 글로벌 룰은 도구별 한 개의 정본만 장착하고, 기능별 상세 절차를 별도 글로벌 파일로 중복 등록하지 않는다.
+- 우선순위: 영문 정본은 P0 권한부터 P7 완료 보고 순서로 배치하고, 더 중요한 규칙을 먼저 읽게 한다.
+- 강제 경계: Markdown은 행동 지침이다. 예외 없이 지켜야 하는 조건은 도구별 Permission·Hook·Sandbox·Policy로 구현한다.
+- 번역본: 한글본은 사용자 검토용이며 `Canonical version`이 `VERSION`과 일치해야 한다.
 
 공식 기준:
 
@@ -55,7 +59,7 @@ Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. �
 
 규칙을 변경할 때는 `dist/`나 실제 장착 파일을 직접 편집하지 않는다. `core.md`, `routes/`, `adapters/`를 수정하고 `VERSION`을 올린 뒤 `Build`로 저장소 정본을 확인한다. 실제 사용자 홈에 적용할 때만 `Apply`를 사용한다.
 
-`Check`는 LF와 CRLF의 줄바꿈 차이를 정규화해 비교한다. 따라서 실제 내용이 같은데 운영체제 줄바꿈만 달라서 동기화 실패로 오인하지 않는다. 세 완성형 정본에는 `Repository synchronization` 섹션이 정확히 한 번만 있어야 한다.
+`Check`는 LF와 CRLF의 줄바꿈 차이를 정규화해 비교한다. 따라서 실제 내용이 같은데 운영체제 줄바꿈만 달라서 동기화 실패로 오인하지 않는다. 또한 P0~P7 순서, 한글본 버전, 정본의 완전 중복 규칙, `Repository synchronization` 섹션 수를 검사한다.
 
 ## 한글본 백업
 

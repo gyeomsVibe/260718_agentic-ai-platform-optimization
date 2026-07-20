@@ -12,6 +12,7 @@ $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $root = Split-Path -Parent $scriptRoot
 $backupRoot = Join-Path $HOME '.agent-global-rules-backups'
 $version = [System.IO.File]::ReadAllText((Join-Path $root 'VERSION')).Trim()
+$koreanMirrorPath = Join-Path $root 'GLOBAL_RULES.ko.md'
 $legacyAntigravityRulePath = Join-Path $HOME '.gemini\config\AGENTS.md'
 
 function Read-SourceFile {
@@ -81,6 +82,38 @@ $sourceParts = @(
 )
 $sourceParts += @($targets | ForEach-Object { Read-SourceFile $_.Adapter })
 $sourceText = $sourceParts -join "`n"
+$koreanMirror = Read-SourceFile $koreanMirrorPath
+
+$requiredCoreHeadings = @(
+    '## P0. Authority and precedence',
+    '## P1. Language and response format',
+    '## P2. Authorization and safety',
+    '## P3. State, ownership, and concurrency',
+    '## P4. Work execution and verification',
+    '## P5. Workspace and repository organization',
+    '## P6. Code and artifact quality',
+    '## P7. Completion reporting'
+)
+$coreText = Read-SourceFile (Join-Path $root 'core.md')
+$priorityOrderValid = $true
+$previousHeadingIndex = -1
+foreach ($heading in $requiredCoreHeadings) {
+    $headingIndex = $coreText.IndexOf($heading, [System.StringComparison]::Ordinal)
+    if ($headingIndex -le $previousHeadingIndex) {
+        $priorityOrderValid = $false
+        break
+    }
+    $previousHeadingIndex = $headingIndex
+}
+
+$koreanMirrorVersionMatches = $koreanMirror -match "(?m)^> Canonical version: $([regex]::Escape($version))$"
+$duplicateRuleLines = @(
+    $sourceText -split "`n" |
+        Where-Object { $_ -match '^- ' } |
+        ForEach-Object { $_.Trim() } |
+        Group-Object |
+        Where-Object { $_.Count -gt 1 }
+).Count
 
 if ($sourceText -match '(?i)\bMIA\b|plan-review-execute') {
     throw 'MIA content must remain in its plugin and must not appear in global-rule sources.'
@@ -157,6 +190,9 @@ $results = foreach ($target in $rendered) {
         Lines = $lineCount
         WithinLimit = $withinCharacterLimit -and $withinLineLimit
         MiaReference = $target.Content -match '(?i)\bMIA\b|plan-review-execute'
+        PriorityOrderValid = $priorityOrderValid
+        KoreanMirrorMatches = $koreanMirrorVersionMatches
+        DuplicateRuleLines = $duplicateRuleLines
         RepositorySyncRouteCount = ([regex]::Matches($target.Content, '(?m)^## Repository synchronization$')).Count
         DuplicateGlobalRule = $target.Name -eq 'Antigravity' -and (Test-Path -LiteralPath $legacyAntigravityRulePath -PathType Leaf)
     }
@@ -170,6 +206,9 @@ if ($results | Where-Object {
     ($requiresRuntimeMatch -and -not $_.RuntimeMatches) -or
     -not $_.WithinLimit -or
     $_.MiaReference -or
+    -not $_.PriorityOrderValid -or
+    -not $_.KoreanMirrorMatches -or
+    $_.DuplicateRuleLines -ne 0 -or
     $_.RepositorySyncRouteCount -ne 1 -or
     $_.DuplicateGlobalRule
 }) {
