@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gyeomsVibe/260718_agentic-ai-platform-optimization/blob/main/handoff/schemas/handoff.schema.json",
+  "title": "Agent handoff record",
+  "description": "Metadata contract extracted from an active handoff Markdown file.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "handoff_id",
+    "status",
+    "workstream",
+    "objective",
+    "repository",
+    "branch",
+    "base_sha",
+    "work_sha",
+    "owned_paths",
+    "completed",
+    "remaining",
+    "verification",
+    "decisions",
+    "risks",
+    "approvals_required",
+    "next_action",
+    "revalidate_when"
+  ],
+  "properties": {
+    "handoff_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{5,79}$" },
+    "status": {
+      "type": "string",
+      "enum": ["DRAFT", "VALIDATED", "HANDOFF_READY", "CLAIMED", "BLOCKED", "STALE", "CLOSED"]
+    },
+    "workstream": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string", "minLength": 1 },
+    "repository": { "type": "string", "pattern": "^[^/\\s]+/[^/\\s]+$" },
+    "branch": { "type": "string", "minLength": 1 },
+    "base_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "work_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "owned_paths": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "completed": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "remaining": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "verification": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "decisions": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "risks": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "approvals_required": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "next_action": { "type": "string", "minLength": 1 },
+    "revalidate_when": { "$ref": "#/$defs/nonEmptyStringArray" }
+  },
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

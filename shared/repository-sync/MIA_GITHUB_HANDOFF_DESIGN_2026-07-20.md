@@ -1,6 +1,6 @@
 # GitHub를 에이전트 인계 지점으로 설계하기
 
-> 상태: `DIRECTION_DRAFT`. 이 문서는 GitHub 저장소를 Claude Code, Codex, Antigravity 사이의 검증 가능한 인계 지점으로 만드는 설계안입니다. 아직 루트 `handoff/` 섹션이나 GitHub Issue 양식을 생성하지 않습니다.
+> 상태: `PILOT_IMPLEMENTED`. 이 문서는 GitHub 저장소를 Claude Code, Codex, Antigravity 사이의 검증 가능한 인계 지점으로 만드는 설계안입니다. 루트 `handoff/` 파일럿과 로컬 검증기를 구현했으며, GitHub Issue 양식은 아직 만들지 않습니다.
 
 ## 결론
 
@@ -243,6 +243,6 @@ GitHub는 Issue, PR, 커밋 SHA 참조를 자동 링크합니다. 파일 안의 
 
 ## 결정 게이트
 
-결정은 `Go`입니다. 단, 현재 승인 범위는 설계 문서까지입니다.
+결정은 `Go`이며 루트 `handoff/` 파일럿을 구현했습니다. 프로토콜 README, Markdown 템플릿, JSON Schema, 무의존성 검증기, repository-sync 활성 인계 1개가 현재 범위입니다.
 
-다음 승인 단위는 루트 `handoff/` 파일럿 생성입니다. 승인되면 프로토콜 README, Markdown 템플릿, JSON 스키마, 현재 repository-sync workstream 인계 1개만 만듭니다. GitHub Issue 양식과 기존 HANDOFF 이관은 파일럿 검증 뒤 별도 단계로 남깁니다.
+다음 승인 단위는 세 플랫폼에서 같은 활성 인계를 10회 재개하는 검증입니다. GitHub Issue 양식과 기존 HANDOFF 이관은 파일럿 검증 뒤 별도 단계로 남깁니다.

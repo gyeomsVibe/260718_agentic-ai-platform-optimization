@@ -240,3 +240,4 @@ git status --porcelain=v1
 ## 관련 설계
 
 - [GitHub 에이전트 인계 설계](MIA_GITHUB_HANDOFF_DESIGN_2026-07-20.md): 루트 `handoff/` 대안, 인계 지점, 상태 기계, 레코드 계약, SELFREFINE 회로
+- [운영 handoff 정본](../../handoff/): 활성 인계, 템플릿, 스키마, 검증기

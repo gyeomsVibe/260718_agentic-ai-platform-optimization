@@ -57,6 +57,15 @@ flowchart TD
   다른 저장소로의 push는 상시 위임에 포함되지 않는다. 영향과 복구 방법을 설명한 뒤
   개별 승인을 받는다. `git push --force`·히스토리 재작성 등 되돌리기 어려운 작업도 별도 승인.
 
+## GitHub handoff 경계
+
+- 작업을 시작할 때 같은 workstream의 `handoff/active/*.md`가 있는지 확인하고, 있으면 `npm run handoff:check`로 기준점을 재검증한다.
+- `handoff/`가 실제 인계 상태의 정본이다. `shared/repository-sync/`와 플랫폼별 폴더에는 활성 인계 복사본을 만들지 않는다.
+- `HANDOFF_READY`는 `work_sha`와 handoff 레코드가 모두 원격에 존재하고 수신자가 기준점을 확인할 때만 성립한다. 로컬 파일이나 작업 커밋 하나만으로 인계 완료를 주장하지 않는다.
+- 인계 레코드는 기존 승인 범위를 확장하지 않는다. `approvals_required`의 작업은 실행 전에 해당 승인을 받는다.
+
+상세 계약과 SELFREFINE 검증 절차는 `handoff/README.md`를 따른다.
+
 ## NotebookLM MCP 운영 수칙
 
 이 워크스페이스에는 `notebooklm-mcp` MCP 서버(jacob-bd/notebooklm-mcp-cli, 쿠키+내부 API 방식)가
