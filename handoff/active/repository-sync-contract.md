@@ -1,6 +1,6 @@
 ---
 handoff_id: repository-sync-contract-20260720-001
-status: HANDOFF_READY
+status: STALE
 workstream: repository-sync-contract
 objective: Phase 2A의 원격 증명과 소유 경로 계약을 다음 검증 단계로 전달한다
 repository: gyeomsVibe/260718_agentic-ai-platform-optimization
@@ -20,6 +20,7 @@ completed:
   - base_sha와 work_sha 사이의 실제 변경이 owned_paths에 포함되는지 강제함
   - 원격 불일치와 소유권 누락을 포함한 통합 테스트 4개를 통과함
 remaining:
+  - 인계 2커밋 프로토콜을 사용자 명시 요구형으로 좁힌 정책 변경을 새 기준점에서 반영함
   - Claude Code와 Codex와 Antigravity에서 같은 인계를 10회 재개 검증함
   - 저장소별 읽기 전용 SAFE-SYNC 드라이런을 두 저장소에 적용함
 verification:
@@ -41,11 +42,10 @@ revalidate_when:
   - 더 최신 repository-sync-contract handoff_id가 생성됨
 ---
 
-# Repository sync 계약 강화 인계
+# Repository sync 계약 강화 인계 (오래된 기준점)
 
-이 인계는 `be0caee`에서 구현한 Phase 2A 계약 강화를 전달합니다. 수신자는 먼저
-`npm run handoff:check`를 실행하고, 원격 게시 뒤 `npm run handoff:verify-remote`로
-활성 레코드와 작업 SHA가 같은 원격 기준점에 있는지 확인합니다.
+이 인계는 `be0caee`에서 구현한 Phase 2A 계약 강화의 이전 기준점입니다. 인계 발동 조건이
+사용자 명시 요구형으로 변경되어 새 기준점이 발행되기 전까지 재개 기준으로 사용하지 않습니다.
 
 ## 완료 근거
 
@@ -55,5 +55,5 @@ revalidate_when:
 
 ## 다음 행동
 
-`npm run handoff:check`를 실행합니다. 통과하면 Phase 2B에서 세 플랫폼 재개 검증과
-두 저장소의 읽기 전용 SAFE-SYNC 판정을 시작합니다.
+새 인계가 명시적으로 요청된 경우에만 `npm run handoff:check`를 실행합니다. 일반 작업은
+SAFE-SYNC의 단일 작업 커밋·push로 마무리합니다.
