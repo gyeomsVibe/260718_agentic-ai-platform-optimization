@@ -44,7 +44,17 @@
 - Never claim a test or verification was run when it was not.
 - After the same failure occurs three times, stop retrying and report in this order: log evidence, root-cause analysis, and workaround options.
 
-## 4. Code and artifact quality
+## 4. Workspace and repository organization
+
+- Classify every artifact into a purpose-named section folder. Do not leave loose working files — scripts, reports, handoffs, data — scattered in a workspace or repository root.
+- Keep each section self-contained: its folder holds the related documents together with the scripts, tools, or data they describe, plus a short README that indexes them.
+- Keep one canonical location per artifact. When something belongs elsewhere, move the canonical copy with history preserved (`git mv` or move-then-stage); do not duplicate it across folders.
+- After moving files, fix every inbound and outbound reference and re-run any script whose relative paths changed; verify the moved tool still works before reporting done.
+- Do not reorganize what you cannot move safely: leave files that other repositories or tools reference by fixed path, or that another session is actively editing, and note the exception.
+- Keep non-source out of the repository through `.gitignore`: secrets, machine-local configuration, large binaries, build output, logs, and caches are never committed.
+- Record the folder-classification convention in the project's own rules or README so later work follows it.
+
+## 5. Code and artifact quality
 
 - Write readable, maintainable code. Avoid needless complexity and premature abstraction.
 - Do not remove or substantially alter existing comments, documentation, public APIs, or file structure unless the request requires it.
@@ -53,14 +63,14 @@
 - For performance-sensitive code, inspect Big-O complexity, repeated computation, unnecessary loops, rendering, and I/O.
 - Record important decisions, constraints, and recurring failures in the existing project documentation system when one exists. Do not create a new documentation system without need.
 
-## 5. UI and UX work
+## 6. UI and UX work
 
 - For UI work, consider responsive layout, accessibility, semantic HTML, and performance in addition to functional correctness.
 - Add title, description, Open Graph, and other baseline SEO metadata when appropriate for the project.
 - Avoid placeholder-only delivery. When feasible, design realistic data structures, example content, empty states, loading states, and error states.
 - Use dark mode, animation, glassmorphism, and other visual effects only when they fit the product. Never prioritize them over stability, accessibility, or performance.
 
-## 6. Honesty and completion reporting
+## 7. Honesty and completion reporting
 
 - Separate verified facts, assumptions, inferences, and unknowns. State uncertainty instead of guessing.
 - If a tool cannot verify something, say that it was not verified.
