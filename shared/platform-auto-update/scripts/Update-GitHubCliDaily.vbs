@@ -1,7 +1,11 @@
 Option Explicit
 
 Const ForAppending = 8
-Const NoApplicableUpdateExitCode = -1978335189
+' winget APPINSTALLER_CLI_ERROR_UPDATE_NOT_APPLICABLE (0x8A15002B).
+' WScript.Shell.Run and Task Scheduler can expose the same HRESULT with
+' different signs, so accept both numeric representations.
+Const NoApplicableUpdateExitCodeUnsigned = 2316632107
+Const NoApplicableUpdateExitCodeSigned = -1978335189
 
 Dim shell, fileSystem, scriptDirectory, logDirectory, logPath
 Set shell = CreateObject("WScript.Shell")
@@ -50,13 +54,18 @@ Function UpdateGitHubCli()
     If exitCode = 0 Then
         WriteLog "GitHub CLI update completed."
         UpdateGitHubCli = "Update completed successfully."
-    ElseIf exitCode = NoApplicableUpdateExitCode Then
+    ElseIf IsNoApplicableUpdate(exitCode) Then
         WriteLog "GitHub CLI is already up to date."
         UpdateGitHubCli = "GitHub CLI is already up to date (latest)."
     Else
         WriteLog "GitHub CLI update check failed with exit code " & CStr(exitCode) & "."
         UpdateGitHubCli = "Update check failed (code " & CStr(exitCode) & ")."
     End If
+End Function
+
+Function IsNoApplicableUpdate(exitCode)
+    IsNoApplicableUpdate = (exitCode = NoApplicableUpdateExitCodeUnsigned Or _
+        exitCode = NoApplicableUpdateExitCodeSigned)
 End Function
 
 Sub Notify(title, message)

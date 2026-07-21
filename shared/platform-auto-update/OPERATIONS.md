@@ -41,6 +41,10 @@ Codex CLI와 Antigravity 순차 업데이터는 각 실행이 끝나면 Windows 
 
 - `completed`는 업데이트 명령이 정상 종료했음을 뜻하며, 실제 새 버전 설치 여부는 패키지 관리자 로그에서 확인한다.
 - `latest`는 winget에서 적용할 업그레이드가 없었다는 정상 상태다.
+- `0x8A15002B`는 winget의 `UPDATE_NOT_APPLICABLE`, 즉 적용할 업데이트가 없다는
+  정상 상태다. 예약 작업은 이 값을 실패 코드처럼 표시할 수 있으므로, GitHub CLI
+  작업은 `winget.exe`를 직접 실행하지 않고 `Update-GitHubCliDaily.vbs` 래퍼를 통해
+  실행해야 한다. 래퍼는 이 종료 코드를 성공으로 정규화한다.
 - 알림이 보이지 않으면 Windows의 **설정 > 시스템 > 알림**에서 `Windows PowerShell` 알림이 허용되어 있는지 확인한다. 알림 센터에서도 최근 결과를 확인할 수 있다.
 - 점검용으로는 `cscript //NoLogo <script> /test /notify`를 실행한다. 실제 패키지 갱신은 수행하지 않고 토스트 호출만 시험한다.
 
