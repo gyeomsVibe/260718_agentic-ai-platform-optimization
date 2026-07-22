@@ -7,10 +7,14 @@
 
 | 파일 | 종류 | 역할 |
 |---|---|---|
+| ⭐ [ROOT_CAUSE_c-tmp-write-root_2026-07-22.md](ROOT_CAUSE_c-tmp-write-root_2026-07-22.md) | 문서 | **근본 원인·1순위 해결책** — `SetNamedSecurityInfoW failed: 5`의 진짜 이유(C:\tmp 쓰기 루트)와 `excludeSlashTmp=true` 수리. **샌드박스 에러는 여기부터.** |
 | [codex-sandbox-check.ps1](codex-sandbox-check.ps1) | 실행 스크립트 | **자가진단** — app.asar 무결성·gh 인증·폴더 권한(ACL)·로그 에러 4단계 점검 (PS 5.1·pwsh 7 공용) |
-| [fix-sandbox-acl.bat](fix-sandbox-acl.bat) | 실행 배치 | **권한 복구** — `CodexSandboxUsers` 수정 권한·소유권 일괄 재지정(관리자 권한) |
-| [1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md](<1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md>) | 문서 | 문제 원인·조치·검증 결과 **완료 보고서** |
+| [fix-sandbox-acl.bat](fix-sandbox-acl.bat) | 실행 배치 | **워크스페이스 하위폴더** 권한 복구용. ⚠️ **C:\tmp에는 쓰지 말 것**(제외가 정답 — 위 근본원인 문서 참조) |
+| [1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md](<1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md>) | 문서 | 초기 조치·검증 기록(ACL 접근 시기) |
 | [HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md) | 문서 | 이미지 다운로드 이슈 분석 근거·승인 경계(인수인계) |
+
+> **샌드박스 쓰기 거부(`SetNamedSecurityInfoW failed: 5`)를 만나면 → 먼저 ⭐근본원인 문서를 보세요.**
+> C:\tmp 문제는 ACL 부여가 아니라 `excludeSlashTmp=true`(config.toml)로 영구 해결합니다.
 
 ## 먼저: "샌드박스"가 뭐고 왜 에러가 났나 (모르는 사람용)
 
