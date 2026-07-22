@@ -18,7 +18,8 @@ Claude Code의 "확장"(기능 추가)은 세 층위로 나뉩니다. 이 구분
 
 | 문서 | 내용 |
 |---|---|
-| [environment-notebook.md](environment-notebook.md) | 노트북(MSI GL75) 기록 — 플러그인 활성/비활성 목록, **안 쓰는 계정 커넥터 번들 15종 삭제 가이드**(웹 절차 포함) |
+| [plugins.md](plugins.md) | **설치된 플러그인 정본** — superpowers·frontend-design(2026-07-23 영상 근거 선별 설치), 마켓·토큰비용·관리 명령·설치 안 한 것과 이유 |
+| [environment-notebook.md](environment-notebook.md) | 노트북(MSI GL75) 기록 — 플러그인 3층위 개념, **안 쓰는 계정 커넥터 번들 15종 삭제 가이드**(웹 절차 포함) |
 | [environment-desktop.md](environment-desktop.md) | 데스크톱(i7-6700K) 기록 — 플러그인 정리 내역, 자동 실행 권한 설정 |
 
 > 노트북과 데스크톱은 다른 PC입니다. 한쪽 설정을 다른 쪽에 그대로 적용하지 마세요.
