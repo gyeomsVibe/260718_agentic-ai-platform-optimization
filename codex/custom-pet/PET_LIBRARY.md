@@ -7,10 +7,17 @@
 
 반려동물은 Codex App 인터페이스를 개인화하는 작업이다. 생성 프롬프트만이 아니라 런타임 제약, 설치 절차, 시각 검수(QA), 실패 복구 기록이 함께 있어야 재현 가능하다. 따라서 플랫폼 공용 자료가 아닌 `codex/`의 운영 자산으로 관리한다.
 
+## ⭐ 먼저 읽기 — 모션이 왜 "설계만큼 다양하지 않은가"
+
+**"동작이 더 다양했으면"** 하는 고민이라면 [MOTION_DIVERSITY_LIMITS_2026-07-23.md](MOTION_DIVERSITY_LIMITS_2026-07-23.md)를 먼저 보세요.
+결론: **자산은 이미 앱 상한(9모션+16시선)까지 꽉 찼고, 병목은 Store 전용 Codex 앱 런타임**입니다.
+지금 환경에서 모션을 더 늘릴 안전한 방법은 없으며, 유일한 길은 공식 이슈([#20863](https://github.com/openai/codex/issues/20863)) 대응을 기다리는 것입니다. (같은 시도를 반복하지 않도록 근거·기각한 우회로가 모두 정리돼 있습니다.)
+
 ## 빠른 탐색
 
 | 시작점 | 용도 | 권장 사용 시점 |
 | --- | --- | --- |
+| [MOTION_DIVERSITY_LIMITS_2026-07-23.md](MOTION_DIVERSITY_LIMITS_2026-07-23.md) | 모션 제한의 근본 원인·기각한 우회로·유일한 지속 경로 | "왜 더 다양하지 않지?" 고민될 때 (필독) |
 | [custom-pet-manual/](custom-pet-manual/) | 런타임 제약과 이미지 뷰어 문제 해결을 포함한 기본 매뉴얼 | 새 Pet 제작 또는 설치 전 |
 | [사용자 문서 보관함](https://github.com/gyeomsVibe/260718_agentic-ai-platform-optimization/tree/main/codex/%23%20%5B문서%5D%20나만의%20커스텀%20반려동물%20만들기) | 기획·제작 흐름을 설명하는 사용자 문서 | 전체 과정을 빠르게 이해할 때 |
 | [MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md](MIA_GYEOM_PET_OPTIMIZATION_DECISION_2026-07-16.md) | 최적화 판단과 품질 기준 | 작업 방향을 다시 결정할 때 |
