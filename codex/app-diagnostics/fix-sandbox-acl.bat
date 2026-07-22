@@ -1,41 +1,47 @@
 @echo off
-chcp 65001 >nul
-:: 관리자 권한 승격 검사
-openfiles >nul 2>&1
+REM ============================================================
+REM  Codex sandbox ACL recovery -- WORKSPACE folders only.
+REM  ASCII-only + CRLF on purpose (Korean text / LF breaks cmd).
+REM
+REM  Do NOT grant ACL on C:\tmp. C:\tmp is owned by Administrators
+REM  and the real fix is to EXCLUDE it from sandbox write-roots:
+REM      config.toml -> [sandbox_workspace_write] exclude_slash_tmp = true
+REM  See ROOT_CAUSE_c-tmp-write-root_2026-07-22.md in this folder.
+REM ============================================================
+
+REM --- Require administrator ---
+net session >nul 2>&1
 if %errorlevel% neq 0 (
-    echo [!] 이 스크립트는 반드시 "관리자 권한으로 실행"해야 합니다.
-    echo [!] 마우스 우클릭 -> '관리자 권한으로 실행'을 선택하여 다시 실행해주세요.
+    echo [!] This script must be run as Administrator.
+    echo [!] Right-click the file and choose "Run as administrator".
     echo.
     pause
-    exit /b
+    exit /b 1
 )
 
-echo ========================================================
-echo [*] Codex 샌드박스 꼬인 디렉터리 소유권 및 NTFS 권한 복구 시작
-echo ========================================================
-set WORKSPACE_DIR=d:\D_Workspace_NB\-google-workspace\-antigravity-workspace\260718_agentic-ai-platform-optimization
+REM --- Resolve workspace root = two levels up from this script ---
+REM     (script lives in codex\app-diagnostics\)
+pushd "%~dp0..\.."
+set "WORKSPACE_DIR=%CD%"
+popd
 
-:: 1. 꼬인 폴더들의 소유권을 Administrators 그룹으로 강제 변경
-echo [*] 1. 소유권 회수 중 (takeown)...
+echo ========================================================
+echo  Codex sandbox ACL recovery
+echo  Target: %WORKSPACE_DIR%
+echo ========================================================
+
+echo [*] 1/3 Reclaiming ownership (takeown)...
 takeown /F "%WORKSPACE_DIR%" /A /R /D Y
 
-:: 2. 워크스페이스 루트 및 하위 전체에 대해 사용자 및 샌드박스 그룹 권한 부여
-echo [*] 2. 호스트 사용자(Kimyoongyeom) Full Control 권한 상속 설정 중 (icacls)...
-icacls "%WORKSPACE_DIR%" /grant "Kimyoongyeom:(OI)(CI)F" /T /C /Q
+echo [*] 2/3 Granting host user (%USERNAME%) Full Control...
+icacls "%WORKSPACE_DIR%" /grant "%USERNAME%:(OI)(CI)F" /T /C /Q
 
-echo [*] 3. CodexSandboxUsers 그룹 Modify 권한 설정 중 (icacls)...
+echo [*] 3/3 Granting CodexSandboxUsers Modify...
 icacls "%WORKSPACE_DIR%" /grant "CodexSandboxUsers:(OI)(CI)M" /T /C /Q
 
-:: 3. 개별 타겟 폴더 조치 (C:\tmp 등)
-if exist "C:\tmp" (
-    echo [*] 4. C:\tmp 폴더 소유권 및 권한 복구 중...
-    takeown /F "C:\tmp" /A /R /D Y >nul 2>&1
-    icacls "C:\tmp" /grant "Kimyoongyeom:(OI)(CI)F" /C /Q
-    icacls "C:\tmp" /grant "CodexSandboxUsers:(OI)(CI)M" /C /Q
-)
-
 echo.
-echo [+] 권한 복구 조치가 완료되었습니다!
-echo [+] 자가진단 스크립트(codex-sandbox-check.ps1)를 다시 실행하여 검증해보세요.
+echo [+] Done. Re-run codex-sandbox-check.ps1 to verify.
+echo [+] If C:\tmp errors persist, the fix is excludeSlashTmp=true in
+echo [+] config.toml, NOT ACL on C:\tmp. See ROOT_CAUSE doc here.
 echo ========================================================
 pause
