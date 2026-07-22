@@ -82,3 +82,23 @@ npx skills add anthropics/skills        -g -s frontend-design -a codex antigravi
 - 분기 1회 `npx skills update`로 갱신, 안 쓰는 스킬은 `npx skills remove`.
 - 새 스킬 추가 시: 신뢰 배포자 확인 → `-l`로 목록 조회 → 설치 → `SKILL.md` 검수 → 이 문서에 기록.
 - 스킬 문제 발생 시 `skill-repair` 스킬(기보유)로 수리.
+
+---
+
+## 재평가 (2026-07-23) — "유명한 Claude Code 플러그인" 영상 근거
+
+TikTok 소개 영상(6종 플러그인)을 전수분석하고, 사용자 요청으로 **필요한 것만** 선별 설치했다.
+7-19 문서에서 Superpowers를 "대형 팩 → 비대화 위험"으로 기각했으나, 실측 결과
+**상시 토큰 비용이 ~715tok에 불과**(무거운 스킬은 호출 시에만 로드)하여 기각을 뒤집었다.
+
+| 영상 소개 | 판단 | 조치 |
+|---|---|---|
+| ① Superpowers | 플래그십. 계획·TDD·병렬에이전트·코드리뷰·디버깅 포함. 상시 ~715tok로 경미 | **설치** `superpowers@superpowers-dev`(obra/superpowers v6.1.1) |
+| ② Front-end Design | UI "AI 슬롭" 제거. 공식·초경량(상시 ~78tok). 기존 frontend-polish와 상호보완 | **설치** `frontend-design@claude-plugins-official` |
+| ③ Code Review (5 에이전트 병렬) | Claude Code **내장 `/code-review`** + Superpowers의 requesting/receiving-code-review로 커버 | 설치 불필요(중복) |
+| ④ Security Review | Claude Code **내장 `/security-review`** 명령으로 커버 | 설치 불필요(중복) |
+| ⑤ Claude Memo | 이미 `~/.claude/.../memory` + CLAUDE.md 메모리 체계 운용 중 | 설치 불필요(중복) |
+| ⑥ Stack (YC Tan, 스킬 23개) | 23종 대형 팩 → 슬림화 기조와 충돌 + 출처 미검증(공급망 리스크) | **보류**(원하면 검증 후 개별 승인) |
+
+- 결과: Claude Code 플러그인 2종(superpowers, frontend-design) 설치·활성. 다음 세션부터 로드.
+- 원칙 유지: 내장 명령·기존 체계로 커버되는 것은 재설치하지 않는다. 대형·미검증 팩은 슬림화와 충돌하므로 개별 승인.

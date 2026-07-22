@@ -18,3 +18,6 @@ coverage/
 .env
 *.pem
 *.key
+
+# 개인 사용자 데이터(영상·자료 등) — 커밋 금지
+claude/[[]user data[]]/
