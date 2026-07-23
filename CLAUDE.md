@@ -12,6 +12,11 @@ Claude Code / Codex / Antigravity 세 플랫폼의 최적화·유지관리 워�
 - `shared/`나 플랫폼 폴더에 Skill 정본을 중복 배치하지 않는다. 이전 경로는 평가·이관
   증거의 `historical_path`로만 보존한다.
 
+## 글로벌 룰 최적화 원칙
+
+- `shared/global-rules/core.md`가 글로벌 agent 규칙의 정통 소스(Canonical Source)이다.
+- Antigravity (`GEMINI.md`), Claude Code (`CLAUDE.md`), Codex (`AGENTS.md`) 모두에 무오류 오판 방지 5대 조항(물리적 워크스페이스 실측, 컬럼 상호 연관성 검증, 시각적 캡처 실측, 명령 실패 무조건 명시, 전체 트리 추적 감사, 푸시 후 원격 정합성 검증)을 생략 없이 100% 균일 적용한다.
+
 ## 저장소 동기화 원칙
 
 - **완료 단위 자동 동기화 (2026-07-20 상시 위임)**: 파일 저장·작은 수정·타이머는 동기화

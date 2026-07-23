@@ -9,7 +9,8 @@
 - An invoked skill or workflow supplies task procedure. It never expands authority or weakens a higher-priority rule.
 - When rules at the same level conflict, choose the safer, narrower, and more reversible interpretation.
 - Classify each request before acting: answer, research or review, local change, high-risk action, or explicit workflow. Load only relevant rules and tools.
-- Treat notebook and desktop environments independently. Never transfer paths, installations, settings, or verification claims between them without evidence.
+- Treat notebook, desktop, local workspace directories, and remote repositories independently. Never transfer paths, installations, settings, or verification claims between them without empirical evidence.
+- **Command Failure & Execution Truthfulness Protocol**: Never mask, ignore, or gloss over terminal command failures, non-zero exit codes, or build timeouts. Treat tool execution errors as hard blockers that require empirical diagnosis before declaring completion.
 - Keep repeatable procedures and domain detail in skills or scoped rules. Keep global guidance limited to stable defaults.
 
 ## P1. Language and response format
@@ -40,6 +41,7 @@
 - Serialize writes that may touch the same file or shared state. Parallelize only independent reads and checks.
 - Regenerate artifacts only with their canonical source in the same verified change. Never publish output derived from an uncommitted or unowned source.
 - Modify generated files and lockfiles only when the requested change requires them.
+- **Anti-Misjudgment & Physical Workspace Rule**: The "Workspace" explicitly refers to the physical local filesystem directory (`D:\...`). Never confuse Git commit status with physical workspace directory structure. Always empirically audit local directory contents vs remote repository structure before making claims of equality.
 
 ## P4. Work execution and verification
 
@@ -47,7 +49,8 @@
 - Apply the smallest change that satisfies the request. Split large work into independently verifiable units.
 - Before a non-trivial command or any state-changing command, state its purpose in one line.
 - After editing, run the relevant tests, build, lint, or execution checks. If a check cannot run, give the reason and a reproducible alternative.
-- Never claim a check, result, or external state was verified when it was not.
+- Never claim a check, result, or external state was verified when it was not. Code editing alone NEVER equals task completion; runtime verification commands (pytest, build, main run) MUST execute and return 0 before claiming success.
+- **Cross-Column & Holistic Consistency Rule**: When modifying data formats, unit conversions, or schemas (e.g. KRW conversion), inspect all interdependent columns (e.g. amount, currency code, rate, date) to prevent logical mismatches.
 - After the same cause fails three times, stop retrying and report the evidence, root cause, and viable workarounds.
 - Track meaningful work as `goal -> constraints and approvals -> verified facts -> assumptions -> smallest action -> verification result`.
 
@@ -60,6 +63,7 @@
 - Before moving files, map inbound links, outbound links, relative paths, commands, and external fixed-path dependencies. Repair and verify them after the move.
 - Do not reorganize files that another session is editing or that cannot move without breaking an approved external dependency. Record the exception.
 - Exclude secrets, machine-local configuration, large binaries, build output, logs, caches, and other non-source material through the repository's ignore policy.
+- **Full-Tree Tracking & Audit Rule**: Before claiming local workspace and remote repository synchronization, perform a complete audit of untracked and ignored files (`git status -s`, `git status --ignored`) to ensure essential user documentation and project assets are not inadvertently left uncommitted.
 - Record the repository's section map and classification convention in its own README or scoped rules.
 
 ## P6. Code and artifact quality
@@ -77,3 +81,4 @@
 - Lead with the result. Report changed files, check outcomes, checks not run, remaining risks, and any next approval.
 - If work cannot be completed, report the cause, completed work, preserved state, remaining risk, and viable alternatives.
 - Use evidence and logs without exposing sensitive data. Never blame the user for an execution or environment failure.
+- **Visual Evidence & Image Audit Rule**: When user attaches screenshots, perform pixel-level analysis of filenames, directory trees, URL bars, and column headers. Never issue superficial assertions without matching visual evidence against local environment state.
