@@ -130,3 +130,15 @@ test("STALE records preserve changed owned paths without claiming readiness", (t
   const [result] = validateHandoffs({ root });
   assert.deepEqual(result.failures, []);
 });
+
+test("contract validation rejects forbidden content like Windows absolute paths or secrets", (t) => {
+  const { root } = createFixture(t);
+  const recordPath = join(root, "handoff", "active", "sample.md");
+  writeFileSync(recordPath, `${readFileSync(recordPath, "utf8")}\nForbidden path: C:\\Users\\test\n`);
+  git(root, "add", "handoff/active/sample.md");
+  git(root, "commit", "-m", "test: Add forbidden path");
+  git(root, "push", "origin", "main");
+
+  const [result] = validateHandoffs({ root, verifyRemote: true });
+  assert.ok(result.failures.some(f => f.includes("forbidden content")));
+});

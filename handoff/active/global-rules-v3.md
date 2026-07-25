@@ -1,6 +1,6 @@
 ---
 handoff_id: global-rules-v3-20260721-001
-status: HANDOFF_READY
+status: STALE
 workstream: global-rules-v3
 objective: 세 도구의 공통 글로벌 룰 v3 배포 기준점과 다음 런타임 검증 행동을 전달한다
 repository: gyeomsVibe/260718_agentic-ai-platform-optimization
