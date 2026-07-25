@@ -1,7 +1,0 @@
-interface:
-  display_name: "MIA Skill Compiler"
-  short_description: "아이디어를 빠르고 경제적으로 검증된 Skill로 컴파일"
-  default_prompt: "$mia-skill-compiler 이 아이디어를 가장 빠른 유효 경로로 Skill 후보까지 만들어줘."
-
-policy:
-  allow_implicit_invocation: false
