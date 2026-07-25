@@ -1,6 +1,6 @@
 {
   "ok": false,
-  "strip": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-cardinals-generated.png",
+  "strip": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-cardinals-generated.png",
   "directions": [
     "000",
     "090",
@@ -24,7 +24,7 @@
       ],
       "used_pixels": 97401,
       "edge_pixels": 1566,
-      "output": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\000.png"
+      "output": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\000.png"
     },
     {
       "direction": "090",
@@ -36,7 +36,7 @@
       ],
       "used_pixels": 97256,
       "edge_pixels": 3040,
-      "output": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\090.png"
+      "output": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\090.png"
     },
     {
       "direction": "180",
@@ -48,7 +48,7 @@
       ],
       "used_pixels": 95823,
       "edge_pixels": 3116,
-      "output": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\180.png"
+      "output": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\180.png"
     },
     {
       "direction": "270",
@@ -60,7 +60,7 @@
       ],
       "used_pixels": 95509,
       "edge_pixels": 1562,
-      "output": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\270.png"
+      "output": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\decoded\\look-anchors\\270.png"
     }
   ]
 }

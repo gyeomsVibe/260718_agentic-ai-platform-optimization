@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "frames_root": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames",
+  "frames_root": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames",
   "states": [
     "waving"
   ],
@@ -18,7 +18,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 10094,
@@ -33,7 +33,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 9985,
@@ -48,7 +48,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 9896,
@@ -63,7 +63,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v4\\qa\\rows\\waving\\frames\\waving\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 9813,

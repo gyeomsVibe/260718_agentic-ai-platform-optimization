@@ -4,7 +4,7 @@
     {
       "state": "idle",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\idle.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\idle.png",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -59,7 +59,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\idle.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\idle.webp",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -117,7 +117,7 @@
     {
       "state": "running-right",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running-right.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running-right.png",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -186,7 +186,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running-right.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running-right.webp",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -258,7 +258,7 @@
     {
       "state": "running-left",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running-left.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running-left.png",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -327,7 +327,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running-left.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running-left.webp",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -399,7 +399,7 @@
     {
       "state": "waving",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\waving.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\waving.png",
         "frames": 4,
         "expected_frames": 4,
         "frame_count_ok": true,
@@ -440,7 +440,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\waving.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\waving.webp",
         "frames": 4,
         "expected_frames": 4,
         "frame_count_ok": true,
@@ -484,7 +484,7 @@
     {
       "state": "jumping",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\jumping.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\jumping.png",
         "frames": 5,
         "expected_frames": 5,
         "frame_count_ok": true,
@@ -532,7 +532,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\jumping.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\jumping.webp",
         "frames": 5,
         "expected_frames": 5,
         "frame_count_ok": true,
@@ -583,7 +583,7 @@
     {
       "state": "failed",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\failed.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\failed.png",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -652,7 +652,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\failed.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\failed.webp",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -724,7 +724,7 @@
     {
       "state": "waiting",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\waiting.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\waiting.png",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -779,7 +779,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\waiting.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\waiting.webp",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -837,7 +837,7 @@
     {
       "state": "running",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\running.png",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -892,7 +892,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\running.webp",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -950,7 +950,7 @@
     {
       "state": "review",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\review.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\review.png",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -1005,7 +1005,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\review.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\review.webp",
         "frames": 6,
         "expected_frames": 6,
         "frame_count_ok": true,
@@ -1063,7 +1063,7 @@
     {
       "state": "look-row-9",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-9.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-9.png",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -1132,7 +1132,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-9.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-9.webp",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -1204,7 +1204,7 @@
     {
       "state": "look-row-10",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-10.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-10.png",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -1273,7 +1273,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-10.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-10.webp",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,

@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "input": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\final\\spritesheet-extended.png",
-  "output": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\final\\spritesheet-extended.png",
+  "input": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\final\\spritesheet-extended.png",
+  "output": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-consistency-v3\\final\\spritesheet-extended.png",
   "chroma_key": "#FF00FF",
   "algorithm": "edge-local-chroma-spill-suppression",
   "strength": 1,

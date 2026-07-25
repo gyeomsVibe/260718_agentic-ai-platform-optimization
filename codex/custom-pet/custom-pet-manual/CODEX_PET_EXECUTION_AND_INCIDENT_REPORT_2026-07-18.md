@@ -163,7 +163,7 @@ setup refresh: ... errors=["write ACE failed on C:\\tmp: SetNamedSecurityInfoW f
 동일한 작업공간과 writable root 조건에서 다음 성공 로그가 확인됐다.
 
 ```text
-cwd=D:\D_Workspace_NB\-google-workspace\-antigravity-workspace\260713_pc-optimization
+cwd=D:\D_Workspace_NB\-agentic-ai-workspace\-antigravity-workspace\260713_pc-optimization
 payload_len=16472
 granting write ACE to C:\tmp for sandbox group and capability SID
 setup refresh: processed 3 write roots (read roots delegated); errors=[]
@@ -172,7 +172,7 @@ setup refresh: processed 3 write roots (read roots delegated); errors=[]
 또한 다음 이미지가 실제로 열렸다.
 
 ```text
-D:\D_Workspace_NB\-google-workspace\-antigravity-workspace\260713_pc-optimization\qa-contact-sheet-current.png
+D:\D_Workspace_NB\-agentic-ai-workspace\-antigravity-workspace\260713_pc-optimization\qa-contact-sheet-current.png
 ```
 
 판정: **수정 완료 (VERIFIED_RESULT)**.

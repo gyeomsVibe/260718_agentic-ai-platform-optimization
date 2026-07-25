@@ -3,7 +3,7 @@
 ## Checkpoint
 
 - Handoff ID: `CODEX-DOWNLOAD-FIX-20260719-0415-KST`
-- Workspace (canonical): `D:\D_Workspace_NB\-google-workspace\-antigravity-workspace\260718_agentic-ai-platform-optimization`
+- Workspace (canonical): `D:\D_Workspace_NB\-agentic-ai-workspace\-antigravity-workspace\260718_agentic-ai-platform-optimization`
 - Codex build: `OpenAI.Codex_26.715.4045.0_x64__2p2nqsd0c76g0`
 - Status: read-only root-cause analysis completed; installed app not patched
 - Resume at: report the minimum patch surface, confirm backup/integrity plan, then apply only the approved change
@@ -44,7 +44,7 @@ backup. Do not weaken Windows security or package-signature checks.
 
 ```text
 C:\Users\Kimyoongyeom\AppData\Local\Temp\claude\
-D--D-Workspace-NB--google-workspace--antigravity-workspace-260713-pc-optimization\
+D--D-Workspace-NB--agentic-ai-workspace--antigravity-workspace-260713-pc-optimization\
 1c9c7245-8119-4801-ab6a-3356c36871bb\scratchpad
 ```
 

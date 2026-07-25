@@ -16,7 +16,19 @@ NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 FRONTMATTER_PATTERN = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 LINK_PATTERN = re.compile(r"(?<!!)\[[^\]]+\]\((?!https?://|mailto:|#)([^)]+)\)")
 ALLOWED_TOP_LEVEL = {"SKILL.md", "agents", "assets", "references", "scripts"}
-TEXT_SUFFIXES = {".md", ".json", ".py", ".txt", ".yaml", ".yml"}
+TEXT_SUFFIXES = {
+    ".bat",
+    ".cmd",
+    ".json",
+    ".md",
+    ".ps1",
+    ".psm1",
+    ".py",
+    ".sh",
+    ".txt",
+    ".yaml",
+    ".yml",
+}
 SENSITIVE_PATTERNS = (
     re.compile(r"^\.env(?:\..+)?$", re.IGNORECASE),
     re.compile(r"credentials?", re.IGNORECASE),
@@ -25,6 +37,14 @@ SENSITIVE_PATTERNS = (
 )
 RISKY_COMMANDS = {
     "recursive forced deletion": re.compile(r"\brm\s+-rf\b", re.IGNORECASE),
+    "PowerShell recursive forced deletion": re.compile(
+        r"\b(?:Remove-Item|rm)\b(?=[^\r\n]*-Recurse)(?=[^\r\n]*-Force)",
+        re.IGNORECASE,
+    ),
+    "cmd recursive quiet deletion": re.compile(
+        r"\b(?:rmdir|rd)\b(?=[^\r\n]*(?:/s|-s))(?=[^\r\n]*(?:/q|-q))",
+        re.IGNORECASE,
+    ),
     "hard git reset": re.compile(r"\bgit\s+reset\s+--hard\b", re.IGNORECASE),
     "git hook bypass": re.compile(r"\bgit\s+[^\n]*--no-" r"verify\b", re.IGNORECASE),
     "remote script pipe": re.compile(
@@ -67,6 +87,18 @@ def sensitive_name(path: Path) -> bool:
     """민감 파일처럼 보이는 이름인지 확인한다."""
 
     return any(pattern.search(path.name) for pattern in SENSITIVE_PATTERNS)
+
+
+def manifest_by_path(root: Path) -> dict[str, tuple[int, str]]:
+    """Return the relative file manifest used for source/target integrity checks."""
+
+    manifest: dict[str, tuple[int, str]] = {}
+    for path in sorted(root.rglob("*")):
+        if path.is_symlink() or not path.is_file():
+            continue
+        relative = path.relative_to(root).as_posix()
+        manifest[relative] = (path.stat().st_size, sha256(path))
+    return manifest
 
 
 def add(
@@ -214,6 +246,18 @@ def audit_candidate(
             add(findings, "error", "target_collision", "설치 대상이 이미 존재합니다.", resolved_target)
         if target_state == "required" and not exists:
             add(findings, "error", "missing_target", "검증할 설치 대상이 없습니다.", resolved_target)
+        if target_state == "required" and exists:
+            source_manifest = {
+                item["path"]: (item["size"], item["sha256"]) for item in manifest
+            }
+            if manifest_by_path(resolved_target) != source_manifest:
+                add(
+                    findings,
+                    "error",
+                    "target_manifest_mismatch",
+                    "설치본의 파일 목록 또는 SHA-256이 후보 정본과 다릅니다.",
+                    resolved_target,
+                )
         if resolved_target == candidate:
             add(findings, "error", "same_source_target", "원본과 대상 경로가 같습니다.", resolved_target)
 

@@ -1,8 +1,26 @@
 {
   "schema_version": 1,
   "candidate": "mia-skill-compiler",
-  "status": "static_only",
-  "platforms": [],
+  "status": "runtime_blocked_after_discovery_attempts",
+  "platforms": [
+    {
+      "platform": "Codex",
+      "discovery": "pre_install_DISCOVERY_NOT_CONFIRMED",
+      "codex_user_install": "pass",
+      "post_install_discovery": "blocked_by_usage_limit",
+      "runtime": "not_run"
+    },
+    {
+      "platform": "Claude Code",
+      "discovery": "blocked_by_usage_credits",
+      "runtime": "not_run"
+    },
+    {
+      "platform": "Antigravity",
+      "discovery": "blocked_by_cli_timeout_and_gui_launch_approval_timeout",
+      "runtime": "not_run"
+    }
+  ],
   "results": [
     {
       "check": "candidate_static_audit",
@@ -59,14 +77,29 @@
     },
     {
       "check": "official_quick_validate",
-      "result": "blocked_by_environment",
-      "reason": "PyYAML is unavailable in the bundled runtime; no package was installed without approval."
+      "result": "pass",
+      "targets": [
+        "canonical_candidate",
+        "codex_user_installation"
+      ],
+      "note": "PyYAML 6.0.3 was installed with approval. The validator required Python UTF-8 mode because it otherwise read Korean SKILL.md with the Windows CP949 default."
     },
     {
       "check": "runtime_evaluation",
       "result": "not_run",
       "reason": "DISCOVERY_CONFIRMED has not been recorded for mia-skill-compiler."
+    },
+    {
+      "check": "preflight_mutation_testing",
+      "result": "pass_after_remediation",
+      "tests": 7,
+      "evidence": "mutation-test-2026-07-24.json"
+    },
+    {
+      "check": "cross_platform_discovery_attempts",
+      "result": "runtime_blocked",
+      "evidence": "runtime-discovery-2026-07-24.json"
     }
   ],
-  "note": "No discovery, trigger, task, safety, installation, external-execution, or cross-platform runtime evaluation has been performed."
+  "note": "The Codex candidate now has a verified installation at ~/.codex/skills/mia-skill-compiler. Runtime invocation remains prohibited until a fresh task records DISCOVERY_CONFIRMED; the next post-install attempt is blocked by the Codex account usage limit, not by a discovery result."
 }

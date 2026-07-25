@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "frames_root": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames",
+  "frames_root": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames",
   "states": [
     "idle",
     "running-right",
@@ -28,7 +28,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8336,
@@ -43,7 +43,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8271,
@@ -58,7 +58,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8304,
@@ -73,7 +73,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8288,
@@ -88,7 +88,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8403,
@@ -103,7 +103,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\idle\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8271,
@@ -129,7 +129,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8632,
@@ -144,7 +144,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7876,
@@ -159,7 +159,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8388,
@@ -174,7 +174,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8082,
@@ -189,7 +189,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8213,
@@ -204,7 +204,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8140,
@@ -219,7 +219,7 @@
         },
         {
           "index": 6,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\06.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\06.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7912,
@@ -234,7 +234,7 @@
         },
         {
           "index": 7,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\07.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-right\\07.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7877,
@@ -260,7 +260,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7877,
@@ -275,7 +275,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7912,
@@ -290,7 +290,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8140,
@@ -305,7 +305,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8213,
@@ -320,7 +320,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8082,
@@ -335,7 +335,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8388,
@@ -350,7 +350,7 @@
         },
         {
           "index": 6,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\06.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\06.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7876,
@@ -365,7 +365,7 @@
         },
         {
           "index": 7,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\07.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running-left\\07.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8632,
@@ -391,7 +391,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8347,
@@ -406,7 +406,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8498,
@@ -421,7 +421,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8287,
@@ -436,7 +436,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waving\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8152,
@@ -462,7 +462,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8589,
@@ -477,7 +477,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 9781,
@@ -492,7 +492,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 11484,
@@ -507,7 +507,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 10606,
@@ -522,7 +522,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\jumping\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8589,
@@ -548,7 +548,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7735,
@@ -563,7 +563,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7575,
@@ -578,7 +578,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7741,
@@ -593,7 +593,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7749,
@@ -608,7 +608,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7783,
@@ -623,7 +623,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8334,
@@ -638,7 +638,7 @@
         },
         {
           "index": 6,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\06.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\06.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7740,
@@ -653,7 +653,7 @@
         },
         {
           "index": 7,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\07.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\failed\\07.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7870,
@@ -679,7 +679,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7477,
@@ -694,7 +694,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8081,
@@ -709,7 +709,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7480,
@@ -724,7 +724,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7699,
@@ -739,7 +739,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7487,
@@ -754,7 +754,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\waiting\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7505,
@@ -780,7 +780,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7705,
@@ -795,7 +795,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7915,
@@ -810,7 +810,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7888,
@@ -825,7 +825,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8016,
@@ -840,7 +840,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7981,
@@ -855,7 +855,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\running\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 7989,
@@ -881,7 +881,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8464,
@@ -896,7 +896,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8610,
@@ -911,7 +911,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8164,
@@ -926,7 +926,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8664,
@@ -941,7 +941,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8655,
@@ -956,7 +956,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\review\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8464,
@@ -982,7 +982,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8347,
@@ -997,7 +997,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8399,
@@ -1012,7 +1012,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8560,
@@ -1027,7 +1027,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8438,
@@ -1042,7 +1042,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8601,
@@ -1057,7 +1057,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8557,
@@ -1072,7 +1072,7 @@
         },
         {
           "index": 6,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\06.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\06.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8358,
@@ -1087,7 +1087,7 @@
         },
         {
           "index": 7,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\07.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-9\\07.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8401,
@@ -1113,7 +1113,7 @@
       "frames": [
         {
           "index": 0,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\00.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\00.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8593,
@@ -1128,7 +1128,7 @@
         },
         {
           "index": 1,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\01.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\01.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8498,
@@ -1143,7 +1143,7 @@
         },
         {
           "index": 2,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\02.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\02.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8329,
@@ -1158,7 +1158,7 @@
         },
         {
           "index": 3,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\03.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\03.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8409,
@@ -1173,7 +1173,7 @@
         },
         {
           "index": 4,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\04.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\04.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8468,
@@ -1188,7 +1188,7 @@
         },
         {
           "index": 5,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\05.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\05.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8500,
@@ -1203,7 +1203,7 @@
         },
         {
           "index": 6,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\06.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\06.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8314,
@@ -1218,7 +1218,7 @@
         },
         {
           "index": 7,
-          "file": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\07.png",
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\atlas-frames\\look-row-10\\07.png",
           "width": 192,
           "height": 208,
           "nontransparent_pixels": 8170,

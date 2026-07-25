@@ -4,7 +4,7 @@
     {
       "state": "look-row-10",
       "apng": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-10.png",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\apng\\look-row-10.png",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,
@@ -55,7 +55,7 @@
         ]
       },
       "webp": {
-        "path": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-10.webp",
+        "path": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-rebuild-20260718\\run-v2-gaze-repair\\qa\\previews-hq\\webp\\look-row-10.webp",
         "frames": 8,
         "expected_frames": 8,
         "frame_count_ok": true,

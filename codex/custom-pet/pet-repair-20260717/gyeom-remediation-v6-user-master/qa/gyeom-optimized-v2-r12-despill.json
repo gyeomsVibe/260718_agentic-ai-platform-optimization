@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "input": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\final\\gyeom-optimized-v2-r12-preqa.png",
-  "output": "D:\\D_Workspace_NB\\-google-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\final\\gyeom-optimized-v2-r12-final.png",
+  "input": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\final\\gyeom-optimized-v2-r12-preqa.png",
+  "output": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\-antigravity-workspace\\260713_pc-optimization\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\final\\gyeom-optimized-v2-r12-final.png",
   "chroma_key": "#FF00FF",
   "algorithm": "edge-local-chroma-spill-suppression",
   "strength": 1,
