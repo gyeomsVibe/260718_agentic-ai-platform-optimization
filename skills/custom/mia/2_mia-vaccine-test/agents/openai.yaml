@@ -1,0 +1,6 @@
+interface:
+  display_name: "MIA 백신테스트"
+  short_description: "실패를 일부러 만들어 숨은 결함을 찾고 항체(회귀 테스트·진단)를 남기는 모드"
+  default_prompt: "MIA 백신테스트 발동"
+policy:
+  allow_implicit_invocation: false
