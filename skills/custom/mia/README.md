@@ -1,30 +1,27 @@
-# MIA 사용자 제작 Skills
+# MIA 사용자 제작 Skills (Custom MIA Agent Skills)
 
-> MIA(Modular Intelligence Architect) 시리즈의 실행 정본과 Skill 제작 작업대를
-> 한곳에서 관리합니다. GPT 챗봇 파일이나 외부 Skill 원본을 두는 폴더가 아닙니다.
+> 윤겸스 소유의 MIA(Modular Intelligence Architect) 시리즈 Agent Skill 정본과 제작 작업대를 통일 관리합니다.
+> 이 디렉터리는 3대 AI 에이전트(Antigravity, Claude Code, Codex) 공용 커스텀 스킬의 **정통 소스(Canonical Source)**입니다.
 
-## 어디로 가야 하나요?
+---
 
-| 경로 | 역할 | 수정 대상 |
-|---|---|---|
-| [`plan-review-execute/`](plan-review-execute/) | 현재 사용 중인 MIA 기획·검토·실행 Skill | 상위 `SKILL.md` 정본 |
-| [`compiler-workbench/`](compiler-workbench/) | MIA Skill Compiler 후보, 변환 사례, 평가 증거 | 후보별 정본과 평가 파일 |
+## 📦 커스텀 MIA 스킬 카탈로그 (Skill Catalog)
 
-쉽게 말하면 `plan-review-execute`는 실제로 쓰는 도구이고,
-`compiler-workbench`는 다음 도구를 설계하고 시험하는 작업실입니다.
+| 스킬 폴더 | 스킬명 (Name) | 트리거 및 용도 | 주요 파일 |
+|---|---|---|---|
+| [`mia-skill-compiler/`](mia-skill-compiler/) | `mia-skill-compiler` | `$mia-skill-compiler` / 새 Agent Skill 구체화 및 정밀 컴파일 | `SKILL.md`, `references/` |
+| [`mia-skill-forge/`](mia-skill-forge/) | `mia-skill-forge` | `$mia-skill-forge` / GPT·챗봇·문서를 정적 Agent Skill 후보로 변환 | `SKILL.md`, `references/` |
+| [`plan-review-execute/`](plan-review-execute/) | `plan-review-execute` | `MIA모드 발동` / 기획·검토·실행·검증 4단계 프로세스 | `SKILL.md`, `agents/`, `plugin/` |
+| [`compiler-workbench/`](compiler-workbench/) | `compiler-workbench` | MIA 스킬 후보 실험실, evals, fixtures, reports | `candidates/`, `evals/`, `fixtures/` |
 
-## 상태와 배포 경계
+---
 
-- 작업대의 후보는 정적 검사를 통과해도 자동으로 실행 Skill이 되지 않습니다.
-- `DISCOVERY_CONFIRMED`는 새 작업의 Available skills 목록에서 실제로 확인해야 합니다.
-- 전역 설치, 플랫폼 배포, 외부 실행은 각각 영향이 다른 작업입니다. 한 번의 정적 통과로
-  모두 승인된 것으로 취급하지 않습니다.
-- `.agents/`, `.codex/`, `.claude/`, `.gemini/`의 설치본은 배포 결과이며 정본이 아닙니다.
+## ⚙️ 관리 규칙 및 배포 경계 (Management Policy)
 
-## 새 MIA 구성요소를 추가할 때
-
-1. 실제 사용 Skill인지, 제작·평가 도구인지 먼저 구분합니다.
-2. 실제 사용 Skill은 독립 폴더와 단일 `SKILL.md` 정본을 갖게 합니다.
-3. 후보와 평가 증거는 `compiler-workbench`에 둡니다.
-4. 외부에서 가져온 Skill 자체는 [`../../external/`](../../external/)에 보관합니다.
-5. README에 정본, 생성본, 검사 명령, 설치 경계를 명시합니다.
+1. **정본 원칙 (Canonical Source)**:
+   - 모든 MIA 커스텀 스킬의 정본은 오직 `skills/custom/mia/<skill-name>/` 아래에 위치합니다.
+   - `.agents/skills/`, `.claude/skills/`, `.codex/skills/`, `~/.gemini/config/skills/` 등 플랫폼 폴더의 파일은 동기화된 타깃본(Target)입니다.
+2. **폴더 명명 규칙**:
+   - 스킬 폴더명은 반드시 소문자 케밥케이스(`kebab-case`)를 사용합니다.
+3. **단일 정본 관리**:
+   - 정본 변경 시 `npm run check` 또는 동기화 스크립트로 전역 플랫폼에 일괄 배포합니다.

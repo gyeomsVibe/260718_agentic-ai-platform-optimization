@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "date": "2026-07-24",
+  "status": "runtime_blocked",
+  "install_integrity": {
+    "project_agents": "pass",
+    "project_claude": "pass",
+    "user_agents": "pass",
+    "codex_user_skills": "pass"
+  },
+  "platforms": [
+    {
+      "platform": "Codex",
+      "project_scope_discovery": "DISCOVERY_NOT_CONFIRMED",
+      "user_scope_discovery": "DISCOVERY_NOT_CONFIRMED",
+      "runtime_cases": "not_run",
+      "desktop_restart_discovery": "DISCOVERY_NOT_CONFIRMED",
+      "corrected_user_install": "pass",
+      "post_install_discovery": "blocked_by_usage_limit",
+      "reason": "Earlier fresh-task discovery attempts did not expose the candidate because it had been copied only to .agents paths. The canonical candidate is now verified at the actual Codex user path ~/.codex/skills/mia-skill-compiler. A post-install fresh task could not start because Codex returned usage_limit_exceeded until 2026-07-29T05:01:00+09:00."
+    },
+    {
+      "platform": "Claude Code",
+      "project_scope_discovery": "blocked",
+      "runtime_cases": "not_run",
+      "reason": "Claude Code 2.1.214 returned an out-of-usage-credits error before the discovery response."
+    },
+    {
+      "platform": "Antigravity",
+      "project_scope_discovery": "blocked",
+      "runtime_cases": "not_run",
+      "gui_skills_check": "blocked",
+      "reason": "agy 1.1.6 non-interactive plan-mode discovery did not honor its 60-second limit and was terminated. Direct GUI launch attempts for both registered Antigravity app identifiers ended with Computer Use app-approval timeouts before any window was exposed."
+    }
+  ],
+  "claim_boundary": "No explicit invocation, non-trigger, safety refusal, external execution, or cross-platform success is claimed."
+}

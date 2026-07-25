@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "date": "2026-07-24",
+  "status": "pass_after_remediation",
+  "method": "isolated temporary candidate copies; no canonical or installed Skill file was mutated",
+  "baseline": {
+    "result": "pass"
+  },
+  "mutations": [
+    {
+      "id": "sensitive-filename",
+      "injected_defect": "references/.env",
+      "expected": "sensitive_filename",
+      "result": "blocked"
+    },
+    {
+      "id": "broken-link",
+      "injected_defect": "relative Markdown link to a missing file",
+      "expected": "broken_link",
+      "result": "blocked"
+    },
+    {
+      "id": "powershell-recursive-delete",
+      "injected_defect": "Remove-Item -Recurse -Force",
+      "initial_result": "missed",
+      "remediation": "scan PowerShell scripts and reject recursive forced deletion",
+      "result_after_remediation": "blocked"
+    },
+    {
+      "id": "powershell-option-order",
+      "injected_defect": "Remove-Item -Force -Recurse",
+      "expected": "risky_command",
+      "result": "blocked"
+    },
+    {
+      "id": "cmd-recursive-delete",
+      "injected_defect": "rmdir /s /q",
+      "initial_result": "missed",
+      "remediation": "scan batch scripts and reject quiet recursive deletion",
+      "result_after_remediation": "blocked"
+    },
+    {
+      "id": "installed-manifest-drift",
+      "injected_defect": "installed SKILL.md differs from canonical source",
+      "initial_result": "missed",
+      "remediation": "compare the full relative file list, size, and SHA-256",
+      "result_after_remediation": "blocked"
+    }
+  ],
+  "verification": {
+    "command": "python test_preflight_mutations.py",
+    "tests": 7,
+    "result": "pass"
+  }
+}
