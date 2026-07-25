@@ -1,30 +1,24 @@
-# MIA 사용자 제작 Skills
+# MIA 사용자 제작 Skills 카탈로그
 
-> MIA(Modular Intelligence Architect) 시리즈의 실행 정본과 Skill 제작 작업대를
-> 한곳에서 관리합니다. GPT 챗봇 파일이나 외부 Skill 원본을 두는 폴더가 아닙니다.
+> MIA(Modular Intelligence Architect) 시리즈의 실행 정본과 제작/테스트 워크벤치를 통일 관리합니다.
 
-## 어디로 가야 하나요?
+---
 
-| 경로 | 역할 | 수정 대상 |
-|---|---|---|
-| [`plan-review-execute/`](plan-review-execute/) | 현재 사용 중인 MIA 기획·검토·실행 Skill | 상위 `SKILL.md` 정본 |
-| [`compiler-workbench/`](compiler-workbench/) | MIA Skill Compiler 후보, 변환 사례, 평가 증거 | 후보별 정본과 평가 파일 |
+## 📂 카탈로그 디렉터리 구성
 
-쉽게 말하면 `plan-review-execute`는 실제로 쓰는 도구이고,
-`compiler-workbench`는 다음 도구를 설계하고 시험하는 작업실입니다.
+| 디렉터리 | 스킬 명칭 | 한글명 / 풀네임 | 역할 및 내용 |
+|---|---|---|---|
+| [`1_mia-skill-compiler/`](1_mia-skill-compiler/) | `mia-skill-compiler` | MIA 스킬 컴파일러 | MIA 스킬 컴파일러 워크벤치 (후보, 평가, 픽스처, 리포트) |
+| [`2_mia-vaccine-test/`](2_mia-vaccine-test/) | `mia-vaccine-test` | MIA 백신 테스트 | 인계 계약 & 가드레일 변이 주입/항체 검증 스킬 |
+| [`3_mia-strategic/`](3_mia-strategic/) | `mia-strategic` | **'MIA 전략절차' 스킬** | **전략적 가설 검증 스킬 (Strategic Hypothesis Verification Skill)** - 기획·검토·실행·검증 4단계 프레임워크 |
 
-## 상태와 배포 경계
+---
 
-- 작업대의 후보는 정적 검사를 통과해도 자동으로 실행 Skill이 되지 않습니다.
-- `DISCOVERY_CONFIRMED`는 새 작업의 Available skills 목록에서 실제로 확인해야 합니다.
-- 전역 설치, 플랫폼 배포, 외부 실행은 각각 영향이 다른 작업입니다. 한 번의 정적 통과로
-  모두 승인된 것으로 취급하지 않습니다.
-- `.agents/`, `.codex/`, `.claude/`, `.gemini/`의 설치본은 배포 결과이며 정본이 아닙니다.
-
-## 새 MIA 구성요소를 추가할 때
-
-1. 실제 사용 Skill인지, 제작·평가 도구인지 먼저 구분합니다.
-2. 실제 사용 Skill은 독립 폴더와 단일 `SKILL.md` 정본을 갖게 합니다.
-3. 후보와 평가 증거는 `compiler-workbench`에 둡니다.
-4. 외부에서 가져온 Skill 자체는 [`../../external/`](../../external/)에 보관합니다.
-5. README에 정본, 생성본, 검사 명령, 설치 경계를 명시합니다.
+## 🚀 전역 동기화 및 3대 AI 에이전트 전역 설치
+- **전역 설치 경로**: `C:\Users\Kimyoongyeom\.gemini\config\skills\` (Antigravity 및 전역 통합)
+- **로컬 워크스페이스 설치 경로**: `.agents\skills\`
+- **지원 에이전트**: Antigravity, Claude Code, Codex
+- **활성화 스킬 정본 (3대 스킬)**:
+  1. `mia-skill-compiler`
+  2. `mia-vaccine-test`
+  3. `mia-strategic` ('MIA 전략절차' 스킬)
