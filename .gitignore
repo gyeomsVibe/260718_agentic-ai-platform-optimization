@@ -1,5 +1,6 @@
-# 로컬 전용 에이전트 설정 (권한 등)
-.claude/settings.local.json
+# 로컬 전용 에이전트 설정·설치본 (권한 설정 settings.local.json, 정본 중복 스킬 사본 등)
+# 스킬 정본은 skills/custom/mia/ 에만 둔다.
+.claude/
 
 # OS / 편집기 잡파일
 Thumbs.db
