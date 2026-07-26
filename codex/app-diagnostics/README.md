@@ -12,9 +12,12 @@
 | [fix-sandbox-acl.bat](fix-sandbox-acl.bat) | 실행 배치 | **워크스페이스 하위폴더** 권한 복구용. ⚠️ **C:\tmp에는 쓰지 말 것**(제외가 정답 — 위 근본원인 문서 참조) |
 | [1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md](<1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md>) | 문서 | 초기 조치·검증 기록(ACL 접근 시기) |
 | [HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md) | 문서 | 이미지 다운로드 이슈 분석 근거·승인 경계(인수인계) |
+| ⭐ [ROOT_CAUSE_db-malformed_2026-07-26.md](ROOT_CAUSE_db-malformed_2026-07-26.md) | 문서 | **근본 원인·해결** — 앱이 `database disk image is malformed`로 안 켜질 때. `~/.codex`의 SQLite DB 손상 진단·격리 수리·검증 기록. **시작 오류는 여기부터.** |
+| [codex-db-doctor.py](codex-db-doctor.py) | 실행 스크립트 | **자가진단·수리** — `~/.codex` 전체 SQLite 무결성 검사, `--quarantine`로 손상 DB만 안전 격리(백업 후 이동) |
 
-> **샌드박스 쓰기 거부(`SetNamedSecurityInfoW failed: 5`)를 만나면 → 먼저 ⭐근본원인 문서를 보세요.**
+> **샌드박스 쓰기 거부(`SetNamedSecurityInfoW failed: 5`)를 만나면 → 먼저 ⭐C:\tmp 근본원인 문서를 보세요.**
 > C:\tmp 문제는 ACL 부여가 아니라 `excludeSlashTmp=true`(config.toml)로 영구 해결합니다.
+> **앱이 `database disk image is malformed`로 안 켜지면 → ⭐DB 근본원인 문서 + `codex-db-doctor.py`.**
 
 ## 먼저: "샌드박스"가 뭐고 왜 에러가 났나 (모르는 사람용)
 
