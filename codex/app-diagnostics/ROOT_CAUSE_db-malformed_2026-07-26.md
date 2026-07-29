@@ -47,23 +47,41 @@
 
 > 격리 폴더는 문제없음이 확인되면 삭제해도 된다. 되돌리려면 폴더 안의 파일을 원위치로 이동.
 
+## 2차 결함: "handshake timed out" (DB 손상 뒤에 가려져 있던 문제)
+
+DB 손상을 고치자 다른 오류가 드러났다: **`Codex app-server initialize handshake timed out`**.
+
+- 실패 로그: `state db backfill is running at ...; waiting up to 30s` →
+  `failed to initialize sqlite state runtime ...: timed out waiting for state db backfill after 30s (status: running)`
+- **원인 사슬**:
+  1. 폭주 세션이 **2.5GB짜리 단일 rollout 파일**(정상 중앙값 5.9MB) 등 비대 기록을 남김 → 이게 DB 손상의 시작점이기도 함.
+  2. 새 DB 생성 후 앱이 과거 세션 기록 **9.15GB를 state DB로 재구축(backfill)** 시도 → 30초 안에 못 끝냄 → 프로세스 강제 종료.
+  3. 그 결과 `state_5.sqlite`의 `backfill_state.status`가 **`running`으로 영구 고착** → 실행 주체가 없는데 "작업 중"으로 오해하는 **교착(stale lock)**. 이후 매 실행이 30초 대기 후 실패.
+- **수정 (가역적)**:
+  1. 100MB 초과 비대 rollout **24개(8.64GB)를 `~/codex-oversized-rollouts-...`로 격리**(이동). 남은 작업량 9.15GB→0.5GB.
+  2. state DB 백업 후, 앱 자체의 stale-takeover 경로(`WHERE status!=? OR updated_at<=?`)가 동작하도록 `backfill_state.updated_at=0`으로 낮춰 잠금 해제.
+  3. app-server를 GUI 밖에서 실행해 **backfill 완주**(`status='complete'`, threads 45→134행).
+- **검증**: 핸드셰이크 `success, 670ms`(이전 30초 타임아웃), 앱 창 정상 생성·안정 실행.
+
 ## 항체 (재발 조기 탐지·수리)
 
-[codex-db-doctor.py](codex-db-doctor.py) — `~/.codex`의 모든 SQLite DB 무결성을 검사하는
-재사용 진단기. 같은 증상 재발 시 이 스크립트 하나로 원인 확인과 수리를 끝낸다.
+[codex-db-doctor.py](codex-db-doctor.py) — 위 **두 가지 실패 모드를 한 도구로** 진단·수리한다:
+① DB 손상, ② backfill 교착 잠금 + 비대 rollout. 재발 시 이 스크립트 하나로 끝낸다.
 
 ```bash
-# 점검만 (변경 없음, 손상 있으면 exit 2)
+# 점검만 (변경 없음, 문제 있으면 exit 2). 세 항목을 각각 리포트:
+#   [1] DB 무결성  [2] backfill 잠금  [3] 비대 rollout
 python codex-db-doctor.py
 
-# 수리 = 손상 DB만 격리(백업 후 이동). 먼저 ChatGPT 앱 종료할 것
+# 수리 = 손상 DB 격리 + 비대 rollout 격리 + 교착 잠금 해제. 먼저 ChatGPT 앱 종료할 것
 python codex-db-doctor.py --quarantine
 ```
 
 - 정상 DB는 건드리지 않고, 인증/설정 파일(`auth.json` 등)은 대상에서 제외한다.
-- 삭제가 아니라 격리(이동)라 되돌릴 수 있다.
+- 교착 잠금 해제 전 state DB를 `.bak-before-lock-reset`으로 백업한다.
+- 삭제가 아니라 격리(이동)·최소 수정이라 되돌릴 수 있다.
 
 ## 재발 방지 팁
 
 - 앱 사용 중 강제 종료(전원 차단·강제 리셋)를 피한다. WAL 기록 중 종료가 손상의 주원인.
-- `logs_2.sqlite`가 수백 MB로 커지면 이상 신호 — 위 doctor로 주기 점검.
+- `logs_2.sqlite`나 rollout 파일이 수백 MB로 커지면 이상 신호 — 위 doctor로 주기 점검.
