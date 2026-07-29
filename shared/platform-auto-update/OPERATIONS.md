@@ -1,32 +1,47 @@
 # 플랫폼 자동업데이트 운영 가이드
 
 상태: `VERIFIED_RESULT`
-최종 검증: 2026-07-19 (Asia/Seoul)
+최종 검증: 2026-07-30 (Asia/Seoul) — 저장소 경로 이동에 따른 예약 작업 경로 재등록 및 무음(`//B`) 보강
 
 ## 목표와 범위
 
 Windows 로그인 직후 사용자에게 창을 표시하지 않고 다음 개발 플랫폼의 최신 안정판을 확인한다.
 
-| 순서 | 플랫폼 | 업데이트 방식 | 검증 상태 |
-| --- | --- | --- | --- |
-| 1 | Codex CLI | npm 전역 설치 갱신 | 성공 (`0.144.6`) |
-| 2 | Claude Code | 제품 내장 자동 업데이트 | 활성화 (`2.1.214`) |
-| 3 | Antigravity IDE | winget 공식 패키지 조회·무인 갱신 | 최신 상태 |
-| 4 | Antigravity 2.0 | winget 공식 패키지 조회·무인 갱신 | 최신 상태 |
-| 5 | Antigravity CLI | `agy update` | 성공 (`1.1.4`) |
+자동업데이트 대상은 **3대 AI 도구(Antigravity·Claude Code·Codex)의 CLI와 Antigravity IDE**이며,
+여기에 개발 필수 도구인 **GitHub CLI**를 함께 갱신한다.
 
-이 구성은 로그인 후 IDE를 열기 전에 CLI와 앱을 최신화한다. 실행 중인 Windows 바이너리를 강제로 교체하지 않으며, 업데이트가 없으면 정상 종료한다.
-
-## 활성 시작 프로그램
-
-두 항목 모두 현재 사용자(`HKCU`)의 `Software\\Microsoft\\Windows\\CurrentVersion\\Run`에 등록한다. `wscript.exe //B`로 실행하므로 콘솔 창이 표시되지 않는다.
-
-| 레지스트리 값 | 실행 스크립트 | 역할 |
+| 대상 | 업데이트 방식 | 실행 주체 |
 | --- | --- | --- |
-| `Codex CLI Logon Updater` | `Update-CodexCliAtLogon.vbs` | `npm install -g @openai/codex@latest --no-audit --no-fund` |
-| `Antigravity Sequential Logon Updater` | `Update-AntigravityAtLogon.vbs` | IDE → 2.0 → CLI 순차 갱신 |
+| Antigravity IDE + 2.0 + CLI | winget(IDE·2.0) + `agy update`(CLI) | 예약 작업 `Antigravity Daily Update` |
+| Codex CLI | npm 전역 설치 갱신 (`@openai/codex`) | 예약 작업 `Codex CLI Daily Update` |
+| GitHub CLI | winget 무인 갱신 (`GitHub.cli`) | 예약 작업 `GitHub CLI Daily Update` |
+| Claude Code | 제품 **내장** 자동 업데이트 | 별도 스크립트 없음 (Claude Code 자체 처리) |
 
-활성 스크립트의 정본은 이 [폴더](./)에 있다. Windows 시작 프로그램은 `scripts/` 아래의 두 VBS 파일을 직접 실행한다. 로그와 npm 캐시는 스크립트 옆에 자동 생성되며 Git에 포함하지 않는다.
+- Claude Code CLI는 Native 설치본이 스스로 업데이트하므로 외부 스크립트를 두지 않는다.
+- Codex 데스크톱 앱(스토어)도 자체 업데이트한다. 위 `Codex CLI`는 npm 설치본 CLI만 대상이다.
+- 이 구성은 실행 중인 Windows 바이너리를 강제 교체하지 않으며, 업데이트가 없으면 정상 종료한다.
+
+## 활성 예약 작업 (Scheduled Tasks)
+
+현재 방식은 **Windows 작업 스케줄러의 일일 정시 작업 3개**다. (과거 로그온 Run 키·시작 감시
+방식은 앱 시작 병목의 주원인으로 확인되어 폐지했다 — 아래 "하루 1회 정시 갱신 체계" 참조.)
+모두 `wscript.exe //B`(무음 배치)로 실행하므로 콘솔 창이나 오류 대화상자가 뜨지 않는다.
+
+| 예약 작업 | 시각 | 실행 스크립트 |
+| --- | --- | --- |
+| `Antigravity Daily Update` | 15:10 | `Update-AntigravityAtLogon.vbs` (IDE → 2.0 → CLI) |
+| `Codex CLI Daily Update` | 15:00 | `Update-CodexCliAtLogon.vbs` (npm 전역 갱신) |
+| `GitHub CLI Daily Update` | 15:20 | `Update-GitHubCliDaily.vbs` (winget 갱신) |
+
+- 등록·해제·경로 재설정은 정본 설치 스크립트 [`scripts/Install-PlatformDailyUpdaters.ps1`](scripts/Install-PlatformDailyUpdaters.ps1)로 한다.
+  이 스크립트는 자신이 놓인 위치(`$PSScriptRoot`) 기준으로 작업을 재등록하므로,
+  **저장소를 옮긴 뒤 새 위치에서 한 번 실행하면 세 작업의 경로가 모두 교정된다.**
+- 로그와 npm 캐시는 스크립트 옆에 자동 생성되며 Git에 포함하지 않는다.
+
+> **2026-07-30 경로 교정**: 저장소가 이전 경로에서 `-agentic-ai-workspace\...`로 이동해
+> 세 작업이 옛 경로를 가리켜 실패했고, `//B`가 없던 GitHub CLI 작업만 "스크립트 파일을 찾을 수
+> 없습니다" 대화상자를 띄웠다. 설치 스크립트의 wscript 인자에 `//B`를 추가하고 현재 위치에서
+> 재실행해 세 작업 경로를 교정했다. 세 작업 모두 `LastTaskResult=0x0`(성공) 검증 완료.
 
 처음 사용하는 사람은 [README.md](README.md)를 먼저 읽는다. 자동 실행 흐름, 알림 의미, 가장 쉬운 점검 방법을 비개발자 기준으로 설명한다.
 
@@ -101,14 +116,14 @@ Antigravity 로그에서 마지막 실행이 `Antigravity IDE is already up to d
 1. 실행 중인 플랫폼을 종료하고 로그의 마지막 종료 코드를 확인한다.
 2. winget 오류는 먼저 `winget source update` 후 동일한 `winget upgrade --id ...` 명령으로 재현한다.
 3. Codex npm 오류는 전용 캐시 경로의 쓰기 권한과 `npm.cmd` 위치를 확인한다.
-4. 자동 실행을 중지해야 하면 해당 `Run` 레지스트리 값만 제거한다. 설치된 IDE·CLI와 사용자 설정은 제거하지 않는다.
+4. 자동 실행을 전부 중지하려면 `Install-PlatformDailyUpdaters.ps1 -Remove`를 실행한다(세 작업 언등록). 특정 작업만 끄려면 `schtasks /change /tn "<작업명>" /disable`. 설치된 IDE·CLI와 사용자 설정은 제거하지 않는다.
 
 ## 유지관리 원칙
 
 - 시작 프로그램은 제품별로 하나만 유지한다.
 - 새 설치 관리자·패키지 관리자를 추가하지 않는다.
 - 로그, 다운로드 캐시, 인증 정보는 저장소에 커밋하지 않는다.
-- 활성 스크립트를 다른 워크스페이스로 옮길 때는 레지스트리 경로를 명시적으로 변경하고 `cscript //NoLogo <script> /test`로 먼저 검증한다.
+- 활성 스크립트를 다른 워크스페이스로 옮기면 새 위치에서 `Install-PlatformDailyUpdaters.ps1`을 한 번 실행해 예약 작업 경로를 재등록하고, `cscript //NoLogo <script> /test`로 먼저 검증한다.
 
 ### 하루 1회 정시 갱신 체계 (2026-07-19 최종)
 

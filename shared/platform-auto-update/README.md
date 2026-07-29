@@ -1,20 +1,21 @@
 # Windows 플랫폼 자동업데이트: 처음 보는 사람을 위한 안내
 
-이 폴더는 Windows에 로그인하면 Codex와 Antigravity의 업데이트를 조용히 확인하고, 결과를 Windows 알림으로 알려 주는 구성의 정본이다.
+이 폴더는 Windows **작업 스케줄러가 하루 1회 정시에** Antigravity·Codex CLI·GitHub CLI의
+업데이트를 조용히 확인하고, 결과를 Windows 알림으로 알려 주는 구성의 정본이다.
+(Claude Code는 제품 내장 자동업데이트를 쓰므로 여기서 다루지 않는다.)
 
 ## 한눈에 보기
 
-1. Windows에 로그인한다.
-2. 시작 프로그램이 이 폴더의 VBS 스크립트를 백그라운드에서 실행한다.
-3. Codex CLI와 Antigravity IDE·2.0·CLI의 업데이트를 순서대로 확인한다.
-4. 작업이 끝나면 화면 오른쪽 아래와 알림 센터에 결과가 표시된다.
+1. 매일 정시(15:00·15:10·15:20)에 예약 작업이 이 폴더의 VBS 스크립트를 무음으로 실행한다.
+2. Antigravity IDE·2.0·CLI, Codex CLI, GitHub CLI의 업데이트를 각각 확인한다.
+3. 작업이 끝나면 화면 오른쪽 아래와 알림 센터에 결과가 표시된다.
+4. PC가 그 시각에 꺼져 있었으면 다음에 켤 때 한 번 보충 실행된다.
 
 업데이트가 없다는 알림도 정상이다. 이미 최신 버전이라는 뜻이므로 별도 조치가 필요 없다.
 
 ```text
-Windows 로그인
-  -> 시작 프로그램
-  -> VBS 자동업데이트 스크립트
+매일 정시 (작업 스케줄러)
+  -> wscript //B 로 VBS 자동업데이트 스크립트 (무음)
   -> 업데이트 확인 또는 설치
   -> Windows 완료 알림 + 로그 기록
 ```
@@ -23,8 +24,10 @@ Windows 로그인
 
 | 파일 | 하는 일 |
 | --- | --- |
-| [scripts/Update-CodexCliAtLogon.vbs](scripts/Update-CodexCliAtLogon.vbs) | npm으로 Codex CLI의 최신 버전을 확인하고 Windows 알림을 보낸다. |
 | [scripts/Update-AntigravityAtLogon.vbs](scripts/Update-AntigravityAtLogon.vbs) | Antigravity IDE → 2.0 → CLI 순서로 갱신하고 결과를 하나의 알림으로 보낸다. |
+| [scripts/Update-CodexCliAtLogon.vbs](scripts/Update-CodexCliAtLogon.vbs) | npm으로 Codex CLI의 최신 버전을 확인하고 Windows 알림을 보낸다. |
+| [scripts/Update-GitHubCliDaily.vbs](scripts/Update-GitHubCliDaily.vbs) | winget으로 GitHub CLI를 갱신하고 Windows 알림을 보낸다. |
+| [scripts/Install-PlatformDailyUpdaters.ps1](scripts/Install-PlatformDailyUpdaters.ps1) | 위 세 작업을 등록·해제·경로 재설정하는 정본 설치 스크립트. `-Remove`로 전체 해제. |
 | [OPERATIONS.md](OPERATIONS.md) | 명령, 로그, 복구 방법을 포함한 상세 운영 가이드다. |
 
 ## 알림 읽는 법
@@ -60,7 +63,7 @@ cscript //NoLogo .\shared\platform-auto-update\scripts\Update-AntigravityAtLogon
 
 ## 주의할 점
 
-- 스크립트 이름이나 폴더 위치를 바꾸면 Windows 시작 프로그램의 경로도 함께 바꿔야 한다.
+- 스크립트 이름이나 폴더 위치(저장소 경로 포함)를 바꾸면, 새 위치에서 `Install-PlatformDailyUpdaters.ps1`을 한 번 실행해 예약 작업 경로를 재등록해야 한다. (안 하면 "스크립트 파일을 찾을 수 없습니다" 오류가 난다.)
 - 이 구성은 현재 사용자 계정에만 적용된다. 다른 Windows 계정에는 별도로 등록해야 한다.
 - Claude Code는 제품 내장 자동업데이트를 사용하므로 이 폴더에 별도 업데이트 스크립트가 없다.
 

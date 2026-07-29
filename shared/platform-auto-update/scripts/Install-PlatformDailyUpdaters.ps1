@@ -63,7 +63,8 @@ foreach ($item in $scripts) {
     }
 
     # 3. 신규 일일 태스크 등록
-    $action = New-ScheduledTaskAction -Execute "$env:SystemRoot\System32\wscript.exe" -Argument ('"{0}"' -f $scriptPath)
+    # //B = 배치(무음) 모드. 스크립트 오류·경로 문제 시에도 대화상자를 띄우지 않는다.
+    $action = New-ScheduledTaskAction -Execute "$env:SystemRoot\System32\wscript.exe" -Argument ('//B "{0}"' -f $scriptPath)
     
     # 15:00 / 15:10 / 15:20 매일 실행 트리거 정의
     $trigger = New-ScheduledTaskTrigger -Daily -At $item.Time
