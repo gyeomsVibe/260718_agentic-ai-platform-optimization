@@ -115,6 +115,22 @@ function Backup-And-ReplaceDirectory {
     Copy-Item -LiteralPath $Source -Destination $Destination -Recurse -Force
 }
 
+# 배포 전 엄격 검증 게이트.
+# 3대 도구 중 Codex 의 YAML 파서가 가장 엄격해, 위반 시 스킬 로딩 자체를 거부한다.
+# Claude Code 는 관대해 결함을 은폐하므로 반드시 엄격 파서로 먼저 막는다.
+$validator = Join-Path $PSScriptRoot 'validate-skill-manifests.py'
+if (Test-Path -LiteralPath $validator) {
+    $validatorOutput = & python $validator 2>&1
+    $validatorExit = $LASTEXITCODE
+    $validatorOutput | ForEach-Object { Write-Output $_ }
+    if ($validatorExit -ne 0) {
+        throw "매니페스트 검증 실패 (exit $validatorExit). 배포를 중단합니다."
+    }
+}
+else {
+    throw "매니페스트 검증기를 찾을 수 없습니다: $validator"
+}
+
 New-Item -ItemType Directory -Force -Path $stageRoot | Out-Null
 $staged = @{}
 foreach ($definition in $definitions) {
@@ -126,7 +142,7 @@ $strategicBody = [regex]::Replace($strategicCanonical, '(?s)\A---\s*.*?\s*---\s*
 $claudeStrategic = @"
 ---
 name: mia-strategic
-description: Activate the MIA strategic hypothesis-verification workflow when the user explicitly says "MIA모드 발동" or invokes `$mia-strategic for planning, review, execution, or validation.
+description: Activate the MIA strategic hypothesis-verification workflow when the user says "MIA모드 발동", "MIA 전략스킬 발동", "MIA 전략절차 발동", "MIA 전략스킬 해줘", "MIA 전략절차 해줘", or invokes `$mia-strategic for planning, review, execution, or validation.
 argument-hint: "MIA모드 발동: [기획|검토|실행|검증] <목표>"
 user-invocable: true
 ---

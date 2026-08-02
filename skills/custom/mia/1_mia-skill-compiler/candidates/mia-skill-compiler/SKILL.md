@@ -1,6 +1,6 @@
 ---
 name: mia-skill-compiler
-description: 사용자의 초기 아이디어, GPT·챗봇 설계, 문서, 코드, URL 또는 기존 Skill을 설계 근거로 조사하고 PRD로 구체화하여 Antigravity·Claude Code·Codex용 Agent Skill 후보를 생성·검증합니다. 사용자가 $mia-skill-compiler를 명시 호출하여 새 Agent Skill을 만들거나 기존 Skill을 개선하고 SELFREFINE, REDTEAM, ELI10, DEEPDIVE, ALT3, CRITIC, OPTIMIZE, STEPBYSTEP, EXPERT, STRUCTURED FEW-SHOT 모드를 적용할 때 사용하세요. GPT 챗봇이나 GPT Builder 패키지를 산출하지 마세요. 설치·전역 배포·외부 실행은 해당 작업 직전의 별도 승인 없이는 수행하지 마세요.
+description: 사용자의 초기 아이디어, GPT·챗봇 설계, 문서, 코드, URL 또는 기존 Skill을 설계 근거로 조사하고 PRD로 구체화하여 Antigravity·Claude Code·Codex용 Agent Skill 후보를 생성·검증합니다. 사용자가 "$mia-skill-compiler", "MIA 스킬컴파일러 발동", "MIA 스킬컴파일러 해줘"로 명시 호출하여 새 Agent Skill을 만들거나 기존 Skill을 개선하고 SELFREFINE, REDTEAM, ELI10, DEEPDIVE, ALT3, CRITIC, OPTIMIZE, STEPBYSTEP, EXPERT, STRUCTURED FEW-SHOT 모드를 적용할 때 사용하세요. GPT 챗봇이나 GPT Builder 패키지를 산출하지 마세요. 설치·전역 배포·외부 실행은 해당 작업 직전의 별도 승인 없이는 수행하지 마세요.
 ---
 
 # MIA Skill Compiler
