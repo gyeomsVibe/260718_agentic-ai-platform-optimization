@@ -6,4 +6,5 @@
 - Fetch before pushing. If the remote is ahead or histories diverge, stop; never auto-pull, stash, rebase, merge, force-push, or rewrite history to continue.
 - A global rule never grants standing push approval. A named repository may grant it in scoped rules; otherwise ask at the push boundary.
 - For ordinary work, use Conventional Commits, at most one work commit, and one normal push per meaningful unit. Describe pull requests with changes, verification, and risks.
+- **Post-Push Verification Protocol**: After executing `git push`, verify that `HEAD` matches `origin/<branch>` (`FETCH_HEAD`) and confirm that remote tracked state mirrors the required workspace targets without missing directories.
 - Create a second handoff commit only for an explicit `handoff`, `인계`, or cross-platform resumption request. Handoff never expands other approvals.
