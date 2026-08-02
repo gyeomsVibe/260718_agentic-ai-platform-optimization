@@ -23,6 +23,16 @@ except ImportError:
 
 CATALOG = Path(__file__).resolve().parent.parent
 
+# 회귀 테스트가 픽스처 카탈로그를 지정할 수 있게 한다.
+# 이 옵션이 없으면 검증기가 자기 자신을 잡아내는지 확인할 방법이 없어,
+# 가드를 무력화해도 통과하는 무의미한 항체만 만들 수 있다. (2026-08-02 관측)
+if "--catalog" in sys.argv:
+    _idx = sys.argv.index("--catalog")
+    if _idx + 1 >= len(sys.argv):
+        print("ERROR: --catalog 뒤에 경로가 필요합니다.", file=sys.stderr)
+        sys.exit(2)
+    CATALOG = Path(sys.argv[_idx + 1]).resolve()
+
 # 정본 스킬 위치 (sync-mia-catalog.ps1 의 definitions 와 일치해야 한다)
 SKILLS = {
     "mia-skill-compiler": CATALOG / "1_mia-skill-compiler" / "candidates" / "mia-skill-compiler",
@@ -180,6 +190,26 @@ for gen_label, gen_path in GENERATED_FILES.items():
     desc = data.get("description", "")
     check_korean_integrity(desc, f"생성본 {gen_label}")
     check_plain_scalar_hazards(raw, f"생성본 {gen_label}")
+
+# ── 4) 배포 스크립트 BOM 검사 ──────────────────────────────────────────────
+# Windows PowerShell 5.1 은 BOM 없는 UTF-8 을 시스템 코드페이지(CP949)로 읽는다.
+# sync-mia-catalog.ps1 의 here-string 에는 한국어가 들어 있어, BOM 이 빠지면
+# 5.1 에서 다른 내용이 생성되고 claude/mia-strategic 가 정본과 어긋난다.
+# 2026-08-02 에 실제로 발생했고, pwsh(7) 로만 돌리면 드러나지 않아 은폐된다.
+
+BOM = b"\xef\xbb\xbf"
+BOM_REQUIRED_SCRIPTS = [CATALOG / "scripts" / "sync-mia-catalog.ps1"]
+
+for script_path in BOM_REQUIRED_SCRIPTS:
+    if not script_path.exists():
+        # 픽스처 카탈로그에는 배포 스크립트가 없을 수 있다.
+        continue
+    head = script_path.read_bytes()[:3]
+    if head != BOM:
+        errors.append(
+            f"{script_path.name}: UTF-8 BOM 없음 (선두 {head.hex(' ') or '빈 파일'}). "
+            f"Windows PowerShell 5.1 이 CP949 로 오독해 한국어 생성물이 깨집니다."
+        )
 
 # ── 결과 출력 ──────────────────────────────────────────────────────────────
 

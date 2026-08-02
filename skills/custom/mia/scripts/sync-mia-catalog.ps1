@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [ValidateSet('Check', 'Apply')]
     [string]$Mode = 'Check'
@@ -46,6 +46,8 @@ function New-StagedPackage {
     return $destination
 }
 
+$sha256 = [System.Security.Cryptography.SHA256]::Create()
+
 function Get-RelativeFileMap {
     param([Parameter(Mandatory)][string]$Root)
 
@@ -56,7 +58,12 @@ function Get-RelativeFileMap {
     $resolvedRoot = (Resolve-Path -LiteralPath $Root).Path.TrimEnd('\')
     foreach ($file in Get-ChildItem -LiteralPath $resolvedRoot -Recurse -File) {
         $relative = $file.FullName.Substring($resolvedRoot.Length).TrimStart('\').Replace('\', '/')
-        $map[$relative] = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash
+        # Get-FileHash 는 Microsoft.PowerShell.Utility 모듈 자동 로드에 의존한다.
+        # npm run 등 축소된 환경에서 로드에 실패해 CommandNotFoundException 이 났다.
+        # .NET 을 직접 쓰면 환경에 관계없이 동작한다.
+        $map[$relative] = [BitConverter]::ToString(
+            $sha256.ComputeHash([IO.File]::ReadAllBytes($file.FullName))
+        ).Replace('-', '')
     }
     return $map
 }
