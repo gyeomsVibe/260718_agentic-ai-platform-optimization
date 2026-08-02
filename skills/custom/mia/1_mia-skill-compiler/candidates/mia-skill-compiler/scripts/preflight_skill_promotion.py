@@ -110,10 +110,20 @@ def add(
 
 
 def parse_name(skill_file: Path, findings: list[Finding]) -> str | None:
-    """SKILL.md 프런트매터에서 name을 읽는다."""
+    """SKILL.md 프런트매터를 엄격 YAML 파서로 읽고 name을 돌려준다.
+
+    정규식으로 name 만 뽑으면 프런트매터 전체가 유효한 YAML 인지 알 수 없다.
+    2026-08-02 에 `description: 'MIA 전략절차' 스킬 …` 이 인용 스칼라 조기 종료로
+    Codex 의 스킬 로딩을 막았는데, 정규식 검사만으로는 그대로 통과했다.
+    가장 엄격한 소비자(Codex)와 같은 방식으로 파싱해 여기서 먼저 잡는다.
+
+    소유권: 이 함수는 모든 Agent Skill 에 공통인 프런트매터 규격만 본다.
+    MIA 카탈로그 전용 규격(openai.yaml 정책, BOM, 생성본 무결성)은
+    skills/custom/mia/scripts/validate-skill-manifests.py 가 소유한다. 중복 정의하지 않는다.
+    """
 
     try:
-        text = skill_file.read_text(encoding="utf-8")
+        text = skill_file.read_text(encoding="utf-8-sig")
     except (OSError, UnicodeError) as exc:
         add(findings, "error", "unreadable_skill", str(exc), skill_file)
         return None
@@ -121,12 +131,43 @@ def parse_name(skill_file: Path, findings: list[Finding]) -> str | None:
     if not match:
         add(findings, "error", "invalid_frontmatter", "YAML 프런트매터가 없습니다.", skill_file)
         return None
-    for line in match.group(1).splitlines():
-        field = re.match(r"^name:\s*(.+?)\s*$", line)
-        if field:
-            return field.group(1).strip().strip("\"'")
-    add(findings, "error", "missing_name", "프런트매터에 name이 없습니다.", skill_file)
-    return None
+
+    try:
+        import yaml
+    except ImportError:
+        add(
+            findings,
+            "error",
+            "yaml_parser_unavailable",
+            "pyyaml 이 없어 프런트매터를 엄격 검증할 수 없습니다. pip install pyyaml 후 다시 실행하세요.",
+            skill_file,
+        )
+        return None
+
+    try:
+        data = yaml.safe_load(match.group(1))
+    except yaml.YAMLError as exc:
+        first = str(exc).splitlines()[0]
+        add(
+            findings,
+            "error",
+            "invalid_frontmatter_yaml",
+            f"프런트매터가 유효한 YAML 이 아닙니다 - {first}. "
+            f"값을 인용부호로 시작했다면 같은 부호로 닫아야 합니다.",
+            skill_file,
+        )
+        return None
+
+    if not isinstance(data, dict):
+        add(findings, "error", "invalid_frontmatter", "프런트매터가 매핑이 아닙니다.", skill_file)
+        return None
+    if not data.get("description"):
+        add(findings, "error", "missing_description", "프런트매터에 description이 없습니다.", skill_file)
+    name = data.get("name")
+    if not name:
+        add(findings, "error", "missing_name", "프런트매터에 name이 없습니다.", skill_file)
+        return None
+    return str(name).strip()
 
 
 def audit_candidate(
