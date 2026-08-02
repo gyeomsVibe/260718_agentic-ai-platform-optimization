@@ -2,6 +2,20 @@
 
 > MIA(Modular Intelligence Architect) 시리즈의 실행 정본과 제작/테스트 워크벤치를 통일 관리합니다.
 
+## 📖 새 스킬을 만들거나 고치기 전에
+
+**[제작 교본 — AUTHORING_HANDBOOK.md](AUTHORING_HANDBOOK.md) 를 먼저 읽는다.**
+
+3대 도구 중 가장 엄격한 Codex 기준으로 고정한 제작 절차·준수 규격·검증 회로가 담겨 있고,
+`scripts/validate-skill-manifests.py` 가 이를 배포 단계에서 강제한다. 규격 위반은 배포가 중단된다.
+
+| 알고 싶은 것 | 문서 |
+|---|---|
+| 제작 절차·규격·검증 회로 | [AUTHORING_HANDBOOK.md](AUTHORING_HANDBOOK.md) ← **진입점** |
+| 설계 철학 (20개 불변 원칙) | [skill-creation-bible.md](1_mia-skill-compiler/candidates/mia-skill-compiler/references/skill-creation-bible.md) |
+| 플랫폼별 설치 경로·어댑터 계약 | [platform-skill-contracts.md](1_mia-skill-compiler/candidates/mia-skill-compiler/references/platform-skill-contracts.md) |
+| 결함 주입·변이 진단 프로토콜 | [vaccine-protocol.md](2_mia-vaccine-test/references/vaccine-protocol.md) |
+
 ---
 
 ## 📂 카탈로그 디렉터리 구성

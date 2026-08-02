@@ -25,6 +25,7 @@ description: 사용자의 초기 아이디어, GPT·챗봇 설계, 문서, 코�
 - 사용자 지정 사고 모드: [사고 모드 계약](references/thinking-modes.md)
 - 파일·상태·승인·평가: [산출물·승격 계약](references/output-promotion-contract.md)
 - 세 플랫폼의 설치·발견 차이: [플랫폼 Agent Skill 계약](references/platform-skill-contracts.md)
+- **MIA 시리즈 스킬을 만들 때의 준수 규격·배포 게이트·3도구 검증 회로: [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md)** — 규격 위반은 배포가 자동 차단되므로 정본 작성 전에 확인하세요.
 
 ## 사용자 계약
 
