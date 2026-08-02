@@ -1,11 +1,11 @@
 # MIA 플러그인 패키지
 
-> 이 폴더는 `plan-review-execute`를 플랫폼에 전달하는 패키지입니다. 실행 로직의 정본은
+> 이 폴더는 `mia-strategic`을 플랫폼에 전달하는 패키지입니다. 실행 로직의 정본은
 > 상위 [`../SKILL.md`](../SKILL.md)이며, 플러그인 내부의 `SKILL.md`는 생성된 배포본입니다.
 
 ## 가장 중요한 규칙
 
-`skills/plan-review-execute/SKILL.md`를 직접 수정하지 마세요. 동작 변경은 반드시
+`skills/mia-strategic/SKILL.md`를 직접 수정하지 마세요. 동작 변경은 반드시
 [`../SKILL.md`](../SKILL.md)에서 시작하고 동기화 스크립트로 생성본을 갱신합니다.
 
 ## 정본과 생성본
@@ -15,16 +15,16 @@
 | `../SKILL.md` | 세 플랫폼 공통 실행 정본 | 예 |
 | `../agents/openai.yaml` | Codex 표시·발동 메타데이터 | 필요할 때 |
 | `../CLAUDE-SKILL.md` | Claude Code용 생성 어댑터 | 아니요 |
-| `skills/plan-review-execute/SKILL.md` | 플러그인에 포함되는 생성 복제본 | 아니요 |
+| `skills/mia-strategic/SKILL.md` | 플러그인에 포함되는 생성 복제본 | 아니요 |
 | `.claude-plugin/`, `.codex-plugin/` | 플랫폼 패키지 메타데이터 | 패키지 변경 시 |
-| `scripts/sync-mia-skills.ps1` | 비교, 생성, 전역 배포를 수행하는 도구 | 동기화 계약 변경 시 |
+| `scripts/sync-mia-skills.ps1` | 카탈로그 동기화 도구로 위임하는 호환 래퍼 | 아니요 |
 
 ## 먼저 확인만 하기
 
 저장소 루트에서 다음 명령을 실행합니다.
 
 ```powershell
-./skills/custom/mia/plan-review-execute/plugin/scripts/sync-mia-skills.ps1 -Mode Check
+./skills/custom/mia/scripts/sync-mia-catalog.ps1 -Mode Check
 ```
 
 `Check`는 파일을 쓰지 않습니다. 정본, 생성본, 현재 전역 설치본이 같은지 비교하고
@@ -34,7 +34,7 @@
 ## 승인 후 배포하기
 
 ```powershell
-./skills/custom/mia/plan-review-execute/plugin/scripts/sync-mia-skills.ps1 -Mode Apply
+./skills/custom/mia/scripts/sync-mia-catalog.ps1 -Mode Apply
 ```
 
 `Apply`는 다음 위치를 갱신할 수 있습니다.
@@ -45,14 +45,8 @@
 따라서 실행 전에 변경 대상, 복구 방법, 전역 배포 승인을 확인해야 합니다. 저장소 문서만
 수정하는 작업에는 `Apply`가 필요하지 않습니다.
 
-기존 Antigravity 독립 설치본을 플러그인 방식으로 옮길 때만 다음 옵션을 사용합니다.
-
-```powershell
-./skills/custom/mia/plan-review-execute/plugin/scripts/sync-mia-skills.ps1 -Mode Apply -MigrateAntigravity
-```
-
-`-MigrateAntigravity`는 새 플러그인 배포가 성공한 뒤 기존 독립 설치본을 제거합니다.
-대상이 맞는지 확인하지 않은 상태에서는 실행하지 않습니다.
+카탈로그 `Apply`는 새 플러그인 배포를 먼저 만든 뒤 기존 `plan-review-execute` 및
+Antigravity 독립 `mia-strategic` 설치본을 백업하고 제거해 중복 발동을 막습니다.
 
 ## 변경과 검증 순서
 

@@ -17,17 +17,28 @@
 
 ---
 
-## 🚀 3대 AI 에이전트 전역 설치 (통일 완료: 2026-07-25)
+## 🚀 3대 AI 에이전트 전역 설치
 
 정본은 **이 카탈로그**다. 아래 세 도구의 전역 스킬 폴더에 정본을 그대로 배포한다.
 
 | 에이전트 | 전역 스킬 경로 |
 |---|---|
 | Claude Code | `~/.claude/skills/<스킬>/` |
-| Antigravity (Gemini) | `~/.gemini/config/skills/<스킬>/` |
+| Antigravity (Gemini) | Compiler·Vaccine은 `~/.gemini/config/skills/<스킬>/`, Strategic은 `~/.gemini/config/plugins/mia-modular-intelligence-architect/` |
 | Codex | `~/.codex/skills/<스킬>/` |
 
 - 배포 규약: 각 도구의 `skills/<스킬>/SKILL.md` (이중 중첩 `<스킬>/<스킬>/` 금지)
 - 로컬 워크스페이스 사본: `.agents/skills/`
 - **활성화 정본 3대 스킬**: `mia-skill-compiler` · `mia-vaccine-test` · `mia-strategic`
 - 배포본은 SKILL.md 외 `references/`·`agents/openai.yaml` 을 함께 포함한다.
+
+현재 정합성을 확인하거나 승인된 전역 배포를 수행할 때는 카탈로그 동기화 도구를 사용한다.
+
+```powershell
+./scripts/sync-mia-catalog.ps1 -Mode Check
+./scripts/sync-mia-catalog.ps1 -Mode Apply
+```
+
+`Apply`는 기존 설치본을 `~/.mia-skill-backups/<timestamp>/`에 보존한 뒤 정확한 정본으로
+교체한다. 현재 작업에서 실제 발견되는 공용 사용자 경로 `~/.agents/skills/`와 워크스페이스
+`.agents/skills/`도 함께 맞춘다. 파일 일치는 다음 새 작업의 런타임 발견을 대신하지 않는다.

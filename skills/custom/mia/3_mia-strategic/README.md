@@ -1,4 +1,4 @@
-# MIA plan-review-execute
+# MIA Strategic
 
 > 사용자가 `MIA모드 발동`을 명시했을 때 기획, 비판, 실행, 검증을 순서대로 조율하는
 > Claude Code·Codex·Antigravity 공용 Skill입니다. 이 폴더가 실행 로직의 정본입니다.
@@ -11,7 +11,7 @@
 | [`agents/openai.yaml`](agents/openai.yaml) | Codex 표시명과 명시 발동 정책 | 필요할 때 |
 | `CLAUDE-SKILL.md` | Claude Code용 생성 어댑터 | 아니요 |
 | [`plugin/`](plugin/) | Antigravity 패키지와 동기화 도구 | 패키지 설정만 |
-| `plugin/skills/plan-review-execute/SKILL.md` | 플러그인에 포함되는 생성 복제본 | 아니요 |
+| `plugin/skills/mia-strategic/SKILL.md` | 플러그인에 포함되는 생성 복제본 | 아니요 |
 
 동작을 바꾸려면 `SKILL.md`만 수정합니다. 생성본을 직접 고치면 다음 동기화에서
 덮어써지거나 플랫폼별 동작이 어긋납니다.
@@ -31,7 +31,7 @@
 5. 새 작업에서 Available skills 노출과 명시 발동을 다시 확인합니다.
 
 ```powershell
-./plugin/scripts/sync-mia-skills.ps1 -Mode Check
+../scripts/sync-mia-catalog.ps1 -Mode Check
 ```
 
 `Check`는 파일을 바꾸지 않습니다. `Apply`는 사용자 홈의 전역 Skill과 플러그인 설치본을
