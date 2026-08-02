@@ -1,4 +1,4 @@
-﻿[CmdletBinding()]
+[CmdletBinding()]
 param(
     [ValidateSet('Check', 'Apply')]
     [string]$Mode = 'Check'

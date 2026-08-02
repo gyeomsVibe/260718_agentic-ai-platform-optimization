@@ -11,6 +11,10 @@ YAML 인용 스칼라로 오인되면서 Codex 가 스킬 로딩을 거부했다
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 try:
     import yaml
 except ImportError:
@@ -78,13 +82,13 @@ for name, root in SKILLS.items():
     if not skill_md.exists():
         errors.append(f"{name}: SKILL.md 없음 ({skill_md})")
     else:
-        raw = extract_frontmatter(skill_md.read_text(encoding="utf-8"), f"{name}/SKILL.md")
+        raw = extract_frontmatter(skill_md.read_text(encoding="utf-8-sig"), f"{name}/SKILL.md")
         if raw is not None:
             try:
                 data = yaml.safe_load(raw)
             except yaml.YAMLError as exc:
                 first = str(exc).splitlines()[0]
-                errors.append(f"{name}/SKILL.md: YAML 파싱 실패 — {first}")
+                errors.append(f"{name}/SKILL.md: YAML 파싱 실패 - {first}")
             else:
                 if not isinstance(data, dict):
                     errors.append(f"{name}/SKILL.md: frontmatter 가 매핑이 아닙니다")
@@ -103,10 +107,10 @@ for name, root in SKILLS.items():
         errors.append(f"{name}: agents/openai.yaml 없음 ({openai_yaml})")
     else:
         try:
-            data = yaml.safe_load(openai_yaml.read_text(encoding="utf-8"))
+            data = yaml.safe_load(openai_yaml.read_text(encoding="utf-8-sig"))
         except yaml.YAMLError as exc:
             first = str(exc).splitlines()[0]
-            errors.append(f"{name}/agents/openai.yaml: YAML 파싱 실패 — {first}")
+            errors.append(f"{name}/agents/openai.yaml: YAML 파싱 실패 - {first}")
         else:
             if not isinstance(data, dict):
                 errors.append(f"{name}/agents/openai.yaml: 최상위가 매핑이 아닙니다")
@@ -121,7 +125,7 @@ for name, root in SKILLS.items():
                 implicit = policy.get("allow_implicit_invocation") if isinstance(policy, dict) else None
                 if implicit is None:
                     warnings.append(
-                        f"{name}: policy.allow_implicit_invocation 미지정 — Codex 기본값에 의존합니다. "
+                        f"{name}: policy.allow_implicit_invocation 미지정 - Codex 기본값에 의존합니다. "
                         f"의도를 명시하세요."
                     )
                 elif implicit is False:
@@ -157,7 +161,7 @@ for gen_label, gen_path in GENERATED_FILES.items():
     if not gen_path.exists():
         errors.append(f"생성본 {gen_label}: 파일 없음 ({gen_path})")
         continue
-    gen_text = gen_path.read_text(encoding="utf-8")
+    gen_text = gen_path.read_text(encoding="utf-8-sig")
     raw = extract_frontmatter(gen_text, f"생성본 {gen_label}")
     if raw is None:
         continue
@@ -165,7 +169,7 @@ for gen_label, gen_path in GENERATED_FILES.items():
         data = yaml.safe_load(raw)
     except yaml.YAMLError as exc:
         first = str(exc).splitlines()[0]
-        errors.append(f"생성본 {gen_label}: YAML 파싱 실패 — {first}")
+        errors.append(f"생성본 {gen_label}: YAML 파싱 실패 - {first}")
         continue
     if not isinstance(data, dict):
         errors.append(f"생성본 {gen_label}: frontmatter 가 매핑이 아닙니다")

@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "description": "MIA Skill Compiler workbench validation tools",
   "scripts": {
-    "check": "npm run typecheck && npm run lint && npm run handoff:test && npm run handoff:check && npm run skills:check",
+    "check": "npm run typecheck && npm run lint && npm run handoff:test && npm run handoff:check && npm run skills:check && npm run skills:test",
     "skills:check": "powershell -ExecutionPolicy Bypass -File skills/custom/mia/scripts/sync-mia-catalog.ps1 -Mode Check",
+    "skills:test": "node --test skills/custom/mia/tests/*.test.mjs",
     "handoff:check": "node handoff/scripts/validate-handoff.mjs",
     "handoff:verify-remote": "node handoff/scripts/validate-handoff.mjs --verify-remote",
     "handoff:test": "node --test handoff/tests/*.test.mjs",
