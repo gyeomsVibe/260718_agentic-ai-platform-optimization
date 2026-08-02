@@ -2,7 +2,8 @@
 param(
     [double]$Scale = 1.15,
     [switch]$Demo,
-    [int]$AutoCloseAfterSeconds = 0
+    [int]$AutoCloseAfterSeconds = 0,
+    [string]$DiagnosticsOut
 )
 
 Set-StrictMode -Version Latest
@@ -16,8 +17,10 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
 
 $cellWidth = 192
 $cellHeight = 208
+$motionTempo = 1.60
 $root = $PSScriptRoot
-$spritePath = Join-Path $root 'assets\\spritesheet.png'
+$normalizedSpritePath = Join-Path $root 'assets\\spritesheet-normalized.png'
+$spritePath = if (Test-Path -LiteralPath $normalizedSpritePath) { $normalizedSpritePath } else { Join-Path $root 'assets\\spritesheet.png' }
 $stateFile = Join-Path $root 'state.json'
 
 if (-not (Test-Path -LiteralPath $spritePath)) {
@@ -80,6 +83,45 @@ $script:stateFileStamp = [DateTime]::MinValue
 $script:externalExpiresAt = $null
 $script:demoIndex = 0
 $script:nextDemoAt = [DateTime]::UtcNow.AddSeconds(2)
+$script:personalityEnabled = $true
+$script:personalityIndex = 0
+$script:nextPersonalityAt = [DateTime]::UtcNow.AddSeconds(8)
+$script:personalityExpiresAt = $null
+$script:personalityPlan = @(
+    [pscustomobject]@{ State = 'waiting'; HoldMs = 4400; NextDelaySeconds = 22; Label = 'waiting' },
+    [pscustomobject]@{ State = 'review';  HoldMs = 4800; NextDelaySeconds = 40; Label = 'reviewing' },
+    [pscustomobject]@{ State = 'waving';  HoldMs = 4000; NextDelaySeconds = 68; Label = 'waving' }
+)
+$script:personalityEvents = [System.Collections.Generic.List[object]]::new()
+
+function Add-PersonalityEvent {
+    param([string]$Kind, [string]$State)
+
+    $script:personalityEvents.Add([ordered]@{
+            atUtc = [DateTime]::UtcNow.ToString('o')
+            kind = $Kind
+            state = $State
+        })
+}
+
+function Write-Diagnostics {
+    if ([string]::IsNullOrWhiteSpace($DiagnosticsOut)) {
+        return
+    }
+
+    $directory = Split-Path -Parent $DiagnosticsOut
+    if (-not [string]::IsNullOrWhiteSpace($directory)) {
+        [IO.Directory]::CreateDirectory($directory) | Out-Null
+    }
+    $payload = [ordered]@{
+        finishedAtUtc = [DateTime]::UtcNow.ToString('o')
+        personalityEnabled = $script:personalityEnabled
+        currentState = $script:currentState
+        eventCount = $script:personalityEvents.Count
+        events = @($script:personalityEvents)
+    }
+    [IO.File]::WriteAllText($DiagnosticsOut, ($payload | ConvertTo-Json -Depth 4), (New-Object Text.UTF8Encoding($false)))
+}
 
 function Show-Frame {
     $spec = $states[$script:currentState]
@@ -90,13 +132,46 @@ function Show-Frame {
     $window.Title = "Gyeom Pet Overlay — $($script:currentState)"
 }
 
+function Get-FrameDurationMs {
+    param(
+        [Parameter(Mandatory)][string]$State,
+        [Parameter(Mandatory)][int]$Index
+    )
+
+    return [Math]::Round($states[$State].DurationMs[$Index] * $motionTempo)
+}
+
 function Set-OverlayState {
     param([ValidateSet('idle', 'running-right', 'running-left', 'waving', 'jumping', 'failed', 'waiting', 'running', 'review')][string]$Name)
 
     $script:currentState = $Name
     $script:frameIndex = 0
-    $script:nextFrameAt = [DateTime]::UtcNow.AddMilliseconds($states[$Name].DurationMs[0])
+    $script:nextFrameAt = [DateTime]::UtcNow.AddMilliseconds((Get-FrameDurationMs -State $Name -Index 0))
     Show-Frame
+}
+
+function Schedule-PersonalityAction {
+    param([DateTime]$Now)
+
+    if (-not $script:personalityEnabled -or $null -ne $script:externalExpiresAt -or $Demo) {
+        return
+    }
+
+    if ($null -ne $script:personalityExpiresAt -and $Now -ge $script:personalityExpiresAt) {
+        $script:personalityExpiresAt = $null
+        Set-OverlayState 'idle'
+        Add-PersonalityEvent 'return-to-idle' 'idle'
+        return
+    }
+
+    if ($script:currentState -eq 'idle' -and $Now -ge $script:nextPersonalityAt) {
+        $step = $script:personalityPlan[$script:personalityIndex]
+        $script:personalityIndex = ($script:personalityIndex + 1) % $script:personalityPlan.Count
+        Set-OverlayState $step.State
+        $script:personalityExpiresAt = $Now.AddMilliseconds($step.HoldMs)
+        $script:nextPersonalityAt = $Now.AddSeconds($step.NextDelaySeconds)
+        Add-PersonalityEvent 'personality-action' $step.State
+    }
 }
 
 function Read-RequestedState {
@@ -117,6 +192,14 @@ function Read-RequestedState {
                     $ttl = [int]$request.ttlMs
                 }
                 $script:externalExpiresAt = if ($ttl -gt 0) { [DateTime]::UtcNow.AddMilliseconds($ttl) } else { $null }
+                $personalityProperty = $request.PSObject.Properties['personalityEnabled']
+                if ($null -ne $personalityProperty) {
+                    $script:personalityEnabled = [bool]$personalityProperty.Value
+                    if (-not $script:personalityEnabled) {
+                        $script:personalityExpiresAt = $null
+                    }
+                }
+                Add-PersonalityEvent 'external-state' $requestedState
             }
         }
     }
@@ -147,6 +230,17 @@ $demoItem.Add_Click({
         Set-OverlayState $demoOrder[$script:demoIndex]
     })
 [void]$menu.Items.Add($demoItem)
+$personalityItem = New-Object Windows.Controls.MenuItem
+$personalityItem.Header = 'Toggle personality loop'
+$personalityItem.Add_Click({
+        $script:personalityEnabled = -not $script:personalityEnabled
+        $script:personalityExpiresAt = $null
+        if ($script:currentState -ne 'idle' -and $null -eq $script:externalExpiresAt) {
+            Set-OverlayState 'idle'
+        }
+        Add-PersonalityEvent 'personality-toggle' (if ($script:personalityEnabled) { 'enabled' } else { 'disabled' })
+    })
+[void]$menu.Items.Add($personalityItem)
 $closeItem = New-Object Windows.Controls.MenuItem
 $closeItem.Header = '오버레이 닫기'
 $closeItem.Add_Click({ $window.Close() })
@@ -169,7 +263,7 @@ $ticker.Add_Tick({
         $spec = $states[$script:currentState]
         if ($now -ge $script:nextFrameAt) {
             $script:frameIndex = ($script:frameIndex + 1) % $spec.Frames.Count
-            $script:nextFrameAt = $now.AddMilliseconds($spec.DurationMs[$script:frameIndex])
+            $script:nextFrameAt = $now.AddMilliseconds((Get-FrameDurationMs -State $script:currentState -Index $script:frameIndex))
             Show-Frame
         }
         if ($Demo -and $now -ge $script:nextDemoAt) {
@@ -177,13 +271,14 @@ $ticker.Add_Tick({
             Set-OverlayState $demoOrder[$script:demoIndex]
             $script:nextDemoAt = $now.AddSeconds(1.5)
         }
+        Schedule-PersonalityAction $now
     })
 $ticker.Start()
 
 if ($AutoCloseAfterSeconds -gt 0) {
     $closer = New-Object Windows.Threading.DispatcherTimer
     $closer.Interval = [TimeSpan]::FromSeconds($AutoCloseAfterSeconds)
-    $closer.Add_Tick({ $closer.Stop(); $window.Close() })
+    $closer.Add_Tick({ $closer.Stop(); Write-Diagnostics; $window.Close() })
     $closer.Start()
 }
 
@@ -192,3 +287,4 @@ if ($Demo) {
     $script:nextDemoAt = [DateTime]::UtcNow.AddSeconds(1)
 }
 [void]$window.ShowDialog()
+Write-Diagnostics

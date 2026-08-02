@@ -1,0 +1,82 @@
+{
+  "ok": true,
+  "frames_root": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\product-completion-20260802\\qa\\rows\\waving\\frames",
+  "states": [
+    "waving"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "waving",
+      "expected_frames": 4,
+      "actual_frames": 4,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\product-completion-20260802\\qa\\rows\\waving\\frames\\waving\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8201,
+          "bbox": [
+            65,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 42
+        },
+        {
+          "index": 1,
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\product-completion-20260802\\qa\\rows\\waving\\frames\\waving\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8729,
+          "bbox": [
+            59,
+            5,
+            133,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 59
+        },
+        {
+          "index": 2,
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\product-completion-20260802\\qa\\rows\\waving\\frames\\waving\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8745,
+          "bbox": [
+            52,
+            5,
+            139,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 54
+        },
+        {
+          "index": 3,
+          "file": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\product-completion-20260802\\qa\\rows\\waving\\frames\\waving\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8251,
+          "bbox": [
+            65,
+            5,
+            127,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 58
+        }
+      ]
+    }
+  ]
+}

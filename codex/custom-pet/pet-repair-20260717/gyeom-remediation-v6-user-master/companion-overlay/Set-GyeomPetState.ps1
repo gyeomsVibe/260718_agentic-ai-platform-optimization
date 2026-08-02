@@ -3,7 +3,8 @@ param(
     [ValidateSet('idle', 'running-right', 'running-left', 'waving', 'jumping', 'failed', 'waiting', 'running', 'review')]
     [string]$State,
     [int]$DurationMs = 0,
-    [switch]$Clear
+    [switch]$Clear,
+    [Nullable[bool]]$PersonalityEnabled
 )
 
 Set-StrictMode -Version Latest
@@ -26,6 +27,9 @@ $payload = [ordered]@{
     state = $State
     ttlMs = $DurationMs
     updatedAt = [DateTime]::UtcNow.ToString('o')
+}
+if ($null -ne $PersonalityEnabled) {
+    $payload.personalityEnabled = [bool]$PersonalityEnabled
 }
 $json = $payload | ConvertTo-Json
 [IO.File]::WriteAllText($temporaryPath, $json, (New-Object Text.UTF8Encoding($false)))

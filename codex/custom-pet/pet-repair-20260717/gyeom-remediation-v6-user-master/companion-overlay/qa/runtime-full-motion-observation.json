@@ -1,0 +1,58 @@
+{
+    "finishedAtUtc":  "2026-08-02T13:27:32.8452836Z",
+    "personalityEnabled":  false,
+    "currentState":  "idle",
+    "eventCount":  10,
+    "events":  [
+                   {
+                       "atUtc":  "2026-08-02T13:27:08.2510507Z",
+                       "kind":  "external-state",
+                       "state":  "idle"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:08.4764592Z",
+                       "kind":  "external-state",
+                       "state":  "idle"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:10.0871320Z",
+                       "kind":  "external-state",
+                       "state":  "running-right"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:11.6777239Z",
+                       "kind":  "external-state",
+                       "state":  "running-left"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:13.2903738Z",
+                       "kind":  "external-state",
+                       "state":  "waving"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:14.9245797Z",
+                       "kind":  "external-state",
+                       "state":  "jumping"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:16.5255968Z",
+                       "kind":  "external-state",
+                       "state":  "failed"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:18.1217662Z",
+                       "kind":  "external-state",
+                       "state":  "waiting"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:19.7129565Z",
+                       "kind":  "external-state",
+                       "state":  "running"
+                   },
+                   {
+                       "atUtc":  "2026-08-02T13:27:21.3042997Z",
+                       "kind":  "external-state",
+                       "state":  "review"
+                   }
+               ]
+}

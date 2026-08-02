@@ -1,0 +1,1403 @@
+{
+  "ok": true,
+  "input": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\spritesheet.png",
+  "output": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\product-completion-20260802\\candidate-atlas.png",
+  "scalePolicy": "fixed-1.0-no-resampling",
+  "aspectRatioPolicy": "source-preserved",
+  "repairPolicy": "complete-audited-rows-only",
+  "repairRows": {
+    "waving": 4,
+    "review": 6
+  },
+  "normalizedStates": [
+    "idle",
+    "running-right",
+    "running-left",
+    "waving",
+    "jumping",
+    "failed",
+    "waiting",
+    "running",
+    "review"
+  ],
+  "cells": [
+    {
+      "changed": true,
+      "sourceBox": [
+        64,
+        1,
+        126,
+        203
+      ],
+      "sourceSize": [
+        62,
+        202
+      ],
+      "targetSize": [
+        62,
+        202
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "idle",
+      "row": 0,
+      "column": 0,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        1,
+        126,
+        203
+      ],
+      "sourceSize": [
+        60,
+        202
+      ],
+      "targetSize": [
+        60,
+        202
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "idle",
+      "row": 0,
+      "column": 1,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        64,
+        1,
+        126,
+        203
+      ],
+      "sourceSize": [
+        62,
+        202
+      ],
+      "targetSize": [
+        62,
+        202
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "idle",
+      "row": 0,
+      "column": 2,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        64,
+        1,
+        126,
+        203
+      ],
+      "sourceSize": [
+        62,
+        202
+      ],
+      "targetSize": [
+        62,
+        202
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "idle",
+      "row": 0,
+      "column": 3,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        64,
+        1,
+        126,
+        203
+      ],
+      "sourceSize": [
+        62,
+        202
+      ],
+      "targetSize": [
+        62,
+        202
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "idle",
+      "row": 0,
+      "column": 4,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        1,
+        126,
+        203
+      ],
+      "sourceSize": [
+        60,
+        202
+      ],
+      "targetSize": [
+        60,
+        202
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "idle",
+      "row": 0,
+      "column": 5,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        42,
+        18,
+        151,
+        203
+      ],
+      "sourceSize": [
+        109,
+        185
+      ],
+      "targetSize": [
+        109,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 0,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        50,
+        18,
+        142,
+        203
+      ],
+      "sourceSize": [
+        92,
+        185
+      ],
+      "targetSize": [
+        92,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 1,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        46,
+        18,
+        146,
+        203
+      ],
+      "sourceSize": [
+        100,
+        185
+      ],
+      "targetSize": [
+        100,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 2,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        46,
+        18,
+        147,
+        203
+      ],
+      "sourceSize": [
+        101,
+        185
+      ],
+      "targetSize": [
+        101,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 3,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        44,
+        18,
+        148,
+        203
+      ],
+      "sourceSize": [
+        104,
+        185
+      ],
+      "targetSize": [
+        104,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 4,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        48,
+        18,
+        142,
+        203
+      ],
+      "sourceSize": [
+        94,
+        185
+      ],
+      "targetSize": [
+        94,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 5,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        51,
+        18,
+        140,
+        203
+      ],
+      "sourceSize": [
+        89,
+        185
+      ],
+      "targetSize": [
+        89,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 6,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        42,
+        18,
+        148,
+        203
+      ],
+      "sourceSize": [
+        106,
+        185
+      ],
+      "targetSize": [
+        106,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-right",
+      "row": 1,
+      "column": 7,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        42,
+        18,
+        148,
+        203
+      ],
+      "sourceSize": [
+        106,
+        185
+      ],
+      "targetSize": [
+        106,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 0,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        51,
+        18,
+        140,
+        203
+      ],
+      "sourceSize": [
+        89,
+        185
+      ],
+      "targetSize": [
+        89,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 1,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        48,
+        18,
+        142,
+        203
+      ],
+      "sourceSize": [
+        94,
+        185
+      ],
+      "targetSize": [
+        94,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 2,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        44,
+        18,
+        148,
+        203
+      ],
+      "sourceSize": [
+        104,
+        185
+      ],
+      "targetSize": [
+        104,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 3,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        46,
+        18,
+        147,
+        203
+      ],
+      "sourceSize": [
+        101,
+        185
+      ],
+      "targetSize": [
+        101,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 4,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        46,
+        18,
+        146,
+        203
+      ],
+      "sourceSize": [
+        100,
+        185
+      ],
+      "targetSize": [
+        100,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 5,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        50,
+        18,
+        142,
+        203
+      ],
+      "sourceSize": [
+        92,
+        185
+      ],
+      "targetSize": [
+        92,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 6,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        42,
+        18,
+        151,
+        203
+      ],
+      "sourceSize": [
+        109,
+        185
+      ],
+      "targetSize": [
+        109,
+        185
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running-left",
+      "row": 2,
+      "column": 7,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        65,
+        5,
+        127,
+        203
+      ],
+      "sourceSize": [
+        62,
+        198
+      ],
+      "targetSize": [
+        62,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waving",
+      "row": 3,
+      "column": 0,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\waving\\00.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        59,
+        5,
+        133,
+        203
+      ],
+      "sourceSize": [
+        74,
+        198
+      ],
+      "targetSize": [
+        74,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waving",
+      "row": 3,
+      "column": 1,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\waving\\01.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        52,
+        5,
+        139,
+        203
+      ],
+      "sourceSize": [
+        87,
+        198
+      ],
+      "targetSize": [
+        87,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waving",
+      "row": 3,
+      "column": 2,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\waving\\02.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        65,
+        5,
+        127,
+        203
+      ],
+      "sourceSize": [
+        62,
+        198
+      ],
+      "targetSize": [
+        62,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waving",
+      "row": 3,
+      "column": 3,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\waving\\03.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        10,
+        126,
+        203
+      ],
+      "sourceSize": [
+        60,
+        193
+      ],
+      "targetSize": [
+        60,
+        193
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "jumping",
+      "row": 4,
+      "column": 0,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        38,
+        10,
+        154,
+        203
+      ],
+      "sourceSize": [
+        116,
+        193
+      ],
+      "targetSize": [
+        116,
+        193
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "jumping",
+      "row": 4,
+      "column": 1,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        28,
+        4,
+        167,
+        185
+      ],
+      "sourceSize": [
+        139,
+        181
+      ],
+      "targetSize": [
+        139,
+        181
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "jumping",
+      "row": 4,
+      "column": 2,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        30,
+        14,
+        163,
+        195
+      ],
+      "sourceSize": [
+        133,
+        181
+      ],
+      "targetSize": [
+        133,
+        181
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "jumping",
+      "row": 4,
+      "column": 3,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        10,
+        126,
+        203
+      ],
+      "sourceSize": [
+        60,
+        193
+      ],
+      "targetSize": [
+        60,
+        193
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "jumping",
+      "row": 4,
+      "column": 4,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        8,
+        125,
+        201
+      ],
+      "sourceSize": [
+        59,
+        193
+      ],
+      "targetSize": [
+        59,
+        193
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 0,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        67,
+        12,
+        125,
+        203
+      ],
+      "sourceSize": [
+        58,
+        191
+      ],
+      "targetSize": [
+        58,
+        191
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 1,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        16,
+        125,
+        203
+      ],
+      "sourceSize": [
+        59,
+        187
+      ],
+      "targetSize": [
+        59,
+        187
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 2,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        23,
+        125,
+        203
+      ],
+      "sourceSize": [
+        59,
+        180
+      ],
+      "targetSize": [
+        59,
+        180
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 3,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        56,
+        64,
+        135,
+        203
+      ],
+      "sourceSize": [
+        79,
+        139
+      ],
+      "targetSize": [
+        79,
+        139
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 4,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        62,
+        29,
+        131,
+        203
+      ],
+      "sourceSize": [
+        69,
+        174
+      ],
+      "targetSize": [
+        69,
+        174
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 5,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        8,
+        125,
+        202
+      ],
+      "sourceSize": [
+        59,
+        194
+      ],
+      "targetSize": [
+        59,
+        194
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 6,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        7,
+        125,
+        201
+      ],
+      "sourceSize": [
+        59,
+        194
+      ],
+      "targetSize": [
+        59,
+        194
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "failed",
+      "row": 5,
+      "column": 7,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        5,
+        125,
+        203
+      ],
+      "sourceSize": [
+        59,
+        198
+      ],
+      "targetSize": [
+        59,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waiting",
+      "row": 6,
+      "column": 0,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        55,
+        5,
+        137,
+        203
+      ],
+      "sourceSize": [
+        82,
+        198
+      ],
+      "targetSize": [
+        82,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waiting",
+      "row": 6,
+      "column": 1,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        68,
+        5,
+        124,
+        203
+      ],
+      "sourceSize": [
+        56,
+        198
+      ],
+      "targetSize": [
+        56,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waiting",
+      "row": 6,
+      "column": 2,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        67,
+        5,
+        124,
+        203
+      ],
+      "sourceSize": [
+        57,
+        198
+      ],
+      "targetSize": [
+        57,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waiting",
+      "row": 6,
+      "column": 3,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        68,
+        5,
+        124,
+        203
+      ],
+      "sourceSize": [
+        56,
+        198
+      ],
+      "targetSize": [
+        56,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waiting",
+      "row": 6,
+      "column": 4,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        69,
+        5,
+        123,
+        203
+      ],
+      "sourceSize": [
+        54,
+        198
+      ],
+      "targetSize": [
+        54,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "waiting",
+      "row": 6,
+      "column": 5,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        67,
+        5,
+        124,
+        203
+      ],
+      "sourceSize": [
+        57,
+        198
+      ],
+      "targetSize": [
+        57,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running",
+      "row": 7,
+      "column": 0,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        65,
+        5,
+        127,
+        203
+      ],
+      "sourceSize": [
+        62,
+        198
+      ],
+      "targetSize": [
+        62,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running",
+      "row": 7,
+      "column": 1,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        67,
+        5,
+        124,
+        203
+      ],
+      "sourceSize": [
+        57,
+        198
+      ],
+      "targetSize": [
+        57,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running",
+      "row": 7,
+      "column": 2,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        65,
+        5,
+        126,
+        203
+      ],
+      "sourceSize": [
+        61,
+        198
+      ],
+      "targetSize": [
+        61,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running",
+      "row": 7,
+      "column": 3,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        65,
+        5,
+        127,
+        203
+      ],
+      "sourceSize": [
+        62,
+        198
+      ],
+      "targetSize": [
+        62,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running",
+      "row": 7,
+      "column": 4,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        67,
+        5,
+        125,
+        203
+      ],
+      "sourceSize": [
+        58,
+        198
+      ],
+      "targetSize": [
+        58,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "running",
+      "row": 7,
+      "column": 5,
+      "source": "original-pixel-identical"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        5,
+        126,
+        203
+      ],
+      "sourceSize": [
+        60,
+        198
+      ],
+      "targetSize": [
+        60,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "review",
+      "row": 8,
+      "column": 0,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\review\\00.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        64,
+        5,
+        128,
+        203
+      ],
+      "sourceSize": [
+        64,
+        198
+      ],
+      "targetSize": [
+        64,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "review",
+      "row": 8,
+      "column": 1,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\review\\01.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        5,
+        126,
+        203
+      ],
+      "sourceSize": [
+        60,
+        198
+      ],
+      "targetSize": [
+        60,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "review",
+      "row": 8,
+      "column": 2,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\review\\02.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        62,
+        5,
+        129,
+        203
+      ],
+      "sourceSize": [
+        67,
+        198
+      ],
+      "targetSize": [
+        67,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "review",
+      "row": 8,
+      "column": 3,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\review\\03.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        65,
+        5,
+        126,
+        203
+      ],
+      "sourceSize": [
+        61,
+        198
+      ],
+      "targetSize": [
+        61,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "review",
+      "row": 8,
+      "column": 4,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\review\\04.png"
+    },
+    {
+      "changed": true,
+      "sourceBox": [
+        66,
+        5,
+        125,
+        203
+      ],
+      "sourceSize": [
+        59,
+        198
+      ],
+      "targetSize": [
+        59,
+        198
+      ],
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "aspectRatioPreserved": true,
+      "state": "review",
+      "row": 8,
+      "column": 5,
+      "source": "audited-full-row-repair",
+      "repairPath": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\row-repairs\\review\\05.png"
+    }
+  ]
+}

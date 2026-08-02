@@ -1,0 +1,240 @@
+{
+  "ok": true,
+  "processId": 18864,
+  "exitCode": 0,
+  "windowWidth": 221,
+  "windowHeight": 239,
+  "stateCount": 9,
+  "samplesPerState": 4,
+  "captureCount": 36,
+  "states": [
+    "idle",
+    "running-right",
+    "running-left",
+    "waving",
+    "jumping",
+    "failed",
+    "waiting",
+    "running",
+    "review"
+  ],
+  "captures": [
+    {
+      "state": "idle",
+      "sample": 0,
+      "file": "idle-00.png",
+      "capturedAt": "2026-08-02T15:33:58.0767435Z"
+    },
+    {
+      "state": "idle",
+      "sample": 1,
+      "file": "idle-01.png",
+      "capturedAt": "2026-08-02T15:33:58.3606214Z"
+    },
+    {
+      "state": "idle",
+      "sample": 2,
+      "file": "idle-02.png",
+      "capturedAt": "2026-08-02T15:33:58.6452019Z"
+    },
+    {
+      "state": "idle",
+      "sample": 3,
+      "file": "idle-03.png",
+      "capturedAt": "2026-08-02T15:33:58.9290778Z"
+    },
+    {
+      "state": "running-right",
+      "sample": 0,
+      "file": "running-right-00.png",
+      "capturedAt": "2026-08-02T15:33:59.4092247Z"
+    },
+    {
+      "state": "running-right",
+      "sample": 1,
+      "file": "running-right-01.png",
+      "capturedAt": "2026-08-02T15:33:59.6867158Z"
+    },
+    {
+      "state": "running-right",
+      "sample": 2,
+      "file": "running-right-02.png",
+      "capturedAt": "2026-08-02T15:33:59.9721578Z"
+    },
+    {
+      "state": "running-right",
+      "sample": 3,
+      "file": "running-right-03.png",
+      "capturedAt": "2026-08-02T15:34:00.2426386Z"
+    },
+    {
+      "state": "running-left",
+      "sample": 0,
+      "file": "running-left-00.png",
+      "capturedAt": "2026-08-02T15:34:00.7152733Z"
+    },
+    {
+      "state": "running-left",
+      "sample": 1,
+      "file": "running-left-01.png",
+      "capturedAt": "2026-08-02T15:34:01.0008175Z"
+    },
+    {
+      "state": "running-left",
+      "sample": 2,
+      "file": "running-left-02.png",
+      "capturedAt": "2026-08-02T15:34:01.2791040Z"
+    },
+    {
+      "state": "running-left",
+      "sample": 3,
+      "file": "running-left-03.png",
+      "capturedAt": "2026-08-02T15:34:01.5610873Z"
+    },
+    {
+      "state": "waving",
+      "sample": 0,
+      "file": "waving-00.png",
+      "capturedAt": "2026-08-02T15:34:02.0404519Z"
+    },
+    {
+      "state": "waving",
+      "sample": 1,
+      "file": "waving-01.png",
+      "capturedAt": "2026-08-02T15:34:02.3227677Z"
+    },
+    {
+      "state": "waving",
+      "sample": 2,
+      "file": "waving-02.png",
+      "capturedAt": "2026-08-02T15:34:02.6095327Z"
+    },
+    {
+      "state": "waving",
+      "sample": 3,
+      "file": "waving-03.png",
+      "capturedAt": "2026-08-02T15:34:02.8804086Z"
+    },
+    {
+      "state": "jumping",
+      "sample": 0,
+      "file": "jumping-00.png",
+      "capturedAt": "2026-08-02T15:34:03.3605948Z"
+    },
+    {
+      "state": "jumping",
+      "sample": 1,
+      "file": "jumping-01.png",
+      "capturedAt": "2026-08-02T15:34:03.6381450Z"
+    },
+    {
+      "state": "jumping",
+      "sample": 2,
+      "file": "jumping-02.png",
+      "capturedAt": "2026-08-02T15:34:03.9225467Z"
+    },
+    {
+      "state": "jumping",
+      "sample": 3,
+      "file": "jumping-03.png",
+      "capturedAt": "2026-08-02T15:34:04.1867187Z"
+    },
+    {
+      "state": "failed",
+      "sample": 0,
+      "file": "failed-00.png",
+      "capturedAt": "2026-08-02T15:34:04.6863494Z"
+    },
+    {
+      "state": "failed",
+      "sample": 1,
+      "file": "failed-01.png",
+      "capturedAt": "2026-08-02T15:34:04.9569652Z"
+    },
+    {
+      "state": "failed",
+      "sample": 2,
+      "file": "failed-02.png",
+      "capturedAt": "2026-08-02T15:34:05.2291952Z"
+    },
+    {
+      "state": "failed",
+      "sample": 3,
+      "file": "failed-03.png",
+      "capturedAt": "2026-08-02T15:34:05.5211085Z"
+    },
+    {
+      "state": "waiting",
+      "sample": 0,
+      "file": "waiting-00.png",
+      "capturedAt": "2026-08-02T15:34:05.9917565Z"
+    },
+    {
+      "state": "waiting",
+      "sample": 1,
+      "file": "waiting-01.png",
+      "capturedAt": "2026-08-02T15:34:06.2648616Z"
+    },
+    {
+      "state": "waiting",
+      "sample": 2,
+      "file": "waiting-02.png",
+      "capturedAt": "2026-08-02T15:34:06.5739087Z"
+    },
+    {
+      "state": "waiting",
+      "sample": 3,
+      "file": "waiting-03.png",
+      "capturedAt": "2026-08-02T15:34:06.8524750Z"
+    },
+    {
+      "state": "running",
+      "sample": 0,
+      "file": "running-00.png",
+      "capturedAt": "2026-08-02T15:34:07.3253771Z"
+    },
+    {
+      "state": "running",
+      "sample": 1,
+      "file": "running-01.png",
+      "capturedAt": "2026-08-02T15:34:07.6043755Z"
+    },
+    {
+      "state": "running",
+      "sample": 2,
+      "file": "running-02.png",
+      "capturedAt": "2026-08-02T15:34:07.8879631Z"
+    },
+    {
+      "state": "running",
+      "sample": 3,
+      "file": "running-03.png",
+      "capturedAt": "2026-08-02T15:34:08.1511776Z"
+    },
+    {
+      "state": "review",
+      "sample": 0,
+      "file": "review-00.png",
+      "capturedAt": "2026-08-02T15:34:08.6311399Z"
+    },
+    {
+      "state": "review",
+      "sample": 1,
+      "file": "review-01.png",
+      "capturedAt": "2026-08-02T15:34:08.9160175Z"
+    },
+    {
+      "state": "review",
+      "sample": 2,
+      "file": "review-02.png",
+      "capturedAt": "2026-08-02T15:34:09.1865671Z"
+    },
+    {
+      "state": "review",
+      "sample": 3,
+      "file": "review-03.png",
+      "capturedAt": "2026-08-02T15:34:09.4583035Z"
+    }
+  ],
+  "diagnostics": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\qa\\product-final-runtime-diagnostics.json"
+}
