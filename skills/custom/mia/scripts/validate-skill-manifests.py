@@ -130,12 +130,63 @@ for name, root in SKILLS.items():
                         f"노출되지 않습니다. 명시 호출($ 접두사)만 가능합니다. (의도된 설계면 정상)"
                     )
 
+# ── 3) 생성본 검증 (CLAUDE-SKILL.md, plugin SKILL.md) ──────────────────────
+# 정본만 검사하면 생성 파이프라인의 인코딩 결함이 은폐된다.
+# 2026-08-02 에 실제로 발생: 정본 정상 + CLAUDE-SKILL.md 모지바케.
+
+KOREAN_INTEGRITY_PHRASES = ["MIA모드 발동", "전략"]
+"""생성본 description 에 반드시 포함되어야 하는 한국어. 하나라도 없으면 인코딩 손상."""
+
+
+def check_korean_integrity(text, label):
+    """description 내 한국어 트리거 문구가 온전한지 확인한다."""
+    for phrase in KOREAN_INTEGRITY_PHRASES:
+        if phrase not in text:
+            errors.append(
+                f"{label}: 한국어 '{phrase}' 가 description 에 없습니다. "
+                f"인코딩 손상(mojibake) 가능성이 높습니다."
+            )
+
+
+GENERATED_FILES = {
+    "CLAUDE-SKILL.md": CATALOG / "3_mia-strategic" / "CLAUDE-SKILL.md",
+    "plugin/SKILL.md": CATALOG / "3_mia-strategic" / "plugin" / "skills" / "mia-strategic" / "SKILL.md",
+}
+
+for gen_label, gen_path in GENERATED_FILES.items():
+    if not gen_path.exists():
+        errors.append(f"생성본 {gen_label}: 파일 없음 ({gen_path})")
+        continue
+    gen_text = gen_path.read_text(encoding="utf-8")
+    raw = extract_frontmatter(gen_text, f"생성본 {gen_label}")
+    if raw is None:
+        continue
+    try:
+        data = yaml.safe_load(raw)
+    except yaml.YAMLError as exc:
+        first = str(exc).splitlines()[0]
+        errors.append(f"생성본 {gen_label}: YAML 파싱 실패 — {first}")
+        continue
+    if not isinstance(data, dict):
+        errors.append(f"생성본 {gen_label}: frontmatter 가 매핑이 아닙니다")
+        continue
+    for key in REQUIRED_SKILL_KEYS:
+        if not data.get(key):
+            errors.append(f"생성본 {gen_label}: 필수 키 '{key}' 누락 또는 빈 값")
+    desc = data.get("description", "")
+    check_korean_integrity(desc, f"생성본 {gen_label}")
+    check_plain_scalar_hazards(raw, f"생성본 {gen_label}")
+
+# ── 결과 출력 ──────────────────────────────────────────────────────────────
+
 for w in warnings:
     print(f"WARN  {w}")
 for e in errors:
     print(f"ERROR {e}")
 
 print()
-print(f"검사 스킬 {len(SKILLS)}개 / 경고 {len(warnings)}건 / 오류 {len(errors)}건")
+total_checked = len(SKILLS) + len(GENERATED_FILES)
+print(f"검사 스킬 {len(SKILLS)}개 + 생성본 {len(GENERATED_FILES)}개 / 경고 {len(warnings)}건 / 오류 {len(errors)}건")
 
 sys.exit(1 if errors else 0)
+
