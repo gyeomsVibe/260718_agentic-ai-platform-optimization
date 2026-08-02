@@ -19,6 +19,10 @@ coverage/
 __pycache__/
 *.pyc
 
+# 복구·포렌식 산출물 — 복원된 대화 원문, 디스크 구조, 절대 경로가 담긴다.
+# 개인정보성 진단 데이터이므로 어떤 경우에도 커밋하지 않는다.
+codex/app-diagnostics/recovery-*/
+
 # 비밀 정보 (안전장치)
 .env
 *.pem
