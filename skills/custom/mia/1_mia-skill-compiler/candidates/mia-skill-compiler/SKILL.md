@@ -25,7 +25,7 @@ description: 사용자의 초기 아이디어, GPT·챗봇 설계, 문서, 코�
 - 사용자 지정 사고 모드: [사고 모드 계약](references/thinking-modes.md)
 - 파일·상태·승인·평가: [산출물·승격 계약](references/output-promotion-contract.md)
 - 세 플랫폼의 설치·발견 차이: [플랫폼 Agent Skill 계약](references/platform-skill-contracts.md)
-- **MIA 시리즈 스킬을 만들 때의 준수 규격·배포 게이트·3도구 검증 회로: [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md)** — 규격 위반은 배포가 자동 차단되므로 정본 작성 전에 확인하세요.
+- MIA 시리즈 스킬의 준수 규격·배포 게이트·3도구 검증 회로: [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md) — **이 라우터의 유일한 예외입니다.** 대상이 MIA 시리즈면 「후보 컴파일하기」 선행 조건에 따라 반드시 읽으세요.
 
 ## 사용자 계약
 
@@ -82,6 +82,12 @@ description: 사용자의 초기 아이디어, GPT·챗봇 설계, 문서, 코�
 
 ## 후보 컴파일하기
 
+> **선행 조건 (MIA 시리즈 필수)**: 대상이 `skills/custom/mia/` 카탈로그의 스킬이면
+> 파일을 쓰기 전에 [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md)의 **§2 준수 규격**과
+> **§3 트리거 계약**을 읽고 적용하세요. **이 읽기는 선택이 아니며 `FAST` 경로에서도 생략하지 않습니다.**
+> 규격 위반은 배포 게이트(`validate-skill-manifests.py`)가 자동 차단하므로, 읽지 않고 만들면
+> 되돌아와 다시 작성하게 됩니다. 교본을 읽었고 어떤 규격을 적용했는지 결과 보고에 한 줄로 남기세요.
+
 1. 폴더와 일치하는 소문자 하이픈 이름을 정하세요.
 2. `SKILL.md` 프런트매터에는 `name`과 `description`만 두세요.
 3. 정상 흐름은 500줄 미만의 `SKILL.md`에, 필요할 때만 읽는 세부 계약은 한 단계 깊이의 `references/`에 두세요.
@@ -117,6 +123,10 @@ python scripts/preflight_skill_promotion.py <candidate-directory> --target <targ
 - `STRUCTURE_VALIDATED`: 구조 검사 통과
 - `RUNTIME_EVALUATED`: 발견 확인 후 정해진 실행 사례 수행
 - `VERIFIED_RESULT`: 사전에 정한 작업·안전·플랫폼 기준 통과
+
+MIA 시리즈는 `VERIFIED_RESULT`를 선언하기 전에 [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md)
+**§6 검증 회로**를 그대로 수행하세요. 파일 해시 일치는 발동 증거가 아닙니다. 세 도구에서 각각
+실제 발동을 확인하고 오발동 방어까지 검증해야 하며, 한 도구의 성공을 다른 도구에 상속하지 마세요.
 
 설치 무결성, Skill 발견, 명시 호출, 작업 성공, 안전 동작과 플랫폼 호환성을 각각 따로 기록하세요. 동일 조건에서 새 후보, 가장 가까운 대안, 무-Skill 기준선을 비교하세요.
 
