@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('idle', 'running-right', 'running-left', 'waving', 'jumping', 'failed', 'waiting', 'running', 'review')]
+    [ValidateSet('idle', 'idle-look', 'idle-stretch', 'idle-yawn', 'running-right', 'running-left', 'waving', 'jumping', 'failed', 'waiting', 'running', 'review')]
     [string]$State,
     [int]$DurationMs = 0,
     [switch]$Clear,

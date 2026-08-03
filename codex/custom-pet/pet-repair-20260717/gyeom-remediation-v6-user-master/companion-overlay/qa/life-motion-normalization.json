@@ -1,0 +1,569 @@
+{
+  "ok": true,
+  "atlas": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\life-motions.png",
+  "atlasSize": [
+    1536,
+    1024
+  ],
+  "cellSize": [
+    192,
+    256
+  ],
+  "canonicalBodyHeight": 202,
+  "canonicalBaseline": 203,
+  "lifeBaseline": 251,
+  "chromaKey": "#00FF00",
+  "keyThreshold": 110.0,
+  "clips": {
+    "idle-breathe": {
+      "row": 0,
+      "source": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\life-motion-sources\\idle-breathe.png",
+      "frameCount": 8,
+      "sharedScale": 0.3455945252352438,
+      "neutralHeight": 202,
+      "targetBaseline": 251,
+      "frames": [
+        {
+          "frame": 0,
+          "sourceSize": [
+            176,
+            585
+          ],
+          "normalizedSize": [
+            61,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            126,
+            251
+          ]
+        },
+        {
+          "frame": 1,
+          "sourceSize": [
+            244,
+            584
+          ],
+          "normalizedSize": [
+            84,
+            202
+          ],
+          "bbox": [
+            54,
+            49,
+            138,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "sourceSize": [
+            179,
+            584
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "sourceSize": [
+            179,
+            584
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "sourceSize": [
+            176,
+            584
+          ],
+          "normalizedSize": [
+            61,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            126,
+            251
+          ]
+        },
+        {
+          "frame": 5,
+          "sourceSize": [
+            178,
+            584
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 6,
+          "sourceSize": [
+            179,
+            584
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 7,
+          "sourceSize": [
+            179,
+            584
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        }
+      ]
+    },
+    "idle-yawn": {
+      "row": 1,
+      "source": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\life-motion-sources\\idle-yawn.png",
+      "frameCount": 6,
+      "sharedScale": 0.38996138996138996,
+      "neutralHeight": 202,
+      "targetBaseline": 251,
+      "frames": [
+        {
+          "frame": 0,
+          "sourceSize": [
+            158,
+            517
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 1,
+          "sourceSize": [
+            160,
+            518
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "sourceSize": [
+            159,
+            518
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "sourceSize": [
+            195,
+            538
+          ],
+          "normalizedSize": [
+            76,
+            210
+          ],
+          "bbox": [
+            58,
+            41,
+            134,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "sourceSize": [
+            160,
+            520
+          ],
+          "normalizedSize": [
+            62,
+            203
+          ],
+          "bbox": [
+            65,
+            48,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 5,
+          "sourceSize": [
+            160,
+            519
+          ],
+          "normalizedSize": [
+            62,
+            202
+          ],
+          "bbox": [
+            65,
+            49,
+            127,
+            251
+          ]
+        }
+      ]
+    },
+    "idle-stretch": {
+      "row": 2,
+      "source": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\life-motion-sources\\idle-stretch.png",
+      "frameCount": 8,
+      "sharedScale": 0.4288747346072187,
+      "neutralHeight": 202,
+      "targetBaseline": 251,
+      "frames": [
+        {
+          "frame": 0,
+          "sourceSize": [
+            146,
+            471
+          ],
+          "normalizedSize": [
+            63,
+            202
+          ],
+          "bbox": [
+            64,
+            49,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 1,
+          "sourceSize": [
+            167,
+            471
+          ],
+          "normalizedSize": [
+            72,
+            202
+          ],
+          "bbox": [
+            60,
+            49,
+            132,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "sourceSize": [
+            216,
+            471
+          ],
+          "normalizedSize": [
+            93,
+            202
+          ],
+          "bbox": [
+            49,
+            49,
+            142,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "sourceSize": [
+            138,
+            532
+          ],
+          "normalizedSize": [
+            59,
+            228
+          ],
+          "bbox": [
+            66,
+            23,
+            125,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "sourceSize": [
+            144,
+            559
+          ],
+          "normalizedSize": [
+            62,
+            240
+          ],
+          "bbox": [
+            65,
+            11,
+            127,
+            251
+          ]
+        },
+        {
+          "frame": 5,
+          "sourceSize": [
+            174,
+            524
+          ],
+          "normalizedSize": [
+            75,
+            225
+          ],
+          "bbox": [
+            58,
+            26,
+            133,
+            251
+          ]
+        },
+        {
+          "frame": 6,
+          "sourceSize": [
+            162,
+            471
+          ],
+          "normalizedSize": [
+            69,
+            202
+          ],
+          "bbox": [
+            61,
+            49,
+            130,
+            251
+          ]
+        },
+        {
+          "frame": 7,
+          "sourceSize": [
+            146,
+            471
+          ],
+          "normalizedSize": [
+            63,
+            202
+          ],
+          "bbox": [
+            64,
+            49,
+            127,
+            251
+          ]
+        }
+      ]
+    },
+    "idle-look": {
+      "row": 3,
+      "source": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\assets\\life-motion-sources\\idle-look.png",
+      "frameCount": 8,
+      "sharedScale": 0.427061310782241,
+      "neutralHeight": 202,
+      "targetBaseline": 251,
+      "frames": [
+        {
+          "frame": 0,
+          "sourceSize": [
+            137,
+            473
+          ],
+          "normalizedSize": [
+            59,
+            202
+          ],
+          "bbox": [
+            66,
+            49,
+            125,
+            251
+          ]
+        },
+        {
+          "frame": 1,
+          "sourceSize": [
+            135,
+            472
+          ],
+          "normalizedSize": [
+            58,
+            202
+          ],
+          "bbox": [
+            67,
+            49,
+            125,
+            251
+          ]
+        },
+        {
+          "frame": 2,
+          "sourceSize": [
+            141,
+            471
+          ],
+          "normalizedSize": [
+            60,
+            201
+          ],
+          "bbox": [
+            66,
+            50,
+            126,
+            251
+          ]
+        },
+        {
+          "frame": 3,
+          "sourceSize": [
+            137,
+            473
+          ],
+          "normalizedSize": [
+            59,
+            202
+          ],
+          "bbox": [
+            66,
+            49,
+            125,
+            251
+          ]
+        },
+        {
+          "frame": 4,
+          "sourceSize": [
+            136,
+            473
+          ],
+          "normalizedSize": [
+            58,
+            202
+          ],
+          "bbox": [
+            67,
+            49,
+            125,
+            251
+          ]
+        },
+        {
+          "frame": 5,
+          "sourceSize": [
+            140,
+            469
+          ],
+          "normalizedSize": [
+            60,
+            200
+          ],
+          "bbox": [
+            66,
+            51,
+            126,
+            251
+          ]
+        },
+        {
+          "frame": 6,
+          "sourceSize": [
+            136,
+            473
+          ],
+          "normalizedSize": [
+            58,
+            202
+          ],
+          "bbox": [
+            67,
+            49,
+            125,
+            251
+          ]
+        },
+        {
+          "frame": 7,
+          "sourceSize": [
+            136,
+            473
+          ],
+          "normalizedSize": [
+            58,
+            202
+          ],
+          "bbox": [
+            67,
+            49,
+            125,
+            251
+          ]
+        }
+      ]
+    }
+  }
+}

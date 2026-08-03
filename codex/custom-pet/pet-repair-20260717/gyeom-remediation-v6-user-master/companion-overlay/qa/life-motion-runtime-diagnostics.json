@@ -1,0 +1,65 @@
+{
+    "finishedAtUtc":  "2026-08-03T03:42:31.2036112Z",
+    "personalityEnabled":  true,
+    "lifeMotionsEnabled":  true,
+    "defaultIdleState":  "idle-breathe",
+    "currentState":  "idle-breathe",
+    "eventCount":  11,
+    "events":  [
+                   {
+                       "atUtc":  "2026-08-03T03:41:31.7462059Z",
+                       "kind":  "external-state",
+                       "state":  "idle"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:41:35.1307584Z",
+                       "kind":  "personality-action",
+                       "state":  "idle-look"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:41:37.5443499Z",
+                       "kind":  "clip-complete",
+                       "state":  "idle-look"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:41:42.1745866Z",
+                       "kind":  "personality-action",
+                       "state":  "idle-stretch"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:41:44.4074334Z",
+                       "kind":  "clip-complete",
+                       "state":  "idle-stretch"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:41:51.1931941Z",
+                       "kind":  "personality-action",
+                       "state":  "idle-yawn"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:41:53.1598750Z",
+                       "kind":  "clip-complete",
+                       "state":  "idle-yawn"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:42:03.2150463Z",
+                       "kind":  "personality-action",
+                       "state":  "waving"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:42:05.8261981Z",
+                       "kind":  "return-to-idle",
+                       "state":  "idle-breathe"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:42:17.2091325Z",
+                       "kind":  "personality-action",
+                       "state":  "review"
+                   },
+                   {
+                       "atUtc":  "2026-08-03T03:42:20.4456738Z",
+                       "kind":  "return-to-idle",
+                       "state":  "idle-breathe"
+                   }
+               ]
+}

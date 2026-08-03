@@ -3,7 +3,9 @@ param(
     [double]$Scale = 1.15,
     [switch]$Demo,
     [int]$AutoCloseAfterSeconds = 0,
-    [string]$DiagnosticsOut
+    [string]$DiagnosticsOut,
+    [int]$OffsetX = 0,
+    [int]$OffsetY = 0
 )
 
 Set-StrictMode -Version Latest
@@ -17,10 +19,11 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
 
 $cellWidth = 192
 $cellHeight = 208
-$motionTempo = 1.60
+$lifeCellHeight = 256
 $root = $PSScriptRoot
 $normalizedSpritePath = Join-Path $root 'assets\\spritesheet-normalized.png'
 $spritePath = if (Test-Path -LiteralPath $normalizedSpritePath) { $normalizedSpritePath } else { Join-Path $root 'assets\\spritesheet.png' }
+$lifeSpritePath = Join-Path $root 'assets\\life-motions.png'
 $stateFile = Join-Path $root 'state.json'
 
 if (-not (Test-Path -LiteralPath $spritePath)) {
@@ -28,6 +31,9 @@ if (-not (Test-Path -LiteralPath $spritePath)) {
 }
 if ($Scale -lt 0.5 -or $Scale -gt 3) {
     throw 'Scale must be between 0.5 and 3.'
+}
+if ($OffsetX -lt 0 -or $OffsetY -lt 0) {
+    throw 'OffsetX and OffsetY cannot be negative.'
 }
 
 $states = @{
@@ -41,15 +47,41 @@ $states = @{
     'running'       = [pscustomobject]@{ Row = 7; Frames = @(0..5); DurationMs = @(120, 120, 120, 120, 120, 220) }
     'review'        = [pscustomobject]@{ Row = 8; Frames = @(0..5); DurationMs = @(150, 150, 150, 150, 150, 280) }
 }
-$stateOrder = @('idle', 'running', 'waiting', 'review', 'waving', 'jumping', 'failed', 'running-right', 'running-left')
-$demoOrder = @('idle', 'waving', 'jumping', 'running', 'review', 'waiting', 'failed', 'running-right', 'running-left')
+$states.Values | ForEach-Object {
+    $_ | Add-Member -NotePropertyName Sheet -NotePropertyValue 'core'
+    $_ | Add-Member -NotePropertyName CellWidth -NotePropertyValue $cellWidth
+    $_ | Add-Member -NotePropertyName CellHeight -NotePropertyValue $cellHeight
+    $_ | Add-Member -NotePropertyName Tempo -NotePropertyValue 1.60
+    $_ | Add-Member -NotePropertyName OneShot -NotePropertyValue $false
+}
 
-$bitmap = New-Object Windows.Media.Imaging.BitmapImage
-$bitmap.BeginInit()
-$bitmap.UriSource = [Uri]$spritePath
-$bitmap.CacheOption = [Windows.Media.Imaging.BitmapCacheOption]::OnLoad
-$bitmap.EndInit()
-$bitmap.Freeze()
+$lifeEnabled = Test-Path -LiteralPath $lifeSpritePath
+if ($lifeEnabled) {
+    $states['idle-breathe'] = [pscustomobject]@{ Sheet = 'life'; Row = 0; CellWidth = $cellWidth; CellHeight = $lifeCellHeight; Frames = @(0..7); DurationMs = @(240, 240, 100, 120, 120, 240, 260, 320); Tempo = 1.0; OneShot = $false }
+    $states['idle-yawn'] = [pscustomobject]@{ Sheet = 'life'; Row = 1; CellWidth = $cellWidth; CellHeight = $lifeCellHeight; Frames = @(0..5); DurationMs = @(220, 220, 260, 420, 260, 320); Tempo = 1.0; OneShot = $true }
+    $states['idle-stretch'] = [pscustomobject]@{ Sheet = 'life'; Row = 2; CellWidth = $cellWidth; CellHeight = $lifeCellHeight; Frames = @(0..7); DurationMs = @(200, 190, 190, 240, 420, 240, 200, 300); Tempo = 1.0; OneShot = $true }
+    $states['idle-look'] = [pscustomobject]@{ Sheet = 'life'; Row = 3; CellWidth = $cellWidth; CellHeight = $lifeCellHeight; Frames = @(0..7); DurationMs = @(220, 260, 320, 220, 260, 320, 220, 300); Tempo = 1.0; OneShot = $true }
+}
+$defaultIdleState = if ($lifeEnabled) { 'idle-breathe' } else { 'idle' }
+$stateOrder = if ($lifeEnabled) { @('idle', 'idle-look', 'idle-stretch', 'idle-yawn', 'waving', 'running', 'waiting', 'review', 'jumping', 'failed', 'running-right', 'running-left') } else { @('idle', 'running', 'waiting', 'review', 'waving', 'jumping', 'failed', 'running-right', 'running-left') }
+$demoOrder = if ($lifeEnabled) { @('idle', 'idle-look', 'idle-stretch', 'idle-yawn', 'waving', 'jumping', 'running', 'review', 'waiting', 'failed', 'running-right', 'running-left') } else { @('idle', 'waving', 'jumping', 'running', 'review', 'waiting', 'failed', 'running-right', 'running-left') }
+
+function Import-SpriteBitmap {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $loaded = New-Object Windows.Media.Imaging.BitmapImage
+    $loaded.BeginInit()
+    $loaded.UriSource = [Uri]$Path
+    $loaded.CacheOption = [Windows.Media.Imaging.BitmapCacheOption]::OnLoad
+    $loaded.EndInit()
+    $loaded.Freeze()
+    return $loaded
+}
+
+$bitmaps = @{ core = Import-SpriteBitmap -Path $spritePath }
+if ($lifeEnabled) {
+    $bitmaps['life'] = Import-SpriteBitmap -Path $lifeSpritePath
+}
 
 $window = New-Object Windows.Window
 $window.Title = 'Gyeom Pet Overlay'
@@ -64,8 +96,9 @@ $window.ShowInTaskbar = $false
 $window.Focusable = $true
 
 $workArea = [Windows.SystemParameters]::WorkArea
-$window.Left = $workArea.Right - $window.Width - 24
-$window.Top = $workArea.Bottom - $window.Height - 36
+$windowBottom = $workArea.Bottom - 36 - $OffsetY
+$window.Left = $workArea.Right - $window.Width - 24 - $OffsetX
+$window.Top = $windowBottom - $window.Height
 
 $image = New-Object Windows.Controls.Image
 $image.Width = $window.Width
@@ -76,7 +109,7 @@ $image.UseLayoutRounding = $true
 $image.ToolTip = '왼쪽 드래그: 이동 · 오른쪽 클릭: 행동 선택 · Esc: 종료'
 $window.Content = $image
 
-$script:currentState = 'idle'
+$script:currentState = $defaultIdleState
 $script:frameIndex = 0
 $script:nextFrameAt = [DateTime]::UtcNow
 $script:stateFileStamp = [DateTime]::MinValue
@@ -85,13 +118,25 @@ $script:demoIndex = 0
 $script:nextDemoAt = [DateTime]::UtcNow.AddSeconds(2)
 $script:personalityEnabled = $true
 $script:personalityIndex = 0
-$script:nextPersonalityAt = [DateTime]::UtcNow.AddSeconds(8)
+$script:nextPersonalityAt = [DateTime]::UtcNow.AddSeconds(4)
 $script:personalityExpiresAt = $null
-$script:personalityPlan = @(
-    [pscustomobject]@{ State = 'waiting'; HoldMs = 4400; NextDelaySeconds = 22; Label = 'waiting' },
-    [pscustomobject]@{ State = 'review';  HoldMs = 4800; NextDelaySeconds = 40; Label = 'reviewing' },
-    [pscustomobject]@{ State = 'waving';  HoldMs = 4000; NextDelaySeconds = 68; Label = 'waving' }
-)
+$script:personalityPlan = if ($lifeEnabled) {
+    @(
+        [pscustomobject]@{ State = 'idle-look'; HoldMs = 0; NextDelaySeconds = 7; Label = 'looking-around' },
+        [pscustomobject]@{ State = 'idle-stretch'; HoldMs = 0; NextDelaySeconds = 9; Label = 'stretching' },
+        [pscustomobject]@{ State = 'idle-yawn'; HoldMs = 0; NextDelaySeconds = 12; Label = 'yawning' },
+        [pscustomobject]@{ State = 'waving'; HoldMs = 2600; NextDelaySeconds = 14; Label = 'waving' },
+        [pscustomobject]@{ State = 'review'; HoldMs = 3200; NextDelaySeconds = 16; Label = 'reviewing' },
+        [pscustomobject]@{ State = 'waiting'; HoldMs = 3000; NextDelaySeconds = 18; Label = 'waiting' }
+    )
+}
+else {
+    @(
+        [pscustomobject]@{ State = 'waiting'; HoldMs = 4400; NextDelaySeconds = 22; Label = 'waiting' },
+        [pscustomobject]@{ State = 'review'; HoldMs = 4800; NextDelaySeconds = 40; Label = 'reviewing' },
+        [pscustomobject]@{ State = 'waving'; HoldMs = 4000; NextDelaySeconds = 68; Label = 'waving' }
+    )
+}
 $script:personalityEvents = [System.Collections.Generic.List[object]]::new()
 
 function Add-PersonalityEvent {
@@ -116,6 +161,8 @@ function Write-Diagnostics {
     $payload = [ordered]@{
         finishedAtUtc = [DateTime]::UtcNow.ToString('o')
         personalityEnabled = $script:personalityEnabled
+        lifeMotionsEnabled = $lifeEnabled
+        defaultIdleState = $defaultIdleState
         currentState = $script:currentState
         eventCount = $script:personalityEvents.Count
         events = @($script:personalityEvents)
@@ -126,8 +173,20 @@ function Write-Diagnostics {
 function Show-Frame {
     $spec = $states[$script:currentState]
     $column = $spec.Frames[$script:frameIndex]
-    $rect = New-Object Windows.Int32Rect -ArgumentList ($column * $cellWidth), ($spec.Row * $cellHeight), $cellWidth, $cellHeight
-    $crop = New-Object Windows.Media.Imaging.CroppedBitmap -ArgumentList $bitmap, $rect
+    $frameWidth = [int]$spec.CellWidth
+    $frameHeight = [int]$spec.CellHeight
+    $targetWidth = [Math]::Round($frameWidth * $Scale)
+    $targetHeight = [Math]::Round($frameHeight * $Scale)
+    if ($window.Width -ne $targetWidth -or $window.Height -ne $targetHeight) {
+        $window.Width = $targetWidth
+        $window.Height = $targetHeight
+        $image.Width = $targetWidth
+        $image.Height = $targetHeight
+        $window.Left = $workArea.Right - $window.Width - 24 - $OffsetX
+        $window.Top = $windowBottom - $window.Height
+    }
+    $rect = New-Object Windows.Int32Rect -ArgumentList ($column * $frameWidth), ($spec.Row * $frameHeight), $frameWidth, $frameHeight
+    $crop = New-Object Windows.Media.Imaging.CroppedBitmap -ArgumentList $bitmaps[$spec.Sheet], $rect
     $image.Source = $crop
     $window.Title = "Gyeom Pet Overlay — $($script:currentState)"
 }
@@ -138,15 +197,20 @@ function Get-FrameDurationMs {
         [Parameter(Mandatory)][int]$Index
     )
 
-    return [Math]::Round($states[$State].DurationMs[$Index] * $motionTempo)
+    return [Math]::Round($states[$State].DurationMs[$Index] * $states[$State].Tempo)
 }
 
 function Set-OverlayState {
-    param([ValidateSet('idle', 'running-right', 'running-left', 'waving', 'jumping', 'failed', 'waiting', 'running', 'review')][string]$Name)
+    param([Parameter(Mandatory)][string]$Name)
 
-    $script:currentState = $Name
+    $resolvedName = if ($Name -eq 'idle') { $defaultIdleState } else { $Name }
+    if (-not $states.ContainsKey($resolvedName)) {
+        throw "Unknown Companion state: $Name"
+    }
+
+    $script:currentState = $resolvedName
     $script:frameIndex = 0
-    $script:nextFrameAt = [DateTime]::UtcNow.AddMilliseconds((Get-FrameDurationMs -State $Name -Index 0))
+    $script:nextFrameAt = [DateTime]::UtcNow.AddMilliseconds((Get-FrameDurationMs -State $resolvedName -Index 0))
     Show-Frame
 }
 
@@ -160,15 +224,15 @@ function Schedule-PersonalityAction {
     if ($null -ne $script:personalityExpiresAt -and $Now -ge $script:personalityExpiresAt) {
         $script:personalityExpiresAt = $null
         Set-OverlayState 'idle'
-        Add-PersonalityEvent 'return-to-idle' 'idle'
+        Add-PersonalityEvent 'return-to-idle' $defaultIdleState
         return
     }
 
-    if ($script:currentState -eq 'idle' -and $Now -ge $script:nextPersonalityAt) {
+    if ($script:currentState -eq $defaultIdleState -and $Now -ge $script:nextPersonalityAt) {
         $step = $script:personalityPlan[$script:personalityIndex]
         $script:personalityIndex = ($script:personalityIndex + 1) % $script:personalityPlan.Count
         Set-OverlayState $step.State
-        $script:personalityExpiresAt = $Now.AddMilliseconds($step.HoldMs)
+        $script:personalityExpiresAt = if ($step.HoldMs -gt 0) { $Now.AddMilliseconds($step.HoldMs) } else { $null }
         $script:nextPersonalityAt = $Now.AddSeconds($step.NextDelaySeconds)
         Add-PersonalityEvent 'personality-action' $step.State
     }
@@ -184,7 +248,7 @@ function Read-RequestedState {
         if ($stamp -gt $script:stateFileStamp) {
             $request = Get-Content -LiteralPath $stateFile -Raw | ConvertFrom-Json
             $requestedState = [string]$request.state
-            if ($states.ContainsKey($requestedState)) {
+            if ($requestedState -eq 'idle' -or $states.ContainsKey($requestedState)) {
                 Set-OverlayState $requestedState
                 $script:stateFileStamp = $stamp
                 $ttl = 0
@@ -223,7 +287,7 @@ foreach ($name in $stateOrder) {
 }
 [void]$menu.Items.Add((New-Object Windows.Controls.Separator))
 $demoItem = New-Object Windows.Controls.MenuItem
-$demoItem.Header = '9개 동작 데모 시작'
+$demoItem.Header = if ($lifeEnabled) { '전체 생활·업무 동작 데모 시작' } else { '9개 동작 데모 시작' }
 $demoItem.Add_Click({
         $script:demoIndex = 0
         $script:nextDemoAt = [DateTime]::UtcNow
@@ -231,11 +295,11 @@ $demoItem.Add_Click({
     })
 [void]$menu.Items.Add($demoItem)
 $personalityItem = New-Object Windows.Controls.MenuItem
-$personalityItem.Header = 'Toggle personality loop'
+$personalityItem.Header = '생활 동작 자동 재생 켜기/끄기'
 $personalityItem.Add_Click({
         $script:personalityEnabled = -not $script:personalityEnabled
         $script:personalityExpiresAt = $null
-        if ($script:currentState -ne 'idle' -and $null -eq $script:externalExpiresAt) {
+        if ($script:currentState -ne $defaultIdleState -and $null -eq $script:externalExpiresAt) {
             Set-OverlayState 'idle'
         }
         Add-PersonalityEvent 'personality-toggle' (if ($script:personalityEnabled) { 'enabled' } else { 'disabled' })
@@ -262,9 +326,16 @@ $ticker.Add_Tick({
         $now = [DateTime]::UtcNow
         $spec = $states[$script:currentState]
         if ($now -ge $script:nextFrameAt) {
-            $script:frameIndex = ($script:frameIndex + 1) % $spec.Frames.Count
-            $script:nextFrameAt = $now.AddMilliseconds((Get-FrameDurationMs -State $script:currentState -Index $script:frameIndex))
-            Show-Frame
+            if ($spec.OneShot -and $script:frameIndex -ge ($spec.Frames.Count - 1)) {
+                $finishedState = $script:currentState
+                Set-OverlayState 'idle'
+                Add-PersonalityEvent 'clip-complete' $finishedState
+            }
+            else {
+                $script:frameIndex = ($script:frameIndex + 1) % $spec.Frames.Count
+                $script:nextFrameAt = $now.AddMilliseconds((Get-FrameDurationMs -State $script:currentState -Index $script:frameIndex))
+                Show-Frame
+            }
         }
         if ($Demo -and $now -ge $script:nextDemoAt) {
             $script:demoIndex = ($script:demoIndex + 1) % $demoOrder.Count

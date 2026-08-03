@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "capturedDurationSeconds": 58.601,
+  "captureCount": 114,
+  "stateCounts": {
+    "idle-breathe": 90,
+    "idle-look": 5,
+    "idle-stretch": 4,
+    "idle-yawn": 4,
+    "waving": 5,
+    "review": 6
+  },
+  "missingRequiredStates": [],
+  "personalityActionCount": 5,
+  "personalityActions": [
+    "idle-look",
+    "idle-stretch",
+    "idle-yawn",
+    "waving",
+    "review"
+  ],
+  "diagnostics": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\qa\\life-motion-runtime-diagnostics.json",
+  "contactSheet": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\qa\\life-motion-runtime-contact-sheet.png",
+  "abSheet": "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\pet-repair-20260717\\gyeom-remediation-v6-user-master\\companion-overlay\\qa\\life-motion-ab-contact-sheet.png"
+}
