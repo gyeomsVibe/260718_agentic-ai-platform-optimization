@@ -45,9 +45,20 @@ Select-String -Path "$env:USERPROFILE\.agents\skills\*\SKILL.md" `
   -Pattern '\.Codex|Codex Opus|Codex in Chrome|sync-Codex-md' -CaseSensitive
 ```
 
-`~/.agents/skills/`는 Claude Code·Codex·Antigravity가 **함께** 읽는 경로입니다.
-특정 도구 이름·경로를 하드코딩한 편집은 나머지 두 도구에서 오작동하므로, 3번 검사는
-배포본을 손댄 뒤 반드시 실행합니다.
+> ⚠️ **2026-08-05 정정**: 이 문서는 앞서 `~/.agents/skills/`를 "3대 도구가 함께 읽는
+> 공용 경로"라고 적었습니다. **틀렸습니다.**
+>
+> 새 Claude Code 세션(`claude -p`)에 사용 가능 스킬을 나열시킨 결과, `~/.claude/skills/`의
+> MIA 3개와 내장 스킬만 보였고 **`~/.agents/skills/`의 40개는 하나도 보이지 않았습니다.**
+> Claude Code는 이 경로를 읽지 않습니다.
+>
+> **영향**: 이 패키지의 27개 스킬은 현재 **Claude Code에서 발동되지 않습니다.**
+> `~/.gemini/config/skills/`(Antigravity 16개)와 `~/.codex/skills/`(Codex 5개)에도
+> 대부분 없습니다. 즉 40개 중 다수가 **어느 도구에서도 살아 있지 않을 수 있습니다.**
+> Codex·Antigravity의 실제 인식 여부는 아직 확인하지 못했습니다.
+
+특정 도구 이름·경로를 하드코딩한 편집은 다른 도구에서 오작동하므로, 3번 검사는
+배포본을 손댄 뒤 실행합니다.
 
 ## 알려진 결함 (상류 원본에 존재)
 

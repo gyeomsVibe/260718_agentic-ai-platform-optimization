@@ -148,7 +148,30 @@ pwsh -File skills/custom/mia/scripts/sync-mia-catalog.ps1 -Mode Apply   # 검증
 검증기가 없거나 실행 불가여도 중단한다. **조용히 건너뛰지 않는다** — 결함이 통과했던
 이유가 정확히 검증 부재였다.
 
-CI 편입: `npm run check` 가 `skills:check`(배포 정합성)와 `skills:test`(항체)를 포함한다.
+CI 편입: `npm run check` 가 `skills:check`(배포 정합성), `skills:audit`(전 루트 규격),
+`skills:test`(항체)를 포함한다.
+
+### 5.1 전 루트 감사 — 게이트가 닿지 않던 곳
+
+`validate-skill-manifests.py` 는 **MIA 정본 카탈로그만** 본다. 그래서 나머지 배포본은
+규격 위반이 있어도 아무도 잡지 못했다. 2026-08-05에 그 사각을 메웠다.
+
+```powershell
+python skills/custom/mia/scripts/audit-skill-roots.py            # 오류 있으면 exit 1
+python skills/custom/mia/scripts/audit-skill-roots.py --strict   # 경고도 실패 처리
+```
+
+4개 사용자 홈 루트(`~/.claude/skills`, `~/.codex/skills`, `~/.gemini/config/skills`,
+`~/.agents/skills`)를 §2 규격으로 전수 감사한다. 핵심은 **Codex 의 엄격 YAML 파서를
+`yaml.safe_load` 로 재현**하는 것이다 — 예외가 나면 그 스킬은 Codex 가 로딩을 거부한다.
+§9의 2026-08-02 사고(인용 스칼라)가 3주간 은폐됐던 이유가 정확히 이 검사의 부재였다.
+
+두 도구는 역할이 다르므로 서로 대체하지 않는다. 정본 규격은 `validate-skill-manifests.py`,
+배포 실태는 `audit-skill-roots.py` 가 본다.
+
+> **경고를 실패로 만들지 않은 이유**: 외부 반입 스킬 47개가 `agents/openai.yaml` 없이
+> 배포돼 있다. 이를 즉시 오류로 처리하면 게이트가 상시 빨간불이 되어 무시된다.
+> 새로 만드는 MIA 스킬은 `validate-skill-manifests.py` 가 이미 필수로 강제한다.
 
 ---
 
@@ -221,6 +244,8 @@ CI 편입: `npm run check` 가 `skills:check`(배포 정합성)와 `skills:test`
 | 2026-08-02 | `mia-vaccine-test` 가 Codex 목록에 없어 결함으로 오판할 뻔함 — 실제로는 `allow_implicit_invocation: false` 설계대로 동작 | §2.2 정책 명시 의무 + 오판 방지 주석 |
 | 2026-08-02 | 백신테스트 항체가 정상 케이스만 확인해 가드 제거 변이가 생존 | §7 항체 원칙 |
 | 2026-08-02 | `Get-FileHash` 모듈 자동 로드 실패로 `npm run check` 전체 중단 | 배포 스크립트에서 환경 의존 cmdlet 제거 |
+| 2026-08-05 | 검증 게이트가 MIA 정본만 봐서, 배포본 47개의 Codex 어댑터 누락과 `grill-me`·`grilling` 의 `interface.default_prompt` 누락을 아무도 못 잡음 | §5.1 `audit-skill-roots.py` 전 루트 감사 + `npm run check` 편입 |
+| 2026-08-05 | `~/.agents/skills` 를 "3대 도구 공용 경로"로 문서화했으나, 새 Claude Code 세션 실측 결과 40개 중 **0개** 노출. Claude Code 는 이 경로를 읽지 않음 | §6 검증 회로를 문서 기록보다 우선한다 — 경로 가정도 실측으로 확인한다 |
 
 ---
 

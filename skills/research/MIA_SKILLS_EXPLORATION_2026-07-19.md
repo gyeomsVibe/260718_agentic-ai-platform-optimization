@@ -102,3 +102,49 @@ TikTok 소개 영상(6종 플러그인)을 전수분석하고, 사용자 요청�
 
 - 결과: Claude Code 플러그인 2종(superpowers, frontend-design) 설치·활성. 다음 세션부터 로드.
 - 원칙 유지: 내장 명령·기존 체계로 커버되는 것은 재설치하지 않는다. 대형·미검증 팩은 슬림화와 충돌하므로 개별 승인.
+
+---
+
+## 재재평가 (2026-08-05) — superpowers 재설치 **No-Go**
+
+**전제 붕괴**: 위 2026-07-23 결정으로 설치했던 2종이 **현재 이 노트북에 없다.**
+`claude plugin list` → `No plugins installed`. `~/.claude/plugins/` 에도, `settings.json`
+`enabledPlugins` 에도, 세션 런타임 스킬 목록에도 없다. 언제·왜 사라졌는지는 미확인.
+
+약 2주간 부재를 아무도 인지하지 못했다 — **실사용 의존도가 낮았다는 실증**이다.
+
+### 4대 렌즈
+
+| 렌즈 | 판정 |
+|---|---|
+| Value | 14개 스킬 중 **12개가 이미 커버됨**(아래 표). 고유 잔여분이 거의 없다 |
+| Feasibility | 설치 자체는 쉬움. 제약 아님 |
+| Viability | ~715tok 은 비용의 일부. **진짜 비용은 스킬 목록 비대화와 트리거 충돌** |
+| Risk | SessionStart 훅 = 매 세션 코드 실행(공급망 노출면). 부재를 못 느낀 실사용 신호 |
+
+### 중복 지도
+
+| superpowers 스킬 | 이미 있는 대체재 |
+|---|---|
+| test-driven-development | `test-writer` 서브에이전트 (2026-08-04 배포, TDD 사이클 내장) |
+| systematic-debugging | `mia-vaccine-test` |
+| verification-before-completion | 글로벌 룰 P4 + `npm run check` 게이트 |
+| brainstorming | `product-thinking`, `idea` |
+| writing-plans / executing-plans | 내장 `Plan` 에이전트, `mia-strategic` |
+| dispatching-parallel-agents / subagent-driven-development | 내장 Agent 도구 |
+| requesting/receiving-code-review | 내장 `/code-review` |
+| using-git-worktrees | 내장 워크트리 격리 |
+| finishing-a-development-branch | SAFE-SYNC 게이트 |
+| writing-skills | `mia-skill-compiler` |
+| using-superpowers | 자기 참조 진입점 |
+
+**트리거 충돌 위험**: `writing-plans`↔`mia-strategic`, `test-driven-development`↔`test-writer`.
+설치하면 같은 요청에 두 경로가 경쟁한다.
+
+### 결정
+
+**No-Go.** 팩 전체를 되돌리지 않는다. 나중에 특정 공백이 실제로 드러나면 그 스킬 **하나만**
+`skills/external/` 반입 계약(SOURCE.md + 정적 검토)으로 가져온다.
+
+**미확인 사항**: 조사 중 얻은 상류 star 수치(266.2k)는 비현실적이라 근거로 채택하지 않았다.
+`frontend-design`(~78tok, 공식) 재설치 여부는 이 결정에 포함되지 않는다 — 별도 판단 사항.
