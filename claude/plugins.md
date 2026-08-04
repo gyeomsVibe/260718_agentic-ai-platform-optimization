@@ -7,10 +7,27 @@
 
 ## 1. 현재 설치된 플러그인 (user scope, ✔ enabled)
 
+> ⛔ **2026-08-04 실측: 아래 표의 두 플러그인이 이 노트북에 없습니다.** 기록이 현재 상태와
+> 다릅니다. 표는 2026-07-23 시점 기록으로 보존하되, **현재 상태의 근거로 쓰지 마세요.**
+>
+> 확인한 근거 3가지 (기기: `DESKTOP-73UOPO2` / `GL75 9SDK` = 이 노트북)
+> 1. `~/.claude/plugins/` 에 `data/pdf-viewer-inline` 뿐 — `superpowers`·`frontend-design` 디렉터리 없음
+> 2. `~/.claude/settings.json` 에 `enabledPlugins` 키 자체가 없음
+> 3. 세션 런타임의 사용 가능 스킬 목록에 `superpowers:*` 와 `frontend-design` 미등장
+>    (`anthropic-skills:*`, `pdf-viewer:*` 는 등장)
+>
+> **영향**: 이 두 플러그인의 스킬을 참조하던 설정은 전부 미해소 상태입니다. 실제로
+> `.agents/agents/` 서브에이전트 12개가 `superpowers:writing-plans`,
+> `document-skills:frontend-design` 등을 참조했으나 하나도 발견되지 않아,
+> [`agents/README.md`](agents/README.md) 정제 시 해당 참조를 모두 제거했습니다.
+>
+> **미확인**: 언제·왜 사라졌는지(수동 제거 / Claude Code 업데이트 시 초기화)는 확인하지
+> 못했습니다. 재설치 여부는 별도 판단 사항입니다.
+
 | 플러그인 | 버전 | 마켓플레이스 | 구성 | 상시 토큰 | 역할 |
 |---|---|---|---|---|---|
-| **superpowers** | 6.1.1 | `superpowers-dev` (obra/superpowers) | 스킬 14개 + SessionStart 훅 | ~715 tok | 계획·TDD·병렬 에이전트·코드리뷰·디버깅 등 핵심 워크플로우 |
-| **frontend-design** | (official) | `claude-plugins-official` | 스킬 1개 | ~78 tok | UI "AI 슬롭" 제거, 사람이 만든 듯한 독창적 디자인 |
+| ~~**superpowers**~~ | 6.1.1 | `superpowers-dev` (obra/superpowers) | 스킬 14개 + SessionStart 훅 | ~715 tok | 계획·TDD·병렬 에이전트·코드리뷰·디버깅 등 핵심 워크플로우 |
+| ~~**frontend-design**~~ | (official) | `claude-plugins-official` | 스킬 1개 | ~78 tok | UI "AI 슬롭" 제거, 사람이 만든 듯한 독창적 디자인 |
 
 > 무거운 스킬(subagent, writing-skills 등)은 **호출 시에만** 로드되어 평소 부담이 적습니다.
 > 플러그인 스킬은 **세션 시작 시 로드** → 설치·변경 후 **Claude Code 재시작**해야 반영됩니다.
