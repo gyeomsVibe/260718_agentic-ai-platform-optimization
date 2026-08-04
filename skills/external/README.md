@@ -1,7 +1,16 @@
 # 외부 Skills 반입 계약
 
-> 외부 제작자의 Skill을 가져와 검토, 정제, 유지할 때 사용합니다. 현재 추적 중인 외부
-> Skill은 없습니다. 사용자 제작 MIA Skill은 [`../custom/mia/`](../custom/mia/)에 둡니다.
+> 외부 제작자의 Skill을 가져와 검토, 정제, 유지할 때 사용합니다.
+> 사용자 제작 MIA Skill은 [`../custom/mia/`](../custom/mia/)에 둡니다.
+
+## 반입 대장
+
+| 반입물 | 제작자 | 라이선스 | 규모 | 상태 | 등록일 |
+|---|---|---|---|---|---|
+| [vibe-coding-skills](eli-kardis/vibe-coding-skills/SOURCE.md) | eli-kardis | MIT | Skill 24 + Agent 12 | `STATIC_REVIEWED` | 2026-08-04 |
+
+상태가 `APPROVED`가 아닌 반입물은 **전역 설치 대상이 아닙니다.** 이미 배포된 사본이
+존재하더라도 그것은 승인이 아니라 사후 등록 대상입니다.
 
 ## 폴더 구조
 
@@ -14,6 +23,10 @@ external/<publisher>/<skill-name>/
 ```
 
 제작자를 알 수 없으면 `unknown`으로 숨기지 말고 반입을 멈춰 출처부터 확인합니다.
+
+**Skill 여러 개를 담은 패키지**를 반입할 때는 `<skill-name>` 자리에 패키지 이름을 쓰고
+1건으로 등록합니다. 원본을 저장소로 복제하지 말고 `MANIFEST.sha256`(파일별 SHA-256)으로
+무결성 기준선만 남깁니다. 상류가 갱신될 때 정본이 둘로 갈라지는 것을 막기 위함입니다.
 
 ## SOURCE.md 필수 항목
 

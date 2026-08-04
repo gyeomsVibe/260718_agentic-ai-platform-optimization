@@ -1,0 +1,14 @@
+# Python Antigravity Harness Rules
+
+## 1. 코드 작성 원칙
+- 모든 함수에는 Type Hint를 필수 적용한다. (예: def add(a: int, b: int) -> int:)
+- Google Style Docstring을 사용하여 모든 클래스와 함수를 설명한다.
+
+## 2. 자가 검증 루프 (Harness Loop)
+- 코드 수정 후에는 반드시 `ruff check .`를 실행하여 정적 분석을 통과해야 한다.
+- 새로운 기능 구현 시 반드시 `tests/` 폴더에 테스트 코드를 먼저 작성(TDD)한다.
+- 테스트 실행 명령어: `pytest`
+
+## 3. 격리 및 보안
+- `.env` 파일의 환경변수는 `os.getenv`로만 접근하며 절대 코드에 값을 직접 쓰지 않는다.
+- 외부 패키지 설치 시 `requirements.txt`에 기록하고 사용자 승인을 받는다.
