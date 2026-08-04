@@ -8,8 +8,10 @@
 - 내가 만든 MIA Skill을 찾거나 고치려면 [`custom/mia/`](custom/mia/)로 갑니다.
 - 외부 Skill을 들여오거나 정제하려면 [`external/`](external/)의 반입 계약부터 읽습니다.
 - 조사 기록과 선택 근거는 `research/`에 둡니다. 이 파일들은 설치 대상이 아닙니다.
-- 사용자 홈의 `.codex/skills`, `.claude/skills`, `.agents/skills`는 배포 위치입니다.
-  저장소 정본을 대신하지 않습니다.
+- **어느 Skill을 어느 도구에 올렸는지와 그 근거는 [`DEPLOYMENT.md`](DEPLOYMENT.md)가 정본입니다.**
+- 사용자 홈의 배포 위치는 도구마다 다릅니다. **공용 경로는 없습니다.**
+  `.claude/skills`(Claude Code) · `.codex/skills`+`.agents/skills`(Codex) ·
+  `.gemini/config/skills` 계열(Antigravity). 배포 위치는 저장소 정본을 대신하지 않습니다.
 
 ## 분류 기준
 
@@ -61,6 +63,7 @@ Available skills 노출을 확인하기 전에는 런타임 성공으로 기록�
 
 ## 관련 문서
 
+- [도구별 배포 정본과 선별 근거](DEPLOYMENT.md)
 - [MIA 사용자 제작 Skill](custom/mia/)
 - [MIA plan-review-execute 정본](custom/mia/plan-review-execute/)
 - [MIA Skill Compiler 작업대](custom/mia/compiler-workbench/)
