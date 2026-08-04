@@ -5,6 +5,8 @@
 
 ## 30초 안내
 
+- **Skill을 쓰는 방법(발동 문구 포함)은 [`MANUAL.md`](MANUAL.md)가 정본입니다.**
+  스킬이 뭔지 모르는 상태에서 시작해도 됩니다.
 - 내가 만든 MIA Skill을 찾거나 고치려면 [`custom/mia/`](custom/mia/)로 갑니다.
 - 외부 Skill을 들여오거나 정제하려면 [`external/`](external/)의 반입 계약부터 읽습니다.
 - 조사 기록과 선택 근거는 `research/`에 둡니다. 이 파일들은 설치 대상이 아닙니다.
@@ -33,10 +35,17 @@
 
 ```text
 skills/
+├─ MANUAL.md                    # 사용 매뉴얼 — 도구별 발동 트리거
+├─ DEPLOYMENT.md                # 배포 정본 — 무엇을 어디에 왜 올렸나
 ├─ custom/
-│  └─ mia/
-│     ├─ plan-review-execute/   # 현재 실행 Skill 정본과 배포 패키지
-│     └─ compiler-workbench/    # 새 Skill 후보와 평가 증거
+│  ├─ mia/                      # 윤겸스 제작 MIA 시리즈
+│  │  ├─ AUTHORING_HANDBOOK.md  #   제작 규격·검증 절차 (단일 진입점)
+│  │  ├─ 1_mia-skill-compiler/  #   스킬 제작·개선
+│  │  ├─ 2_mia-vaccine-test/    #   결함 주입·항체 생성
+│  │  ├─ 3_mia-strategic/       #   전략적 가설 검증
+│  │  ├─ scripts/               #   배포·검증 스크립트
+│  │  └─ tests/                 #   항체(회귀 테스트)
+│  └─ legacy-harness/           # 대체된 Antigravity 시절 로컬 자산 (보존용)
 ├─ external/                    # 외부 Skill과 출처 추적
 └─ research/                    # 설치하지 않는 조사·감사 자료
 ```
@@ -63,10 +72,11 @@ Available skills 노출을 확인하기 전에는 런타임 성공으로 기록�
 
 ## 관련 문서
 
+- [Skill 사용 매뉴얼 — 도구별 발동 트리거](MANUAL.md)
 - [도구별 배포 정본과 선별 근거](DEPLOYMENT.md)
 - [MIA 사용자 제작 Skill](custom/mia/)
-- [MIA plan-review-execute 정본](custom/mia/plan-review-execute/)
-- [MIA Skill Compiler 작업대](custom/mia/compiler-workbench/)
+- [MIA 제작 교본 — 규격·검증 절차의 정본](custom/mia/AUTHORING_HANDBOOK.md)
+- [대체된 로컬 자산 보존](custom/legacy-harness/)
 - [외부 Skill 반입 계약](external/)
 - [Skill 조사 기록](research/MIA_SKILLS_EXPLORATION_2026-07-19.md)
 - [플랫폼 Skill 슬림화 감사](research/MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md)

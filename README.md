@@ -12,16 +12,37 @@
   **설정 기록·가이드·문제해결 노트**를 모은 문서 창고입니다.
 - **무엇부터 볼까?** 아래 지도에서 관심 있는 폴더의 README를 먼저 여세요. 각 폴더 README가
   "이게 뭔지 모르는 사람"도 이해할 수 있게 다시 설명해 줍니다.
+- **AI에게 뭘 시킬 수 있는지 알고 싶다면** → **[Skill 사용 매뉴얼](skills/MANUAL.md)**.
+  스킬이 뭔지부터 설명하고, 도구별로 **어떤 문장을 말하면 발동하는지** 그대로 적어 뒀습니다.
+
+## 지금 설치된 상태 (2026-08-05 실측)
+
+세 도구 CLI로 **실제 발동을 확인한** 수치입니다. 파일 복사 여부가 아닙니다.
+
+| 도구 | 스킬 | 서브에이전트 | 확인 명령 |
+|---|---|---|---|
+| Claude Code | **11개** | **4개** | `claude -p` |
+| Codex | **44개** | — | `codex exec` |
+| Antigravity | **19개** (+ 과학 플러그인 39) | — | `agy --print` |
+
+> **공용 스킬 경로는 없습니다.** 도구마다 읽는 폴더가 다릅니다. 한 도구에서 됐다고
+> 다른 도구도 되리라 넘겨짚지 마세요 — 자세한 내용은 [DEPLOYMENT.md](skills/DEPLOYMENT.md) 2절.
+
+스킬 파일이 깨지지 않았는지는 루트에서 한 번에 검사합니다.
+
+```powershell
+npm run skills:audit
+```
 
 ## 폴더 지도
 
 | 폴더 | 무엇인가 | 언제 보나 |
 |---|---|---|
-| [claude/](claude/) | **Claude Code** 플랫폼 섹션 — 플러그인·MCP·계정 커넥터 정리 기록 (노트북/데스크톱) | Claude Code 설정을 재현·복구·정리할 때 |
+| [claude/](claude/) | **Claude Code** 플랫폼 섹션 — 환경 기록 + [`agents/`](claude/agents/) 서브에이전트 4개 정본 | Claude Code 설정을 재현·복구하거나 서브에이전트를 고칠 때 |
 | [codex/](codex/) | **Codex** 플랫폼 섹션 — 환경설정, 샌드박스 문제해결, **커스텀 반려동물(Pet) 제작**, 앱 패치 | Codex 설정·앱 문제·펫 커스터마이징 |
 | [antigravity/](antigravity/) | **Antigravity** 플랫폼 섹션 — 환경설정, IDE 확장 슬림화(다이어트) | Antigravity IDE를 가볍게 만들 때 |
 | [mcp/](mcp/) | **MCP 섹션** — AI 도구에 외부 기능을 연결하는 서버들 (현재 NotebookLM) | AI에 외부 자료·도구를 붙일 때 |
-| [skills/](skills/) | **모든 Skill의 정본** — `custom/mia` 사용자 제작 Skill, `external` 외부 도입 Skill, 조사·검증 작업대 | 스킬을 찾고·수정하고·검증할 때 |
+| [skills/](skills/) | **모든 Skill의 정본** — [사용 매뉴얼](skills/MANUAL.md) · [배포 정본](skills/DEPLOYMENT.md) · `custom/mia` 제작 Skill · `external` 외부 도입 · 조사 기록 | 스킬을 **쓰거나** 찾고·수정하고·검증할 때 |
 | [shared/](shared/) | **3플랫폼 공용 기반시설** — 전역 규칙과 자동업데이트 | 세 도구가 함께 쓰는 규칙·자동화를 손볼 때 |
 | [handoff/](handoff/) | **GitHub 인계 정본** — 활성 인계, 완료 기록, 계약, SELFREFINE 검증기 | 다른 에이전트가 검증된 기준점에서 작업을 이어받을 때 |
 
@@ -77,6 +98,31 @@ npm run check
 
 이 파일들을 하위 폴더로 옮기면 GitHub 화면은 짧아지지만 자동 규칙 발견과 표준 `npm`
 명령이 깨질 수 있으므로 루트에 유지합니다. 실제 자료는 상위 분류 폴더에만 둡니다.
+
+## 최근 변경 (최신성 기록)
+
+문서와 실제 환경이 어긋나면 그 문서는 **틀린 안내**가 됩니다. 실측으로 뒤집힌 내용은
+지우지 않고 **정정 기록을 남깁니다.** 무엇이 언제 왜 바뀌었는지 추적하기 위해서입니다.
+
+### 2026-08-05 — 3대 도구 스킬 실측·정비
+
+| 변경 | 내용 |
+|---|---|
+| **정정** | `~/.agents/skills`는 "3대 도구 공용 경로"가 **아니었습니다.** 실측 결과 **Codex 전용**이고, Claude Code·Antigravity는 40개 중 **0개**를 인식했습니다 |
+| **정정** | `claude/plugins.md`가 설치됐다고 기록한 플러그인 2종(superpowers·frontend-design)이 **실제로는 없었습니다**. `claude plugin list` → `No plugins installed` |
+| **복구** | 전역 `CLAUDE.md`가 지시하는 `vibe-check` 스킬을 Claude Code가 **볼 수 없던** 상태를 해소 |
+| **추가** | Claude Code 스킬 3 → 11개, 서브에이전트 0 → 4개 / Antigravity 16 → 19개 (실사용 패턴 실측 기반 선별) |
+| **추가** | [`npm run skills:audit`](skills/custom/mia/scripts/audit-skill-roots.py) — 9개 폴더 110개 스킬을 최엄격(Codex) 규격으로 전수 감사. `npm run check`에 편입 |
+| **판단** | superpowers 재설치 **No-Go** — 14개 스킬 중 12개가 이미 커버되고 트리거가 충돌 ([근거](skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md)) |
+| **문서** | [Skill 사용 매뉴얼](skills/MANUAL.md) · [배포 정본](skills/DEPLOYMENT.md) 신설 |
+
+### 2026-08-04 — 외부 Skill 반입 계약 정비
+
+| 변경 | 내용 |
+|---|---|
+| **등록** | [eli-kardis/vibe-coding-skills](skills/external/eli-kardis/vibe-coding-skills/SOURCE.md) 반입 등록 (MIT, `STATIC_REVIEWED`) |
+| **복구** | 배포본 11개가 "Claude→Codex" 일괄 치환으로 오염돼 있던 것을 원복 |
+| **분리** | 상류에 없던 로컬 자산 7건을 [`skills/custom/legacy-harness/`](skills/custom/legacy-harness/)로 보존 |
 
 ## 배경 메모
 
