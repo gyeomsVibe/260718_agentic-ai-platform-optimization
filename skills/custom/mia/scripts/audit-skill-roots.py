@@ -30,25 +30,59 @@ except ImportError:
 HOME = pathlib.Path(os.path.expanduser("~"))
 BOM = b"\xef\xbb\xbf"
 
-# 교본 §5 배포 위치 중 사용자 홈의 4개 루트
+# ── 루트 -> 실제로 읽는 도구 ────────────────────────────────────────────────
+# 2026-08-05 3대 도구 런타임 실측으로 확정했다. 문서 추정이 아니다.
+#   claude -p  / codex exec  / agy --print  각각에 스킬 목록을 나열시켜 대조.
+#
+# 핵심 발견: `~/.agents/skills` 는 공용 경로가 아니라 **Codex 전용**이다.
+#   - Codex       40개 중 36개 노출(나머지 4개는 allow_implicit_invocation=false)
+#   - Claude Code 0개  (~/.claude/skills 만 읽는다)
+#   - Antigravity 0개  (~/.gemini 계열만 읽는다)
 ROOTS: "collections.OrderedDict[str, pathlib.Path]" = collections.OrderedDict([
-    ("claude", HOME / ".claude" / "skills"),
-    ("codex", HOME / ".codex" / "skills"),
+    ("claude",      HOME / ".claude" / "skills"),
+    ("codex",       HOME / ".codex" / "skills"),
+    ("codex-agents", HOME / ".agents" / "skills"),
     ("antigravity", HOME / ".gemini" / "config" / "skills"),
-    ("shared", HOME / ".agents" / "skills"),
+    ("antigravity-user", HOME / ".gemini" / "skills"),
+    ("antigravity-ide", HOME / ".gemini" / "antigravity-ide" / "skills"),
 ])
 
-# 스킬이 아닌 도구 내부 디렉터리
+# 플러그인이 공급하는 루트는 동적으로 추가한다 (Antigravity 전용).
+for _plugin in sorted((HOME / ".gemini" / "config" / "plugins").glob("*/skills")):
+    if _plugin.is_dir() and any(p.is_dir() for p in _plugin.iterdir()):
+        ROOTS[f"antigravity-plugin:{_plugin.parent.name}"] = _plugin
+
+# 감사 대상에서 제외한다.
+#   .system      Codex 내부 디렉터리 (스킬 아님)
+#   ~/.gemini/antigravity/skills 는 config/skills 로의 심볼릭 링크 -> 중복 계상 방지
 NOT_A_SKILL = {".system"}
 
+# 도구 내부가 관리하는 builtin 루트는 사용자 소유가 아니므로 감사하지 않는다.
+
 Finding = collections.namedtuple("Finding", "root skill severity code message")
+
+
+def is_vendor(root: str) -> bool:
+    """플러그인이 공급하는 루트인가.
+
+    벤더 관리 스킬은 사용자가 고칠 수 없고, 고쳐도 플러그인 갱신 때 되돌아간다.
+    따라서 오류로 빌드를 막지 않고 경고로만 보고한다.
+
+    실측 근거(2026-08-05): `science` 플러그인 34개가 `name`(하이픈) != 폴더명(언더스코어)
+    인데도 Antigravity 런타임 목록에 정상 로드된다. 즉 Antigravity 는 §2.1 의 이름 일치를
+    강제하지 않는다. 반대로 Codex 는 강제하므로, **이 스킬들을 Codex 로 옮기면 깨진다.**
+    """
+    return root.startswith("antigravity-plugin:")
 
 
 def audit_skill(root: str, d: pathlib.Path, out: list) -> str | None:
     """스킬 하나를 감사하고 description 을 돌려준다 (실패 시 None)."""
     name = d.name
+    vendor = is_vendor(root)
 
     def add(sev, code, msg):
+        if vendor and sev == "ERROR":
+            sev, msg = "WARN", msg + " [벤더 관리 - 사용자가 고칠 수 없음]"
         out.append(Finding(root, name, sev, code, msg))
 
     skill_md = d / "SKILL.md"
@@ -107,11 +141,22 @@ def audit_skill(root: str, d: pathlib.Path, out: list) -> str | None:
                     add("ERROR", "quote_start",
                         f"{key} 값이 {value[:1]} 로 시작하고 닫히지 않는다 - 스칼라 조기 종료 (§2.1)")
 
-    # §2.2 Codex 어댑터 계약
+    # 은닉 플래그는 도구마다 다르다 (2026-08-05 실측)
+    #   Codex        : agents/openai.yaml 의 policy.allow_implicit_invocation: false
+    #   Claude/Antig : SKILL.md frontmatter 의 disable-model-invocation: true
+    # 둘은 서로를 대신하지 못한다. 한쪽만 걸면 다른 도구에서는 그대로 노출된다.
+    hidden_native = bool(front.get("disable-model-invocation"))
+
+    # §2.2 Codex 어댑터 계약 - Codex 가 읽는 루트에서만 의미가 있다
     openai_yaml = d / "agents" / "openai.yaml"
     if not openai_yaml.exists():
-        add("WARN", "no_openai_yaml",
-            "agents/openai.yaml 없음 - Codex 표시·발동 계약 미이행 (§2.2)")
+        if root.startswith("codex"):
+            add("WARN", "no_openai_yaml",
+                "agents/openai.yaml 없음 - Codex 표시·발동 계약 미이행 (§2.2)")
+        elif hidden_native:
+            add("WARN", "hidden_native_only",
+                "disable-model-invocation=true 이지만 openai.yaml 이 없다 - "
+                "Codex 배포 시 은닉되지 않는다 (§2.2)")
     else:
         try:
             adapter = yaml.safe_load(openai_yaml.read_text("utf-8")) or {}

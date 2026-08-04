@@ -29,16 +29,41 @@
 세 도구가 **같은 정본 파일**을 읽지만 파서와 정책 준수 수준이 다르다. 관대한 도구에서만
 확인하면 결함이 은폐된다. 실제로 세 번 그랬다.
 
-| 도구 | YAML 파서 | `allow_implicit_invocation` | PowerShell |
+| 도구 | YAML 파서 | `name` == 폴더명 | 은닉 플래그 |
 |---|---|---|---|
-| **Codex** | **엄격** — 위반 시 스킬 로딩 거부 | **준수** — false면 목록에서 감춤 | — |
-| Claude Code | 관대 — 잘못된 YAML도 통과 | 무시 — 전부 노출 | — |
-| Antigravity | 동일 정본 상속 | 미확인 | — |
-| Windows PowerShell 5.1 | — | — | **엄격** — BOM 없으면 CP949 오독 |
-| PowerShell 7 (pwsh) | — | — | 관대 — BOM 없어도 UTF-8 |
+| **Codex** | **엄격** — 위반 시 스킬 로딩 거부 | **강제** | `openai.yaml` 의 `allow_implicit_invocation: false` |
+| Claude Code | 관대 — 잘못된 YAML도 통과 | 강제 | `SKILL.md` 의 `disable-model-invocation: true` |
+| Antigravity | 관대 | **강제 안 함** (실측) | `SKILL.md` 의 `disable-model-invocation: true` |
+
+| 셸 | PowerShell |
+|---|---|
+| Windows PowerShell 5.1 | **엄격** — BOM 없으면 CP949 오독 |
+| PowerShell 7 (pwsh) | 관대 — BOM 없어도 UTF-8 |
 
 **규칙: 가장 엄격한 쪽을 통과시켜라. 그러면 나머지는 자동으로 통과한다.**
 반대로 하면 통과했다는 사실이 아무것도 보장하지 않는다.
+
+### 1.1 은닉 플래그는 도구마다 다르다 — 서로를 대신하지 못한다
+
+2026-08-05 실측. `grill-me` 는 `SKILL.md` 에 `disable-model-invocation: true` 가 있어
+**Antigravity 목록에서 감춰졌지만**, `openai.yaml` 에도 `allow_implicit_invocation: false`
+가 있어야 Codex 에서도 감춰진다. 한쪽만 걸면 다른 도구에서는 그대로 노출된다.
+스킬을 감추려면 **두 플래그를 모두** 건다.
+
+### 1.2 스킬 루트는 도구마다 다르다 — 공용 경로는 없다
+
+`~/.agents/skills` 를 "3대 도구 공용 경로"로 오래 문서화해 왔으나 **틀렸다.**
+2026-08-05에 세 도구 CLI 로 각각 스킬 목록을 나열시켜 대조한 결과다.
+
+| 도구 | 읽는 루트 | `~/.agents/skills` 40개 인식 |
+|---|---|---|
+| Claude Code | `~/.claude/skills` | **0개** |
+| Codex | `~/.codex/skills` + `~/.agents/skills` | **36개** (나머지 4개는 은닉 설계대로) |
+| Antigravity | `~/.gemini/config/skills`, `~/.gemini/skills`, `~/.gemini/config/plugins/*/skills` | **0개** |
+
+즉 `~/.agents/skills` 는 **Codex 전용 경로**다. 여기에만 둔 스킬은 나머지 두 도구에서 죽어 있다.
+
+> `~/.gemini/antigravity/skills` 는 `~/.gemini/config/skills` 로의 심볼릭 링크다. 중복 계상하지 마라.
 
 ---
 
@@ -180,11 +205,18 @@ python skills/custom/mia/scripts/audit-skill-roots.py --strict   # 경고도 실
 해시가 같다는 것과 도구가 스킬을 불러온다는 것은 **다른 명제**다. 세 도구를 각각 확인한다.
 한 도구의 성공을 다른 도구에 상속하지 마라.
 
-| 도구 | 확인 방법 | 통과 기준 |
+**세 도구 모두 CLI 로 자동 검증할 수 있다.** 사용자에게 수동 확인을 미루지 마라.
+2026-08-05에 아래 3개 명령으로 전수 검증을 실제로 수행했다.
+
+| 도구 | 확인 명령 | 통과 기준 |
 |---|---|---|
-| **Codex** | `codex exec "<스킬명> 사용 가능 여부를 있음/없음으로만 답하라."` | 출력에 `failed to load skill` 이 **없어야** 한다 |
-| **Claude Code** | 새 세션의 사용 가능 스킬 목록 확인 | 스킬명이 보인다 |
-| **Antigravity** | 새 대화창에 트리거 문구 입력 | 스킬 고유 절차가 시작된다 |
+| **Codex** | `codex exec "사용 가능한 스킬 이름을 쉼표로 구분해 전부 나열만 하라."` | 목록에 있고 `failed to load skill` 이 **없다** |
+| **Claude Code** | `claude -p "Skill 도구로 호출 가능한 스킬 이름을 쉼표로 나열만 하세요." --permission-mode plan` | 목록에 스킬명이 보인다 |
+| **Antigravity** | `& "$env:LOCALAPPDATA\agy\bin\agy.exe" --print "사용 가능한 스킬 이름을 쉼표로 구분해 전부 나열만 하라." --mode plan` | 목록에 스킬명이 보인다 |
+
+> **긴 목록은 신뢰하지 마라.** 55개를 나열시켰을 때 모델이 `security-audit` 하나를 빠뜨렸다.
+> 실제로는 정상 로드된 상태였다. 특정 스킬을 확인할 때는 이름을 **직접 지목해**
+> `이름=있음/없음` 형식으로 되묻는다. 목록 누락을 로딩 실패로 오판하지 마라.
 
 **오발동 방어도 함께 검증한다.** 접두사 없이·띄어쓰기로 호출해 **발동하지 않는지** 확인한다.
 발동하면 계약이 뚫린 것이다.
@@ -245,7 +277,10 @@ python skills/custom/mia/scripts/audit-skill-roots.py --strict   # 경고도 실
 | 2026-08-02 | 백신테스트 항체가 정상 케이스만 확인해 가드 제거 변이가 생존 | §7 항체 원칙 |
 | 2026-08-02 | `Get-FileHash` 모듈 자동 로드 실패로 `npm run check` 전체 중단 | 배포 스크립트에서 환경 의존 cmdlet 제거 |
 | 2026-08-05 | 검증 게이트가 MIA 정본만 봐서, 배포본 47개의 Codex 어댑터 누락과 `grill-me`·`grilling` 의 `interface.default_prompt` 누락을 아무도 못 잡음 | §5.1 `audit-skill-roots.py` 전 루트 감사 + `npm run check` 편입 |
-| 2026-08-05 | `~/.agents/skills` 를 "3대 도구 공용 경로"로 문서화했으나, 새 Claude Code 세션 실측 결과 40개 중 **0개** 노출. Claude Code 는 이 경로를 읽지 않음 | §6 검증 회로를 문서 기록보다 우선한다 — 경로 가정도 실측으로 확인한다 |
+| 2026-08-05 | `~/.agents/skills` 를 "3대 도구 공용 경로"로 문서화했으나 실측 결과 **Codex 전용**. Claude Code·Antigravity 는 0개 인식 | §1.2 도구별 루트 표 + 감사기의 루트 매핑을 실측 기반으로 고정 |
+| 2026-08-05 | `grill-me` 가 Antigravity 에서만 감춰지고 Codex 에서는 노출될 뻔함. 두 도구의 은닉 플래그가 다름 | §1.1 두 플래그를 모두 걸어야 한다 |
+| 2026-08-05 | Antigravity `science` 플러그인 34개가 `name`(하이픈) != 폴더명(언더스코어) 인데도 정상 로드. Codex 기준으로 오류 처리하면 게이트가 상시 빨간불 | 감사기에 벤더 관리 루트 개념 도입 — 오류 대신 경고 |
+| 2026-08-05 | 스킬 55개를 나열시켰더니 모델이 `security-audit` 을 빠뜨림. 로딩 실패로 오판할 뻔함 | §6 특정 스킬은 이름을 지목해 재확인한다 |
 
 ---
 

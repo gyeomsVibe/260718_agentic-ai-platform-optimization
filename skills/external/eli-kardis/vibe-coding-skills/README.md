@@ -52,10 +52,20 @@ Select-String -Path "$env:USERPROFILE\.agents\skills\*\SKILL.md" `
 > MIA 3개와 내장 스킬만 보였고 **`~/.agents/skills/`의 40개는 하나도 보이지 않았습니다.**
 > Claude Code는 이 경로를 읽지 않습니다.
 >
-> **영향**: 이 패키지의 27개 스킬은 현재 **Claude Code에서 발동되지 않습니다.**
-> `~/.gemini/config/skills/`(Antigravity 16개)와 `~/.codex/skills/`(Codex 5개)에도
-> 대부분 없습니다. 즉 40개 중 다수가 **어느 도구에서도 살아 있지 않을 수 있습니다.**
-> Codex·Antigravity의 실제 인식 여부는 아직 확인하지 못했습니다.
+> **3대 도구 CLI 전수 확인 완료 (2026-08-05)**
+>
+> | 도구 | 확인 명령 | `~/.agents/skills` 40개 |
+> |---|---|---|
+> | Claude Code | `claude -p` | **0개** |
+> | Codex | `codex exec` | **36개 정상 인식** (나머지 4개는 은닉 설계대로) |
+> | Antigravity | `agy --print` | **0개** |
+>
+> **결론: 이 패키지는 Codex 에서만 살아 있습니다.** Claude Code 와 Antigravity 에서는
+> 발동되지 않습니다. `~/.agents/skills` 는 공용 경로가 아니라 **Codex 전용 경로**입니다.
+> Codex 에서 `failed to load skill` 오류는 0건이었습니다.
+>
+> 세 도구 모두에서 쓰려면 각 도구의 루트에 따로 배포해야 합니다. 다만 27개를 전부
+> 배포하면 목록 비대화로 오발동이 늘어나므로, 필요한 것만 선별하는 편이 낫습니다.
 
 특정 도구 이름·경로를 하드코딩한 편집은 다른 도구에서 오작동하므로, 3번 검사는
 배포본을 손댄 뒤 실행합니다.
