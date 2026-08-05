@@ -116,18 +116,19 @@ AI는 대화 시작 시 **설치된 스킬들의 "이름 + 한 줄 설명"만** 
 
 | 도구 | 스킬 | 서브에이전트 |
 |---|---|---|
-| **Claude Code** | 11개 | 4개 |
-| **Codex** | 44개 (가장 많음) | — |
-| **Antigravity** | 19개 (+ 과학 플러그인 39개) | — |
+| **Claude Code** | 10개 | 4개 |
+| **Codex** | 전역 파일 20개 | — |
+| **Antigravity** | 13개 | — |
 
 **작업 성격에 따라 도구를 고르세요.** 문서·기획·스킬 정비는 Claude Code, 코드 작업 폭이
-넓으면 Codex, 과학·데이터베이스 조회는 Antigravity가 유리합니다.
+넓으면 Codex, Google 생태계·IDE 작업은 Antigravity가 유리합니다. 과학 Skill 39개는 현재
+작업 근거가 없어 삭제하지 않고 백업으로 격리했습니다.
 
 ---
 
 ## 3. Claude Code 매뉴얼
 
-### 3-1. 스킬 11개
+### 3-1. 스킬 10개
 
 #### 🔧 프로젝트 점검·수리
 
@@ -143,14 +144,6 @@ vibe-check 해줘
 ```
 
 > 윤겸스의 전역 규칙이 지정한 공식 점검 경로입니다. **뭘 해야 할지 모를 때 이걸 먼저 부르세요.**
-
-**`skill-repair` — 스킬이 고장났을 때**
-설치가 깨진 스킬을 고쳐서 다시 설치합니다.
-
-```
-스킬이 안 뜨는데 고쳐줘
-skill-repair
-```
 
 #### ✍️ 문서·글
 
@@ -255,83 +248,32 @@ docstring 붙여줘
 
 ## 4. Antigravity 매뉴얼
 
-Claude Code와 **겹치는 9개**(`vibe-check`, `writing-guidelines`, `python-refactor`,
-`skill-repair`, `accidental-data-loss-prevention`, `error-path-analysis`,
-`web-design-guidelines`, `product-thinking`, `mia-*`)는 3장과 발동 문구가 같습니다.
-
-### Antigravity에만 있는 것
+활성 Skill은 **13개**입니다. Claude Code의 10개 중 `mia-strategic`을 포함한 공통 핵심층과,
+Antigravity에만 유지한 아래 3개를 사용합니다.
 
 | 스킬 | 무엇을 하나 | 이렇게 말하면 |
 |---|---|---|
-| `security-audit` | 보안 취약점·API 키 유출 검사 | `보안 검토해줘` · `취약점 점검해줘` |
-| `git-commit-helper` | Conventional Commits 형식 커밋 메시지 작성 | `커밋 메시지 써줘` |
-| `api-review` | API 엔드포인트·스키마·인증 검토 | `API 검토해줘` · `엔드포인트 점검해줘` |
-| `frontend-design` | 템플릿 같지 않은 개성 있는 시각 디자인 방향 | `디자인 방향 잡아줘` · `UI 다시 디자인해줘` |
-| `frontend-polish` | UI 완성도·반응형·빈 상태·로딩 상태 다듬기 | `UI 다듬어줘` · `반응형으로 만들어줘` |
-| `vercel-react-best-practices` | Vercel 엔지니어링의 React·Next.js 성능 기준 | `React 성능 최적화해줘` · `Next.js 리뷰해줘` |
-| `managing-python-dependencies` | 전역 `pip install` 방지, 프로젝트별 의존성 관리 | `pip install` 시도 시 **자동 발동** |
-| `grilling` | 계획·결정을 질문으로 집요하게 압박해 검증 | `내 계획 압박 질문해줘` · `grill me` |
-| `grill-me` | 위와 같으나 **목록에 안 뜸** — 이름을 직접 불러야 함 | `$grill-me` |
+| `frontend-design` | 개성 있는 시각 디자인 방향 | `디자인 방향 잡아줘` · `UI 다시 디자인해줘` |
+| `vercel-react-best-practices` | React·Next.js 성능 기준 | `React 성능 최적화해줘` · `Next.js 리뷰해줘` |
+| `managing-python-dependencies` | 전역 pip 설치를 막고 프로젝트 의존성 관리 | Python 의존성 작업 때 자동 적용 |
 
-**추가로 과학 플러그인 39개**가 붙어 있습니다 — 단백질 구조(AlphaFold), 유전체(gnomAD,
-Ensembl), 논문 검색(PubMed, arXiv), 화합물(PubChem) 등. 생명과학 데이터가 필요할 때만
-쓰이고, 평소에는 방해되지 않습니다.
+과학 39종과 Android Skill은 현재 작업 근거가 없어 백업으로 격리했습니다. 필요해지면 전체를
+상시 복구하지 말고 해당 프로젝트 기간에만 플러그인을 되돌리세요.
 
 ---
 
 ## 5. Codex 매뉴얼
 
-**스킬이 가장 많은 도구(44개)입니다.** Claude Code·Antigravity에 없는 것이 여기 다 있습니다.
+사용자 전역 파일 Skill은 **20개**입니다.
 
-### Codex에만 있는 스킬 — 분야별
+- `.agents/skills` 10개: Claude 공통층에 `frontend-design`,
+  `managing-python-dependencies`, `vercel-react-best-practices`를 더하고 MIA 3종은 제외한 구성.
+- `.codex/skills` 10개: `hatch-pet`, MIA 3종, Codex 시스템·제작 Skill 6종.
+- 이 저장소 안에서는 프로젝트 범위 `mia-strategic`이 전역본보다 우선할 수 있습니다.
 
-#### 코드 품질
-| 스킬 | 발동 문구 |
-|---|---|
-| `codebase-analyzer` — 코드 리뷰·버그 탐지·리팩토링·dead code | `코드 리뷰해줘` · `버그 찾아줘` · `전체 점검해줘` · `미사용 코드 찾아줘` |
-| `dependency-manager` — 오래된 패키지·미사용 의존성 점검 | `의존성 점검` · `패키지 업데이트` · `outdated 확인` |
-| `commit` — 검증 후 안전한 커밋 | `커밋` · `commit` |
-| `retro` — 세션 노트 + git 이력으로 회고 생성 | `회고` · `retro` |
-
-#### 배포·운영
-| 스킬 | 발동 문구 |
-|---|---|
-| `deploy-safety-guard` — 배포 전 5단계 안전 점검 | `배포 안전 점검` · `운영 체크` · `환경변수 검증` |
-| `performance-checker` — 빌드·번들·성능 | `성능 점검` · `빌드 체크` · `배포 전 점검` |
-| `site-auditor` — 성능+디자인+SEO+백엔드 통합 감사 | `사이트 감사해줘` · `종합 점검` |
-| `seo-master` — Next.js SEO·메타태그 | `SEO 점검` · `메타태그 확인` |
-
-#### 기획·문서
-| 스킬 | 발동 문구 |
-|---|---|
-| `start-docs` — PRD·TRD·ERD 일괄 생성 | `프로젝트 시작` · `기획 문서` · `문서 생성` |
-| `idea` — 아이디어 검증 | `아이디어 검증` |
-| `debate` — 여러 전문가 관점 토론으로 의사결정 | `토론해줘` · `다각도 분석` · `장단점 비교` |
-| `ebook-writing` — 전자책 챕터 집필·검토 | `전자책 써줘` · `챕터 작성` · `원고 작성` |
-
-#### 웹·자동화
-| 스킬 | 발동 문구 |
-|---|---|
-| `agent-browser` — 헤드리스 크롤링·스크래핑 | `크롤링해줘` · `스크래핑` |
-| `webapp-testing` — 로컬 웹앱 화면·로그 검증 | `웹앱 테스트해줘` |
-| `b2b-landing` — B2B SaaS 랜딩 페이지 생성 | `B2B 랜딩` · `SaaS 랜딩` |
-| `remotion-studio` — 이미지·코드·데이터를 영상으로 | `영상 만들어줘` · `remotion 영상` |
-| `orchestrate` — 여러 작업을 에이전트에 병렬 위임 | `오케스트레이션` · `작업 분배` · `병렬 위임` |
-
-#### 법무
-| 스킬 | 발동 문구 |
-|---|---|
-| `korean-privacy-terms` — 한국 법령 기반 개인정보처리방침 | `개인정보처리방침 만들어줘` |
-
-> ⚠️ **주의**: 이 스킬의 **한국어 이용약관 템플릿이 비어 있습니다**(원본 제작자 쪽 결함).
-> 기본 설정으로 약관을 만들면 **빈 문서가 나옵니다.** 그래서 0바이트를 감지하면 멈추고
-> 알려 주도록 안전장치를 넣어 뒀습니다. 처리방침은 정상이고, 약관은 영문판을 쓰거나
-> 법률 검토를 거친 원문을 따로 구해야 합니다.
-
-#### 이 저장소와 충돌하는 것 — 쓰지 마세요
-`sync-claude-md`, `sync-workflow`는 `CLAUDE.md`를 자기 규칙대로 고칩니다.
-**이 저장소의 SAFE-SYNC 게이트·handoff 체계와 충돌**하므로 Claude Code에는 일부러
-설치하지 않았습니다. Codex에서도 이 저장소 안에서는 쓰지 마세요.
+격리한 범용 Skill은 삭제되지 않았습니다. 정말 필요할 때만
+`C:\Users\Kimyoongyeom\.mia-skill-backups\20260805-redteam-optimization-01`에서 하나씩 복구하세요.
+판정 근거는 [REDTEAM 전수조사](research/MIA_SKILL_PORTFOLIO_REDTEAM_2026-08-05.md)에 있습니다.
 
 ---
 
@@ -389,8 +331,8 @@ npm run skills:audit
 | 오해 | 사실 |
 |---|---|
 | "파일 복사했으니 이제 되겠지" | **아닙니다.** 복사는 설치일 뿐, 도구가 인식하는지는 별개입니다. 6-④로 확인하세요 |
-| "Codex에서 되니까 Claude에서도 되겠지" | **아닙니다.** 폴더가 다릅니다. `~/.agents/skills` 40개는 Claude Code에서 **0개** 보입니다 |
-| "스킬은 많을수록 좋다" | **아닙니다.** 목록이 길수록 엉뚱한 스킬이 발동합니다. 그래서 40개 중 골라서 깔았습니다 |
+| "Codex에서 되니까 Claude에서도 되겠지" | **아닙니다.** 폴더가 다릅니다. 현재 `~/.agents/skills` 10개도 Claude Code에서는 **0개** 보입니다 |
+| "스킬은 많을수록 좋다" | **아닙니다.** 목록이 길수록 엉뚱한 스킬이 발동합니다. 그래서 파일 기반 127개를 43개로 줄였습니다 |
 | "Codex 목록에 없으면 고장" | **아닐 수 있습니다.** 일부러 숨긴 것이 있습니다(`allow_implicit_invocation: false`). 이름을 직접 부르면 동작합니다 |
 | "지금 대화에서 안 보이면 실패" | **아닙니다.** 새 대화부터 반영됩니다 |
 

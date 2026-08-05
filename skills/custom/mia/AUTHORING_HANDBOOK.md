@@ -185,7 +185,7 @@ pwsh -File skills/custom/mia/scripts/sync-mia-catalog.ps1 -Mode Check   # 검증
 pwsh -File skills/custom/mia/scripts/sync-mia-catalog.ps1 -Mode Apply   # 검증 후 배포
 ```
 
-배포는 **15개 위치**(workspace / 공용 사용자 / Codex / Claude 각 3개 + Antigravity 2개 + 플러그인 1개)에
+배포는 **12개 위치**(workspace / Codex / Claude 각 3개 + Antigravity 2개 + 플러그인 1개)에
 정본을 복사하고 SHA-256으로 대조한다. `Apply` 는 기존 설치본을 `~/.mia-skill-backups/<timestamp>/` 에
 자동 백업한다.
 

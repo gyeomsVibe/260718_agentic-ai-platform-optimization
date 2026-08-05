@@ -175,7 +175,6 @@ Copy-Item -LiteralPath (Join-Path $catalogRoot '3_mia-strategic\plugin\VERSION')
 $targets = [System.Collections.Generic.List[object]]::new()
 $standardRoots = @(
     [PSCustomObject]@{ Label = 'workspace'; Root = Join-Path $repositoryRoot '.agents\skills' },
-    [PSCustomObject]@{ Label = 'shared-user'; Root = Join-Path $HOME '.agents\skills' },
     [PSCustomObject]@{ Label = 'codex'; Root = Join-Path $HOME '.codex\skills' },
     [PSCustomObject]@{ Label = 'claude'; Root = Join-Path $HOME '.claude\skills' }
 )
@@ -208,6 +207,9 @@ $targets.Add([PSCustomObject]@{
 $legacyTargets = @(
     (Join-Path $repositoryRoot '.agents\skills\plan-review-execute'),
     (Join-Path $HOME '.agents\skills\plan-review-execute'),
+    (Join-Path $HOME '.agents\skills\mia-skill-compiler'),
+    (Join-Path $HOME '.agents\skills\mia-vaccine-test'),
+    (Join-Path $HOME '.agents\skills\mia-strategic'),
     (Join-Path $HOME '.codex\skills\plan-review-execute'),
     (Join-Path $HOME '.claude\skills\plan-review-execute'),
     (Join-Path $HOME '.gemini\config\skills\plan-review-execute'),

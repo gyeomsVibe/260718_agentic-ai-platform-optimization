@@ -17,13 +17,14 @@
 
 ## 지금 설치된 상태 (2026-08-05 실측)
 
-세 도구 CLI로 **실제 발동을 확인한** 수치입니다. 파일 복사 여부가 아닙니다.
+물리적 사용자 홈 경로를 전수 확인한 파일 기반 수치입니다. 정리 뒤 세 도구의 새 세션 검증은
+각각 타임아웃·인증·네트워크 오류로 실패했으므로 **발동 확인 수치로 포장하지 않습니다.**
 
 | 도구 | 스킬 | 서브에이전트 | 확인 명령 |
 |---|---|---|---|
-| Claude Code | **11개** | **4개** | `claude -p` |
-| Codex | **44개** | — | `codex exec` |
-| Antigravity | **19개** (+ 과학 플러그인 39) | — | `agy --print` |
+| Claude Code | **10개** | **4개** | 파일 10, CLI timeout |
+| Codex | **전역 파일 20개** | — | 파일 20, CLI network 실패 |
+| Antigravity | **13개** | — | 파일 13, CLI auth 실패 |
 
 > **공용 스킬 경로는 없습니다.** 도구마다 읽는 폴더가 다릅니다. 한 도구에서 됐다고
 > 다른 도구도 되리라 넘겨짚지 마세요 — 자세한 내용은 [DEPLOYMENT.md](skills/DEPLOYMENT.md) 2절.
@@ -115,6 +116,16 @@ npm run check
 | **추가** | [`npm run skills:audit`](skills/custom/mia/scripts/audit-skill-roots.py) — 9개 폴더 110개 스킬을 최엄격(Codex) 규격으로 전수 감사. `npm run check`에 편입 |
 | **판단** | superpowers 재설치 **No-Go** — 14개 스킬 중 12개가 이미 커버되고 트리거가 충돌 ([근거](skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md)) |
 | **문서** | [Skill 사용 매뉴얼](skills/MANUAL.md) · [배포 정본](skills/DEPLOYMENT.md) 신설 |
+
+### 2026-08-05 — MIA REDTEAM 스킬 포트폴리오 최적화
+
+| 변경 | 내용 |
+|---|---|
+| **정리** | 3대 도구 파일 기반 `SKILL.md` **127 → 43(-66.1%)**. 삭제 없이 사용자 홈 백업으로 84개 격리 |
+| **중복 제거** | Antigravity 레거시 루트 6개와 Codex MIA SHA-256 동일본 3개 격리 |
+| **도메인 축소** | 현재 작업 근거가 없는 Antigravity 과학 39종·Android 1종 플러그인 격리 |
+| **문서** | [MIA REDTEAM 전수조사](skills/research/MIA_SKILL_PORTFOLIO_REDTEAM_2026-08-05.md)에 전체 판정·웹 근거·복구 경로 기록 |
+| **미완료** | Codex 커넥터 11종 제거는 앱 핸들러 부재로 실패. 3개 CLI 새 세션 검증도 환경 오류로 미통과 |
 
 ### 2026-08-04 — 외부 Skill 반입 계약 정비
 

@@ -42,72 +42,73 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 **결론: 문서 작성이 1순위, React 웹앱과 Python 스크립트가 2순위, 스킬·에이전트 엔지니어링이
 상시 배경.** 인프라(Docker/K8s/Terraform)와 Supabase, E2E 는 실사용 근거가 없다.
 
-## 4. 배포 결과
+## 4. 최적화 배포 결과
 
-### Claude Code `~/.claude/skills` — 3개 → **11개**
+2026-08-05 REDTEAM 전수조사로 파일 기반 Skill을 **127개 → 43개**로 정리했다.
+상세한 개별 판정과 웹 근거는
+[`research/MIA_SKILL_PORTFOLIO_REDTEAM_2026-08-05.md`](research/MIA_SKILL_PORTFOLIO_REDTEAM_2026-08-05.md)가 정본이다.
 
-| 추가한 Skill | 근거 |
-|---|---|
-| `vibe-check` | **글로벌 `CLAUDE.md` L92가 이 스킬 사용을 지시하는데 Claude Code가 볼 수 없었다.** 깨진 규칙을 복구 |
-| `writing-guidelines` | 문서가 1순위 활동(.md 666/30일). 산문 품질 검토를 덮는 내장 기능 없음 |
-| `python-refactor` | 활성 프로젝트 3/6이 Python. 내장 Python 전용 스킬 없음 |
-| `error-path-analysis` | 에러 경로·빈 상태·오프라인 UX 진단. 내장 대체재 없음 |
-| `web-design-guidelines` | React 11/39. `frontend-design-specialist` 에이전트의 자체 체크리스트를 100+ 규칙 감사로 보강 |
-| `product-thinking` | 컨셉 설계. `mia-strategic`(가설 검증)과 층위가 다름 |
-| `skill-repair` | 이 저장소 자체가 스킬 엔지니어링 |
-| `accidental-data-loss-prevention` | 글로벌 룰 P2·P3(비가역 작업 승인)와 정렬 |
+| 도구 | 정리 전 | 정리 후 | 유지 기준 |
+|---|---:|---:|---|
+| Claude Code | 11 | **10** | 문서·Python·UX·MIA·안전 최소층 |
+| Codex 전역 파일 | 50 | **20** | `.agents/skills` 10 + `.codex/skills` 10 |
+| Antigravity | 66 | **13** | config 12 + MIA 플러그인 1 |
 
-### Antigravity `~/.gemini/config/skills` — 16개 → **19개**
+### Claude Code 10
 
-이미 `vibe-check`·`writing-guidelines`·`python-refactor`·`skill-repair`·
-`accidental-data-loss-prevention` 을 보유하고 있어 결손분만 채웠다.
-사용량이 가장 낮은 도구(대화 12건)이므로 추가를 최소화했다.
+`accidental-data-loss-prevention`, `error-path-analysis`, MIA 3종, `product-thinking`,
+`python-refactor`, `vibe-check`, `web-design-guidelines`, `writing-guidelines`.
 
-| 추가한 Skill | 근거 |
-|---|---|
-| `error-path-analysis` · `web-design-guidelines` · `product-thinking` | 위와 동일. 이 3개만 없었음 |
+### Codex 20
 
-### Codex — 변경 없음
+- `.agents/skills` 10: 안전, 에러 UX, 프론트엔드 디자인, Python 의존성/리팩터링,
+  제품 사고, React 성능, 진단, 웹 감사, 글쓰기.
+- `.codex/skills` 10: Codex 시스템·제작 Skill 6, `hatch-pet`, MIA 3종.
+- 프로젝트 `.agents/skills/mia-strategic`은 저장소 범위 어댑터라 전역본과 별도로 유지한다.
 
-`~/.agents/skills` 40개 + `~/.codex/skills` 4개를 이미 인식한다. 추가할 것이 없다.
+### Antigravity 13
 
-## 5. 올리지 않은 것과 이유
+- `~/.gemini/config/skills` 12: Codex 공통 최소층에서 MIA 전략절차를 제외한 구성.
+- `~/.gemini/config/plugins/mia-modular-intelligence-architect` 1: `mia-strategic`.
+- 레거시 `~/.gemini/skills`, `~/.gemini/antigravity-ide/skills`는 중복본을 모두 격리해 0개다.
 
-| Skill | 제외 근거 |
-|---|---|
-| `commit`, `retro`, `sync-claude-md`, `sync-workflow` | 저장소의 SAFE-SYNC 게이트·handoff 체계와 **충돌**. 이들은 `.claude/session-notes.md`·`CLAUDE.md` 를 독자 규칙으로 고친다 |
-| `codebase-analyzer` | 내장 `/code-review` + `simplify` 와 중복 |
-| `security-audit` | 내장 `/security-review` 와 중복 |
-| `api-review`, `frontend-polish` | 신규 서브에이전트 `api-architect`·`frontend-design-specialist` 와 중복 |
-| `agent-browser`, `webapp-testing` | **Playwright 0/39** — 실행 기반이 없다 |
-| `seo-master`, `site-auditor`, `performance-checker`, `b2b-landing` | 배포된 사이트·랜딩 작업 근거 없음 |
-| `korean-privacy-terms` | **한국어 이용약관 템플릿 0바이트(상류 결함)**. 기본값에서 빈 법률 문서를 만든다 |
-| `debate`, `orchestrate` | 내장 Agent 도구와 중복. 이 저장소는 명시 요청 없는 에이전트 스폰을 금지한다 |
-| `ebook-writing`, `remotion-studio`, `idea`, `dependency-manager` | 활성 프로젝트에 대응 작업 근거 없음 |
+## 5. 격리 기준과 복구
 
-제외본은 삭제하지 않았다. `~/.agents/skills` 에 그대로 있고 Codex 에서는 계속 쓸 수 있다.
+격리 대상은 다음 중 하나 이상에 해당했다.
+
+1. 내장 기능·다른 Skill·서브에이전트와 트리거가 겹침.
+2. 최근 작업·프로젝트 의존성에서 사용 근거가 없음.
+3. 상류·라이선스·실행 계약이 불명확하거나 현재 도구와 맞지 않음.
+4. SAFE-SYNC·권한·부작용 규칙과 경쟁함.
+5. 다른 활성 루트와 SHA-256이 같은 물리 중복본임.
+
+삭제는 0개다. 격리한 `SKILL.md` 84개는 아래 백업에 있다.
+
+`C:\Users\Kimyoongyeom\.mia-skill-backups\20260805-redteam-optimization-01`
+
+필요한 Skill만 백업의 도구별 하위 구조를 따라 원래 경로로 되돌린다. 전체 일괄 복구는
+중복과 오발동을 다시 만든다.
 
 ## 6. 검증 결과 (2026-08-05)
 
 | 검사 | 결과 |
 |---|---|
-| 배포 충돌 | 0건 (대상 경로에 동명 스킬 없음) |
-| SHA-256 무결성 | 11/11 일치 |
-| 엄격 감사 `npm run skills:audit` | **오류 0건** (exit 0) |
-| Claude Code 발동 | `claude -p` 지목 확인 → **8/8 있음** |
-| Antigravity 발동 | `agy --print` 지목 확인 → **3/3 있음** |
-| `npm run check` | exit 0 |
+| 이동 preflight·사후 경로 확인 | **46/46 통과** |
+| 파일 기반 활성 수 | **127 → 43** |
+| 엄격 감사 `npm run skills:audit` | **exit 0**, 오류 0·경고 11 |
+| `npm run check` | **exit 0**, 전체 게이트 통과 |
+| Claude Code 새 세션 | **미통과** — 180초 타임아웃(exit 124) |
+| Antigravity 새 세션 | **미통과** — 로그 권한·미로그인 인증 타임아웃(exit 1) |
+| Codex 새 세션 | **미통과** — WebSocket/HTTPS 네트워크 차단(exit 1) |
 
-파일 복사는 설치 무결성만 증명한다. 위 두 CLI 확인이 **발동 근거**다.
+파일 구조와 해시가 맞는다는 사실을 런타임 발동 성공으로 바꿔 말하지 않는다. 인증·네트워크가
+정상인 다음 새 세션에서 도구별 목록 확인이 남아 있다.
 
 ## 7. 남은 위험
 
-- **Codex 어댑터 미비**: 새로 배포한 8개 중 `agents/openai.yaml` 을 가진 것은 없다.
-  Claude Code·Antigravity 는 이 파일을 쓰지 않으므로 현재 영향은 없다. 다만 이들을
-  Codex 루트로 옮기면 표시·발동 계약 미이행 경고가 뜬다.
-- **정본 이원화**: 배포본 3벌(claude / antigravity / codex-agents)이 각자 존재한다.
-  한쪽만 고치면 드리프트가 생긴다 — 2026-05-28에 실제로 그 사고가 있었다
-  ([SOURCE.md 5절](external/eli-kardis/vibe-coding-skills/SOURCE.md)). 고칠 때는
-  `~/.agents/skills` 를 원본으로 삼고 세 곳에 함께 반영한 뒤 `npm run skills:audit` 을 돌린다.
-- **오발동 미측정**: 목록에 노출되는 것과 적절한 때만 발동하는 것은 다르다.
-  Claude Code 스킬이 3개에서 11개로 늘었으므로, 실사용에서 엉뚱하게 발동하면 줄여야 한다.
+- **Codex 앱 플러그인**: 사용 근거가 없는 커넥터 11종 제거 호출이 모두
+  `No handler registered for tool: uninstall_plugin`으로 실패했다. 캐시를 직접 지우지 않았다.
+- **Claude 자동발동**: 지금은 10개로 작지만, 수동 전용 워크플로가 생기면
+  `disable-model-invocation: true` 또는 `skillOverrides`로 목록 문맥에서 숨긴다.
+- **배포본 드리프트**: 정본은 `skills/` 아래다. 사용자 홈 배포본을 직접 고치지 말고 정본 수정 →
+  대상 도구 재배포 → `npm run skills:audit` 순서를 지킨다.
