@@ -13,13 +13,67 @@
 Codex는 대화 중 사용할 도구·스킬·지침을 확장하는 에이전트다. Claude Code와 마찬가지로
 확장은 **3층위**로 이해하면 관리가 쉽다. (개념 표는 [노트북 PC 개요](https://github.com/gyeomsVibe/260713_pc-optimization/blob/main/notebook/README.md) 참조)
 
-| 층위 | Codex에서의 위치 |
-|---|---|
-| **① 로컬 플러그인** | `~/.codex/config.toml` + `codex plugin` CLI, 플러그인 캐시 `~/.codex/.tmp/plugins` |
-| **② 로컬 MCP / 마켓플레이스** | `~/.codex/.tmp/marketplaces`, `bundled-marketplaces` |
-| **③ 계정·업무 연동** | Codex Desktop에서 연결한 계정·커넥터 (Google Workspace, GitHub, Notion 등) |
+| 층위 | Codex에서의 위치 | 로컬에서 끌 수 있나 |
+|---|---|---|
+| **① 로컬 플러그인** | `~/.codex/config.toml` 의 `[plugins."<이름>@<마켓>"]` + 플러그인 캐시 | **가능** — `enabled = false` |
+| **② 로컬 MCP / 마켓플레이스** | `~/.codex/.tmp/marketplaces`, `bundled-marketplaces` | 가능 |
+| **③ 계정·업무 연동** | ChatGPT 계정에 연결된 원격 커넥터 (Google Workspace, GitHub, Notion, Figma 등) | **불가능 — 앱·계정 UI에서만** |
+
+> **①과 ③을 혼동하면 제거에 실패한다.** 2026-08-05에 `uninstall_plugin` 도구 호출로 커넥터
+> 11종을 지우려다 `No handler registered for tool: uninstall_plugin` 으로 전부 실패했다.
+> ①은 그 도구가 아니라 `config.toml` 편집으로 끄고, ③은 **로컬에서 아예 끌 수 없다.**
 
 > ⚠️ `config.toml`에는 인증 정보가 포함될 수 있어 **이 저장소에 원문을 커밋하지 않는다.** 이 문서는 위치·구조만 기록한다.
+
+### 1.1 커넥터 정리 실측 (2026-08-07)
+
+Codex가 스스로 경고를 띄웠다.
+
+> *Skill descriptions were shortened to fit the 2% skills context budget. Codex can still see
+> every skill, but some descriptions are shorter. Disable unused skills or plugins to leave
+> more room for the rest.*
+
+**로컬 플러그인 5종을 껐다.** 근거는 CLI 세션 46개에서 실제 도구 호출 **4,869건 / 고유 13종**을
+집계한 결과 **커넥터 호출이 단 1건도 없었다**는 것과, 워크스페이스 파일 유형 실측이다.
+
+| 끈 것 | 근거 |
+|---|---|
+| `sites@openai-bundled` | 사이트 구축·호스팅 작업 근거 없음 |
+| `presentations@openai-primary-runtime` | 워크스페이스 `.pptx` **0개**, 데스크톱 로그 **0건** |
+| `google-calendar@openai-curated` | `.ics` **0개** |
+| `slack@openai-curated` | Slack 연동 흔적 없음 |
+| `computer-use@openai-bundled` | 화면·입력 제어라 노출면이 큰데 사용 근거 0 |
+
+**끄지 않은 것과 이유**: `documents`(`.docx` 202개), `pdf`·`pdf-viewer`(`.pdf` 609개),
+`spreadsheets`(`.xlsx` 20 + `.csv` 74), `browser`·`chrome`(크롤링 프로젝트 존재),
+`visualize`, `template-creator`. **11종을 끄려던 원래 계획을 따르지 않았다** — 문서·파일 계열을
+끄는 것은 이 사용자의 실사용 근거에 정면으로 반한다.
+
+**효과 검증**: `codex exec` 목록에서 `computer-use`·`presentations`·`sites` 2종이 사라졌다(4종 제거 확인).
+
+### 1.2 그러나 목록은 오히려 늘었다 — 계정 커넥터 73종
+
+같은 날 목록이 **30종 → 99종**이 됐다. 로컬에서 4종을 뺐지만 계정 레벨 커넥터 **73종**이 들어왔다.
+
+| 접두사 | 개수 | | 접두사 | 개수 |
+|---|---:|---|---|---:|
+| `data-analytics` | 15 | | `google-calendar` | 5 |
+| `superpowers` | **14** | | `notion` | 4 |
+| `figma` | 12 | | `github` | 4 |
+| Adobe(`app-…`) | 6 | | `heygen` | 2 |
+| `product-design` | 5 | | `gmail` | 1 |
+| `google-drive` | 5 | | | |
+
+**이것들은 `config.toml`·로컬 DB 어디에도 없다.** `state_5.sqlite` 등에 플러그인 테이블이
+없고 원격 스테이징 폴더도 비어 있다. 서버 측 계정 설정이므로 **Codex 앱 또는 계정 웹 UI에서만**
+정리할 수 있다. 로컬 에이전트가 할 수 있는 일이 아니다.
+
+> **부수 발견**: `superpowers:*` 14종이 **Codex 계정 커넥터로 이미 살아 있다.**
+> Claude Code 플러그인 재설치 판단에 영향을 준다 —
+> [`../claude/plugins.md` §6](../claude/plugins.md) 참조.
+
+**남은 조치는 사용자 몫이다.** Codex 앱 설정에서 안 쓰는 커넥터(Adobe, Figma, HeyGen, Notion,
+Gmail, Google Drive/Calendar 등)를 해제하면 컨텍스트 예산이 회복된다.
 
 ---
 
