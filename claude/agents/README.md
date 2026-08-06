@@ -51,8 +51,12 @@
 표방했으나 근거였던 `web-design-guidelines` 스킬이 해소되지 않는다. 자체 체크리스트를 본문에
 넣고, 실제 확인한 항목만 보고하도록 능력 경계를 명시했다.
 
-**실측 기반 재조준**: `test-writer`는 Playwright 전제였으나 워크스페이스에 Playwright는
-0/39이고 vitest가 7/39다. vitest 우선으로 바꾸고, E2E는 러너 부재를 먼저 보고하도록 했다.
+**실측 기반 재조준**: `test-writer`는 Playwright 전제였으나 2026-08-05 실측에서 Playwright는
+0/39이고 vitest가 7/39였다. vitest 우선으로 바꾸고, E2E는 러너 부재를 먼저 보고하도록 했다.
+
+> **2026-08-07 갱신**: 사용자 요청으로 **Playwright v1.62.1을 전역 설치**했다. 브라우저 3종
+> 실제 구동까지 확인해 `test-writer` 정본의 "E2E 러너 미설치" 서술을 교체했다. vitest 우선
+> 원칙은 유지한다 — 단위·통합이 먼저고 E2E는 핵심 시나리오에만 쓴다.
 `api-architect`의 Supabase Auth 절은 의존성 0개라 제거했다.
 
 ## 공통 추가

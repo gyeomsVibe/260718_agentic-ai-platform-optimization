@@ -160,8 +160,17 @@ DB 테이블 삭제, 클라우드 파일 삭제처럼 **되돌릴 수 없는 작
 | `test-writer` | 테스트 작성 |
 | `technical-writer` | README·API 문서·체인지로그 |
 
-> ⚠️ 이 PC에 **Playwright(E2E 테스트 도구)가 없습니다.** `test-writer`는 E2E를 요청받으면
-> 먼저 그 사실을 보고하고 멈춥니다. 고장이 아니라 정상 동작입니다.
+> ✅ **Playwright(E2E 테스트 도구)를 설치했습니다** (2026-08-07, v1.62.1).
+> Chromium·Firefox·WebKit 3개 브라우저에서 실제 테스트가 도는 것까지 확인했습니다.
+> 이제 `test-writer`에게 `E2E 테스트 작성해줘`라고 해도 됩니다.
+>
+> 프로젝트에서 처음 쓸 때는 그 프로젝트에 러너를 추가하세요.
+>
+> ```bash
+> npm install -D @playwright/test
+> ```
+>
+> 브라우저는 이미 PC 공용 캐시에 있어 다시 받지 않습니다.
 
 ### Antigravity — 스킬 15
 

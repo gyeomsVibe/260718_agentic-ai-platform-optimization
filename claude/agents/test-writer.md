@@ -13,7 +13,8 @@ color: cyan
 
 ## 먼저 확인할 것
 
-프레임워크를 가정하지 마라. **이 워크스페이스 실측: vitest 사용, Playwright·Jest 미설치.**
+프레임워크를 가정하지 마라. **이 워크스페이스 실측(2026-08-07): 단위·통합은 vitest,
+E2E 는 Playwright v1.62.1 전역 설치됨. Jest 는 미설치.**
 
 1. `package.json`의 `scripts.test`와 devDependencies — 실제 러너 확인
 2. 설정 파일(`vitest.config.*`, `*.config.ts`)과 기존 테스트 파일 명명(`*.test.ts` / `*.spec.ts`)
@@ -50,9 +51,21 @@ color: cyan
 
 ## E2E
 
-이 워크스페이스에 E2E 러너는 **설치돼 있지 않다.** E2E 요청을 받으면 먼저 그 사실과
-설치 필요를 알리고 승인을 받는다. 설치 후에는 Page Object 패턴으로 선택자를 한곳에 모으고,
-CSS 경로가 아니라 역할·레이블 기반 선택자(`getByRole`, `getByLabel`)를 쓴다.
+**Playwright v1.62.1 이 전역 설치돼 있다** (2026-08-07). 브라우저 3종(Chromium·Firefox·WebKit)이
+PC 공용 캐시 `%LOCALAPPDATA%\ms-playwright` 에 있고, 3종 모두 실제 구동을 확인했다.
+
+프로젝트에서 처음 쓸 때만 러너를 추가한다. 브라우저는 다시 받지 않는다.
+
+```bash
+npm install -D @playwright/test
+```
+
+작성 규칙
+- Page Object 패턴으로 선택자를 한곳에 모은다
+- CSS 경로가 아니라 역할·레이블 기반 선택자(`getByRole`, `getByLabel`)를 쓴다
+- **한국어가 든 HTML 픽스처에는 `<meta charset="utf-8">` 을 반드시 넣는다.**
+  없으면 WebKit 이 Latin-1 로 읽어 한글이 깨진다. Chromium·Firefox 는 UTF-8 로 추측해서
+  통과하므로 **그 둘만 돌리면 이 결함이 숨는다.** 2026-08-07 스모크 테스트에서 실제로 겪었다
 
 ## 안전 경계
 

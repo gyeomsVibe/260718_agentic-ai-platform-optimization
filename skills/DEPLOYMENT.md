@@ -37,6 +37,7 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 | 최근 30일 수정 파일 | `.md` **666** · `.png` 700 · `.json` 345 · `.js` 206 · `.py` 58 · `.ps1` 49 · `.jsx` 49 |
 | 활성 프로젝트 6종의 구성 | 전부 문서(md 4~138) + React 3/6 + Python 3/6 |
 | package.json 39개 중 | react 11 · vitest 7 · next 4 · express 4 · **supabase 0 · playwright 0 · docker 0** |
+| 2026-08-07 변경 | **Playwright v1.62.1 전역 설치** (사용자 요청). 브라우저 3종 구동 확인. 아래 5.1 참조 |
 | 도구 사용량 | Codex 세션 44 · Claude Code 프로젝트 2 · Antigravity 대화 12 |
 
 **결론: 문서 작성이 1순위, React 웹앱과 Python 스크립트가 2순위, 스킬·에이전트 엔지니어링이
@@ -87,6 +88,36 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
   superpowers 선별 2종(`systematic-debugging`, `receiving-code-review`).
 - `~/.gemini/config/plugins/mia-modular-intelligence-architect` 1: `mia-strategic`.
 - 레거시 `~/.gemini/skills`, `~/.gemini/antigravity-ide/skills`는 중복본을 모두 격리해 0개다.
+
+## 5.1 Playwright 설치 (2026-08-07)
+
+사용자 요청으로 설치했다. **`agent-browser`·`webapp-testing` 을 제외했던 근거("실행 기반
+없음")가 해소됐다.** 필요해지면 두 스킬의 재반입을 검토할 수 있다.
+
+| 항목 | 값 |
+|---|---|
+| 패키지 | `@playwright/test@1.62.1` — **전역** (`npm ls -g` 확인) |
+| 브라우저 | Chromium 1234 · Firefox 1538 · WebKit 2336 |
+| 캐시 위치 | `%LOCALAPPDATA%\ms-playwright` — 총 **2,543 MB** |
+| 디스크 영향 | C 드라이브 여유 123 → **121 GB** |
+| 구동 확인 | 스모크 테스트 **6/6 통과** (2 케이스 × 3 브라우저), exit 0 |
+
+**브라우저 캐시는 이 설치 전부터 있었다.** vibe-clinic 대시보드의 `playwright-core`,
+Python `playwright` 패키지, Antigravity 확장이 이미 공유 중이었다. Chromium 계열만 있었고
+Firefox·WebKit 을 이번에 추가했다.
+
+**프로젝트에서 쓰는 법** — 러너만 추가하면 된다. 브라우저는 공용 캐시를 재사용한다.
+
+```bash
+npm install -D @playwright/test
+```
+
+**되돌리기**: `npm rm -g @playwright/test`. 브라우저 캐시는 다른 도구가 공유하므로
+지우지 않는다.
+
+> **한글 픽스처 함정**: HTML 에 `<meta charset="utf-8">` 이 없으면 WebKit 이 Latin-1 로 읽어
+> 한글이 깨진다. Chromium·Firefox 는 UTF-8 로 추측해 통과하므로 **그 둘만 돌리면 결함이
+> 숨는다.** 이번 스모크 테스트에서 실제로 겪었고 `test-writer` 정본에 규칙으로 넣었다.
 
 ## 5. 격리 기준과 복구
 
