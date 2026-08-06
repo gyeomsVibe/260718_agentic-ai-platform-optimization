@@ -15,6 +15,7 @@
     "lint": "eslint . --no-warn-ignored"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "eslint": "^9.0.0",
     "typescript": "^5.0.0"
   }
