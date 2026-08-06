@@ -154,9 +154,44 @@
       "evidence_level": "observed_no_raw_log"
     }
   ],
+  "runtime_reverification_2026_08_06": {
+    "note": "bc9a700 시점 미통과였던 Codex·Antigravity 를 조건이 바뀐 뒤 재확인했다.",
+    "codex": {
+      "command": "codex exec",
+      "expected_file_based": 14,
+      "exposed": 12,
+      "hidden_by_design": ["mia-skill-compiler", "mia-vaccine-test"],
+      "hidden_reason": "allow_implicit_invocation: false",
+      "load_errors": 0,
+      "result": "PASS"
+    },
+    "antigravity": {
+      "command": "agy --print",
+      "expected_file_based": 13,
+      "recognized": 13,
+      "note": "격리한 science 39종·android-cli 가 목록에서 사라진 것까지 확인",
+      "result": "PASS"
+    },
+    "finding": "openai.yaml 이 없는 ~/.agents/skills 10개가 Codex 에서 전부 노출됐다. no_openai_yaml 경고는 표시·정책 계약 미이행이며 로딩 실패가 아니다."
+  },
+  "audit_warnings": {
+    "before": 71,
+    "after": 10,
+    "resolved": [
+      "science 플러그인 34건 - bc9a700 격리로 소멸",
+      "implicit_unset 1건 - hatch-pet 에 allow_implicit_invocation 명시 (2026-08-06)"
+    ],
+    "accepted": {
+      "no_openai_yaml": 10,
+      "decision": "어댑터를 만들지 않는다. 10개 모두 비파괴 계열이라 기본값(노출)이 의도한 정책이고, 런타임 노출이 실증됐으며, 저장소 정본이 없어 배포본만 고치면 드리프트가 는다.",
+      "condition": "파괴 계열 스킬을 이 루트에 추가하면 어댑터와 allow_implicit_invocation: false 를 반드시 함께 넣는다."
+    }
+  },
   "open_items": [
-    "Codex 새 세션 런타임 재확인 - bc9a700 시점 네트워크 차단으로 미수행",
-    "Antigravity 새 세션 런타임 재확인 - bc9a700 시점 미로그인 인증 오류로 미수행",
+    "스테이징 사본 D:/D_Workspace_NB/-agentic-ai-workspace/.agents/skills 에 슬림화 이전 27개가 남아 있다. 배포본은 10개다. 여기서 재동기화하면 bc9a700 이 되돌아간다",
+    "오발동 측정 - 목록 노출과 적절한 시점 발동은 다른 명제다. 실사용 관측 필요",
+    "claude/plugins.md 의 superpowers 2종이 언제 왜 사라졌는지 원인 미확인",
+    "Codex 앱 커넥터 11종 제거 실패 - uninstall_plugin 핸들러 부재",
     "기존 17건의 원시 로그 미보존 - 재실행 시 이 파일 형식으로 보존한다"
   ]
 }

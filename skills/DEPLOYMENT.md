@@ -104,7 +104,44 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 파일 구조와 해시가 맞는다는 사실을 런타임 발동 성공으로 바꿔 말하지 않는다. 인증·네트워크가
 정상인 다음 새 세션에서 도구별 목록 확인이 남아 있다.
 
+## 6.1 런타임 재확인 (2026-08-06) — §6의 미통과 3건 중 2건 해소
+
+`bc9a700` 시점에는 인증·네트워크 문제로 세 도구 모두 런타임 검증에 실패했다. 조건이 바뀐 뒤
+다시 확인했다.
+
+| 도구 | 결과 | 근거 |
+|---|---|---|
+| **Codex** | ✅ **14/14 정합** | `codex exec` — 12개 노출 + `mia-skill-compiler`·`mia-vaccine-test` 2개는 `allow_implicit_invocation: false` 설계대로 은닉. `failed to load skill` **0건** |
+| **Antigravity** | ✅ **13/13 인식** | `agy --print` — config 12 + 플러그인 1(`mia-strategic`). 격리한 `science` 39종·`android-cli`가 목록에서 사라진 것까지 확인 |
+| **Claude Code** | ✅ 10/10 | 명시 트리거 17문구 + 자동 안전 3사례. [검증 원장](research/trigger-verification-2026-08.json) |
+
+**세 도구 모두 `bc9a700` 슬림화가 런타임에 반영됐다.** 파일 배치와 실제 인식이 일치한다.
+
+### `openai.yaml` 없이도 Codex 는 로딩한다
+
+`~/.agents/skills` 10개는 `agents/openai.yaml` 이 없어 감사 경고가 뜬다. 그러나 위 검증에서
+**10개 전부 Codex 목록에 노출됐다.** 즉 이 경고는 **표시·정책 계약 미이행이지 로딩 실패가 아니다.**
+
+**어댑터를 만들지 않기로 결정했다.** 근거 셋:
+
+1. 10개 모두 **비파괴 계열**이다. 은닉이 필요한 스킬이 없으므로 기본값(노출)이 곧 의도한 정책이다.
+2. 런타임에서 정상 동작이 실증됐다. 어댑터 10개는 기능 이득이 0이다.
+3. 외부 반입 스킬이라 저장소 정본이 없다. 배포본에만 어댑터를 넣으면 드리프트만 늘어난다.
+
+파괴 계열 스킬을 이 루트에 추가할 때는 **반드시** 어댑터와 `allow_implicit_invocation: false`
+를 함께 넣는다. 그때는 경고를 무시하지 않는다.
+
 ## 7. 남은 위험
+
+### ⚠️ 스테이징 사본이 배포본과 어긋나 있다 (2026-08-06 발견)
+
+`D:\D_Workspace_NB\-agentic-ai-workspace\.agents\skills` 에 **슬림화 이전 27개**가 그대로 남아 있다.
+현재 Codex 배포본은 **10개**다.
+
+**여기서 재동기화하면 `bc9a700` 슬림화가 통째로 되돌아간다.** 이 폴더는 정본이 아니라
+2026-05-23 반입 시점의 staging 사본이며([SOURCE.md](external/eli-kardis/vibe-coding-skills/SOURCE.md)),
+지금은 **과거 기록으로만 유효하다.** 복구가 필요하면 staging 이 아니라
+`~/.mia-skill-backups/20260805-redteam-optimization-01` 에서 필요한 것만 되돌린다.
 
 - **Codex 앱 플러그인**: 사용 근거가 없는 커넥터 11종 제거 호출이 모두
   `No handler registered for tool: uninstall_plugin`으로 실패했다. 캐시를 직접 지우지 않았다.

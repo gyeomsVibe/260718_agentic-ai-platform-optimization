@@ -37,12 +37,11 @@ completed:
   - skill-repair 항목 종결 - 발동 실패 관측이 bc9a700 의 4개 루트 전면 제외 판정과 일치, 백업 4곳 보존
   - 검증 원장 skills/research/trigger-verification-2026-08.json 신설 - 증거 등급 3단계 분리
 remaining:
-  - Codex 새 세션 런타임 재확인 - bc9a700 시점 네트워크 차단으로 미수행
-  - Antigravity 새 세션 런타임 재확인 - bc9a700 시점 미로그인 인증 오류로 미수행
-  - 감사 경고 - Codex 루트 openai.yaml 부재와 벤더 관리 science 플러그인
+  - 스테이징 사본 D 드라이브 -agentic-ai-workspace/.agents/skills 에 슬림화 이전 27개가 남아 있다. 배포본은 10개다. 여기서 재동기화하면 bc9a700 이 되돌아간다
   - 오발동 측정 - 목록 노출과 적절한 시점 발동은 다른 명제다. 실사용 관측 필요
   - claude/plugins.md 의 superpowers 2종이 언제 왜 사라졌는지 원인 미확인
   - Codex 앱 커넥터 11종 제거 실패 - uninstall_plugin 핸들러 부재
+  - 명시 트리거 17건의 원시 로그 미보존 - 재실행 시 검증 원장 형식으로 보존한다
 verification:
   - npm run check - exit 0
   - npm run skills:audit - 오류 0건 exit 0
@@ -54,6 +53,8 @@ verification:
   - 문서 내부 링크 - 깨진 링크 0건
   - 트리거 발동 - 명시 17개 문구 PASS, 오발동 방어 2건 PASS, 자동 안전 3건 PASS
   - accidental-data-loss-prevention fixture 부작용 - 파일 3개 SHA-256 불변, 신규 파일 0건
+  - 2026-08-06 런타임 재확인 - Codex 14/14 정합 load 오류 0건, Antigravity 13/13 인식
+  - 감사 경고 71 to 10 - science 34건 소멸, hatch-pet implicit_unset 명시로 해소
 decisions:
   - superpowers 재설치 No-Go - 14개 스킬 중 12개가 이미 커버되고 mia-strategic·test-writer 와 트리거 충돌
   - 통일 대상을 배포 집합이 아니라 규격으로 전환 - 42개를 전 도구에 배포하면 목록 비대화로 오발동 증가
@@ -67,7 +68,7 @@ approvals_required:
   - 전역 설치 및 플러그인 재설치
   - git push --force 와 히스토리 재작성
   - 다른 저장소로의 push
-next_action: Codex 와 Antigravity 의 새 세션 런타임을 재확인한다. codex exec 와 agy --print 로 각각 스킬 목록을 나열시켜 bc9a700 슬림화 이후의 실제 인식 개수를 확인하고, 결과를 skills/research/trigger-verification-2026-08.json 의 open_items 에 반영한다. 네트워크나 로그인 문제로 실패하면 원인을 기록하고 중단한다
+next_action: 스테이징 사본 D 드라이브 -agentic-ai-workspace/.agents/skills 의 27개를 어떻게 할지 결정한다. 배포본 10개와 어긋나 재동기화 시 bc9a700 슬림화를 되돌리는 위험원이다. 삭제하지 말고 사용자에게 보존 대상인지 확인한 뒤 README 를 넣어 과거 기록임을 명시하거나 백업으로 이관한다
 revalidate_when:
   - Claude Code Codex Antigravity 중 하나라도 버전이 올라가 스킬 경로나 프런트매터 지원 필드가 바뀐 경우
   - npm run skills:audit 가 오류를 보고하는 경우
