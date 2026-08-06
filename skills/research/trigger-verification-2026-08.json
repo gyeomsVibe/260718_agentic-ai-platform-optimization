@@ -14,7 +14,18 @@
     "skills_with_verified_trigger": 10,
     "positive_triggers_verified": 20,
     "negative_guards_verified": 2,
+    "misfire_probes_clean": 6,
     "moot_removed_from_deployment": 1
+  },
+  "reverification_2026_08_07": {
+    "note": "명시 트리거 17건을 재실행해 observed_no_raw_log 를 logged 로 승격했다. 같은 판정기(stream-json JSON 파싱)를 사용했다.",
+    "explicit_triggers": { "total": 17, "pass": 17, "fail": 0 },
+    "misfire_probes": {
+      "total": 6, "misfire": 0,
+      "design": "무관 요청 1건 + 경계 요청 5건. 경계는 스킬 영역과 인접하지만 그 스킬이 필요 없는 요청이다. 예: 'add 함수가 뭐 하는지 설명해줘'(python-refactor 가 뜨면 과잉), 'NOTES.md 내용 보여줘'(writing-guidelines 과잉), '오늘 뭐부터 하면 좋을까'(product-thinking·vibe-check 과잉)",
+      "result": "6건 모두 어떤 스킬도 발동하지 않았다. 현재 10개 구성에서 트리거가 과도하게 넓지 않다는 근거다."
+    },
+    "caveat": "plan 모드 단발 실행이다. 긴 대화 중 문맥이 쌓인 상태의 오발동은 여전히 미측정이다."
   },
   "records": [
     {
@@ -149,9 +160,9 @@
         { "prompt": "MIA 백신테스트 발동", "skill": "mia-vaccine-test" },
         { "prompt": "MIA 스킬컴파일러 발동", "skill": "mia-skill-compiler" }
       ],
-      "note": "배치 A/B/C 로 실행해 Skill 호출 로그로 확인했으나 원시 로그를 보존하지 않았다. 신규 3건과 같은 증거 등급으로 취급하지 않는다.",
-      "timestamp": "2026-08-05T00:00:00+00:00",
-      "evidence_level": "observed_no_raw_log"
+      "note": "2026-08-05 배치 A/B/C 실행 시에는 원시 로그를 보존하지 않았다. 2026-08-07 에 17건 전부 재실행해 구조화 결과를 남겼고 17/17 PASS 로 등급을 승격했다.",
+      "timestamp": "2026-08-07T00:00:00+00:00",
+      "evidence_level": "logged"
     }
   ],
   "runtime_reverification_2026_08_06": {
@@ -187,11 +198,16 @@
       "condition": "파괴 계열 스킬을 이 루트에 추가하면 어댑터와 allow_implicit_invocation: false 를 반드시 함께 넣는다."
     }
   },
+  "closed_items": [
+    "스테이징 사본 27개 - 2026-08-06 경고 표시 완료. 삭제하지 않고 README 와 _STALE_DO_NOT_SYNC.md 로 표시",
+    "오발동 측정 - 2026-08-07 음성 대조군 6건 실행, 오발동 0건",
+    "superpowers 소실 원인 - 2026-08-06 조사 완료. 플러그인 서브시스템 전면 초기화. 행위자는 미특정",
+    "Codex 커넥터 - 2026-08-07 로컬 플러그인 5종 비활성화. 계정 커넥터는 서버 측이라 로컬 제거 불가로 확정",
+    "17건 원시 로그 - 2026-08-07 재실행으로 logged 등급 승격"
+  ],
   "open_items": [
-    "스테이징 사본 D:/D_Workspace_NB/-agentic-ai-workspace/.agents/skills 에 슬림화 이전 27개가 남아 있다. 배포본은 10개다. 여기서 재동기화하면 bc9a700 이 되돌아간다",
-    "오발동 측정 - 목록 노출과 적절한 시점 발동은 다른 명제다. 실사용 관측 필요",
-    "claude/plugins.md 의 superpowers 2종이 언제 왜 사라졌는지 원인 미확인",
-    "Codex 앱 커넥터 11종 제거 실패 - uninstall_plugin 핸들러 부재",
-    "기존 17건의 원시 로그 미보존 - 재실행 시 이 파일 형식으로 보존한다"
+    "Codex 계정 커넥터 73종 - Codex 앱·계정 UI 에서만 정리 가능하다. 로컬 에이전트 범위 밖이며 사용자 조치가 필요하다. Codex 가 2% 스킬 컨텍스트 예산 초과를 경고 중",
+    "긴 대화 문맥에서의 오발동 - 이번 측정은 plan 모드 단발 실행이다. 문맥이 쌓인 상태는 미측정",
+    "superpowers 재설치 여부 미결 - Claude Code 에서는 사라졌으나 Codex 계정 커넥터로 14종이 살아 있다"
   ]
 }
