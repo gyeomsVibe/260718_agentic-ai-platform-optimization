@@ -21,8 +21,8 @@
 > `document-skills:frontend-design` 등을 참조했으나 하나도 발견되지 않아,
 > [`agents/README.md`](agents/README.md) 정제 시 해당 참조를 모두 제거했습니다.
 >
-> **미확인**: 언제·왜 사라졌는지(수동 제거 / Claude Code 업데이트 시 초기화)는 확인하지
-> 못했습니다. 재설치 여부는 별도 판단 사항입니다.
+> **소실 경위 조사 완료 (2026-08-06)** — 아래 §6 참조. 요약하면 **플러그인 서브시스템
+> 전체가 2026-08-02에 초기화**됐습니다. 행위자는 특정하지 못했습니다.
 
 | 플러그인 | 버전 | 마켓플레이스 | 구성 | 상시 토큰 | 역할 |
 |---|---|---|---|---|---|
@@ -66,6 +66,58 @@ claude plugin uninstall <plugin>@<marketplace>       # 제거
 - **자동 발동**: 요청이 스킬 설명과 맞으면 알아서 발동. 예: "이 기능 만들기 전에 계획부터"(writing-plans),
   "TDD로 구현해줘"(test-driven-development), "병렬 에이전트로 리뷰해줘"(dispatching-parallel-agents), UI 작업 시 frontend-design.
 - **진입점**: Superpowers는 `using-superpowers` 스킬이 안내자 역할.
+
+## 6. 소실 경위 조사 (2026-08-06)
+
+### 확인된 사실
+
+| 증거 | 값 |
+|---|---|
+| `superpowers@superpowers-dev` 사용 이력 | **usageCount 105**, 마지막 사용 **2026-07-30 18:25** |
+| `~/.claude/plugins/` 최종 변경 | **2026-08-02 13:47** — 현재 `data/pdf-viewer-inline` 만 남음 |
+| Claude Code 버전 갱신 | 2026-08-02 15:52, `2.1.214 → 2.1.220` |
+| `settings.json.pre-rebuild.20260802-161707` | **26바이트** — 08-02 16:03 시점 설정이 사실상 빈 파일 |
+| `claude plugin list` | `No plugins installed` |
+| `claude plugin marketplace list` | **`No marketplaces configured`** |
+| `.claude.json` 잔존물 | `superpowers@superpowers-dev` **사용 통계 키만** 남음. 설치·등록 정보 없음 |
+
+### 판정
+
+**플러그인 서브시스템 전체가 2026-08-02에 초기화됐습니다.** 설치본(`plugins/`), 활성화
+설정(`settings.json`), **마켓플레이스 등록까지** 모두 사라졌고 사용 통계만 남았습니다.
+
+부분 손상이 아니라 전면 초기화입니다. 그래서 재설치하려면 마켓플레이스 등록부터 다시 해야 합니다.
+
+### 행위자 — 특정하지 못함
+
+다음을 모두 뒤졌으나 원인 행위를 찾지 못했습니다.
+
+- Claude Code 세션 기록(2026-08-01~03, 4건) — `plugin uninstall`·`superpowers` 언급 **0건**
+- Codex 세션 기록 동기간 — `superpowers` 매치는 전부 Codex 자체 커넥터 추천 목록
+  (`superpowers@openai-curated-remote`)이며 Claude Code 플러그인과 **무관**
+- `history.jsonl` — 플러그인 관련 명령 **0건**
+- 워크스페이스 스크립트에서 `pre-rebuild` 명명 사용처 **0건**
+
+**시간 순서만 관측됐습니다.** `plugins/` 변경(13:47) → 버전 갱신(15:52) → 빈 설정 백업(16:17).
+13:47이 15:52보다 앞서므로 **버전 갱신이 원인이라고 단정할 수 없습니다.** 추측을 사실로
+기록하지 않습니다.
+
+### 재설치하려면
+
+마켓플레이스 등록이 사라졌으므로 2단계입니다.
+
+```bash
+claude plugin marketplace add obra/superpowers
+```
+
+```bash
+claude plugin install superpowers@superpowers-dev
+```
+
+**재설치 여부는 미결입니다.** 판단 근거는
+[`../skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md`](../skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md)의
+재재평가 절에 있습니다. 그 문서의 "실사용 의존도가 낮다" 논거는 이번 조사로 **철회**됐습니다
+(105회 사용). 나머지 논거는 유효합니다.
 
 ## 관련
 - 플러그인 3층위 개념·계정 커넥터 정리: [environment-notebook.md](environment-notebook.md)
