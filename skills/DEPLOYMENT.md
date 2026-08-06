@@ -133,15 +133,30 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 
 ## 7. 남은 위험
 
-### ⚠️ 스테이징 사본이 배포본과 어긋나 있다 (2026-08-06 발견)
+### 스테이징 사본 — 표시 완료 (2026-08-06)
 
-`D:\D_Workspace_NB\-agentic-ai-workspace\.agents\skills` 에 **슬림화 이전 27개**가 그대로 남아 있다.
-현재 Codex 배포본은 **10개**다.
+`D:\D_Workspace_NB\-agentic-ai-workspace\.agents\skills` 에 **슬림화 이전 27개**가 남아 있다.
+현재 Codex 배포본은 **10개**다. 이 폴더는 정본이 아니라 2026-05-23 반입 시점의 staging
+사본이며([SOURCE.md](external/eli-kardis/vibe-coding-skills/SOURCE.md)) **과거 기록으로만 유효하다.**
 
-**여기서 재동기화하면 `bc9a700` 슬림화가 통째로 되돌아간다.** 이 폴더는 정본이 아니라
-2026-05-23 반입 시점의 staging 사본이며([SOURCE.md](external/eli-kardis/vibe-coding-skills/SOURCE.md)),
-지금은 **과거 기록으로만 유효하다.** 복구가 필요하면 staging 이 아니라
-`~/.mia-skill-backups/20260805-redteam-optimization-01` 에서 필요한 것만 되돌린다.
+**단순 구버전이 아니다.** 27개와 10개가 겹치는 것은 4개뿐이다
+(`error-path-analysis`, `product-thinking`, `python-refactor`, `web-design-guidelines`).
+나머지 6개는 다른 출처에서 왔다. 여기서 복사하면 정리한 23개가 되살아나고 현재 쓰는 6개는
+그대로 남아 **목록이 33개로 불어난다.**
+
+되돌림 경로는 둘이다. `skills/` 직접 복사와 **`install.sh`** (`~/.claude/skills`·`~/.claude/agents`
+에 27+12개를 복사한다).
+
+**조치**: 삭제하지 않고 **경고 표시만** 했다. `MANIFEST.sha256` 이 이 파일들의 SHA-256 을
+가리키므로 지우면 반입 시점 원본과 대조할 수단이 사라진다.
+
+| 위치 | 내용 |
+|---|---|
+| `.agents/README.md` 최상단 | 되돌림 경로 2개와 배포본 차이표 |
+| `.agents/skills/_STALE_DO_NOT_SYNC.md` | 27 vs 10 상세 대조, 제외 근거 요약, 복구 절차 |
+
+복구가 필요하면 staging 이 아니라 `~/.mia-skill-backups/20260805-redteam-optimization-01` 에서
+필요한 것만 되돌리고 `npm run skills:audit` 로 확인한다.
 
 - **Codex 앱 플러그인**: 사용 근거가 없는 커넥터 11종 제거 호출이 모두
   `No handler registered for tool: uninstall_plugin`으로 실패했다. 캐시를 직접 지우지 않았다.
