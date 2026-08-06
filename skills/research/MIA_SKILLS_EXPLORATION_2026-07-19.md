@@ -164,5 +164,65 @@ TikTok 소개 영상(6종 플러그인)을 전수분석하고, 사용자 요청�
 **No-Go.** 팩 전체를 되돌리지 않는다. 나중에 특정 공백이 실제로 드러나면 그 스킬 **하나만**
 `skills/external/` 반입 계약(SOURCE.md + 정적 검토)으로 가져온다.
 
+---
+
+## 재설치 시도와 Pivot (2026-08-07)
+
+사용자가 3대 도구에 superpowers 재설치를 요청했다. 플러그인 설치를 시작했다가 **두 제약을
+확인하고 선별 파일 배포로 전환**했다.
+
+### 제약 1 — 플러그인 설치는 all-or-nothing
+
+Claude Code `settings.json` 에 개별 스킬 토글이 없다(공식 문서 확인). `disableBundledSkills` 는
+내장 스킬 전체를 끄는 용도다. **"충돌분만 빼고 설치"가 플러그인 방식으로는 불가능하다.**
+
+### 제약 2 — `using-superpowers` 가 모든 대화를 가로챈다
+
+원문 그대로다.
+
+> `Invoke relevant or requested skills BEFORE any response or action — including clarifying
+> questions` / `YOU DO NOT HAVE A CHOICE. YOU MUST USE IT. This is not negotiable.
+> You cannot rationalize your way out of this.`
+
+전역 `CLAUDE.md` P0(권한 우선순위)·SAFE-SYNC 게이트와 **권한 경합**한다. plan 모드 진입 전
+`brainstorming` 을 먼저 부르라는 지시까지 있다.
+
+### 14종 충돌 판정
+
+| 충돌도 | 스킬 | 충돌 대상 |
+|---|---|---|
+| 최고 | `using-superpowers` | 모든 응답 가로채기 — 전역 룰 P0 |
+| 높음 | `dispatching-parallel-agents`, `subagent-driven-development` | 저장소 규칙 "명시 요청 없인 에이전트 스폰 금지" |
+| 높음 | `finishing-a-development-branch` | SAFE-SYNC 게이트 |
+| 높음 | `writing-plans` · `writing-skills` · `test-driven-development` | `mia-strategic` · `mia-skill-compiler` · `test-writer` |
+| 높음 | `brainstorming` | 범위 과대 + `product-thinking` 중복 |
+| 중간 | `executing-plans` · `requesting-code-review` · `using-git-worktrees` · `verification-before-completion` | 내장 Plan · `/code-review` · 워크트리 · 글로벌 P4 |
+| **없음** | **`systematic-debugging`** | 버그 대응 절차. `mia-vaccine-test` 는 결함 *주입*이라 다르다 |
+| **없음** | **`receiving-code-review`** | 리뷰 *수용* 절차. 내장은 리뷰 *생성*만 다룬다 |
+
+**14종 중 충돌 없는 것은 2종뿐이다.**
+
+### 실행 — 선별 파일 배포 (MIT 라이선스)
+
+플러그인 대신 원하는 `SKILL.md` 만 복사했다. 훅이 실행되지 않고, 개별 선택이 가능하며,
+세 도구에 같은 방식이 통한다.
+
+| 도구 | 조치 | 결과 |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` 에 2종 배포 | 10 → **12개**. 발동 확인, 제외 12종 미노출 확인 |
+| Antigravity | `~/.gemini/config/skills/` 에 2종 배포 | 12 → **14개**. 동일 확인 |
+| Codex | **배포하지 않음** | 계정 커넥터가 `superpowers:*` 14종을 이미 제공한다. 파일 사본을 두면 같은 이름이 두 경로에서 경쟁하므로 넣었다가 제거했다 |
+
+### 정직하게 남기는 한계
+
+**Codex 에서는 충돌 12종을 제외할 수 없다.** 계정 레벨 커넥터라 로컬에서 끄지 못한다.
+`superpowers:using-superpowers` 와 `superpowers:brainstorming` 이 실제로 목록에 있음을 확인했다.
+제외가 성립하는 것은 **Claude Code 와 Antigravity 뿐**이다.
+
+Codex 에서도 빼려면 Codex 앱·계정 UI 에서 superpowers 커넥터를 해제해야 한다.
+
+마켓플레이스 등록(`superpowers-dev`)은 플러그인을 설치하지 않으므로 제거해 원상복구했다.
+전체 설치를 원하면 `claude plugin marketplace add obra/superpowers` 로 다시 등록한다.
+
 **미확인 사항**: 조사 중 얻은 상류 star 수치(266.2k)는 비현실적이라 근거로 채택하지 않았다.
 `frontend-design`(~78tok, 공식) 재설치 여부는 이 결정에 포함되지 않는다 — 별도 판단 사항.

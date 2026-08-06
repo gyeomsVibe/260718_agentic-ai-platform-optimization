@@ -54,21 +54,33 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 | Codex 전역 파일 | 50 | **20** | `.agents/skills` 10 + `.codex/skills` 10 |
 | Antigravity | 66 | **13** | config 12 + MIA 플러그인 1 |
 
-### Claude Code 10
+### Claude Code 10 → 12 (2026-08-07)
 
 `accidental-data-loss-prevention`, `error-path-analysis`, MIA 3종, `product-thinking`,
 `python-refactor`, `vibe-check`, `web-design-guidelines`, `writing-guidelines`.
+
+**추가 2종** — obra/superpowers(MIT)에서 **선별 반입**: `systematic-debugging`,
+`receiving-code-review`. 나머지 12종은 트리거 충돌로 제외했다. 판정표와 근거는
+[`research/MIA_SKILLS_EXPLORATION_2026-07-19.md`](research/MIA_SKILLS_EXPLORATION_2026-07-19.md)의
+"재설치 시도와 Pivot" 절에 있다.
+
+> **플러그인으로 설치하지 않았다.** Claude Code 플러그인은 all-or-nothing 이라
+> `using-superpowers`(모든 응답 가로채기)까지 딸려 온다. MIT 라이선스를 근거로 필요한
+> `SKILL.md` 만 복사했다. 훅도 실행되지 않는다.
 
 ### Codex 20
 
 - `.agents/skills` 10: 안전, 에러 UX, 프론트엔드 디자인, Python 의존성/리팩터링,
   제품 사고, React 성능, 진단, 웹 감사, 글쓰기.
+  **superpowers 선별 2종을 넣지 않았다** — 계정 커넥터가 `superpowers:*` 14종을 이미
+  제공해 같은 이름이 두 경로에서 경쟁한다. 넣었다가 확인 후 제거했다.
 - `.codex/skills` 10: Codex 시스템·제작 Skill 6, `hatch-pet`, MIA 3종.
 - 프로젝트 `.agents/skills/mia-strategic`은 저장소 범위 어댑터라 전역본과 별도로 유지한다.
 
-### Antigravity 13
+### Antigravity 13 → 15 (2026-08-07)
 
-- `~/.gemini/config/skills` 12: Codex 공통 최소층에서 MIA 전략절차를 제외한 구성.
+- `~/.gemini/config/skills` 12 → **14**: Codex 공통 최소층에서 MIA 전략절차를 제외한 구성 +
+  superpowers 선별 2종(`systematic-debugging`, `receiving-code-review`).
 - `~/.gemini/config/plugins/mia-modular-intelligence-architect` 1: `mia-strategic`.
 - 레거시 `~/.gemini/skills`, `~/.gemini/antigravity-ide/skills`는 중복본을 모두 격리해 0개다.
 
