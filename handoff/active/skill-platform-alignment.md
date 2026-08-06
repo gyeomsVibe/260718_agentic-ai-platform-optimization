@@ -37,9 +37,8 @@ completed:
   - skill-repair 항목 종결 - 발동 실패 관측이 bc9a700 의 4개 루트 전면 제외 판정과 일치, 백업 4곳 보존
   - 검증 원장 skills/research/trigger-verification-2026-08.json 신설 - 증거 등급 3단계 분리
 remaining:
-  - Codex 계정 커넥터 73종 정리 - Codex 앱·계정 UI 에서만 가능하다. 로컬 에이전트 범위 밖이며 사용자 조치가 필요하다. Codex 가 2% 스킬 컨텍스트 예산 초과를 경고 중이다
+  - Codex 계정 커넥터 잔여분 정리 - superpowers 는 사용자가 해제해 예산 경고가 사라졌다. Adobe 6 figma 12 heygen 2 notion 4 gmail 1 google-drive 5 data-analytics 15 는 CLI 호출 0건이며 앱 UI 에서만 해제 가능하다
   - 긴 대화 문맥에서의 오발동 - 이번 측정은 plan 모드 단발 실행이다. 문맥이 쌓인 상태는 미측정
-  - superpowers 재설치 여부 미결 - Claude Code 에서는 사라졌으나 Codex 계정 커넥터로 14종이 살아 있다
 verification:
   - npm run check - exit 0
   - npm run skills:audit - 오류 0건 exit 0
@@ -58,6 +57,8 @@ verification:
   - Codex 로컬 플러그인 5종 비활성화 - sites presentations google-calendar slack computer-use. 계정 커넥터는 서버 측이라 로컬 제거 불가로 확정
   - 명시 트리거 17건 재실행으로 원시 근거 보존 - 17/17 PASS, observed_no_raw_log 등급 해소
   - 오발동 측정 완료 - 음성 대조군 6건(무관 1 경계 5) 전부 발동 없음
+  - superpowers 선별 반입 완료 - 14종 중 충돌 없는 2종(systematic-debugging, receiving-code-review)만 3대 도구에 배포. 플러그인은 all-or-nothing 이고 using-superpowers 가 모든 응답을 가로채므로 MIT 근거로 파일만 복사했다
+  - Codex superpowers 커넥터 해제 확인 - 사용자 조치로 14종이 목록에서 사라지고 2% 예산 경고도 해소됐다. 중복 사유가 없어져 선별 2종을 배포했다
 decisions:
   - superpowers 재설치 No-Go - 14개 스킬 중 12개가 이미 커버되고 mia-strategic·test-writer 와 트리거 충돌
   - 통일 대상을 배포 집합이 아니라 규격으로 전환 - 42개를 전 도구에 배포하면 목록 비대화로 오발동 증가
@@ -71,7 +72,7 @@ approvals_required:
   - 전역 설치 및 플러그인 재설치
   - git push --force 와 히스토리 재작성
   - 다른 저장소로의 push
-next_action: Codex 앱 또는 계정 웹 UI 에서 안 쓰는 계정 커넥터를 해제한다. 로컬 파일로는 불가능하므로 사용자가 직접 해야 한다. 대상 후보는 Adobe 6 figma 12 heygen 2 notion 4 gmail 1 google-drive 5 data-analytics 15 로 CLI 세션 46개에서 호출 0건이다. 해제 뒤 codex exec 로 목록을 다시 세어 2퍼센트 예산 경고가 사라지는지 확인한다
+next_action: Codex 앱에서 남은 계정 커넥터를 해제한다. superpowers 해제로 예산 경고가 사라진 것이 선례다. 대상 후보는 CLI 세션 46개에서 호출 0건인 Adobe 6 figma 12 heygen 2 notion 4 gmail 1 google-drive 5 data-analytics 15 다. 로컬 파일로는 불가능하므로 사용자가 직접 해야 하며 해제 뒤 codex exec 로 목록을 다시 세어 확인한다
 revalidate_when:
   - Claude Code Codex Antigravity 중 하나라도 버전이 올라가 스킬 경로나 프런트매터 지원 필드가 바뀐 경우
   - npm run skills:audit 가 오류를 보고하는 경우

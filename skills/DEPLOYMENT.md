@@ -70,10 +70,14 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 
 ### Codex 20
 
-- `.agents/skills` 10: 안전, 에러 UX, 프론트엔드 디자인, Python 의존성/리팩터링,
-  제품 사고, React 성능, 진단, 웹 감사, 글쓰기.
-  **superpowers 선별 2종을 넣지 않았다** — 계정 커넥터가 `superpowers:*` 14종을 이미
-  제공해 같은 이름이 두 경로에서 경쟁한다. 넣었다가 확인 후 제거했다.
+- `.agents/skills` 10 → **12** (2026-08-07): 안전, 에러 UX, 프론트엔드 디자인,
+  Python 의존성/리팩터링, 제품 사고, React 성능, 진단, 웹 감사, 글쓰기
+  + superpowers 선별 2종.
+
+> **2단계로 진행했다.** 처음에는 계정 커넥터가 `superpowers:*` 14종을 제공해 같은 이름이
+> 두 경로에서 경쟁하므로 넣지 않았다. 사용자가 **Codex 앱에서 superpowers 커넥터를 해제**한
+> 뒤(2026-08-07) 중복 사유가 사라져 배포했다. 해제 결과 14종이 목록에서 완전히 사라졌고
+> **2% 스킬 컨텍스트 예산 초과 경고도 함께 사라졌다.**
 - `.codex/skills` 10: Codex 시스템·제작 Skill 6, `hatch-pet`, MIA 3종.
 - 프로젝트 `.agents/skills/mia-strategic`은 저장소 범위 어댑터라 전역본과 별도로 유지한다.
 

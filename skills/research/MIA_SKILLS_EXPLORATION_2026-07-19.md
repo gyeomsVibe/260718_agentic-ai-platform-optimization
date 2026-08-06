@@ -211,15 +211,30 @@ Claude Code `settings.json` 에 개별 스킬 토글이 없다(공식 문서 확
 |---|---|---|
 | Claude Code | `~/.claude/skills/` 에 2종 배포 | 10 → **12개**. 발동 확인, 제외 12종 미노출 확인 |
 | Antigravity | `~/.gemini/config/skills/` 에 2종 배포 | 12 → **14개**. 동일 확인 |
-| Codex | **배포하지 않음** | 계정 커넥터가 `superpowers:*` 14종을 이미 제공한다. 파일 사본을 두면 같은 이름이 두 경로에서 경쟁하므로 넣었다가 제거했다 |
+| Codex | 1차 보류 → **2차 배포** | 10 → **12개**. 아래 참조 |
 
-### 정직하게 남기는 한계
+### Codex — 커넥터 해제 후 완료 (2026-08-07)
 
-**Codex 에서는 충돌 12종을 제외할 수 없다.** 계정 레벨 커넥터라 로컬에서 끄지 못한다.
-`superpowers:using-superpowers` 와 `superpowers:brainstorming` 이 실제로 목록에 있음을 확인했다.
-제외가 성립하는 것은 **Claude Code 와 Antigravity 뿐**이다.
+1차에는 배포하지 않았다. 계정 커넥터가 `superpowers:*` 14종을 이미 제공해 같은 이름이 두
+경로에서 경쟁했기 때문이다. 당시에는 **로컬에서 그 12종을 제외할 수 없다**는 것이 한계였다.
 
-Codex 에서도 빼려면 Codex 앱·계정 UI 에서 superpowers 커넥터를 해제해야 한다.
+**사용자가 Codex 앱에서 superpowers 커넥터를 해제해 그 한계가 해소됐다.** 실측 확인 결과
+
+- `superpowers:*` 14종이 목록에서 **완전히 사라졌다**
+- Codex 가 띄우던 **2% 스킬 컨텍스트 예산 초과 경고도 사라졌다**
+
+중복 사유가 없어져 선별 2종을 배포했다. Claude 정본 대비 SHA-256 일치를 확인했고,
+Codex 어댑터(`agents/openai.yaml`, `allow_implicit_invocation: true`)를 함께 넣었다.
+
+### 최종 상태 — 3대 도구 동일
+
+| 도구 | 무충돌 2종 | 충돌 12종 |
+|---|---|---|
+| Claude Code | 있음 | 없음 |
+| Antigravity | 있음 | 없음 |
+| Codex | 있음 | 없음 |
+
+세 도구 모두 런타임 지목 확인으로 검증했다. 목표 상태에 도달했다.
 
 마켓플레이스 등록(`superpowers-dev`)은 플러그인을 설치하지 않으므로 제거해 원상복구했다.
 전체 설치를 원하면 `claude plugin marketplace add obra/superpowers` 로 다시 등록한다.
