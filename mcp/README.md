@@ -18,7 +18,7 @@ USB 단자를 떠올리면 됩니다 — 한 번 표준을 정해 두면, 어떤
 | MCP | 무엇을 하나 | 상태 | 폴더 |
 |---|---|---|---|
 | **NotebookLM** | 내 구글 NotebookLM 자료(서재)에 질문하고, 출처가 달린 답을 받아온다 | 연결됨 | [notebooklm/](notebooklm/) |
-| **Antigravity Bridge** | Codex·Claude Code가 Antigravity(`agy`)에게 작업을 위임하고 결과를 회수한다 | ⚠️ **벤더링만 완료 — 미설치·미등록** | [antigravity-bridge/](antigravity-bridge/) |
+| **Antigravity Bridge** | Codex·Claude Code가 Antigravity(`agy`)에게 작업을 위임하고 결과를 회수한다 | ✅ **설치·등록·런타임 검증 완료** | [antigravity-bridge/](antigravity-bridge/) |
 
 ## 이 섹션의 규칙
 

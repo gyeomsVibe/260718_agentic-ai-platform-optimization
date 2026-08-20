@@ -16,23 +16,44 @@ Antigravity(`agy` CLI)를 MCP 도구로 노출해, Codex나 Claude Code가 작�
 | 자식 환경변수 | `process.env` 전체 상속 | **허용 목록만 전달** |
 | 도구 수 | 14 | 9 |
 
-## 상태
+## 상태 (2026-08-21)
 
-⚠️ **아직 어디에도 등록하지 않았다.** 의존성도 설치하지 않았다.
-현재 검증된 것은 구문 검사(`node --check`)뿐이며, **런타임 동작은 미검증**이다.
+✅ **설치·등록·런타임 검증 완료.** Codex에 `antigravity-bridge`로 등록됨 (`enabled`).
 
-## 쓰려면 (아직 실행하지 않은 단계)
+| 검증 | 결과 |
+|---|---|
+| stdio 핸드셰이크 | 서버 기동, `serverInfo: antigravity-bridge-fork@1.0.2-fork.1` |
+| 노출 도구 | **9종** — 제거한 파일 도구 0건, `write_to_file` 파라미터 없음 |
+| `antigravity_health` (Codex 경유) | `agy` 1.1.16 탐지, `autoApprove: false`, `sandbox: true` |
+| 실제 위임 | 작업 완료(`done`), **샌드박스 켠 채 자동승인 없이 인증 성공** |
+| `npm audit` | 취약점 0건 |
 
-1. 의존성 설치 — 이 디렉터리에서 `npm install`. 전이 포함 94개 패키지가 설치된다.
-2. MCP 클라이언트에 등록 — Codex 기준:
+상세: [실험 4·5 로그](../../agent-swarm/logs/2026-08-21_exp4-5_mcp-bridge-delegation.md)
+
+## 재설치 방법
+
+의존성은 **설치 시 스크립트 실행 없이** 넣는다. 유일한 네이티브 모듈 `node-pty`는 선택
+의존성이고, 없으면 코드가 일반 `spawn`으로 폴백하며 기동 시 그 사실을 stderr에 알린다.
+
+```bash
+npm install --omit=optional --ignore-scripts
+```
+
+등록 (Codex):
 
 ```bash
 codex mcp add antigravity-bridge -- node "D:/D_Workspace_NB/-agentic-ai-workspace/260718_agentic-ai-platform-optimization/mcp/antigravity-bridge/index.js"
 ```
 
-3. `antigravity_health`로 `agy` 탐지·버전을 먼저 확인한 뒤 위임을 시도한다.
+## 무인 위임 호출 방법
 
-> 등록은 **앞으로의 모든 세션에 도구를 추가하는 상시 설정 변경**이다. 별도 판단 후 진행한다.
+`codex exec`의 기본 승인 정책은 `never`라 MCP 도구 호출이 그대로 막힌다
+(`MCP tool call requires approval, but approval policy is never`).
+`--approve-for-me`를 쓰고, **`-s`는 함께 쓸 수 없다** (자체 샌드박스를 적용하기 때문).
+
+```bash
+codex exec --approve-for-me "antigravity-bridge로 antigravity_health를 호출하고 결과를 보고해"
+```
 
 ## 도구 9종
 

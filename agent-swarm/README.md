@@ -27,6 +27,7 @@ Antigravity CLI, MCP)으로 내장하면서 파일 기반 자작 버스는 열�
 | [exp1 · Codex → Antigravity 위임](logs/2026-08-21_exp1_codex-to-antigravity.md) | ⚠️ 부분 성공 | Codex 샌드박스 안에서는 `agy` 인증 불가 (F4). 자료 C의 기법은 샌드박스 해제가 전제 (F5) |
 | [exp2 · 지시 위반 적발](logs/2026-08-21_exp2_instruction-violation-detection.md) | ⚠️ 부분 수행 | 실행자는 제약 준수 (F12). 하우스키핑을 위반으로 오판하면 안 됨 (F13) |
 | [exp3 · Claude Agent Teams](logs/2026-08-21_exp3_claude-agent-teams.md) | ❌ 실패 | `SendMessage`는 있고 `ListAgents`는 없음 (F8). 형제 에이전트는 서로 발견 불가 (F9) |
+| [exp4·5 · MCP 브리지 위임과 위반 적발](logs/2026-08-21_exp4-5_mcp-bridge-delegation.md) | ✅ **PASS** | **MCP 경유는 샌드박스를 켠 채 인증에 성공한다 (F18) — exp1의 "샌드박스 해제 필수" 결론을 뒤집음.** 감독자 판별력도 실증 (F22) |
 
 ## 소스 감사 (`audits/`)
 
