@@ -243,7 +243,8 @@ flowchart TD
 | **Codex ↔ Claude Code (MCP)** | ⚠️ 명령만 확인 | `claude mcp serve` + `codex mcp add` 존재 확인. **실제 연결은 미검증** | — |
 | **Codex 폰 원격조종** | ⚠️ 명령만 확인 | `codex remote-control start/pair` 존재 확인. **페어링 미수행** | — |
 | 외부 브리지 `codex-agy-bridge` | ❌ 부적합 | macOS/tmux 전용, `agy 1.0.8` 대상 (우리는 1.1.16 — 버전 드리프트) | 직접 셸 호출 |
-| 외부 브리지 `mcp-server-google-antigravity` | 🧪 ❌ **감사 완료 — 현 상태 부적합** | [소스 감사](audits/2026-08-21_mcp-server-google-antigravity.md): `AGY_AUTO_APPROVE` 기본값이 `true`이고 `--dangerously-skip-permissions`로 직결. **R1을 회피하는 경로가 아니라 R1을 내장한 경로** | 최소 포크 벤더링(감사 §5 경로 ②) |
+| 외부 브리지 `mcp-server-google-antigravity` (상류 그대로) | 🧪 ❌ **감사 완료 — 부적합** | [소스 감사](audits/2026-08-21_mcp-server-google-antigravity.md): `AGY_AUTO_APPROVE` 기본값이 `true`이고 `--dangerously-skip-permissions`로 직결. **R1을 회피하는 경로가 아니라 R1을 내장한 경로** | ↓ 포크 |
+| **벤더링 포크** [`mcp/antigravity-bridge/`](../mcp/antigravity-bridge/) | ⚠️ **벤더링 완료 · 런타임 미검증** | 자동승인 기본 off, 샌드박스 기본 on, 파일 도구 6종 제거, 환경변수 허용 목록화. `node --check` 통과, 패치 재현성 해시 일치 확인 | 의존성 설치·클라이언트 등록이 남음 |
 
 > **매트릭스 요약 (2026-08-21)**: 이 노트북에서 **오늘 승인 없이 실제로 작동하는 것은 두 가지뿐이다** — `agy` 직접 헤드리스 실행, Claude Code subagent 병렬 조사. 두 도구를 잇는 자동 경로는 전부 승인 대기 상태다.
 

@@ -1,0 +1,28 @@
+{
+  "name": "antigravity-bridge-fork",
+  "version": "1.0.2-fork.1",
+  "private": true,
+  "description": "Vendored, permission-hardened fork of mcp-server-google-antigravity. Exposes Antigravity (agy CLI) to MCP clients for delegated jobs. Filesystem tools removed; auto-approve off by default. See SOURCE.md.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "check": "node --check index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@xterm/headless": "^6.0.0",
+    "zod": "^3.0.0"
+  },
+  "optionalDependencies": {
+    "node-pty": "^1.1.0"
+  },
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ]
+}
