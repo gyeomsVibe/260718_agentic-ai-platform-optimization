@@ -28,6 +28,14 @@ Antigravity CLI, MCP)으로 내장하면서 파일 기반 자작 버스는 열�
 | [exp2 · 지시 위반 적발](logs/2026-08-21_exp2_instruction-violation-detection.md) | ⚠️ 부분 수행 | 실행자는 제약 준수 (F12). 하우스키핑을 위반으로 오판하면 안 됨 (F13) |
 | [exp3 · Claude Agent Teams](logs/2026-08-21_exp3_claude-agent-teams.md) | ❌ 실패 | `SendMessage`는 있고 `ListAgents`는 없음 (F8). 형제 에이전트는 서로 발견 불가 (F9) |
 
+## 소스 감사 (`audits/`)
+
+외부 브리지·플러그인은 설치 전 감사하고 결과를 남긴다 (프로토콜 S6.5).
+
+| 감사 | 판정 | 핵심 |
+|---|---|---|
+| [mcp-server-google-antigravity](audits/2026-08-21_mcp-server-google-antigravity.md) | ❌ 현 상태 부적합 | 설치 시 코드 실행·네트워크·텔레메트리 전부 없음. 그러나 자동승인이 기본값이라 **R1을 회피하는 경로가 아니라 내장한 경로** (F17) |
+
 ## 관련 위치
 
 - 글로벌 룰 정본: `shared/global-rules/core.md`
