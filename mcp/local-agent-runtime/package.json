@@ -1,0 +1,19 @@
+{
+  "name": "local-agent-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "description": "장기 실행 에이전트 세션(Claude Code, Antigravity)을 MCP 도구로 노출한다. 프로세스를 살려두고 NDJSON 스트림으로 턴을 이어붙인다.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "check": "node --check index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.0.0"
+  }
+}

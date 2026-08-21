@@ -19,6 +19,7 @@ USB 단자를 떠올리면 됩니다 — 한 번 표준을 정해 두면, 어떤
 |---|---|---|---|
 | **NotebookLM** | 내 구글 NotebookLM 자료(서재)에 질문하고, 출처가 달린 답을 받아온다 | 연결됨 | [notebooklm/](notebooklm/) |
 | **Antigravity Bridge** | Codex·Claude Code가 Antigravity(`agy`)에게 작업을 위임하고 결과를 회수한다 | ✅ **설치·등록·런타임 검증 완료** | [antigravity-bridge/](antigravity-bridge/) |
+| **Local Agent Runtime** | 코덱스가 클로드 코드·안티그래비티와 **맥락이 이어지는 세션**으로 대화한다 | ✅ **설치·등록·검증 완료** | [local-agent-runtime/](local-agent-runtime/) |
 
 ## 이 섹션의 규칙
 
