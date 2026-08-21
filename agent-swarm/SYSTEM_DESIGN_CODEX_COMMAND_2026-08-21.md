@@ -227,9 +227,26 @@ codex exec --approve-for-me "..."
 
 권한을 먼저 주고 규칙을 나중에 적는 순서를 금지한다.
 
+> ### ⚠️ 2026-08-21 정정 — E1은 실행 불가능한 조치였다 (F28)
+>
+> E1을 실제로 설치하려다 **불가능함을 확인했다.** 실측 3건:
+>
+> | 시도 | 결과 |
+> |---|---|
+> | `claude --settings <file> mcp serve` + `permissions.deny` 30개 규칙 | ❌ 무시됨. `git push --dry-run`이 실행됨 |
+> | 같은 방식으로 도구 이름 자체 deny (`["Bash","PowerShell"]`) | ❌ 무시됨. `tools/list`에 그대로 존재 |
+> | Codex 쪽 MCP 도구 필터 | ❌ 존재하지 않음 |
+>
+> **`claude mcp serve`는 Claude Code의 권한 설정을 적용하지 않는다.** 통제를 부르는 쪽(Codex)에 넘기는데,
+> Codex에도 도구 단위 필터가 없다. **양쪽 어디에도 하드 차단 스위치가 없다.**
+>
+> → **E1을 E1'로 대체한다: 호출자를 막을 수 없으면 목적지를 막는다.**
+> 상세: [mcp/claude-code-subordinate/](../mcp/claude-code-subordinate/README.md)
+
 | # | 강제 수단 | 층 | 막는 것 |
 |---|---|---|---|
-| E1 | Claude Code `settings.json`에 `permissions.deny`로 `Bash(git push:*)`, `Bash(git commit:*)`, `Bash(git add:*)` 추가 | 2층 (권한) | **F25 재발** — Codex가 시켜도 못 함 |
+| ~~E1~~ | ~~Claude Code `permissions.deny`~~ | ~~2층~~ | ❌ **무효 — F28로 폐기** |
+| **E1'** | **`pre-push` 훅.** 표시 없는 push 차단, `ALLOW_PUSH=1` 붙은 것만 통과 | 1층 (목적지) | ✅ **F25 재발 — 어떤 도구·셸을 거치든 동일 적용. 검증 완료** |
 | E2 | `antigravity-bridge`의 `DEFAULT_AUTO_APPROVE = false` 유지 | 3층 (기본값) | 실행자 무제한 실행 |
 | E3 | 위임 시 `auto_approve: true` 금지. 필요하면 저장소 밖 경로에서만 | 3층 | F25의 직접 원인 |
 | E4 | `AGENTS.md`에 게이트 3개·3종 대조 검증 명시 | 4층 (룰) | Codex가 읽으므로 유효 |

@@ -1,0 +1,31 @@
+#!/bin/sh
+# 위임된 에이전트의 우발적 push 차단 (2026-08-21 신설)
+#
+# 배경: agy 가 "파일 하나 저장" 지시를 받고 커밋과 push 까지 수행해
+#       승인 없이 origin/main 을 전진시킨 사고가 있었다 (실험 6 / F25).
+#       Claude Code 의 permissions.deny 는 `claude mcp serve` 모드에서
+#       적용되지 않고, Codex 에도 MCP 도구별 필터가 없다는 것이 실측으로
+#       확인되어(2026-08-21), 호출자 쪽에서 막을 방법이 없다.
+#       그래서 목적지에서 막는다.
+#
+# 통과 방법: 사람이 의도한 push 는 아래처럼 명시적으로 표시한다.
+#   ALLOW_PUSH=1 git push origin main
+#
+# 이 훅은 우발적 push 를 막는 것이 목적이다. 훅 파일을 읽고 우회하는
+# 행위까지 막지는 못한다. 확실한 차단이 필요하면 GitHub 브랜치 보호를 켠다.
+
+if [ "$ALLOW_PUSH" = "1" ]; then
+  exit 0
+fi
+
+echo "" >&2
+echo "  push 가 차단되었습니다 (pre-push 훅)" >&2
+echo "" >&2
+echo "  이 저장소는 위임된 에이전트의 우발적 push 를 막기 위해" >&2
+echo "  명시적 표시가 있는 push 만 통과시킵니다." >&2
+echo "" >&2
+echo "  의도한 push 라면:  ALLOW_PUSH=1 git push $*" >&2
+echo "" >&2
+echo "  훅 위치: .git/hooks/pre-push" >&2
+echo "" >&2
+exit 1
