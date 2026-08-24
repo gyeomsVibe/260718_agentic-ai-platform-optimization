@@ -1,6 +1,6 @@
-# 에이전틱 AI 플랫폼 최적화 워크스페이스
+# 에이전틱 AI 플랫폼·로컬 추론 최적화 워크스페이스
 
-> Claude Code · Codex · Antigravity — 세 가지 "AI 코딩 에이전트"를 빠르고 안정적으로
+> Claude Code · Codex · Antigravity와 Ollama 로컬 추론 환경을 빠르고 안정적으로
 > 쓰기 위한 설정·최적화·문제해결 기록을 한곳에 모은 저장소입니다.
 
 ## 이 저장소가 처음이라면 (30초 안내)
@@ -42,6 +42,7 @@ npm run skills:audit
 | [claude/](claude/) | **Claude Code** 플랫폼 섹션 — 환경 기록 + [`agents/`](claude/agents/) 서브에이전트 4개 정본 | Claude Code 설정을 재현·복구하거나 서브에이전트를 고칠 때 |
 | [codex/](codex/) | **Codex** 플랫폼 섹션 — 환경설정, 샌드박스 문제해결, **커스텀 반려동물(Pet) 제작**, 앱 패치 | Codex 설정·앱 문제·펫 커스터마이징 |
 | [antigravity/](antigravity/) | **Antigravity** 플랫폼 섹션 — 환경설정, IDE 확장 슬림화(다이어트) | Antigravity IDE를 가볍게 만들 때 |
+| [ollama/](ollama/) | **Ollama** 로컬 추론 섹션 — D: 모델 저장, GPU 최적화, 초보자용 실행법 | 인터넷 없이 로컬 모델을 실행하거나 설치를 복구할 때 |
 | [mcp/](mcp/) | **MCP 섹션** — AI 도구에 외부 기능을 연결하는 서버들 (현재 NotebookLM) | AI에 외부 자료·도구를 붙일 때 |
 | [skills/](skills/) | **모든 Skill의 정본** — [사용 매뉴얼](skills/MANUAL.md) · [배포 정본](skills/DEPLOYMENT.md) · `custom/mia` 제작 Skill · `external` 외부 도입 · 조사 기록 | 스킬을 **쓰거나** 찾고·수정하고·검증할 때 |
 | [shared/](shared/) | **3플랫폼 공용 기반시설** — 전역 규칙과 자동업데이트 | 세 도구가 함께 쓰는 규칙·자동화를 손볼 때 |

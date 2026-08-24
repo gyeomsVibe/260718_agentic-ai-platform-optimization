@@ -1,0 +1,8 @@
+# 모델 가중치와 Ollama 런타임 데이터는 로컬에만 보관한다.
+models/
+cache/
+logs/
+downloads/
+*.gguf
+*.bin
+*.safetensors
