@@ -1,69 +1,50 @@
-# 🛠 앱 진단·오류해결·패치 (app-diagnostics)
+# Codex 앱 진단
 
-> Codex 앱 자체에서 생기는 문제(파일 쓰기 거부, 로컬 이미지 다운로드 오동작, 압축 미리보기 실패)를
-> **진단·복구하는 도구와 기록을 한 폴더에** 모은 섹션입니다. 문서만이 아니라 실행 도구까지 함께 둡니다.
+## 현재 진입점
 
-## 이 폴더 구성
+```powershell
+pwsh -NoProfile -File codex/app-diagnostics/codex-sandbox-check.ps1 -ProbeWorkspaceWrite
+```
 
-**2026-09-05 진단 진입점:** [LTSC 명령별 접근 진단](LTSC_COMMAND_ACCESS_2026-09-05.md)과
-[Test-CodexCommandAccess.ps1](Test-CodexCommandAccess.ps1)을 먼저 확인하세요.
-초기화 성공과 개별 명령 성공은 별개입니다. 아래 기존 4단계 진단·복구 안내는
-과거 사건의 절차이며, 전체 정상 판정이나 재귀 ACL 복구의 자동 실행 근거로 사용하지 않습니다.
+- 종료 코드 0: 요청한 검사만 통과. 모든 작업이나 경로가 정상이라는 뜻은 아니다.
+- 종료 코드 1: 최신 setup 오류 또는 실제 파일 접근 실패.
+- 종료 코드 2: 로그 누락·파싱 불가·오래된 증거로 판단 불가.
+- 기본 로그 신선도는 10분. `-MaxAgeMinutes`로 바꿀 수 있으나 오래된 기록을 현재 정상의 증거로 쓰지 않는다.
+- 쓰기 검사는 이 스크립트 폴더에 고유한 임시 파일 하나를 만들고 쓰고 읽은 후 닫을 때 제거한다.
+  `-ProbeWorkspaceWrite`를 생략하면 로그만 읽는다.
+- `-Interactive`는 호환 인수로 남겼지만 자동 ACL 복구를 실행하지 않는다.
+- 자격증명 파일 읽기, 토큰 저장 방식 변경, 고정 버전 앱 해시 검사, 전체 재귀 ACL 복구는 진단에서 제거했다.
 
-| 파일 | 종류 | 역할 |
+## 실패별 다음 행동
+
+| 증상 | 분류 | 다음 행동 |
 |---|---|---|
-| ⭐ [ROOT_CAUSE_c-tmp-write-root_2026-07-22.md](ROOT_CAUSE_c-tmp-write-root_2026-07-22.md) | 문서 | **근본 원인·1순위 해결책** — `SetNamedSecurityInfoW failed: 5`의 진짜 이유(C:\tmp 쓰기 루트)와 `excludeSlashTmp=true` 수리. **샌드박스 에러는 여기부터.** |
-| [codex-sandbox-check.ps1](codex-sandbox-check.ps1) | 실행 스크립트 | **자가진단** — app.asar 무결성·gh 인증·폴더 권한(ACL)·로그 에러 4단계 점검 (PS 5.1·pwsh 7 공용) |
-| [fix-sandbox-acl.bat](fix-sandbox-acl.bat) | 실행 배치 | **워크스페이스 하위폴더** 권한 복구용. ⚠️ **C:\tmp에는 쓰지 말 것**(제외가 정답 — 위 근본원인 문서 참조) |
-| [1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md](<1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md>) | 문서 | 초기 조치·검증 기록(ACL 접근 시기) |
-| [HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md) | 문서 | 이미지 다운로드 이슈 분석 근거·승인 경계(인수인계) |
-| ⭐ [ROOT_CAUSE_db-malformed_2026-07-26.md](ROOT_CAUSE_db-malformed_2026-07-26.md) | 문서 | **근본 원인·해결** — 앱이 `database disk image is malformed`로 안 켜질 때. `~/.codex`의 SQLite DB 손상 진단·격리 수리·검증 기록. **시작 오류는 여기부터.** |
-| [codex-db-doctor.py](codex-db-doctor.py) | 실행 스크립트 | **자가진단·수리** — `~/.codex` 전체 SQLite 무결성 검사, `--quarantine`로 손상 DB만 안전 격리(백업 후 이동) |
+| `.git/index.lock` 접근 거부 | 보호된 Git 메타데이터 | 승인된 Git 쓰기는 처음부터 플랫폼의 외부 실행 승인 경로 사용. DENY 제거 금지 |
+| `write ACE failed on ...` | setup 권한 설정 실패 | 정확한 대상과 현재 실행 시각 확인. 드라이브 루트를 작업 폴더로 사용하지 않음 |
+| WMI/CIM 접근 거부 | 명령별 권한 차이 | OS 버전만 필요하면 `Test-CodexCommandAccess.ps1` 기본 조회 사용 |
+| Git ignore 읽기 거부 | 사용자 설정 경로 접근 차이 | 승인된 읽기 전용 비교로 확인. ignore를 빈 파일로 대체하지 않음 |
+| push 후 오류 | 원격/로컬 결과 분리 필요 | 재시도 전에 `git ls-remote`로 원격 SHA 확인. 추적 ref만으로 판정하지 않음 |
+| pre-push 훅 거부 | 저장소 운영 승인 | 샌드박스 복구로 취급하지 않음. 훅 수정·비활성화 금지 |
 
-> **쓰기 거부가 발생하면 오류가 지목한 경로와 현재 허용 범위를 먼저 확인하세요.**
-> C:\tmp 문서는 해당 경로가 실제 실패 대상으로 확인된 과거 사례에만 적용합니다.
-> **앱이 `database disk image is malformed`로 안 켜지면 → ⭐DB 근본원인 문서 + `codex-db-doctor.py`.**
+네트워크·보호 경로 접근은 각 플랫폼의 정식 승인 절차를 따른다. 이 문서는 실행 권한을 부여하지 않는다.
+실패가 확인된 동일 명령을 승인 없이 다른 도구로 우회 실행하지 않는다.
 
-## 먼저: "샌드박스"가 뭐고 왜 에러가 났나 (모르는 사람용)
+## 검증과 조사
 
-**샌드박스(sandbox)** 는 Codex가 시스템을 함부로 못 건드리게 가둬 두는 **안전 우리**입니다.
-문제는 이 우리 안의 Codex에게 **특정 폴더에 파일을 쓸 권한이 없을 때** 생겼습니다.
-
-- 증상(로그): `SetNamedSecurityInfoW failed: 5` = **"접근 거부(Access Denied)"**
-- 원인: 워크스페이스 폴더에 Codex 샌드박스 전용 그룹(`CodexSandboxUsers`)의 **수정(Modify) 권한(ACL)** 이 빠짐.
-- 해결: 앱을 건드리는 위험한 방법 대신, **그 폴더에 권한을 부여**하는 정공법으로 고침.
-
-> **왜 앱 바이너리 패치를 버렸나?** 예전엔 앱 파일(`app.asar`)을 직접 고치려 했지만, 스토어 서명이
-> 깨져 앱이 안 켜지거나 강제 복구되는 위험이 있어 폐기했습니다. 지금은 순정 앱을 그대로 두고 **권한만 복구**합니다.
-
-## 어떻게 쓰나 (따라 하기)
-
-**1) 진단만 (읽기 전용, 안전):**
 ```powershell
-pwsh -File codex/app-diagnostics/codex-sandbox-check.ps1
-```
-- `✅ 진단 완료: ... 모두 양호` → 정상. 끝.
-- `❌ ... 경고/오류` → 아래 2번으로 복구.
-
-**2) 권한이 꼬였을 때 복구 (관리자 권한 필요):**
-```powershell
-# 방법 A: 진단하며 복구까지 물어보기
-pwsh -File codex/app-diagnostics/codex-sandbox-check.ps1 -Interactive
-# 방법 B: 같은 폴더의 fix-sandbox-acl.bat 우클릭 → '관리자 권한으로 실행'
+node --test codex/app-diagnostics/tests/sandbox-check.test.mjs
 ```
 
-> 진단 스크립트는 Windows PowerShell 5.1과 pwsh 7 **양쪽에서 실행**됩니다(UTF-8 BOM 저장).
+- [LTSC 및 GitHub 근거와 검증 기록](LTSC_COMMAND_ACCESS_2026-09-05.md)
+- [OS 명령별 접근 조회](Test-CodexCommandAccess.ps1)
+- [현재 진단기](codex-sandbox-check.ps1)
 
-## 진단 [4/4] 판정 방식 (2026-07-20 개선)
+## 과거 사건 기록
 
-로그 스캔 단계는 "지금 권한이 OK다"라는 간접 근거가 아니라, **로그의 setup refresh 시각을 비교해 판정**합니다:
+다음 기록은 각 사건의 당시 조건에만 적용한다. 현재 실패 대상으로 확인되지 않은 경로에 적용하지 않는다.
 
-- 마지막 **에러 이후 무오류 setup이 실제 실행됨** → `✅ 복구 확인` (복구됐는데 실패로 오판하지 않음)
-- 가장 **최근 setup이 여전히 에러** → `❌ 현재 진행형` + Codex 재시작 안내 (재발을 합격으로 놓치지 않음)
-
-## 남은 리스크
-
-- **Windows 스토어 앱 업데이트** 시 폴더 권한 인덱스가 재지정되면 권한이 다시 풀릴 수 있습니다.
-  → 그때 위 **2) 복구**를 한 번 돌리면 해결됩니다.
-- 로컬 파일 다운로드가 필요하면, 미리보기 버튼 대신 **실제 파일을 export** 하는 것이 원칙입니다
-  (루트 [AGENTS.md](../../AGENTS.md)의 "아티팩트 전달 수칙" 참조).
+- [C:\tmp 사건](ROOT_CAUSE_c-tmp-write-root_2026-07-22.md)
+- [초기 ACL 복구 보고서](<1.Codex 샌드박스 오류 및 미리보기 난제 검증 완료 보고서 (Walkthrough).md>)
+- [기존 ACL 배치](fix-sandbox-acl.bat): 전체 소유권·권한을 바꾸므로 일반 진단 후 자동 실행하지 않는다.
+- [DB 손상 진단](ROOT_CAUSE_db-malformed_2026-07-26.md) / [DB 도구](codex-db-doctor.py)
+- [다운로드 사건 인계](HANDOFF_CLAUDE_CODE_CODEX_DOWNLOAD_FIX_2026-07-19.md)
