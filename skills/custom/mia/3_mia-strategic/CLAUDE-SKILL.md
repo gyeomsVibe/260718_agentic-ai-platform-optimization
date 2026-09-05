@@ -1,6 +1,7 @@
 ---
 name: mia-strategic
 description: Activate the MIA strategic hypothesis-verification workflow when the user says "MIA모드 발동", "MIA 전략스킬 발동", "MIA 전략절차 발동", "MIA 전략스킬 해줘", "MIA 전략절차 해줘", or invokes $mia-strategic for planning, review, execution, or validation.
+license: MIT
 argument-hint: "MIA모드 발동: [기획|검토|실행|검증] <목표>"
 user-invocable: true
 ---

@@ -40,7 +40,8 @@ SKILLS = {
     "mia-strategic": CATALOG / "3_mia-strategic",
 }
 
-REQUIRED_SKILL_KEYS = ["name", "description"]
+REQUIRED_SKILL_KEYS = ["name", "description", "license"]
+EXPECTED_LICENSE = "MIT"
 REQUIRED_OPENAI_PATHS = [
     ("interface", "display_name"),
     ("interface", "short_description"),
@@ -49,6 +50,12 @@ REQUIRED_OPENAI_PATHS = [
 
 errors = []
 warnings = []
+
+license_file = CATALOG / "LICENSE.md"
+if not license_file.exists():
+    errors.append(f"MIA 카탈로그 라이선스 없음 ({license_file})")
+elif not license_file.read_text(encoding="utf-8-sig").startswith("MIT License"):
+    errors.append("MIA 카탈로그 LICENSE.md가 MIT License 정본이 아닙니다")
 
 
 def extract_frontmatter(text, label):
@@ -109,6 +116,11 @@ for name, root in SKILLS.items():
                     if data.get("name") and data["name"] != name:
                         errors.append(
                             f"{name}/SKILL.md: name 이 '{data['name']}' 로 폴더 계약과 다릅니다"
+                        )
+                    if data.get("license") and data["license"] != EXPECTED_LICENSE:
+                        errors.append(
+                            f"{name}/SKILL.md: license 가 '{data['license']}' 입니다. "
+                            f"MIA 정본 계약은 '{EXPECTED_LICENSE}' 입니다"
                         )
             check_plain_scalar_hazards(raw, f"{name}/SKILL.md")
 
@@ -187,6 +199,11 @@ for gen_label, gen_path in GENERATED_FILES.items():
     for key in REQUIRED_SKILL_KEYS:
         if not data.get(key):
             errors.append(f"생성본 {gen_label}: 필수 키 '{key}' 누락 또는 빈 값")
+    if data.get("license") and data["license"] != EXPECTED_LICENSE:
+        errors.append(
+            f"생성본 {gen_label}: license 가 '{data['license']}' 입니다. "
+            f"MIA 정본 계약은 '{EXPECTED_LICENSE}' 입니다"
+        )
     desc = data.get("description", "")
     check_korean_integrity(desc, f"생성본 {gen_label}")
     check_plain_scalar_hazards(raw, f"생성본 {gen_label}")
@@ -223,4 +240,3 @@ total_checked = len(SKILLS) + len(GENERATED_FILES)
 print(f"검사 스킬 {len(SKILLS)}개 + 생성본 {len(GENERATED_FILES)}개 / 경고 {len(warnings)}건 / 오류 {len(errors)}건")
 
 sys.exit(1 if errors else 0)
-

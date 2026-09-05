@@ -43,6 +43,11 @@ function New-StagedPackage {
         }
         Copy-Item -LiteralPath $source -Destination $destination -Recurse -Force
     }
+    $licenseSource = Join-Path $catalogRoot 'LICENSE.md'
+    if (-not (Test-Path -LiteralPath $licenseSource -PathType Leaf)) {
+        throw "Required MIA license is missing: $licenseSource"
+    }
+    Copy-Item -LiteralPath $licenseSource -Destination (Join-Path $destination 'LICENSE.md') -Force
     return $destination
 }
 
@@ -150,6 +155,7 @@ $claudeStrategic = @"
 ---
 name: mia-strategic
 description: Activate the MIA strategic hypothesis-verification workflow when the user says "MIA모드 발동", "MIA 전략스킬 발동", "MIA 전략절차 발동", "MIA 전략스킬 해줘", "MIA 전략절차 해줘", or invokes `$mia-strategic for planning, review, execution, or validation.
+license: MIT
 argument-hint: "MIA모드 발동: [기획|검토|실행|검증] <목표>"
 user-invocable: true
 ---
@@ -171,6 +177,7 @@ New-Item -ItemType Directory -Force -Path (Join-Path $pluginStage 'skills\mia-st
 Copy-Item -LiteralPath (Join-Path $catalogRoot '3_mia-strategic\plugin\plugin.json') -Destination $pluginStage
 Copy-Item -LiteralPath (Join-Path $catalogRoot '3_mia-strategic\plugin\VERSION') -Destination $pluginStage
 [IO.File]::WriteAllText((Join-Path $pluginStage 'skills\mia-strategic\SKILL.md'), $strategicCanonical, $utf8)
+Copy-Item -LiteralPath (Join-Path $catalogRoot 'LICENSE.md') -Destination (Join-Path $pluginStage 'skills\mia-strategic\LICENSE.md') -Force
 
 $targets = [System.Collections.Generic.List[object]]::new()
 $standardRoots = @(

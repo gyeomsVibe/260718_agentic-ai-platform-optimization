@@ -1,0 +1,13 @@
+{
+  "candidate": "C:/Users/Kimyoongyeom/AppData/Local/Temp/slash-prompt-modes-audit-0a0425e3b25d4801ae8d9f83b18d4b53/slash-prompt-modes",
+  "status": "invalidated_by_semantic_redteam",
+  "errors": 1,
+  "warnings": 0,
+  "findings": [
+    {
+      "severity": "error",
+      "code": "unexpanded_alias_token",
+      "message": "Alias bodies contained $(System.Collections.Hashtable.Token); the audit checked structure but not semantic interpolation. A regression test now rejects this residue."
+    }
+  ]
+}

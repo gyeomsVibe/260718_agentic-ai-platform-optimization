@@ -4,7 +4,32 @@
 > 규격·검증 절차는 [`custom/mia/AUTHORING_HANDBOOK.md`](custom/mia/AUTHORING_HANDBOOK.md)가,
 > 외부 반입 출처는 [`external/`](external/)이 정본입니다.
 >
-> 최종 갱신: 2026-08-05 (3대 도구 CLI 실측 + 선별 배포 완료)
+> 최종 갱신: 2026-09-05 (slash-prompt-modes와 라이선스 계약 추가)
+
+## 2026-09-05 추가 — Slash Prompt Modes
+
+MIA와 독립된 `slash-prompt-modes` 본체 1개와 소문자 명령 별칭 10개를 Claude Code, Codex,
+Antigravity 사용자 범위에 배치했다. Claude Code에는 대문자 입력이 `Unknown command`가 되는
+네이티브 파서 차이를 보완하려고 대문자 command 10개를 추가했다.
+
+| 도구 | 배치 | 런타임 증거 |
+|---|---|---|
+| Claude Code | `~/.claude/skills` 11개 + `~/.claude/commands` 10개 | `/OPTIMIZE`, `/optimize` 통과 |
+| Codex | `~/.codex/skills` 11개 | `/OPTIMIZE`, `/optimize` 통과 |
+| Antigravity | `~/.gemini/config/skills` 11개 | 구조·해시 통과, CLI 부재로 새 IDE 세션 미실행 |
+
+2026-09-05 재감사에서 별칭 생성기의 Markdown 백틱과 PowerShell 보간 충돌로 본문 토큰이
+`$(System.Collections.Hashtable.Token)`으로 남는 결함을 발견했다. 구조·해시 검사는 이 의미
+오류를 잡지 못했다. 생성기를 교정하고 실제 10개 토큰과 미해석 `$(` 부재를 검사하는 회귀
+테스트를 `npm run skills:test`에 편입했다. 교정본은 기존 설치본을 백업한 뒤 세 도구에
+동시 재배포했고, 33개 Skill 패키지와 Claude command 10개가 정본과 일치함을 확인했다.
+다만 각 플랫폼의 10개 모드 전수 런타임 평가 전에는 교차 플랫폼 완료로 취급하지 않는다.
+
+정본과 사용법: [`custom/slash-prompt-modes/`](custom/slash-prompt-modes/)
+
+정합성 검사는 `custom/slash-prompt-modes/scripts/sync-slash-prompt-modes.ps1 -Mode Check`를
+사용한다. `Apply`는 기존 대상별 백업을 만든 뒤 세 도구를 한 변경 단위로 교체한다. 한 대상이라도
+정본과 다르면 실패하므로 부분 배포를 전체 동기화로 보고하지 않는다.
 
 ## 1. 대원칙 — 전부 다 올리지 않는다
 

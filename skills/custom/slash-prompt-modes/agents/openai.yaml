@@ -1,0 +1,6 @@
+interface:
+  display_name: "슬래시 프롬프트 모드"
+  short_description: "슬래시 명령으로 비판·검증·설명·최적화 모드를 정밀 조합"
+  default_prompt: "Use $slash-prompt-modes with /CRITIC /OPTIMIZE to review and improve this draft."
+policy:
+  allow_implicit_invocation: false

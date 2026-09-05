@@ -1,10 +1,12 @@
 # MIA 시리즈 커스텀 스킬 제작 교본
 
-> **이 문서가 MIA 스킬 제작의 단일 진입점이다.** 새 스킬을 만들거나 기존 스킬을 고칠 때
-> 여기서 시작한다. 규격은 3대 도구 중 **가장 엄격한 Codex 기준**으로 고정한다.
+> **이 문서가 MIA 스킬 제작의 단일 실무 진입점이다.** 새 스킬을 만들거나 기존 스킬을 고칠 때
+> 여기서 시작한다. 모든 커스텀 Skill의 상위 설계 원칙은
+> [`skill-creation-bible.md`](1_mia-skill-compiler/candidates/mia-skill-compiler/references/skill-creation-bible.md),
+> MIA의 구현·배포 규격은 이 문서가 정본이다.
 >
 > 강제 수단: `scripts/validate-skill-manifests.py` — 위반 시 배포가 중단된다.
-> 최종 개정: 2026-08-03 (3대 도구 실발동 검증 완료 시점)
+> 최종 개정: 2026-09-05 (skill-creator 원리·라이선스 게이트 반영)
 
 ---
 
@@ -73,6 +75,7 @@
 
 - 파일은 `---` 로 시작하고 `---` 로 닫는다.
 - `name`, `description` 필수. 빈 값 불가.
+- 사용자 소유·배포 가능 MIA Skill은 `license: MIT` 필수. 빈 값·다른 값은 현재 카탈로그 게이트에서 실패한다.
 - `name` 은 배포 폴더명과 **정확히** 일치한다.
 - **값을 인용부호로 시작하지 않는다.** 시작했다면 같은 부호로 끝내야 한다.
 
@@ -124,6 +127,22 @@ policy:
   CP949로 읽어 생성물이 깨진다. `pwsh` 로만 돌리면 드러나지 않는다.
 - `.md`·`.py`·`.yaml` 은 BOM 없는 UTF-8.
 
+### 2.5 라이선스는 출고 계약이다
+
+라이선스는 “무료로 공개한다”는 메모가 아니라 다른 사람이 무엇을 해도 되는지 정하는 법적
+허가문입니다. GitHub 공개 저장소라는 사실만으로 복제·수정·재배포 권한이 생기지 않습니다.
+
+- MIA 시리즈의 저작권자 표기는 `gyeomsVibe`, SPDX 식별자는 `MIT`로 통일한다.
+- MIA 적용 범위의 원문 정본은 [`LICENSE.md`](LICENSE.md)다.
+- 각 활성 `SKILL.md`와 생성본 frontmatter에 `license: MIT`를 유지한다.
+- 외부 코드·문서·자산은 MIA 라이선스로 바꾸지 않는다. 원 라이선스, 저작권 고지와 변경 이력을 별도로 보존한다.
+- 소유권이 불명확하면 공개 후보로 승격하지 않고 `LICENSE_UNVERIFIED`로 보류한다.
+- MIT 배포본은 저작권 고지와 허가문을 보존해야 한다. 설치 패키지가 라이선스 이름만 싣는지 원문도 싣는지는 배포 계약에서 명시한다.
+
+현재 `validate-skill-manifests.py`는 활성 MIA 3종, Claude 생성본과 플러그인 생성본의
+`license: MIT`, 그리고 MIA `LICENSE.md` 존재를 배포 전에 검사한다. 동기화 스크립트는
+이 원문을 각 활성 배포 패키지의 `LICENSE.md`로 복사한다.
+
 ---
 
 ## 3. 트리거 계약 설계
@@ -166,15 +185,16 @@ description: ... 이 스킬은 코드를 의도적으로 파괴하므로 반드�
 
 ---
 
-## 4. 제작 절차 7단계
+## 4. 제작 절차 8단계
 
 1. **필요성 증명** — 새 스킬이 정말 필요한가? (바이블 원칙 2) 기존 스킬 확장으로 되면 그렇게 한다.
 2. **정본 작성** — `skills/custom/mia/<번호>_<이름>/` 에 §2 규격대로. 모범: `3_mia-strategic/`.
 3. **트리거 계약 확정** — §3. 실사용 변형 열거.
 4. **정책 결정** — `allow_implicit_invocation` 을 위험도에 맞춰 명시.
-5. **검증기 등록** — `scripts/validate-skill-manifests.py` 의 `SKILLS` 에 경로 추가.
-6. **배포 정의 등록** — `scripts/sync-mia-catalog.ps1` 의 `$definitions` 에 추가.
-7. **배포·검증** — §5, §6.
+5. **라이선스 확인** — 소유권·제3자 예외·SPDX 식별자·원문·배포 고지를 확정.
+6. **검증기 등록** — `scripts/validate-skill-manifests.py` 의 `SKILLS` 에 경로 추가.
+7. **배포 정의 등록** — `scripts/sync-mia-catalog.ps1` 의 `$definitions` 에 추가.
+8. **배포·검증** — §5, §6.
 
 ---
 
@@ -270,6 +290,8 @@ python skills/custom/mia/scripts/audit-skill-roots.py --strict   # 경고도 실
 
 - [ ] `SKILL.md` frontmatter 가 엄격 YAML 파서를 통과한다 (인용부호 시작 없음)
 - [ ] `name` 이 폴더명과 일치한다
+- [ ] `license: MIT`와 MIA `LICENSE.md`가 있고 저작권자·적용 범위가 일치한다
+- [ ] 외부 자료의 원 라이선스·고지·변경 이력을 MIA 라이선스와 섞지 않았다
 - [ ] `agents/openai.yaml` 3개 키 + `allow_implicit_invocation` 명시
 - [ ] 트리거 계약에 실사용 변형이 3개 이상 열거돼 있다
 - [ ] 한국어 `.ps1` 에 UTF-8 BOM 이 있다
@@ -303,6 +325,8 @@ python skills/custom/mia/scripts/audit-skill-roots.py --strict   # 경고도 실
 | 2026-08-05 | Antigravity `science` 플러그인 34개가 `name`(하이픈) != 폴더명(언더스코어) 인데도 정상 로드. Codex 기준으로 오류 처리하면 게이트가 상시 빨간불 | 감사기에 벤더 관리 루트 개념 도입 — 오류 대신 경고 |
 | 2026-08-05 | 스킬 55개를 나열시켰더니 모델이 `security-audit` 을 빠뜨림. 로딩 실패로 오판할 뻔함 | §6 특정 스킬은 이름을 지목해 재확인한다 |
 | 2026-08-05 | **오발동 방어가 뚫려 있었다.** `mia-vaccine-test` 는 Codex 플래그(`allow_implicit_invocation: false`)만 걸려 Claude Code 에서 `백신 테스트 해줘` 에도 발동했다. §3 계약과 문서는 "발동 안 함이 정상" 이라 적고 있었으나 실측은 반대였다 | §3.1 음성 가드를 `description` 에 명시 + 실행 검증 의무 |
+| 2026-09-05 | 공식 `quick_validate.py`가 Windows 기본 CP949로 한국어 `SKILL.md`를 읽다가 `UnicodeDecodeError`로 중단 | Windows에서는 `PYTHONUTF8=1`로 공식 검증기를 실행하고 실패를 Skill 결함과 구분 |
+| 2026-09-05 | 슬래시 별칭 생성기의 Markdown 백틱이 PowerShell `$` 보간을 막아 본문에 `$(System.Collections.Hashtable.Token)`이 남았으나 구조·해시 감사가 통과 | 생성된 실제 토큰 10개와 미해석 `$(` 부재를 검사하는 회귀 테스트를 출고 게이트에 편입 |
 
 ---
 

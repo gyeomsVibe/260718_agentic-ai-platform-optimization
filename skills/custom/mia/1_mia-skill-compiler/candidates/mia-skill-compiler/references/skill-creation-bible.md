@@ -1,7 +1,7 @@
 # 스킬 만들기 상위원칙 바이블
 
-- 문서 버전: `1.0.0`
-- 최종 근거 검토일: `2026-07-20`
+- 문서 버전: `1.1.0`
+- 최종 근거 검토일: `2026-09-05`
 - 적용 대상: Antigravity, Claude Code, Codex의 Agent Skills
 - 소유 영역: `skill_creation_constitution`
 - 상태: `RESEARCH_VALIDATED_STATIC_REFERENCE`
@@ -10,7 +10,7 @@
 
 1. 10살도 이해하는 한 장 설명
 2. 무엇을 만들고 무엇을 만들지 않는가
-3. 20개 불변 상위원칙
+3. 21개 불변 상위원칙
 4. 모듈 설계 헌법
 5. 빠르고 값싸게 고품질을 만드는 표준 회로
 6. 평가와 상태 증명의 법칙
@@ -40,6 +40,21 @@ Agent Skill은 AI가 어떤 일을 반복해서 잘하도록 만든 **작은 사
 
 하나라도 답할 수 없다면 아직 완성된 Skill이 아닙니다.
 
+### 공식 skill-creator를 한 장으로 이해하기
+
+OpenAI의 `skill-creator`가 강조하는 제작 원리는 여섯 문장으로 압축할 수 있습니다.
+
+1. **AI가 이미 아는 설명은 덜어냅니다.** 컨텍스트는 공용 자원이므로 비싼 장문보다 짧은 예시를 우선합니다.
+2. **실수 비용에 맞춰 자유도를 정합니다.** 창작은 넓게, 선호 절차는 매개변수화하고, 깨지기 쉬운 반복은 좁은 스크립트로 만듭니다.
+3. **`SKILL.md`는 핵심만 둡니다.** 이름·발동 설명·작업 절차를 두고, 긴 지식은 `references/`, 반복 코드는 `scripts/`, 결과물 재료는 `assets/`로 분리합니다.
+4. **필요할 때만 읽게 만듭니다.** 메타데이터 → 본문 → 참조의 점진적 공개(Progressive Disclosure)를 지키고 참조를 깊게 중첩하지 않습니다.
+5. **구체 사례에서 시작합니다.** 사용자가 실제로 할 말을 먼저 모으고, 사례마다 재사용할 지식·스크립트·자산이 무엇인지 역산합니다.
+6. **초기화 → 편집 → 정적 검증 → 실사용 반복을 지킵니다.** 파일을 만든 사실을 성능이나 런타임 성공으로 바꾸어 말하지 않습니다.
+
+이 저장소는 여기에 권한, 근거, 교차 플랫폼, 라이선스와 실패 회귀 검증을 더합니다. 공식
+`skill-creator`의 “README를 런타임 Skill에 넣지 않는다”는 원칙과 사람용 문서 요구는 충돌하지
+않습니다. 저장소의 README는 **관리용 래퍼**로 두고, 실제 설치 번들에서는 제외합니다.
+
 ## 2. 무엇을 만들고 무엇을 만들지 않는가
 
 이 바이블은 다음 산출물을 위한 것입니다.
@@ -62,7 +77,7 @@ GPT, 챗봇, 프롬프트 묶음은 좋은 아이디어와 구조를 얻기 위�
 
 > 입력은 무엇이든 될 수 있지만 출력은 검증 가능한 Agent Skill이어야 합니다.
 
-## 3. 20개 불변 상위원칙
+## 3. 21개 불변 상위원칙
 
 ### 원칙 1. 기술보다 사용자 문제를 먼저 고정한다
 
@@ -184,6 +199,16 @@ Skill이 도구 사용법을 설명해도 실제 권한이 생기는 것은 아�
 
 통과 증거: 부모나 이전 버전의 성공 표시가 새 결과에 자동 복사되지 않습니다.
 
+### 원칙 21. 라이선스가 없으면 공개 가능한 Skill이 아니다
+
+작성자가 소유한 범위와 제3자 자료를 먼저 분리합니다. 공개·배포할 사용자 제작 Skill은
+`SKILL.md`에 SPDX 식별자 형태의 `license`를 명시하고, 사람이 읽을 라이선스 원문을 가까운
+정본 범위에 둡니다. 출처나 권리가 불명확한 자료에는 임의의 오픈소스 라이선스를 덮지 않고
+격리·미확인 상태로 남깁니다.
+
+통과 증거: 저작권자, 적용 경로, SPDX 식별자, 라이선스 원문, 제3자 예외와 배포본 보존 여부가
+한 번에 추적됩니다.
+
 ## 4. 모듈 설계 헌법
 
 ### 모듈의 최소 계약
@@ -287,7 +312,18 @@ Skill이 도구 사용법을 설명해도 실제 권한이 생기는 것은 아�
 
 ## 7. 세 플랫폼 공통 정본과 어댑터
 
-Agent Skills 공개 표준은 `SKILL.md`를 필수로 하고 `scripts/`, `references/`, `assets/`를 선택적으로 둡니다. `name`은 64자 이하의 소문자·숫자·하이픈, `description`은 역할과 사용 시점을 설명해야 합니다. 플랫폼 구현이 허용하는 추가 필드는 다를 수 있으므로 공통 정본은 최소 공통 계약을 유지합니다.
+Agent Skills 공개 표준은 `SKILL.md`를 필수로 하고 `scripts/`, `references/`, `assets/`를 선택적으로 둡니다. `name`은 64자 이하의 소문자·숫자·하이픈, `description`은 역할과 사용 시점을 설명해야 합니다. 공개 규격은 선택 필드 `license`에 라이선스 이름 또는 번들 파일 참조를 허용합니다. 이 저장소에서는 사용자 소유·배포 가능 Skill에 `license`를 필수로 승격합니다. 플랫폼 구현이 허용하는 다른 추가 필드는 다를 수 있으므로 공통 정본은 검증된 최소 계약을 유지합니다.
+
+```yaml
+---
+name: example-skill
+description: 무엇을 하고 언제 쓰는지 한 문장으로 설명합니다.
+license: MIT
+---
+```
+
+`license: MIT`는 장식이 아닙니다. 적용 범위의 `LICENSE.md`와 저작권자가 실제로 일치해야 하며,
+외부 자료가 섞였으면 원 라이선스와 고지 의무를 별도로 추적합니다.
 
 ### Codex
 
@@ -375,6 +411,9 @@ DOCX는 Markdown 정본의 보조 사본이었고, PDF 두 개는 같은 SHA-256
 ### 최신 공식 근거
 
 - Agent Skills 공개 규격: `https://agentskills.io/specification`
+- OpenAI 공식 skill-creator: `https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md`
+- GitHub 저장소 라이선스 안내: `https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository`
+- SPDX MIT License: `https://spdx.org/licenses/MIT.html`
 - OpenAI Skills 안내: `https://openai.com/academy/skills/`
 - Claude Code Skills: `https://code.claude.com/docs/en/slash-commands`
 - Claude Agent SDK Skills: `https://code.claude.com/docs/en/agent-sdk/skills`
@@ -387,6 +426,8 @@ DOCX는 Markdown 정본의 보조 사본이었고, PDF 두 개는 같은 SHA-256
 - [ ] 대상 사용자와 핵심 작업 하나가 고정됐나요?
 - [ ] 기존 Skill·무-Skill 기준선보다 나은 가설이 있나요?
 - [ ] `description`에 역할과 발동 조건이 분명한가요?
+- [ ] `license`·라이선스 원문·저작권자·적용 범위가 서로 일치하나요?
+- [ ] 제3자 자료의 원 라이선스와 고지 의무를 분리했나요?
 - [ ] `SKILL.md`가 얇고 참조가 한 단계로 연결됐나요?
 - [ ] 각 변경 가능한 정책의 소유자가 하나인가요?
 - [ ] 근거와 권한, 사실과 추론을 분리했나요?

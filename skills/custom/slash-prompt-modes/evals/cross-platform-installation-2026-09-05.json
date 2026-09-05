@@ -1,0 +1,56 @@
+{
+  "skill": "slash-prompt-modes",
+  "date": "2026-09-05",
+  "status": "installed_integrity_confirmed_after_semantic_fix",
+  "invalidation_reason": "Generated alias bodies contained the literal PowerShell interpolation residue $(System.Collections.Hashtable.Token). Structural and hash checks did not detect the semantic defect.",
+  "canonical_path": "skills/custom/slash-prompt-modes",
+  "case_policy": "Canonical tokens use uppercase; uppercase and lowercase forms must map to the same mode.",
+  "canonical_sha256": "BC88C52D07C9E0D28E0C6ECA3C1E9F3CBF8F9D977F96B5C3420E23DF35CB5F2D",
+  "installations": [
+    {
+      "platform": "Codex",
+      "root": "~/.codex/skills",
+      "installed_skills": 11,
+      "structure": "pass",
+      "hash_match": "pass_after_redeployment",
+      "runtime_optimize_uppercase": "historical_pass_invalidated_for_full-skill_claim",
+      "runtime_optimize_lowercase": "historical_pass_invalidated_for_full-skill_claim",
+      "remediation": "corrected canonical generator redeployed; full 10-mode runtime evaluation remains"
+    },
+    {
+      "platform": "Claude Code",
+      "root": "~/.claude/skills",
+      "installed_skills": 11,
+      "uppercase_command_root": "~/.claude/commands",
+      "installed_uppercase_commands": 10,
+      "structure": "pass",
+      "hash_match": "pass_after_redeployment",
+      "runtime_optimize_uppercase": "historical_pass_invalidated_for_full-skill_claim",
+      "runtime_optimize_lowercase": "historical_pass_invalidated_for_full-skill_claim",
+      "remediation": "corrected canonical generator redeployed; full 10-mode runtime evaluation remains",
+      "note": "The first uppercase test failed as Unknown command before the compatibility command was installed; a later 0.10 USD run reached the model but exceeded budget; the 0.25 USD bounded retry passed."
+    },
+    {
+      "platform": "Antigravity",
+      "root": "~/.gemini/config/skills",
+      "installed_skills": 11,
+      "structure": "pass",
+      "hash_match": "pass_after_redeployment",
+      "runtime": "not_run",
+      "reason": "No Antigravity or Gemini CLI executable was available on this host; verify discovery in a fresh IDE session."
+    }
+  ],
+  "global_naming_rule": {
+    "version": "3.0.2",
+    "status": "applied",
+    "targets": ["Antigravity", "Claude Code", "Codex"]
+  },
+  "installed_packages_checked": 33,
+  "semantic_residue_or_license_errors": 0,
+  "backups": {
+    "slash_prompt_modes": "~/.agent-skill-backups/slash-prompt-modes-20260905-130050",
+    "mia": "~/.mia-skill-backups/20260905-130049",
+    "global_rules": "~/.agent-global-rules-backups/20260905-130048"
+  },
+  "cross_platform_verified": false
+}

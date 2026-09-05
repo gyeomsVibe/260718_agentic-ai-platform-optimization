@@ -26,13 +26,14 @@ const OPENAI_YAML = [
   ''
 ].join('\n');
 
-function skillMd(name, description) {
-  return `---\nname: ${name}\ndescription: ${description}\n---\n\n# ${name}\n`;
+function skillMd(name, description, license = 'MIT') {
+  return `---\nname: ${name}\ndescription: ${description}\nlicense: ${license}\n---\n\n# ${name}\n`;
 }
 
 /** 정상 카탈로그 픽스처를 만든다. overrides 로 특정 파일만 오염시킨다. */
 function makeCatalog(overrides = {}) {
   const root = mkdtempSync(path.join(tmpdir(), 'mia-fixture-'));
+  writeFileSync(path.join(root, 'LICENSE.md'), 'MIT License\n\nfixture only\n', 'utf8');
 
   const skills = {
     'mia-skill-compiler': path.join(root, '1_mia-skill-compiler', 'candidates', 'mia-skill-compiler'),
@@ -143,5 +144,18 @@ test('[name 계약] SKILL.md name 이 폴더명과 다르면 오류로 잡는다
     const r = runValidator(root);
     assert.equal(r.status, 1, `stdout:\n${r.stdout}`);
     assert.ok(r.stdout.includes('폴더 계약'), r.stdout);
+  });
+});
+
+test('[license 계약] MIA Skill의 license 누락을 오류로 잡는다', () => {
+  withCatalog({}, ({ root, skills }) => {
+    writeFileSync(
+      path.join(skills['mia-skill-compiler'], 'SKILL.md'),
+      '---\nname: mia-skill-compiler\ndescription: MIA모드 발동 전략 설명\n---\n',
+      'utf8'
+    );
+    const r = runValidator(root);
+    assert.equal(r.status, 1, `stdout:\n${r.stdout}`);
+    assert.ok(r.stdout.includes('license'), r.stdout);
   });
 });

@@ -1,0 +1,14 @@
+{
+  "candidate": "skills/custom/slash-prompt-modes",
+  "status": "expected_scope_mismatch",
+  "errors": 1,
+  "warnings": 0,
+  "findings": [
+    {
+      "severity": "error",
+      "code": "auxiliary_doc",
+      "message": "범용 런타임 후보 감사기는 README.md를 불필요한 보조 문서로 판정한다. 그러나 이 README.md는 skills/custom/README.md가 요구하는 저장소 정본 메타데이터이므로 유지하며 런타임 번들에서는 제외한다.",
+      "path": "README.md"
+    }
+  ]
+}

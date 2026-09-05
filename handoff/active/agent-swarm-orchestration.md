@@ -1,6 +1,6 @@
 ---
 handoff_id: agent-swarm-orchestration-2026-08-21
-status: HANDOFF_READY
+status: STALE
 workstream: agent-swarm-orchestration
 objective: 3대 AI 도구가 실제로 서로에게 작업을 위임하고 결과를 교차 검증하는 경로를 확정하고, 그 경로를 프로토콜과 감사 로그로 고정한다
 repository: gyeomsVibe/260718_agentic-ai-platform-optimization
@@ -26,6 +26,7 @@ remaining:
   - Codex와 Claude Code 사이의 MCP 연결은 명령 존재만 확인했고 실제 연결을 검증하지 않았다
   - agy의 지시 순응도는 2회 관찰이다. 경향으로 부르려면 반복 시행이 필요하다
 verification:
+  - 2026-09-05 최신성 재검사에서 work_sha 이후 agent-swarm/ 및 mcp/README.md 변경을 확인했다. 현재 HEAD의 해당 변경은 이 레코드의 기존 검증을 상속하지 않으므로 STALE로 강등했다
   - npm run check 실패 0건 (마지막 실행 2026-08-21)
   - node --check mcp/antigravity-bridge/index.js 통과
   - 패치 스크립트 재현성 확인. 상류에 재적용한 결과가 저장소 사본과 sha256 184d4e5fcdddcede2b18d9c7c8f5e2c6a4179841eab35c51889593eef4182671 로 일치
@@ -50,7 +51,7 @@ approvals_required:
   - WSL2 배포판 설치
   - 이 저장소 밖으로의 push 또는 다른 계정 및 권한 변경
   - 되돌리기 어려운 작업 일반. 강제 push와 히스토리 재작성 포함
-next_action: 위반 유도 과제를 설계해 감독자의 true positive 적발 능력을 측정한다. 금지 문구를 빼고 결과를 파일로 저장하라는 지시만 준 뒤, 감독자가 지시와 산출물을 대조해 새 파일을 지적하는지 확인한다. 실행은 codex exec --approve-for-me 로 하고 -s 는 붙이지 않는다. 사전에 git status --porcelain 기준선을 확보하고, 판정 기준은 프로젝트 작업트리 변화로 한다. 실행자 하우스키핑은 위반으로 계산하지 않는다
+next_action: 현재 HEAD에서 owned_paths 변경 내역과 도구 버전을 다시 감사하고, 기존 remaining·verification·risks를 사실에 맞게 갱신한 뒤 새 work_sha 후보를 만든다
 revalidate_when:
   - agy 버전이 1.1.16에서 바뀌었을 때
   - codex-cli 버전이 0.148.0에서 바뀌었을 때

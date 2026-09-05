@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v3.0.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v3.0.2. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -44,6 +44,7 @@
 - Preserve every non-owned change. If ownership overlaps in the same file or state, stop and report instead of guessing.
 - Serialize writes that may touch the same file or shared state. Parallelize only independent reads and checks.
 - Regenerate artifacts only with their canonical source in the same verified change. Never publish output derived from an uncommitted or unowned source.
+- Treat every Skill intended for Antigravity, Claude Code, and Codex as one cross-platform change unit: update the single canonical source and all required thin adapters together, validate each platform independently, and do not declare completion while any supported target is stale or unverified. Report partial platform status explicitly. This consistency rule does not authorize installation or external changes.
 - Modify generated files and lockfiles only when the requested change requires them.
 - **Anti-Misjudgment & Physical Workspace Rule**: The "Workspace" explicitly refers to the physical local filesystem directory (`D:\...`). Never confuse Git commit status with physical workspace directory structure. Always empirically audit local directory contents vs remote repository structure before making claims of equality.
 
@@ -63,6 +64,7 @@
 - Classify artifacts by purpose, responsibility, and workstream rather than by file extension alone.
 - Reserve the repository root for entry points, repository-wide documentation, and files that tools require at fixed locations.
 - Keep each section self-contained: store its documents, scripts, tools, and data together with a short README that indexes them.
+- Name Skill folders and their parents after the user-visible capability. Avoid vague buckets such as `tools`, `utils`, `misc`, or `common` when a direct capability name is clearer; introduce a family directory only for multiple cohesive Skills, and preserve platform-specific command spelling with thin generated adapters rather than duplicate canonical sources.
 - Maintain one canonical location per artifact. Move the canonical copy with history preserved through `git mv` or an equivalent move-then-stage workflow.
 - Before moving files, map inbound links, outbound links, relative paths, commands, and external fixed-path dependencies. Repair and verify them after the move.
 - Do not reorganize files that another session is editing or that cannot move without breaking an approved external dependency. Record the exception.

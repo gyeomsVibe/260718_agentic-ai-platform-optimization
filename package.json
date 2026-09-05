@@ -7,7 +7,7 @@
     "check": "npm run typecheck && npm run lint && npm run handoff:test && npm run handoff:check && npm run skills:check && npm run skills:audit && npm run skills:test",
     "skills:check": "powershell -ExecutionPolicy Bypass -File skills/custom/mia/scripts/sync-mia-catalog.ps1 -Mode Check",
     "skills:audit": "python skills/custom/mia/scripts/audit-skill-roots.py",
-    "skills:test": "node --test skills/custom/mia/tests/*.test.mjs",
+    "skills:test": "node --test skills/custom/mia/tests/*.test.mjs skills/custom/slash-prompt-modes/tests/*.test.mjs",
     "handoff:check": "node handoff/scripts/validate-handoff.mjs",
     "handoff:verify-remote": "node handoff/scripts/validate-handoff.mjs --verify-remote",
     "handoff:test": "node --test handoff/tests/*.test.mjs",
