@@ -58,6 +58,37 @@ Git 접근 실패를 설명하는 근거로만 사용한다.
 결과에서 일치하여 추가 유사 이슈 수집을 중단했다. 계획 도구는 현재 도구 목록에
 없어 범위와 단계는 진행 메시지와 이 기록으로 관리했다.
 
+## 실제 재발 방지 적용과 검증
+
+호스트 사용자 설정 `C:\Users\Kimyoongyeom\.codex\config.toml`에 다음 최소 설정을
+추가했다.
+
+```toml
+[sandbox_workspace_write]
+exclude_slash_tmp = true
+```
+
+목적은 Windows의 `C:\tmp`를 workspace-write 쓰기 루트에서 제외해, 과거의
+`SetNamedSecurityInfoW failed: 5` 초기화 실패 경로를 다시 열지 않는 것이다. 네트워크,
+사용자 `%TEMP%`, 추가 writable root, Git 보호 정책은 바꾸지 않았다. 되돌리려면 이
+섹션의 두 줄을 삭제한다.
+
+적용 뒤의 증거는 다음과 같다.
+
+- 실제 `codex sandbox -P :workspace`에서 워크스페이스 고유 파일의 생성·쓰기·읽기·삭제 성공.
+- 고유 검사 파일 잔여 0개.
+- 새 setup 완료 기록은 2~3개 쓰기 루트와 `errors=[]`.
+- `config.toml`에 `exclude_slash_tmp = true` 존재 확인.
+
+`codex doctor`를 이미 샌드박스 안에서 실행하면 `CodexSandboxOffline`의 별도 프로필을
+보일 수 있다. 따라서 이 경우에는 호스트 사용자 설정의 적용 여부를 판정하는 근거로
+쓰지 않는다. 호스트 설정·실제 `:workspace` 검사·새 setup 완료 기록을 함께 확인한다.
+
+성공 기준은 일반 파일의 편집·빌드·검사가 workspace-write에서 완료되고, setup 오류가
+발생하지 않는 것이다. `.git`, `.agents`, `.codex`의 재귀 읽기 전용 보호는 Codex의
+문서화된 보안 경계이므로 이 기준의 실패로 세지 않는다. Git 메타데이터 변경은 정식
+승인 경로를 사용한다.
+
 ## 최소 개선
 
 `Test-CodexCommandAccess.ps1`은 정해진 읽기 전용 조회만 실행한다.

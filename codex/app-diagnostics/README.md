@@ -15,6 +15,10 @@ pwsh -NoProfile -File codex/app-diagnostics/codex-sandbox-check.ps1 -ProbeWorksp
 - `-Interactive`는 호환 인수로 남겼지만 자동 ACL 복구를 실행하지 않는다.
 - 자격증명 파일 읽기, 토큰 저장 방식 변경, 고정 버전 앱 해시 검사, 전체 재귀 ACL 복구는 진단에서 제거했다.
 
+`C:\tmp` ACL 실패를 겪은 이 환경에는 사용자 설정에
+`[sandbox_workspace_write]`와 `exclude_slash_tmp = true`가 적용되어 있다. 이 값은
+`C:\tmp`만 쓰기 루트에서 제외한다. 네트워크·`%TEMP%`·Git 보호를 넓히지 않는다.
+
 ## 실패별 다음 행동
 
 | 증상 | 분류 | 다음 행동 |
