@@ -5,6 +5,11 @@
 
 ## 이 폴더 구성
 
+**2026-09-05 진단 진입점:** [LTSC 명령별 접근 진단](LTSC_COMMAND_ACCESS_2026-09-05.md)과
+[Test-CodexCommandAccess.ps1](Test-CodexCommandAccess.ps1)을 먼저 확인하세요.
+초기화 성공과 개별 명령 성공은 별개입니다. 아래 기존 4단계 진단·복구 안내는
+과거 사건의 절차이며, 전체 정상 판정이나 재귀 ACL 복구의 자동 실행 근거로 사용하지 않습니다.
+
 | 파일 | 종류 | 역할 |
 |---|---|---|
 | ⭐ [ROOT_CAUSE_c-tmp-write-root_2026-07-22.md](ROOT_CAUSE_c-tmp-write-root_2026-07-22.md) | 문서 | **근본 원인·1순위 해결책** — `SetNamedSecurityInfoW failed: 5`의 진짜 이유(C:\tmp 쓰기 루트)와 `excludeSlashTmp=true` 수리. **샌드박스 에러는 여기부터.** |
@@ -15,8 +20,8 @@
 | ⭐ [ROOT_CAUSE_db-malformed_2026-07-26.md](ROOT_CAUSE_db-malformed_2026-07-26.md) | 문서 | **근본 원인·해결** — 앱이 `database disk image is malformed`로 안 켜질 때. `~/.codex`의 SQLite DB 손상 진단·격리 수리·검증 기록. **시작 오류는 여기부터.** |
 | [codex-db-doctor.py](codex-db-doctor.py) | 실행 스크립트 | **자가진단·수리** — `~/.codex` 전체 SQLite 무결성 검사, `--quarantine`로 손상 DB만 안전 격리(백업 후 이동) |
 
-> **샌드박스 쓰기 거부(`SetNamedSecurityInfoW failed: 5`)를 만나면 → 먼저 ⭐C:\tmp 근본원인 문서를 보세요.**
-> C:\tmp 문제는 ACL 부여가 아니라 `excludeSlashTmp=true`(config.toml)로 영구 해결합니다.
+> **쓰기 거부가 발생하면 오류가 지목한 경로와 현재 허용 범위를 먼저 확인하세요.**
+> C:\tmp 문서는 해당 경로가 실제 실패 대상으로 확인된 과거 사례에만 적용합니다.
 > **앱이 `database disk image is malformed`로 안 켜지면 → ⭐DB 근본원인 문서 + `codex-db-doctor.py`.**
 
 ## 먼저: "샌드박스"가 뭐고 왜 에러가 났나 (모르는 사람용)
