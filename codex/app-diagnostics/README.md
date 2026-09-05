@@ -33,13 +33,14 @@ pwsh -NoProfile -File codex/app-diagnostics/codex-sandbox-check.ps1 -ProbeWorksp
 네트워크·보호 경로 접근은 각 플랫폼의 정식 승인 절차를 따른다. 이 문서는 실행 권한을 부여하지 않는다.
 실패가 확인된 동일 명령을 승인 없이 다른 도구로 우회 실행하지 않는다.
 
-## 검증과 조사
+## 검증과 복구 안내
 
 ```powershell
 node --test codex/app-diagnostics/tests/sandbox-check.test.mjs
 ```
 
-- [LTSC 및 GitHub 근거와 검증 기록](LTSC_COMMAND_ACCESS_2026-09-05.md)
+- [Windows Codex sandbox 복구 안내서](WINDOWS_CODEX_SANDBOX_RECOVERY_GUIDE_2026-09-05.md): 초보자용 원인·해결·재검사 절차
+- [Windows LTSC Codex sandbox 기술 진단](WINDOWS_LTSC_CODEX_SANDBOX_DIAGNOSIS_2026-09-05.md): 공개 근거와 실제 검증 기록
 - [OS 명령별 접근 조회](Test-CodexCommandAccess.ps1)
 - [현재 진단기](codex-sandbox-check.ps1)
 
