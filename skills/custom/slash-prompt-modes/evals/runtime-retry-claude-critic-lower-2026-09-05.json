@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-05T11:26:59.1220453Z",
+  "purpose": "Deterministic uppercase/lowercase command-recognition probe; not a general quality benchmark.",
+  "repetitions": 1,
+  "repetition_rationale": "Trigger resolution is treated as a deterministic invariant; stochastic quality claims require separate repeated evaluation.",
+  "platforms": [
+    "ClaudeCode"
+  ],
+  "cli_versions": {
+    "codex": null,
+    "claude_code": "2.1.259 (Claude Code)"
+  },
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "codex_short_root_path_warnings": 0,
+    "claude_total_cost_usd": 0.033781
+  },
+  "results": [
+    {
+      "platform": "ClaudeCode",
+      "mode": "CRITIC",
+      "case": "lower",
+      "prompt": "/critic 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8190,
+        "expected": "MODE=/CRITIC",
+        "response": "MODE=CRITIC",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.033781,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    }
+  ]
+}

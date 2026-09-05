@@ -67,9 +67,13 @@ Skill 별칭과 대문자 호환 command를 함께 사용합니다. `/OpTiMiZe` 
 
 | 도구 | 설치·구조 | 실제 명령 확인 | 남은 한계 |
 |---|---|---|---|
-| Codex | 교정 본체 + 소문자 별칭 10개 정본 일치 | 과거 `/OPTIMIZE`, `/optimize` 응답 통과 | 교정본의 10개 전수 런타임 평가 필요 |
-| Claude Code | 교정 본체 + 소문자 별칭 10개 + 대문자 command 10개 정본 일치 | 과거 `/OPTIMIZE`, `/optimize` 응답 통과 | 교정본 전수 런타임·임의 혼합 대소문자 미보장 |
-| Antigravity | 본체 + 소문자 별칭 10개, 해시·구조 통과 | 미실행 | 현재 환경에 CLI가 없어 새 IDE 세션 확인 필요 |
+| Codex | 본체 + 자급형 별칭 10개 정본 일치 | 대·소문자 누적 매트릭스 통과, 최종 소문자 별칭 10/10 | 일반 과제 품질 평가는 별도 |
+| Claude Code | 본체 + 자급형 별칭 10개 + 대문자 command 10개 정본 일치 | 대·소문자 누적 매트릭스 통과, `Unknown command` 0건 | 한 호출은 예산 상향 재시도 후 통과 |
+| Antigravity | 본체 + 자급형 별칭 10개 정본 일치 | `agy 1.1.27`에서 대·소문자 20/20 | 최초 음성 사례의 불필요한 권한 요청 1건 |
+
+세 도구 모두 슬래시 없는 음성 사례의 비발동과 `/critic /OPTIMIZE` 혼합 조합을
+확인했습니다. 이는 **트리거 인식 검증**입니다. 각 모드가 다양한 실제 과제에서 답변 품질을
+얼마나 높이는지까지 증명한 것은 아니며, 그 주장은 반복 실행과 별도 품질 루브릭이 필요합니다.
 
 2026-09-05 REDTEAM 재감사에서 기존 별칭 본문에 실제 토큰 대신
 `$(System.Collections.Hashtable.Token)`이 남은 PowerShell 보간 결함을 발견했습니다. 과거
@@ -78,8 +82,9 @@ Skill 별칭과 대문자 호환 command를 함께 사용합니다. `/OpTiMiZe` 
 추가했고, 교정본은 세 플랫폼에 동시 재배포해 33개 패키지의 정본·라이선스·의미 잔재
 검사를 통과했습니다.
 
-따라서 “3대 도구에서 전부 실동작 검증 완료”라고 주장하지 않습니다. 새로 설치한 뒤에는
-새 대화나 IDE 세션을 열어야 목록이 갱신될 수 있습니다.
+상세 실행 기록은
+[교차 플랫폼 런타임 요약](evals/cross-platform-runtime-summary-2026-09-05.json)에서 확인할 수
+있습니다. 새로 설치한 뒤에는 새 대화나 IDE 세션을 열어야 목록이 갱신될 수 있습니다.
 
 ## 이 Skill이 하지 않는 일
 
@@ -98,6 +103,7 @@ Skill 별칭과 대문자 호환 command를 함께 사용합니다. `/OpTiMiZe` 
 slash-prompt-modes/
 ├─ SKILL.md                         # 공통 실행 계약
 ├─ references/                      # 10개 모드·근거·플랫폼 차이
+│  └─ mode-manifest.json            # 별칭·Claude command 공통 생성 정본
 ├─ scripts/                         # 별칭과 Claude 호환 command 생성기
 ├─ evals/                           # 정적·런타임 검증 기록
 ├─ agents/openai.yaml               # Codex 표시·명시 호출 정책
@@ -106,6 +112,7 @@ slash-prompt-modes/
 
 `scripts/build-slash-aliases.ps1`는 세 도구용 소문자 별칭 10개를 만들고,
 `scripts/build-claude-uppercase-commands.ps1`는 Claude Code용 대문자 command 10개를 만듭니다.
+두 생성기는 같은 `references/mode-manifest.json`을 읽으므로 핵심 계약이 서로 어긋나지 않습니다.
 생성본이나 사용자 홈 설치본을 직접 고치지 말고 이 정본을 수정한 뒤 다시 생성·검증해야 합니다.
 
 세 플랫폼의 동시 정합성은 하나의 명령으로 검사합니다. `Apply`는 기존 각 대상을 타임스탬프
@@ -114,6 +121,14 @@ slash-prompt-modes/
 ```powershell
 ./scripts/sync-slash-prompt-modes.ps1 -Mode Check
 ./scripts/sync-slash-prompt-modes.ps1 -Mode Apply
+```
+
+Codex와 Claude Code의 대·소문자 인식 매트릭스는 비용이 발생할 수 있으므로 필요한 플랫폼과
+표기만 좁혀 실행할 수 있습니다.
+
+```powershell
+./scripts/run-runtime-matrix.ps1 -Platform Codex -CaseFilter lower
+./scripts/run-runtime-matrix.ps1 -Platform ClaudeCode -ModeFilter structured -CaseFilter upper -ClaudeMaxBudgetUsd 0.25
 ```
 
 세부 문서:

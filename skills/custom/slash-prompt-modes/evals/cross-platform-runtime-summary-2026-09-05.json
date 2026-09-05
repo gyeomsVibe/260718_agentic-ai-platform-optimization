@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-05",
+  "skill": "slash-prompt-modes",
+  "final_build_change": "Generated aliases now embed a concise mode contract from one UTF-8 mode manifest; STRUCTURED FEW-SHOT cannot be shortened to STRUCTURED.",
+  "verified_claim": "Uppercase/lowercase trigger recognition, slashless non-triggering, and a mixed-case two-mode combination were observed across Codex, Claude Code, and Antigravity.",
+  "not_verified_claim": "These probes do not establish general answer-quality improvement, factual accuracy, or task-specific performance for every mode.",
+  "platforms": [
+    {
+      "platform": "Codex",
+      "cli": "codex-cli 0.153.2",
+      "evidence": [
+        "runtime-matrix-codex-2026-09-05.json",
+        "runtime-matrix-codex-final-2026-09-05.json"
+      ],
+      "positive_matrix": "pass_cumulative",
+      "final_build_lowercase_aliases": "10/10",
+      "slashless_negative": "pass",
+      "mixed_case_combination": "pass",
+      "known_warning": "Two pre-fix probes first treated the displayed r0 skill root as a literal path and then recovered. Self-contained generated aliases reduce dependence on that path lookup."
+    },
+    {
+      "platform": "Claude Code",
+      "cli": "2.1.259",
+      "evidence": [
+        "runtime-matrix-claude-2026-09-05.json",
+        "runtime-matrix-claude-final-lower-2026-09-05.json",
+        "runtime-retry-claude-critic-lower-2026-09-05.json",
+        "runtime-retry-claude-structured-upper-2026-09-05.json"
+      ],
+      "positive_matrix": "pass_cumulative",
+      "final_build_lowercase_aliases": "10/10_after_one_budget_retry",
+      "final_build_changed_uppercase_case": "STRUCTURED FEW-SHOT 1/1",
+      "unknown_command": 0,
+      "slashless_negative": "pass_with_nonessential_format_deviation",
+      "mixed_case_combination": "pass_with_leading_slashes_omitted",
+      "known_warning": "A 0.10 USD cap terminated one /critic call; a bounded 0.25 USD retry passed."
+    },
+    {
+      "platform": "Antigravity",
+      "cli": "agy 1.1.27 via antigravity-bridge",
+      "evidence": ["runtime-matrix-antigravity-2026-09-05.json"],
+      "positive_matrix": "20/20",
+      "slashless_negative": "pass_after_tool-free_retry",
+      "mixed_case_combination": "pass",
+      "known_warning": "The first slashless negative probe requested an unnecessary admin-level tool and was denied by safe headless mode; no permission bypass was used."
+    }
+  ],
+  "cross_platform_trigger_matrix_verified": true,
+  "cross_platform_behavioral_quality_verified": false
+}

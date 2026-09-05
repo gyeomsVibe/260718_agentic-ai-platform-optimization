@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-05T11:39:17.471Z",
+  "platform": "Antigravity",
+  "runner": "antigravity-bridge",
+  "cli_version": "agy 1.1.27",
+  "safety": {
+    "sandbox": true,
+    "mode": "plan",
+    "auto_approve": false,
+    "thinking_depth": "low"
+  },
+  "purpose": "Deterministic uppercase/lowercase trigger-recognition probe; not a general behavioral-quality benchmark.",
+  "summary": {
+    "positive_total": 20,
+    "positive_passed": 20,
+    "unknown_command": 0,
+    "slashless_negative_passed": true,
+    "mixed_case_combination_passed": true
+  },
+  "results": [
+    { "mode": "SELFREFINE", "upper": "MODE=/SELFREFINE", "lower": "MODE=/SELFREFINE" },
+    { "mode": "REDTEAM", "upper": "MODE=/REDTEAM", "lower": "MODE=/REDTEAM" },
+    { "mode": "ELI10", "upper": "MODE=/ELI10", "lower": "MODE=/ELI10" },
+    { "mode": "DEEPDIVE", "upper": "MODE=/DEEPDIVE", "lower": "MODE=/DEEPDIVE" },
+    { "mode": "ALT3", "upper": "MODE=/ALT3", "lower": "MODE=/ALT3" },
+    { "mode": "CRITIC", "upper": "MODE=/CRITIC", "lower": "MODE=/CRITIC" },
+    { "mode": "OPTIMIZE", "upper": "MODE=/OPTIMIZE", "lower": "MODE=/OPTIMIZE" },
+    { "mode": "STEPBYSTEP", "upper": "MODE=/STEPBYSTEP", "lower": "MODE=/STEPBYSTEP" },
+    { "mode": "EXPERT", "upper": "MODE=/EXPERT", "lower": "MODE=/EXPERT" },
+    { "mode": "STRUCTURED FEW-SHOT", "upper": "MODE=/STRUCTURED FEW-SHOT", "lower": "MODE=/STRUCTURED FEW-SHOT" }
+  ],
+  "boundary_cases": [
+    {
+      "id": "slashless-negative-initial",
+      "status": "infrastructure_permission_failure",
+      "reason": "The model requested an unnecessary escalate_admin tool; headless safe mode denied it. No trigger verdict was produced."
+    },
+    {
+      "id": "slashless-negative-tool-free-retry",
+      "status": "pass",
+      "output": "MODE=NONE"
+    },
+    {
+      "id": "mixed-case-combination",
+      "status": "pass",
+      "output": "MODE=/CRITIC+/OPTIMIZE"
+    }
+  ]
+}

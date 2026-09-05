@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-05T05:06:13.9884868Z",
+  "purpose": "Deterministic uppercase/lowercase command-recognition probe; not a general quality benchmark.",
+  "repetitions": 1,
+  "repetition_rationale": "Trigger resolution is treated as a deterministic invariant; stochastic quality claims require separate repeated evaluation.",
+  "platforms": [
+    "ClaudeCode"
+  ],
+  "cli_versions": {
+    "codex": null,
+    "claude_code": "2.1.259 (Claude Code)"
+  },
+  "summary": {
+    "total": 20,
+    "passed": 16,
+    "failed": 4,
+    "codex_short_root_path_warnings": 0,
+    "claude_total_cost_usd": 0.754685
+  },
+  "results": [
+    {
+      "platform": "ClaudeCode",
+      "mode": "SELFREFINE",
+      "case": "upper",
+      "prompt": "/SELFREFINE 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 7785,
+        "expected": "MODE=/SELFREFINE",
+        "response": "MODE=SELFREFINE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0318465,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "SELFREFINE",
+      "case": "lower",
+      "prompt": "/selfrefine 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 10267,
+        "expected": "MODE=/SELFREFINE",
+        "response": "MODE=SELFREFINE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0237235,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "REDTEAM",
+      "case": "upper",
+      "prompt": "/REDTEAM 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8196,
+        "expected": "MODE=/REDTEAM",
+        "response": "MODE=REDTEAM",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0222415,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "REDTEAM",
+      "case": "lower",
+      "prompt": "/redteam 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 1,
+        "duration_ms": 14218,
+        "expected": "MODE=/REDTEAM",
+        "response": "",
+        "parser_accepted": false,
+        "token_normalized": false,
+        "command_resolved": false,
+        "unknown_command": false,
+        "cost_usd": 0.1840005,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "ELI10",
+      "case": "upper",
+      "prompt": "/ELI10 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8159,
+        "expected": "MODE=/ELI10",
+        "response": "MODE=ELI10",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0224135,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "ELI10",
+      "case": "lower",
+      "prompt": "/eli10 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8914,
+        "expected": "MODE=/ELI10",
+        "response": "MODE=ELI10",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0228475,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "DEEPDIVE",
+      "case": "upper",
+      "prompt": "/DEEPDIVE 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 11714,
+        "expected": "MODE=/DEEPDIVE",
+        "response": "MODE=DEEPDIVE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0246025,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "DEEPDIVE",
+      "case": "lower",
+      "prompt": "/deepdive 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8734,
+        "expected": "MODE=/DEEPDIVE",
+        "response": "MODE=DEEPDIVE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.022873499999999998,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "ALT3",
+      "case": "upper",
+      "prompt": "/ALT3 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 7692,
+        "expected": "MODE=/ALT3",
+        "response": "MODE=ALT3",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0223035,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "ALT3",
+      "case": "lower",
+      "prompt": "/alt3 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 24427,
+        "expected": "MODE=/ALT3",
+        "response": "MODE=ALT3",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.07175,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "CRITIC",
+      "case": "upper",
+      "prompt": "/CRITIC 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 7130,
+        "expected": "MODE=/CRITIC",
+        "response": "MODE=CRITIC",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.032751,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "CRITIC",
+      "case": "lower",
+      "prompt": "/critic 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 44966,
+        "expected": "MODE=/CRITIC",
+        "response": "파일 읽기 도구가 현재 사용 불가능하지만, Skill 정보에서 제공된 정보를 기반으로 응답합니다.\n\nSkill 정보에 \"/CRITIC 모드\"라고 명시되어 있고, 슬래시 모드의 정본 토큰은 대문자로 표기되므로:\n\nMODE=CRITIC",
+        "parser_accepted": true,
+        "token_normalized": false,
+        "command_resolved": false,
+        "unknown_command": false,
+        "cost_usd": 0.09531330000000002,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "OPTIMIZE",
+      "case": "upper",
+      "prompt": "/OPTIMIZE 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 7853,
+        "expected": "MODE=/OPTIMIZE",
+        "response": "MODE=OPTIMIZE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0170105,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "OPTIMIZE",
+      "case": "lower",
+      "prompt": "/optimize 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 12775,
+        "expected": "MODE=/OPTIMIZE",
+        "response": "MODE=OPTIMIZE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0252845,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "STEPBYSTEP",
+      "case": "upper",
+      "prompt": "/STEPBYSTEP 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 7956,
+        "expected": "MODE=/STEPBYSTEP",
+        "response": "MODE=STEPBYSTEP",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0224095,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "STEPBYSTEP",
+      "case": "lower",
+      "prompt": "/stepbystep 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 7630,
+        "expected": "MODE=/STEPBYSTEP",
+        "response": "MODE=/STEPBYSTEP",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0224105,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "EXPERT",
+      "case": "upper",
+      "prompt": "/EXPERT 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 7411,
+        "expected": "MODE=/EXPERT",
+        "response": "MODE=EXPERT",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.0218955,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "EXPERT",
+      "case": "lower",
+      "prompt": "/expert 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 9351,
+        "expected": "MODE=/EXPERT",
+        "response": "MODE=EXPERT",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "unknown_command": false,
+        "cost_usd": 0.023384500000000003,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "STRUCTURED FEW-SHOT",
+      "case": "upper",
+      "prompt": "/STRUCTURED FEW-SHOT 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8719,
+        "expected": "MODE=/STRUCTURED FEW-SHOT",
+        "response": "MODE=STRUCTURED",
+        "parser_accepted": true,
+        "token_normalized": false,
+        "command_resolved": false,
+        "unknown_command": false,
+        "cost_usd": 0.022738500000000002,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    },
+    {
+      "platform": "ClaudeCode",
+      "mode": "STRUCTURED FEW-SHOT",
+      "case": "lower",
+      "prompt": "/structured few-shot 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8500,
+        "expected": "MODE=/STRUCTURED FEW-SHOT",
+        "response": "MODE=/STRUCTURED",
+        "parser_accepted": true,
+        "token_normalized": false,
+        "command_resolved": false,
+        "unknown_command": false,
+        "cost_usd": 0.022884500000000002,
+        "model": "claude-haiku-4-5-20251001"
+      }
+    }
+  ]
+}

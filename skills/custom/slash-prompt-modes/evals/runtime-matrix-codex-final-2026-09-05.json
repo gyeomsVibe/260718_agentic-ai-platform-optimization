@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-05T11:24:20.6530263Z",
+  "purpose": "Deterministic uppercase/lowercase command-recognition probe; not a general quality benchmark.",
+  "repetitions": 1,
+  "repetition_rationale": "Trigger resolution is treated as a deterministic invariant; stochastic quality claims require separate repeated evaluation.",
+  "platforms": [
+    "Codex"
+  ],
+  "cli_versions": {
+    "codex": "codex-cli 0.153.4",
+    "claude_code": null
+  },
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "codex_short_root_path_warnings": 1,
+    "claude_total_cost_usd": 0.0
+  },
+  "results": [
+    {
+      "platform": "Codex",
+      "mode": "SELFREFINE",
+      "case": "lower",
+      "prompt": "/selfrefine 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 24312,
+        "expected": "MODE=/SELFREFINE",
+        "response": "MODE=/SELFREFINE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "REDTEAM",
+      "case": "lower",
+      "prompt": "/redteam 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 14390,
+        "expected": "MODE=/REDTEAM",
+        "response": "MODE=REDTEAM",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "ELI10",
+      "case": "lower",
+      "prompt": "/eli10 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 15718,
+        "expected": "MODE=/ELI10",
+        "response": "MODE=ELI10",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "DEEPDIVE",
+      "case": "lower",
+      "prompt": "/deepdive 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 19999,
+        "expected": "MODE=/DEEPDIVE",
+        "response": "MODE=/DEEPDIVE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "ALT3",
+      "case": "lower",
+      "prompt": "/alt3 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 14962,
+        "expected": "MODE=/ALT3",
+        "response": "MODE=ALT3",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "CRITIC",
+      "case": "lower",
+      "prompt": "/critic 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 14467,
+        "expected": "MODE=/CRITIC",
+        "response": "MODE=CRITIC",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "OPTIMIZE",
+      "case": "lower",
+      "prompt": "/optimize 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 19537,
+        "expected": "MODE=/OPTIMIZE",
+        "response": "MODE=OPTIMIZE",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "STEPBYSTEP",
+      "case": "lower",
+      "prompt": "/stepbystep 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 22512,
+        "expected": "MODE=/STEPBYSTEP",
+        "response": "MODE=STEPBYSTEP",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "EXPERT",
+      "case": "lower",
+      "prompt": "/expert 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 8177,
+        "expected": "MODE=/EXPERT",
+        "response": "MODE=EXPERT",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": false,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": true,
+        "unknown_command": false
+      }
+    },
+    {
+      "platform": "Codex",
+      "mode": "STRUCTURED FEW-SHOT",
+      "case": "lower",
+      "prompt": "/structured few-shot 현재 입력에서 발동한 사용자 정의 슬래시 모드의 정본 토큰만 MODE=<토큰> 형식의 한 줄로 출력해. 설명과 코드 블록은 쓰지 마.",
+      "observation": {
+        "exit_code": 0,
+        "duration_ms": 22790,
+        "expected": "MODE=/STRUCTURED FEW-SHOT",
+        "response": "MODE=/STRUCTURED FEW-SHOT",
+        "parser_accepted": true,
+        "token_normalized": true,
+        "command_resolved": true,
+        "alias_read_observed": true,
+        "canonical_read_observed": false,
+        "first_path_resolution_clean": false,
+        "unknown_command": false
+      }
+    }
+  ]
+}
