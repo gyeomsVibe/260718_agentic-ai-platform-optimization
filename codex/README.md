@@ -3,6 +3,12 @@
 > **Codex**는 OpenAI가 만든 AI 코딩 에이전트(데스크톱 앱)입니다. 이 폴더는 Codex를
 > 잘 쓰기 위한 자료를 **세 개의 섹션 폴더**로 분류해 둡니다. 낱개 문서를 루트에 흩어 두지 않습니다.
 
+## Codex sandbox가 파일 작업을 거부할 때
+
+1. [Windows Codex sandbox 복구 안내서](app-diagnostics/WINDOWS_CODEX_SANDBOX_RECOVERY_GUIDE_2026-09-05.md)를 먼저 연다.
+2. 원인·설정·공개 근거가 필요하면 [Windows LTSC Codex sandbox 기술 진단](app-diagnostics/WINDOWS_LTSC_CODEX_SANDBOX_DIAGNOSIS_2026-09-05.md)을 연다.
+3. 다른 Codex 앱 문제라면 [app-diagnostics/](app-diagnostics/)의 증상별 표로 간다.
+
 ## 섹션 지도
 
 | 섹션 | 무엇인가 | 진입점 |
@@ -26,10 +32,13 @@
 ## 🛠 app-diagnostics — 앱 진단·오류해결·패치
 
 Codex 앱 자체의 문제(샌드박스 파일 쓰기 거부·이미지 다운로드·압축 미리보기)를 **진단·복구**하는
-도구와 기록을 **한 폴더에** 모았습니다. 위험한 앱 바이너리 패치는 폐기하고 **순정 앱 유지 + 권한(ACL) 복구** 정공법을 씁니다.
+도구와 기록을 **한 폴더에** 모았습니다. 위험한 앱 바이너리 패치는 폐기하고, 순정 앱을
+유지한 채 **최소 설정 변경과 실제 검증**으로 원인을 분리합니다.
 
-**→ [app-diagnostics/](app-diagnostics/)** 에서 시작하세요. 폴더 안에 자가진단 스크립트,
-권한 복구 배치, 검증 보고서, 인수인계 문서가 함께 있습니다.
+**→ [app-diagnostics/](app-diagnostics/)** 에서 시작하세요. sandbox 파일 작업 거부는
+[복구 안내서](app-diagnostics/WINDOWS_CODEX_SANDBOX_RECOVERY_GUIDE_2026-09-05.md)를 먼저 열고,
+다른 증상은 폴더의 증상별 표를 사용합니다. 폴더 안에 자가진단 스크립트, 권한 복구 배치,
+검증 보고서, 인수인계 문서가 함께 있습니다.
 
 > ⚠️ 이전의 `codex-image-download-fix-20260719/`(ASAR 패치) 방식은 스토어 서명 손상 위험으로 폐기·삭제됨.
 

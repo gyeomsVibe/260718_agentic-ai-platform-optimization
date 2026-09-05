@@ -1,6 +1,14 @@
 # Codex 앱 진단
 
-## 현재 진입점
+## sandbox 파일 작업 거부: 여기서 시작
+
+| 알고 싶은 것 | 열 문서 또는 실행할 명령 |
+|---|---|
+| 쉬운 원인·해결·되돌리기 | [Windows Codex sandbox 복구 안내서](WINDOWS_CODEX_SANDBOX_RECOVERY_GUIDE_2026-09-05.md) |
+| LTSC·ACL·Git 보호 경계의 기술 근거 | [Windows LTSC Codex sandbox 기술 진단](WINDOWS_LTSC_CODEX_SANDBOX_DIAGNOSIS_2026-09-05.md) |
+| 지금 이 작업 폴더에서 쓰기가 되는지 확인 | 아래 `-ProbeWorkspaceWrite` 명령 |
+
+## 현재 상태 검사
 
 ```powershell
 pwsh -NoProfile -File codex/app-diagnostics/codex-sandbox-check.ps1 -ProbeWorkspaceWrite
@@ -33,14 +41,12 @@ pwsh -NoProfile -File codex/app-diagnostics/codex-sandbox-check.ps1 -ProbeWorksp
 네트워크·보호 경로 접근은 각 플랫폼의 정식 승인 절차를 따른다. 이 문서는 실행 권한을 부여하지 않는다.
 실패가 확인된 동일 명령을 승인 없이 다른 도구로 우회 실행하지 않는다.
 
-## 검증과 복구 안내
+## 검증과 복구 자료
 
 ```powershell
 node --test codex/app-diagnostics/tests/sandbox-check.test.mjs
 ```
 
-- [Windows Codex sandbox 복구 안내서](WINDOWS_CODEX_SANDBOX_RECOVERY_GUIDE_2026-09-05.md): 초보자용 원인·해결·재검사 절차
-- [Windows LTSC Codex sandbox 기술 진단](WINDOWS_LTSC_CODEX_SANDBOX_DIAGNOSIS_2026-09-05.md): 공개 근거와 실제 검증 기록
 - [OS 명령별 접근 조회](Test-CodexCommandAccess.ps1)
 - [현재 진단기](codex-sandbox-check.ps1)
 

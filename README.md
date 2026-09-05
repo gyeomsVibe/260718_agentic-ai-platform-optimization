@@ -15,6 +15,14 @@
 - **AI에게 뭘 시킬 수 있는지 알고 싶다면** → **[Skill 사용 매뉴얼](skills/MANUAL.md)**.
   스킬이 뭔지부터 설명하고, 도구별로 **어떤 문장을 말하면 발동하는지** 그대로 적어 뒀습니다.
 
+## 자주 찾는 문제 해결 바로가기
+
+| 지금 겪는 문제 | 먼저 열 문서 | 다음 행동 |
+|---|---|---|
+| **Codex sandbox가 파일 작업을 거부함** | [Windows Codex sandbox 복구 안내서](codex/app-diagnostics/WINDOWS_CODEX_SANDBOX_RECOVERY_GUIDE_2026-09-05.md) | 안내서의 재검사 명령을 실행하고, 결과 코드에 따라 다음 행동을 고른다. |
+| Codex sandbox의 원인·웹 근거를 확인하고 싶음 | [Windows LTSC Codex sandbox 기술 진단](codex/app-diagnostics/WINDOWS_LTSC_CODEX_SANDBOX_DIAGNOSIS_2026-09-05.md) | 공개 근거, 적용 설정, 검증 범위를 확인한다. |
+| Codex 이미지·다운로드·압축 미리보기 문제 | [Codex 앱 진단 인덱스](codex/app-diagnostics/README.md) | 증상별 표에서 해당 진단 기록을 연다. |
+
 ## 지금 설치된 상태 (2026-09-05 갱신)
 
 기존 스킬의 2026-08-07 런타임 결과와 새 `slash-prompt-modes`의 2026-09-05 결과를
