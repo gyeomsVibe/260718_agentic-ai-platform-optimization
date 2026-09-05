@@ -21,7 +21,7 @@
 | 제품군 | 역할 |
 |---|---|
 | [`mia/`](mia/) | MIA 시리즈 실행 Skill, 생성 도구, 평가 증거 |
-| [`slash-prompt-modes/`](slash-prompt-modes/) | MIA와 독립된 10개 슬래시 프롬프트 모드의 정본·어댑터·평가 |
+| [`slash-prompt-modes/`](slash-prompt-modes/) | MIA와 독립된 10개 슬래시 프롬프트 모드의 정본·어댑터·검증 증거 |
 
 `legacy-harness/`는 과거 자산을 보존한 격리 영역이며, 현재 활성 제품군이나 새 Skill의
 복사 원본이 아닙니다.

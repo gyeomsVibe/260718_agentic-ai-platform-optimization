@@ -53,7 +53,7 @@
     "mia": "~/.mia-skill-backups/20260905-130049",
     "global_rules": "~/.agent-global-rules-backups/20260905-130048"
   },
-  "runtime_summary": "evals/cross-platform-runtime-summary-2026-09-05.json",
+  "runtime_summary": "cross-platform-runtime-summary-2026-09-05.json",
   "cross_platform_trigger_matrix_verified": true,
   "cross_platform_behavioral_quality_verified": false
 }

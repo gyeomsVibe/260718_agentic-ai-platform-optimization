@@ -11,10 +11,16 @@ param(
     [ValidateRange(0.01, 5.0)]
     [double]$ClaudeMaxBudgetUsd = 0.10,
 
-    [string]$OutputPath = (Join-Path (Split-Path -Parent $PSScriptRoot) 'evals/runtime-matrix-2026-09-05.json')
+    [string]$OutputPath
 )
 
 $ErrorActionPreference = 'Stop'
+
+if ([string]::IsNullOrWhiteSpace($OutputPath)) {
+    $platformLabel = ($Platform -join '-').ToLowerInvariant()
+    $timestamp = Get-Date -Format 'yyyy-MM-dd-HHmmss'
+    $OutputPath = Join-Path (Split-Path -Parent $PSScriptRoot) "validation-evidence/runtime-matrix-$platformLabel-$timestamp.json"
+}
 
 $modes = @(
     @{ Token = 'SELFREFINE'; Alias = 'selfrefine' },

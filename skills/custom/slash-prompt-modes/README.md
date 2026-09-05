@@ -83,7 +83,7 @@ Skill 별칭과 대문자 호환 command를 함께 사용합니다. `/OpTiMiZe` 
 검사를 통과했습니다.
 
 상세 실행 기록은
-[교차 플랫폼 런타임 요약](evals/cross-platform-runtime-summary-2026-09-05.json)에서 확인할 수
+[교차 플랫폼 런타임 요약](validation-evidence/cross-platform-runtime-summary-2026-09-05.json)에서 확인할 수
 있습니다. 새로 설치한 뒤에는 새 대화나 IDE 세션을 열어야 목록이 갱신될 수 있습니다.
 
 ## 이 Skill이 하지 않는 일
@@ -105,7 +105,7 @@ slash-prompt-modes/
 ├─ references/                      # 10개 모드·근거·플랫폼 차이
 │  └─ mode-manifest.json            # 별칭·Claude command 공통 생성 정본
 ├─ scripts/                         # 별칭과 Claude 호환 command 생성기
-├─ evals/                           # 정적·런타임 검증 기록
+├─ validation-evidence/             # 사람이 읽는 검증 안내와 정적·런타임 증거
 ├─ agents/openai.yaml               # Codex 표시·명시 호출 정책
 └─ LICENSE.md                       # 이 Skill에만 적용되는 MIT License
 ```
@@ -137,7 +137,9 @@ Codex와 Claude Code의 대·소문자 인식 매트릭스는 비용이 발생�
 - [10개 모드별 입력·출력·중단 조건](references/mode-contracts.md)
 - [공개 근거와 성능 평가법](references/evidence-and-evaluation.md)
 - [플랫폼별 별칭과 대소문자 계약](references/platform-adapters.md)
-- [평가 사례](evals/cases.json)
+- [초보자용 설계·진단·수정·검증 전체 과정](validation-evidence/BEGINNER-GUIDE-TO-SLASH-MODE-DESIGN-FIXES-AND-VALIDATION.md)
+- [검증 증거 안내](validation-evidence/README.md)
+- [프롬프트 모드 시험 사례](validation-evidence/prompt-mode-test-cases.json)
 
 ## 라이선스와 출처
 
