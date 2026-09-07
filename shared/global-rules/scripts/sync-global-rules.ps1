@@ -41,11 +41,12 @@ function New-GeneratedRule {
     )
 
     $core = Read-SourceFile (Join-Path $root 'core.md')
+    $modelRoutingRoute = Read-SourceFile (Join-Path $root 'routes\model-and-reasoning-routing.md')
     $vibeCheckRoute = Read-SourceFile (Join-Path $root 'routes\vibe-check.md')
     $repositorySyncRoute = Read-SourceFile (Join-Path $root 'routes\repository-sync.md')
     $adapter = Read-SourceFile $AdapterPath
     $header = "# $ToolName Global Rules`n`n<!-- GENERATED from English canonical rules v$version. Edit the source files, not this deployment. -->"
-    return "$header`n`n$core`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
+    return "$header`n`n$core`n`n$modelRoutingRoute`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
 }
 
 $targets = @(
@@ -54,7 +55,7 @@ $targets = @(
         RuntimePath = Join-Path $HOME '.gemini\GEMINI.md'
         MasterPath = Join-Path $root 'dist\antigravity\GEMINI.md'
         Adapter = Join-Path $root 'adapters\antigravity.md'
-        MaxCharacters = 12000
+        MaxCharacters = 11800
         MaxLines = 0
     },
     [PSCustomObject]@{
@@ -77,6 +78,7 @@ $targets = @(
 
 $sourceParts = @(
     (Read-SourceFile (Join-Path $root 'core.md'))
+    (Read-SourceFile (Join-Path $root 'routes\model-and-reasoning-routing.md'))
     (Read-SourceFile (Join-Path $root 'routes\vibe-check.md'))
     (Read-SourceFile (Join-Path $root 'routes\repository-sync.md'))
 )
@@ -193,6 +195,7 @@ $results = foreach ($target in $rendered) {
         PriorityOrderValid = $priorityOrderValid
         KoreanMirrorMatches = $koreanMirrorVersionMatches
         DuplicateRuleLines = $duplicateRuleLines
+        ModelRoutingRouteCount = ([regex]::Matches($target.Content, '(?m)^## Deterministic model and reasoning routing$')).Count
         RepositorySyncRouteCount = ([regex]::Matches($target.Content, '(?m)^## Repository synchronization$')).Count
         DuplicateGlobalRule = $target.Name -eq 'Antigravity' -and (Test-Path -LiteralPath $legacyAntigravityRulePath -PathType Leaf)
     }
@@ -209,6 +212,7 @@ if ($results | Where-Object {
     -not $_.PriorityOrderValid -or
     -not $_.KoreanMirrorMatches -or
     $_.DuplicateRuleLines -ne 0 -or
+    $_.ModelRoutingRouteCount -ne 1 -or
     $_.RepositorySyncRouteCount -ne 1 -or
     $_.DuplicateGlobalRule
 }) {

@@ -5,6 +5,7 @@
 ## 정본 구조
 
 - `core.md`: 세 도구가 공유하는 영어 핵심 규칙
+- `routes/model-and-reasoning-routing.md`: 모델·추론 강도 사전 배차의 안정적인 공통 계약
 - `routes/vibe-check.md`: Vibe Check의 영어 라우팅과 원문 트리거
 - `routes/repository-sync.md`: 자동 Git 동기화·명시형 handoff의 공통 안전 계약
 - `adapters/`: 각 도구의 로딩·권한·컨텍스트 특성에 맞춘 영어 어댑터
@@ -27,10 +28,11 @@ Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. �
 
 ## 설계 기준
 
-- Antigravity: 전역 `GEMINI.md`의 12,000자 제한과 IDE 권한·비작업공간 접근 경계를 지킨다.
+- Antigravity: 전역 `GEMINI.md`의 공식 12,000자 제한보다 200자 낮은 11,800자 내부 상한과 IDE 권한·비작업공간 접근 경계를 지킨다.
 - Codex: 전역 `AGENTS.md`, `AGENTS.override.md`, 프로젝트·경로 지침의 발견 우선순위를 보존한다.
 - Claude Code: 항상 로드되는 `CLAUDE.md`를 200줄 이하로 유지하고 절차는 스킬로 분리한다.
 - 공통: 짧고 명령형이며 검증 가능한 문장만 항상 로드하고, 장기 절차는 전용 스킬에 둔다.
+- 배차: 안정적인 품질·안전 원칙만 글로벌로 유지하고 모델명·가격·한도·임계값은 버전이 있는 범위 정책에 둔다.
 - 중복 방지: 글로벌 룰은 도구별 한 개의 정본만 장착하고, 기능별 상세 절차를 별도 글로벌 파일로 중복 등록하지 않는다.
 - 우선순위: 영문 정본은 P0 권한부터 P7 완료 보고 순서로 배치하고, 더 중요한 규칙을 먼저 읽게 한다.
 - 강제 경계: Markdown은 행동 지침이다. 예외 없이 지켜야 하는 조건은 도구별 Permission·Hook·Sandbox·Policy로 구현한다.

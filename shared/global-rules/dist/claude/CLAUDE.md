@@ -1,6 +1,6 @@
 # Claude Code Global Rules
 
-<!-- GENERATED from English canonical rules v3.0.2. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v3.1.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -13,8 +13,8 @@
 - An invoked skill or workflow supplies task procedure. It never expands authority or weakens a higher-priority rule.
 - When rules at the same level conflict, choose the safer, narrower, and more reversible interpretation.
 - Classify each request before acting: answer, research or review, local change, high-risk action, or explicit workflow. Load only relevant rules and tools.
-- Treat notebook, desktop, local workspace directories, and remote repositories independently. Never transfer paths, installations, settings, or verification claims between them without empirical evidence.
-- **Command Failure & Execution Truthfulness Protocol**: Never mask, ignore, or gloss over terminal command failures, non-zero exit codes, or build timeouts. Treat tool execution errors as hard blockers that require empirical diagnosis before declaring completion.
+- Treat each device, workspace, and remote repository independently. Transfer no path, installation, setting, or verification claim without evidence.
+- Never hide command failures, non-zero exits, or timeouts. Diagnose them as blockers before claiming completion.
 - Keep repeatable procedures and domain detail in skills or scoped rules. Keep global guidance limited to stable defaults.
 
 ## P1. Language and response format
@@ -44,9 +44,9 @@
 - Preserve every non-owned change. If ownership overlaps in the same file or state, stop and report instead of guessing.
 - Serialize writes that may touch the same file or shared state. Parallelize only independent reads and checks.
 - Regenerate artifacts only with their canonical source in the same verified change. Never publish output derived from an uncommitted or unowned source.
-- Treat every Skill intended for Antigravity, Claude Code, and Codex as one cross-platform change unit: update the single canonical source and all required thin adapters together, validate each platform independently, and do not declare completion while any supported target is stale or unverified. Report partial platform status explicitly. This consistency rule does not authorize installation or external changes.
+- For cross-platform Skills, update one canonical source and all thin adapters together, verify each platform, and report any stale or unverified target. This rule grants no installation or external-change authority.
 - Modify generated files and lockfiles only when the requested change requires them.
-- **Anti-Misjudgment & Physical Workspace Rule**: The "Workspace" explicitly refers to the physical local filesystem directory (`D:\...`). Never confuse Git commit status with physical workspace directory structure. Always empirically audit local directory contents vs remote repository structure before making claims of equality.
+- Treat a workspace as its physical directory, not Git status. Audit the local tree against the remote before claiming equality.
 
 ## P4. Work execution and verification
 
@@ -54,8 +54,8 @@
 - Apply the smallest change that satisfies the request. Split large work into independently verifiable units.
 - Before a non-trivial command or any state-changing command, state its purpose in one line.
 - After editing, run the relevant tests, build, lint, or execution checks. If a check cannot run, give the reason and a reproducible alternative.
-- Never claim a check, result, or external state was verified when it was not. Code editing alone NEVER equals task completion; runtime verification commands (pytest, build, main run) MUST execute and return 0 before claiming success.
-- **Cross-Column & Holistic Consistency Rule**: When modifying data formats, unit conversions, or schemas (e.g. KRW conversion), inspect all interdependent columns (e.g. amount, currency code, rate, date) to prevent logical mismatches.
+- Never claim unrun checks or unseen external state. Editing alone is incomplete; the relevant runtime check must exit `0`.
+- When changing formats, units, or schemas, verify every dependent field such as amount, currency, rate, and date.
 - After the same cause fails three times, stop retrying and report the evidence, root cause, and viable workarounds.
 - Track meaningful work as `goal -> constraints and approvals -> verified facts -> assumptions -> smallest action -> verification result`.
 
@@ -64,12 +64,12 @@
 - Classify artifacts by purpose, responsibility, and workstream rather than by file extension alone.
 - Reserve the repository root for entry points, repository-wide documentation, and files that tools require at fixed locations.
 - Keep each section self-contained: store its documents, scripts, tools, and data together with a short README that indexes them.
-- Name Skill folders and their parents after the user-visible capability. Avoid vague buckets such as `tools`, `utils`, `misc`, or `common` when a direct capability name is clearer; introduce a family directory only for multiple cohesive Skills, and preserve platform-specific command spelling with thin generated adapters rather than duplicate canonical sources.
+- Name Skill folders by user-visible capability. Use family folders only for cohesive groups and preserve platform command spelling through thin generated adapters.
 - Maintain one canonical location per artifact. Move the canonical copy with history preserved through `git mv` or an equivalent move-then-stage workflow.
 - Before moving files, map inbound links, outbound links, relative paths, commands, and external fixed-path dependencies. Repair and verify them after the move.
 - Do not reorganize files that another session is editing or that cannot move without breaking an approved external dependency. Record the exception.
 - Exclude secrets, machine-local configuration, large binaries, build output, logs, caches, and other non-source material through the repository's ignore policy.
-- **Full-Tree Tracking & Audit Rule**: Before claiming local workspace and remote repository synchronization, perform a complete audit of untracked and ignored files (`git status -s`, `git status --ignored`) to ensure essential user documentation and project assets are not inadvertently left uncommitted.
+- Before claiming repository synchronization, audit untracked and ignored files with `git status -s` and `git status --ignored`.
 - Record the repository's section map and classification convention in its own README or scoped rules.
 
 ## P6. Code and artifact quality
@@ -87,7 +87,16 @@
 - Lead with the result. Report changed files, check outcomes, checks not run, remaining risks, and any next approval.
 - If work cannot be completed, report the cause, completed work, preserved state, remaining risk, and viable alternatives.
 - Use evidence and logs without exposing sensitive data. Never blame the user for an execution or environment failure.
-- **Visual Evidence & Image Audit Rule**: When user attaches screenshots, perform pixel-level analysis of filenames, directory trees, URL bars, and column headers. Never issue superficial assertions without matching visual evidence against local environment state.
+- For screenshots, inspect visible filenames, trees, URL bars, and headers, then compare them with local evidence before concluding.
+
+## Deterministic model and reasoning routing
+
+- Before each new model run, classify observable risk, scope, ambiguity, reversibility, and verification; never trust candidate self-rating alone.
+- Choose the least costly supported model and effort meeting the quality floor. Quota or cost never lowers floors for security, authentication, deployment, destructive changes, or external effects; use an equivalent tier or `BLOCKED`.
+- Route future launches only; never claim an active turn switched. Escalate one tier once after explicit test, schema, evidence, or acceptance failure, then stop repeated retries.
+- Verify availability at launch. Record requested and actual model and effort, reason codes, outcome, and per-provider usage. Mismatch or unavailability is not success.
+- Keep model identifiers, prices, quotas, thresholds, and CLI syntax in versioned scoped policy; global rules hold stable principles only.
+- Claim no savings before preregistered evaluation. Roll out only task types that pass quality and safety gates.
 
 ## Explicit one-touch diagnosis workflow
 
@@ -111,3 +120,4 @@
 - Keep always-loaded guidance concise. Move task-specific procedures to skills and conditional project rules.
 - Treat `CLAUDE.md` as behavioral guidance, not enforcement. Use permissions, sandboxing, managed policy, or hooks for deterministic controls.
 - Keep local plugins, MCP servers, settings, and account connectors as separate management domains. Never let local cleanup change account-level state without approval.
+- Apply routing to a new bounded session or subagent with supported model and effort controls, respecting managed and project precedence. Use `opusplan` only for a real plan-to-execution split, and record any automatic fallback.

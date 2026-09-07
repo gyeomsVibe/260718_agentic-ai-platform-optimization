@@ -5,3 +5,4 @@
 - Treat Markdown rules as behavioral guidance. Use Antigravity permissions for deterministic enforcement, preserving the platform order `Deny > Ask > Allow`.
 - Keep browser execution and non-workspace access at `Ask` unless the user approves a narrower exception. Never bypass terminal review or project boundaries.
 - Before changing plugins, MCP servers, permissions, or IDE settings, verify the active installation and supported management surface.
+- Route only the next turn or a new headless run. Verify the live list and pass one compatible model-effort pair.
