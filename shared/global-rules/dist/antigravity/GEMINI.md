@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v3.1.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v3.2.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -98,6 +98,10 @@
 - Keep model identifiers, prices, quotas, thresholds, and CLI syntax in versioned scoped policy; global rules hold stable principles only.
 - Claim no savings before preregistered evaluation. Roll out only task types that pass quality and safety gates.
 
+## C3P Council naming and scope
+
+- `codex-3p-orchestrator` is the formal project; `C3P 협의체` names its three-tool council. First Korean mention: `C3P 협의체 (C3P Council, Codex·Claude Code·Antigravity가 함께 검토하고 실행하는 3도구 협업 체계)`. Verify connection and consensus separately. Use only in this project or after explicit skill invocation; keep procedures scoped.
+
 ## Explicit one-touch diagnosis workflow
 
 - When the user says `이 프로젝트 점검해서 교정해줘`, `원터치 점검해줘`, `vibe-check 해줘`, `자가진단 MCP 적용해줘`, or `진단 돌리고 실패한 것 고쳐줘`, use the installed `vibe-check` skill and any narrower project rules.
@@ -116,9 +120,8 @@
 
 ## Antigravity adapter
 
-- Load this generated file from `~/.gemini/GEMINI.md`. Keep project-specific guidance in supported workspace or path-scoped rules.
-- Keep each Antigravity rule file below 12,000 characters. Move infrequent procedures to skills, workflows, or scoped rules.
-- Treat Markdown rules as behavioral guidance. Use Antigravity permissions for deterministic enforcement, preserving the platform order `Deny > Ask > Allow`.
-- Keep browser execution and non-workspace access at `Ask` unless the user approves a narrower exception. Never bypass terminal review or project boundaries.
-- Before changing plugins, MCP servers, permissions, or IDE settings, verify the active installation and supported management surface.
-- Route only the next turn or a new headless run. Verify the live list and pass one compatible model-effort pair.
+- Load `~/.gemini/GEMINI.md`; keep project detail scoped.
+- Keep rules below 12,000 characters; move procedures to skills.
+- Markdown guides; permissions enforce `Deny > Ask > Allow`.
+- Browser and non-workspace access stay `Ask` without narrow approval; preserve terminal and project boundaries. Verify installation before changing plugins, MCP, permissions, or IDE settings.
+- Route only the next turn or a new headless run with a verified model-effort pair.

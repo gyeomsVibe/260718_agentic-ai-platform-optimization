@@ -42,11 +42,17 @@ function New-GeneratedRule {
 
     $core = Read-SourceFile (Join-Path $root 'core.md')
     $modelRoutingRoute = Read-SourceFile (Join-Path $root 'routes\model-and-reasoning-routing.md')
+    $c3pCouncilRoutePath = if ($ToolName -eq 'Antigravity') {
+        Join-Path $root 'routes\c3p-council-naming-antigravity.md'
+    } else {
+        Join-Path $root 'routes\c3p-council-naming.md'
+    }
+    $c3pCouncilRoute = Read-SourceFile $c3pCouncilRoutePath
     $vibeCheckRoute = Read-SourceFile (Join-Path $root 'routes\vibe-check.md')
     $repositorySyncRoute = Read-SourceFile (Join-Path $root 'routes\repository-sync.md')
     $adapter = Read-SourceFile $AdapterPath
     $header = "# $ToolName Global Rules`n`n<!-- GENERATED from English canonical rules v$version. Edit the source files, not this deployment. -->"
-    return "$header`n`n$core`n`n$modelRoutingRoute`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
+    return "$header`n`n$core`n`n$modelRoutingRoute`n`n$c3pCouncilRoute`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
 }
 
 $targets = @(
@@ -79,6 +85,8 @@ $targets = @(
 $sourceParts = @(
     (Read-SourceFile (Join-Path $root 'core.md'))
     (Read-SourceFile (Join-Path $root 'routes\model-and-reasoning-routing.md'))
+    (Read-SourceFile (Join-Path $root 'routes\c3p-council-naming.md'))
+    (Read-SourceFile (Join-Path $root 'routes\c3p-council-naming-antigravity.md'))
     (Read-SourceFile (Join-Path $root 'routes\vibe-check.md'))
     (Read-SourceFile (Join-Path $root 'routes\repository-sync.md'))
 )
@@ -196,6 +204,7 @@ $results = foreach ($target in $rendered) {
         KoreanMirrorMatches = $koreanMirrorVersionMatches
         DuplicateRuleLines = $duplicateRuleLines
         ModelRoutingRouteCount = ([regex]::Matches($target.Content, '(?m)^## Deterministic model and reasoning routing$')).Count
+        C3PCouncilRouteCount = ([regex]::Matches($target.Content, '(?m)^## C3P Council naming and scope$')).Count
         RepositorySyncRouteCount = ([regex]::Matches($target.Content, '(?m)^## Repository synchronization$')).Count
         DuplicateGlobalRule = $target.Name -eq 'Antigravity' -and (Test-Path -LiteralPath $legacyAntigravityRulePath -PathType Leaf)
     }
@@ -213,6 +222,7 @@ if ($results | Where-Object {
     -not $_.KoreanMirrorMatches -or
     $_.DuplicateRuleLines -ne 0 -or
     $_.ModelRoutingRouteCount -ne 1 -or
+    $_.C3PCouncilRouteCount -ne 1 -or
     $_.RepositorySyncRouteCount -ne 1 -or
     $_.DuplicateGlobalRule
 }) {

@@ -1,8 +1,7 @@
 ## Antigravity adapter
 
-- Load this generated file from `~/.gemini/GEMINI.md`. Keep project-specific guidance in supported workspace or path-scoped rules.
-- Keep each Antigravity rule file below 12,000 characters. Move infrequent procedures to skills, workflows, or scoped rules.
-- Treat Markdown rules as behavioral guidance. Use Antigravity permissions for deterministic enforcement, preserving the platform order `Deny > Ask > Allow`.
-- Keep browser execution and non-workspace access at `Ask` unless the user approves a narrower exception. Never bypass terminal review or project boundaries.
-- Before changing plugins, MCP servers, permissions, or IDE settings, verify the active installation and supported management surface.
-- Route only the next turn or a new headless run. Verify the live list and pass one compatible model-effort pair.
+- Load `~/.gemini/GEMINI.md`; keep project detail scoped.
+- Keep rules below 12,000 characters; move procedures to skills.
+- Markdown guides; permissions enforce `Deny > Ask > Allow`.
+- Browser and non-workspace access stay `Ask` without narrow approval; preserve terminal and project boundaries. Verify installation before changing plugins, MCP, permissions, or IDE settings.
+- Route only the next turn or a new headless run with a verified model-effort pair.
