@@ -345,8 +345,19 @@ class RegisteredQueueWorker:
             self.queue_worker.release()
 
 
-def _load_broker_endpoint(project_root: Path) -> tuple[str, int]:
+def _load_broker_endpoint(project_root: Path, timeout: float = 5.0) -> tuple[str, int]:
     meta_path = project_root / ".agent-swarm" / "broker.json"
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if meta_path.exists():
+            try:
+                with meta_path.open("r", encoding="utf-8") as handle:
+                    metadata = json.load(handle)
+                if "port" in metadata:
+                    return str(metadata.get("host", "127.0.0.1")), int(metadata["port"])
+            except (json.JSONDecodeError, OSError):
+                pass
+        time.sleep(0.1)
     with meta_path.open("r", encoding="utf-8") as handle:
         metadata = json.load(handle)
     return str(metadata.get("host", "127.0.0.1")), int(metadata.get("port", 8765))

@@ -61,9 +61,14 @@ def _broker_metadata(project_root: Path) -> Dict[str, Any]:
 def broker_is_running(project_root: os.PathLike[str] | str) -> bool:
     root = Path(project_root).resolve()
     metadata = _broker_metadata(root)
+    if not metadata or "port" not in metadata:
+        return False
+    pid = metadata.get("pid")
+    if isinstance(pid, int) and not pid_is_alive(pid):
+        return False
     try:
         with socket.create_connection(
-            (str(metadata.get("host", "127.0.0.1")), int(metadata.get("port", 8765))),
+            (str(metadata.get("host", "127.0.0.1")), int(metadata["port"])),
             timeout=0.5,
         ) as sock:
             sock.sendall(b'{"type":"PING"}\n')
@@ -87,18 +92,15 @@ def ensure_broker(
     logs = root / ".agent-swarm" / "logs"
     logs.mkdir(parents=True, exist_ok=True)
     log_path = str(logs / "broker-runtime.log")
-    log_fd = os.open(log_path, os.O_CREAT | os.O_APPEND | os.O_WRONLY)
-    try:
+    with open(log_path, "a", encoding="utf-8") as log_file:
         process = popen_factory(
             [sys.executable, str(root / "csc_broker.py"), "--port", str(port)],
             cwd=str(root),
             stdin=subprocess.DEVNULL,
-            stdout=log_fd,
-            stderr=log_fd,
+            stdout=log_file,
+            stderr=log_file,
             creationflags=_creation_flags(),
         )
-    finally:
-        os.close(log_fd)
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         if broker_is_running(root):
@@ -142,10 +144,9 @@ def ensure_worker(
     logs = root / ".agent-swarm" / "logs"
     logs.mkdir(parents=True, exist_ok=True)
     log_path = str(logs / f"{agent}-worker.log")
-    log_fd = os.open(log_path, os.O_CREAT | os.O_APPEND | os.O_WRONLY)
     env = os.environ.copy()
     env["PYTHONUNBUFFERED"] = "1"
-    try:
+    with open(log_path, "a", encoding="utf-8") as log_file:
         process = popen_factory(
             [
                 sys.executable, str(root / "csc_agent_worker.py"),
@@ -153,13 +154,11 @@ def ensure_worker(
             ],
             cwd=str(root),
             stdin=subprocess.DEVNULL,
-            stdout=log_fd,
-            stderr=log_fd,
+            stdout=log_file,
+            stderr=log_file,
             creationflags=_creation_flags(),
             env=env,
         )
-    finally:
-        os.close(log_fd)
     return {"agent": agent, "action": "started", "pid": process.pid}
 
 
