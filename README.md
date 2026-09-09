@@ -19,6 +19,7 @@
 
 | 지금 겪는 문제 | 먼저 열 문서 | 다음 행동 |
 |---|---|---|
+| **C3P 협의체 3도구 오케스트레이터 및 예산절약·사용자부재 모드** | [C3P 협의체 오케스트레이터](c3p-council-orchestrator/README.md) | 3도구 협업 안내를 확인하고 예산절약·사용자부재 모드를 발동한다. |
 | **Codex sandbox가 파일 작업을 거부함** | [Windows Codex sandbox 복구 안내서](codex/app-diagnostics/WINDOWS_CODEX_SANDBOX_RECOVERY_GUIDE_2026-09-05.md) | 안내서의 재검사 명령을 실행하고, 결과 코드에 따라 다음 행동을 고른다. |
 | Codex sandbox의 원인·웹 근거를 확인하고 싶음 | [Windows LTSC Codex sandbox 기술 진단](codex/app-diagnostics/WINDOWS_LTSC_CODEX_SANDBOX_DIAGNOSIS_2026-09-05.md) | 공개 근거, 적용 설정, 검증 범위를 확인한다. |
 | Codex 이미지·다운로드·압축 미리보기 문제 | [Codex 앱 진단 인덱스](codex/app-diagnostics/README.md) | 증상별 표에서 해당 진단 기록을 연다. |
