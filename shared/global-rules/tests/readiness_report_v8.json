@@ -1,12 +1,16 @@
 {
   "result_reference": "RESULT-d94e1b85f23a41e9b207f91a",
-  "correlation_id": "global-rules-runtime-applied-v1",
-  "timestamp": "2026-09-11T02:42:30+09:00",
+  "correlation_id": "global-rules-runtime-applied-v2-remediated",
+  "timestamp": "2026-09-11T03:30:00+09:00",
   "sender": "antigravity",
   "recipient": "codex",
   "authorization": "USER_EXPLICIT_APPROVAL_CONFIRMED",
+  "canonical_rules_version": "3.2.1",
   "changed_paths": [
+    "shared/global-rules/VERSION",
     "shared/global-rules/core.md",
+    "shared/global-rules/GLOBAL_RULES.ko.md",
+    "shared/global-rules/history.md",
     "shared/global-rules/dist/antigravity/GEMINI.md",
     "shared/global-rules/dist/claude/CLAUDE.md",
     "shared/global-rules/dist/codex/AGENTS.md",
@@ -19,34 +23,34 @@
   ],
   "runtime_deployments": {
     "Antigravity": {
-      "path": "C:\\Users\\Kimyoongyeom\\.gemini\\GEMINI.md",
-      "sha256": "2A6427AE6B6F075545FCDCF730FADFBAB352A6BA0167FFFF3C909CB56ACFB875",
-      "chars": 11651,
+      "path": "%USERPROFILE%\\.gemini\\GEMINI.md",
+      "sha256": "85BF60964ADC7652D91108A2962E08CB9D7E87BBA88D42BDB389BE1CD1B72322",
+      "chars": 11709,
       "max_chars": 11800,
       "status": "ALIGNED"
     },
     "Codex": {
-      "path": "C:\\Users\\Kimyoongyeom\\.codex\\AGENTS.md",
-      "sha256": "2DC79F8C55D26A52A0F94FA2AFC49814E7E0CAA5AEC0020F4639B9F43B0A68C0",
+      "path": "%USERPROFILE%\\.codex\\AGENTS.md",
+      "sha256": "1550C184072E1CB47FFB7E3A90CFB2C5E4034B7C7F1321721EBBC97C7E55CFDB",
       "lines": 128,
       "max_lines": 150,
       "status": "ALIGNED"
     },
     "Claude_Code": {
-      "path": "C:\\Users\\Kimyoongyeom\\.claude\\CLAUDE.md",
-      "sha256": "9BA8A3C672AF3FE3DF651CB9FE88CB7C604022608312F43CB6A0EDDC80233683",
+      "path": "%USERPROFILE%\\.claude\\CLAUDE.md",
+      "sha256": "BBDFF6B418DEA91C86BA89E6699150A67CE4F34E10212CC42BEDCDEA66C624CC",
       "lines": 128,
       "max_lines": 200,
       "status": "ALIGNED"
     }
   },
-  "backup_location": "C:\\Users\\Kimyoongyeom\\.agent-global-rules-backups\\20260911-024156",
+  "backup_location": "%USERPROFILE%\\.agent-global-rules-backups\\20260911-032651",
   "sourcecheck_exit": 0,
   "standard_check_exit": 0,
   "diff_check_exit": 0,
-  "verdict": "APPLIED_AND_VERIFIED",
+  "verdict": "APPLIED_AND_VERIFIED_V3_2_1",
   "source_contract_verdict": "PASS",
   "runtime_deployment_verdict": "ALIGNED",
-  "offline_harness_status": "PASS (7/7 Semantics + Canary + AB Strict Contract)",
-  "build_and_measure_status": "retained_deprecated_stub (awaiting explicit user deletion authorization)"
+  "offline_fixture_contract_status": "PASS (7/7 Fixture Semantics + Canary + AB Constrained Contract)",
+  "build_and_measure_status": "permanently_deleted (explicitly authorized by user in boundary C)"
 }

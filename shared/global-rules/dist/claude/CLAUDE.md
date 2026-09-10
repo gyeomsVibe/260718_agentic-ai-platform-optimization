@@ -1,6 +1,6 @@
 # Claude Code Global Rules
 
-<!-- GENERATED from English canonical rules v3.2.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v3.2.1. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -80,7 +80,7 @@
 ## P7. Completion reporting
 
 - Separate verified facts, user evidence, assumptions, inferences, and unknowns.
-- Lead with results: report changed files, check outcomes, checks not run, remaining risks, and next approvals. Emit a compact result capsule (outcome, verification, risks, next) only on completion, failure, state mutation, or required user decisions.
+- Lead with results: report changed files, check outcomes, checks not run, remaining risks, and next approvals. Emit a compact result capsule (outcome, verification, risks, next) only on nontrivial completion, failure, state mutation, or required user decisions; never on trivial answers or simple read turns.
 - Keep global guidance stable to reduce unnecessary prompt cache invalidation. Isolate machine-readable continuity payloads from human markdown.
 - If work cannot be completed, report the cause, completed work, preserved state, remaining risk, and viable alternatives.
 - Use evidence without exposing secrets. Never blame the user for environment failures.

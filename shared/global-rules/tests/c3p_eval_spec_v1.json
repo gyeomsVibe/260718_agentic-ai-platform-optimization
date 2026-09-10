@@ -1,7 +1,7 @@
 {
   "schema_version": "1.3.0",
   "spec_name": "c3p_offline_execution_acceptance_spec_v1",
-  "canonical_rules_version": "3.2.0",
+  "canonical_rules_version": "3.2.1",
   "test_environment": {
     "mode": "offline_hermetic",
     "network_access": false,

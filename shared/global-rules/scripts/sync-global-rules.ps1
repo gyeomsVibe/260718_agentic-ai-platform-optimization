@@ -262,7 +262,15 @@ if ($abSchemaJson -and $abFixtureJson) {
         ($abFixtureJson.telemetry_source -ceq 'not_collected_offline') -and
         ($abFixtureJson.variance.gate_verdict -ceq 'UNMEASURED') -and
         ($abSchemaJson.additionalProperties -eq $false) -and
-        ($abSchemaJson.properties.variance.additionalProperties -eq $false)
+        ($abSchemaJson.properties.variance.additionalProperties -eq $false) -and
+        ($null -ne $abFixtureJson.provider) -and
+        ($null -ne $abFixtureJson.platform) -and
+        ($null -ne $abFixtureJson.model) -and
+        ($null -ne $abFixtureJson.reasoning_effort) -and
+        ($null -ne $abFixtureJson.corpus_scope) -and
+        ($null -ne $abFixtureJson.timestamp) -and
+        ($null -ne $abFixtureJson.quality_rubric.correctness_floor) -and
+        ($null -ne $abFixtureJson.pass_stop_gate.cost_reduction_min_pct)
     )
 
     $requiredMetrics = @(
@@ -384,7 +392,7 @@ $results = foreach ($target in $rendered) {
         RuntimeMatches = $runtimeExists -and $runtime -ceq $master
         Characters = $target.Content.Length
         Lines = $lineCount
-        HarnessValid = if ($offlineHarnessSemanticValid) { 'PASS (7/7 Semantics + Canary + AB Strict Contract)' } else { 'FAIL' }
+        FixtureContractValid = if ($offlineHarnessSemanticValid) { 'PASS (7/7 Fixture Semantics + Canary + AB Strict Contract)' } else { 'FAIL' }
         SafetyAndCapsule = if ($p1SafetyPreserved -and $p4SafetyPreserved -and $p7SafetyPreserved) { 'PASS' } else { 'FAIL' }
         DuplicateRuleLines = $duplicateRuleLines
     }
@@ -399,9 +407,9 @@ Write-Host "================================================================="
 Write-Host "C3P GLOBAL RULES CONTRACT & HARNESS AUDIT SUMMARY:"
 Write-Host "  SourceContractValid    : $(if ($allSourceContractPassed) { 'PASS' } else { 'FAIL' })"
 Write-Host "  RuntimeDeploymentValid : $(if ($allRuntimeMatched) { 'ALIGNED' } else { 'BLOCKED (Runtime Apply Pending Separate Sign-off)' })"
-Write-Host "  Offline Harness Passed : $offlineHarnessSemanticValid"
+Write-Host "  Offline Fixture Contract: $offlineHarnessSemanticValid"
 Write-Host "  Seven Cases Semantics  : $(if ($allSevenCasesSemanticValid) { 'PASS (TC-01..TC-07)' } else { 'FAIL' })"
-Write-Host "  AB Strict Contract     : $(if ($abFixtureContractValid) { 'PASS (UNMEASURED / unmeasured or >=0)' } else { 'FAIL' })"
+Write-Host "  AB Constrained Contract: $(if ($abFixtureContractValid) { 'PASS (UNMEASURED / unmeasured or >=0)' } else { 'FAIL' })"
 Write-Host "================================================================="
 
 if ($Mode -eq 'SourceCheck') {

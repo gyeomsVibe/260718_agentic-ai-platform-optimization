@@ -1,13 +1,16 @@
 # 글로벌 룰 작성 계획서
 
-## 18. v3.2.1 글로벌 룰 예산 최적화 및 런타임 배포 완료
+## 18. v3.2.1 글로벌 룰 예산 최적화, 정본 원자적 정합 및 런타임 배포 완료
 
-- C3P 협의체(Codex·Claude Code·Antigravity) 간의 8차례 전수 대조를 거쳐 글로벌 룰의 토큰 소모 구조를 전면 최적화했다.
-- 고정 코어 요약 상용구를 제거하고, 비자명한 완료 시점에만 간결한 4단(결과·검증·위험·다음) 결과 캡슐(Outcome Capsule)을 출력하도록 P7 절을 개정했다.
-- 7대 시나리오(TC-01..TC-07) 오프라인 검증 하네스, 합성 카나리(CANARY_SECRET) 격리, 무측정(UNMEASURED) A/B 파일럿 계약을 `tests/`에 정립했다.
-- `sync-global-rules.ps1` 단일 파이프라인을 통해 소스 계약(`SourceCheck`) 및 런타임 정합(`Check`)을 Exit 0으로 통과시키고, Antigravity(11,651자), Claude Code(128줄), Codex(128줄) 엄격 한도를 100% 준수했다.
+- C3P 협의체(Codex·Claude Code·Antigravity) 간의 8차례 전수 대조 및 Codex 감시 검토 의견을 수용하여 글로벌 룰의 토큰 소모 구조를 전면 최적화하고 원자적 정합을 완수했다.
+- 고정 코어 요약 상용구를 제거하고, P7에 비자명한 완료(nontrivial completion) 조건을 명시하여 단순 응답 시 결과 캡슐이 강제되지 않도록 P1 규칙과의 내부 정합성을 확보했다.
+- `VERSION`(3.2.1), `GLOBAL_RULES.ko.md`, `c3p_eval_spec_v1.json`, 생성본 헤더, 3대 런타임 장착본을 `v3.2.1`로 100% 원자적 일치시켰다.
+- 오프라인 하네스 검증 지표를 `FixtureContractValid`로 명확히 재정의하여 사전 fixture 검증과 향후 라이브 실측 A/B 행동 검증 단계를 엄격히 분리했다.
+- A/B 계약 검사기에 provider, platform, model, reasoning_effort, corpus_scope, timestamp, quality rubric, pass/stop gate 등 전체 필수 메타데이터 검증을 추가했다.
+- 저장소 공유 문서 내 Windows 머신 로컬 사용자 경로를 중립 환경변수(`%USERPROFILE%`)로 치환했다.
+- 사용자 명시 승인(경계 C)에 따라 구형 스크립트(`build_and_measure.py`)를 안전하게 영구 제거하고 단일 파이프라인(`sync-global-rules.ps1`)으로 일원화했다.
+- `sync-global-rules.ps1` 단일 파이프라인을 통해 소스 계약(`SourceCheck`) 및 런타임 정합(`Check`)을 Exit 0으로 통과시키고, Antigravity(11,709자), Claude Code(128줄), Codex(128줄) 엄격 한도를 100% 준수했다.
 - 사용자 명시 승인 하에 `~/.gemini/GEMINI.md`, `~/.codex/AGENTS.md`, `~/.claude/CLAUDE.md`로의 런타임 실제 배포(Apply)를 완수하고, 배포 전 원본은 타임스탬프 백업 폴더로 안전 보존했다.
-- 구형 DEPRECATED 빌더 스크립트(`build_and_measure.py`)를 안전하게 영구 제거했다.
 
 ## 17. v3.2.0 C3P 협의체 공식 명칭과 범위
 
