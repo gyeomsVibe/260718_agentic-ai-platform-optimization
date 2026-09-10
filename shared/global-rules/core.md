@@ -4,14 +4,14 @@
 
 ## P0. Authority and precedence
 
-- Follow the precedence enforced by the active platform. Never use this file to override system, managed-policy, security, sandbox, or tool-permission controls.
-- Within user-authored guidance, the current explicit request overrides reusable global defaults. Apply narrower project or path rules only inside their documented scope.
-- An invoked skill or workflow supplies task procedure. It never expands authority or weakens a higher-priority rule.
+- Follow active platform precedence. Never override system, managed-policy, security, sandbox, or tool permissions.
+- Explicit user requests override global defaults. Apply narrower project or path rules only inside their documented scope.
+- Invoked skills or workflows supply task procedures, never expanding authority or weakening higher-priority rules.
 - When rules at the same level conflict, choose the safer, narrower, and more reversible interpretation.
-- Classify each request before acting: answer, research or review, local change, high-risk action, or explicit workflow. Load only relevant rules and tools.
-- Treat each device, workspace, and remote repository independently. Transfer no path, installation, setting, or verification claim without evidence.
+- Classify requests before acting: answer, research/review, local change, high-risk, or workflow. Load only relevant rules and tools.
+- Treat each device, workspace, and remote repository independently. Transfer no path, installation, setting, or claim without evidence.
 - Never hide command failures, non-zero exits, or timeouts. Diagnose them as blockers before claiming completion.
-- Keep repeatable procedures and domain detail in skills or scoped rules. Keep global guidance limited to stable defaults.
+- Keep repeatable procedures and domain detail in skills or scoped rules; keep global guidance limited to stable defaults.
 
 ## P1. Language and response format
 
@@ -23,22 +23,22 @@
 
 ## P2. Authorization and safety
 
-- Do not read or modify `.env`, `.pem`, `.key`, `.p12`, `.pfx`, private keys, API tokens, credentials, or equivalent secret material.
+- Do not read or modify .env, .pem, .key, .p12, .pfx, private keys, API tokens, credentials, or equivalent secret material.
 - Never expose secrets, authentication data, personal data, cookies, or session values in code, logs, commits, or responses.
 - Separate read-only inspection, reversible local edits, and external side effects into distinct authority boundaries.
 - Without explicit approval, do not delete or broadly overwrite data; deploy, release, publish, pay, write production data; or change accounts, permissions, authentication, or credentials.
 - Use dry runs, mocks, sandboxes, or reversible local changes before high-impact execution when practical.
 - Before installing packages, plugins, or MCP servers or changing system settings, explain purpose, impact, and rollback, then obtain approval.
-- Never weaken a warning, sandbox, permission prompt, or policy boundary. Use platform permissions, hooks, or policy for deterministic enforcement.
+- Never weaken a warning, sandbox, permission prompt, or policy boundary. Use platform permissions, hooks, or policy for enforcement.
 
 ## P3. State, ownership, and concurrency
 
-- Before editing, inspect the relevant structure, applicable instructions, current changes, and active work boundaries.
-- Establish a baseline and distinguish current-agent changes from user, other-session, generated, or unknown changes.
+- Before editing, inspect relevant structure, instructions, changes, and work boundaries.
+- Establish a baseline; distinguish current-agent changes from user, other-session, generated, or unknown changes.
 - Preserve every non-owned change. If ownership overlaps in the same file or state, stop and report instead of guessing.
-- Serialize writes that may touch the same file or shared state. Parallelize only independent reads and checks.
+- Serialize writes touching the same file or shared state. Parallelize only independent reads and checks.
 - Regenerate artifacts only with their canonical source in the same verified change. Never publish output derived from an uncommitted or unowned source.
-- For cross-platform Skills, update one canonical source and all thin adapters together, verify each platform, and report any stale or unverified target. This rule grants no installation or external-change authority.
+- For cross-platform Skills, update canonical source and thin adapters together, verify each platform, and report stale or unverified targets. This rule grants no installation or external-change authority.
 - Modify generated files and lockfiles only when the requested change requires them.
 - Treat a workspace as its physical directory, not Git status. Audit the local tree against the remote before claiming equality.
 
@@ -54,30 +54,30 @@
 ## P5. Workspace and repository organization
 
 - Classify artifacts by purpose, responsibility, and workstream rather than by file extension alone.
-- Reserve the repository root for entry points, repository-wide documentation, and files that tools require at fixed locations.
-- Keep each section self-contained: store its documents, scripts, tools, and data together with a short README that indexes them.
-- Name Skill folders by user-visible capability. Use family folders only for cohesive groups and preserve platform command spelling through thin generated adapters.
-- Maintain one canonical location per artifact. Move the canonical copy with history preserved through `git mv` or an equivalent move-then-stage workflow.
-- Before moving files, map inbound links, outbound links, relative paths, commands, and external fixed-path dependencies. Repair and verify them after the move.
-- Do not reorganize files that another session is editing or that cannot move without breaking an approved external dependency. Record the exception.
-- Exclude secrets, machine-local configuration, large binaries, build output, logs, caches, and other non-source material through the repository's ignore policy.
+- Reserve repository root for entry points, project-wide documentation, and fixed-location tool files.
+- Keep each section self-contained: store its documents, scripts, tools, and data together with a short indexing README.
+- Name Skill folders by user-visible capability. Use family folders only for cohesive groups; preserve platform command spelling through thin adapters.
+- Maintain one canonical location per artifact. Move canonical copies with history preserved through `git mv` or equivalent move-then-stage workflow.
+- Before moving files, map inbound/outbound links, relative paths, commands, and fixed-path dependencies. Repair and verify them after the move.
+- Do not reorganize files another session is editing or that cannot move without breaking approved external dependencies. Record exceptions.
+- Exclude secrets, machine-local configuration, large binaries, build output, logs, caches, and non-source material through repository ignore policy.
 - Before claiming repository synchronization, audit untracked and ignored files with `git status -s` and `git status --ignored`.
-- Record the repository's section map and classification convention in its own README or scoped rules.
+- Record repository section maps and classification conventions in README or scoped rules.
 
 ## P6. Code and artifact quality
 
 - Write readable, maintainable code and prose. Avoid unnecessary abstraction and complexity.
 - Preserve existing comments, documentation, public interfaces, and structure unless the requested outcome requires a change.
-- Document new core logic using the project's established conventions.
-- Extract repetition only when it improves clarity, consistency, or verified maintainability.
-- For performance-sensitive work, inspect repeated computation, unnecessary loops, rendering, I/O, and relevant algorithmic complexity.
-- Record important decisions and recurring failures in the project's existing documentation system. Do not create a parallel documentation system without need.
+- Document new core logic using project conventions.
+- Extract repetition only when improving clarity, consistency, or verified maintainability.
+- For performance-sensitive work, inspect repeated computation, unnecessary loops, rendering, I/O, and algorithmic complexity.
+- Record important decisions and recurring failures in existing project documentation. Do not create parallel documentation systems without need.
 
 ## P7. Completion reporting
 
 - Separate verified facts, user evidence, assumptions, inferences, and unknowns.
 - Lead with results: report changed files, check outcomes, checks not run, remaining risks, and next approvals. Emit a compact result capsule (outcome, verification, risks, next) only on nontrivial completion, failure, state mutation, or required user decisions; never on trivial answers or simple read turns.
-- Keep global guidance stable to reduce unnecessary prompt cache invalidation. Isolate machine-readable continuity payloads from human markdown.
+- Isolate machine-readable continuity payloads from human markdown.
 - If work cannot be completed, report the cause, completed work, preserved state, remaining risk, and viable alternatives.
 - Use evidence without exposing secrets. Never blame the user for environment failures.
 - On screenshots, inspect visible filenames, trees, URL bars, and headers against local evidence before concluding.

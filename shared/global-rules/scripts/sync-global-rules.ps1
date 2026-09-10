@@ -41,7 +41,7 @@ function New-GeneratedRule {
     )
 
     $core = Read-SourceFile (Join-Path $root 'core.md')
-    $modelRoutingRoute = Read-SourceFile (Join-Path $root 'routes\model-and-reasoning-routing.md')
+    $budgetRoute = Read-SourceFile (Join-Path $root 'routes\token-and-compute-budget.md')
     $c3pCouncilRoutePath = if ($ToolName -eq 'Antigravity') {
         Join-Path $root 'routes\c3p-council-naming-antigravity.md'
     } else {
@@ -52,7 +52,7 @@ function New-GeneratedRule {
     $repositorySyncRoute = Read-SourceFile (Join-Path $root 'routes\repository-sync.md')
     $adapter = Read-SourceFile $AdapterPath
     $header = "# $ToolName Global Rules`n`n<!-- GENERATED from English canonical rules v$version. Edit the source files, not this deployment. -->"
-    return "$header`n`n$core`n`n$modelRoutingRoute`n`n$c3pCouncilRoute`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
+    return "$header`n`n$core`n`n$budgetRoute`n`n$c3pCouncilRoute`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
 }
 
 $targets = @(
@@ -61,7 +61,7 @@ $targets = @(
         RuntimePath = Join-Path $HOME '.gemini\GEMINI.md'
         MasterPath = Join-Path $root 'dist\antigravity\GEMINI.md'
         Adapter = Join-Path $root 'adapters\antigravity.md'
-        MaxCharacters = 11800
+        MaxCharacters = 11600
         MaxLines = 0
     },
     [PSCustomObject]@{
@@ -84,7 +84,7 @@ $targets = @(
 
 $sourceParts = @(
     (Read-SourceFile (Join-Path $root 'core.md'))
-    (Read-SourceFile (Join-Path $root 'routes\model-and-reasoning-routing.md'))
+    (Read-SourceFile (Join-Path $root 'routes\token-and-compute-budget.md'))
     (Read-SourceFile (Join-Path $root 'routes\c3p-council-naming.md'))
     (Read-SourceFile (Join-Path $root 'routes\c3p-council-naming-antigravity.md'))
     (Read-SourceFile (Join-Path $root 'routes\vibe-check.md'))
@@ -141,15 +141,15 @@ $allJsonSpecsValid = $evalJsonValid -and $abSchemaValid -and $abFixtureValid -an
 
 $evalJson = if ($evalJsonValid) { Get-Content -LiteralPath $evalSpecPath -Raw | ConvertFrom-Json } else { $null }
 
-# 1. 7 Unique Test Cases Check (TC-01 .. TC-07)
-$expectedTcIds = @('TC-01', 'TC-02', 'TC-03', 'TC-04', 'TC-05', 'TC-06', 'TC-07')
+# 1. 8 Unique Test Cases Check (TC-01 .. TC-08)
+$expectedTcIds = @('TC-01', 'TC-02', 'TC-03', 'TC-04', 'TC-05', 'TC-06', 'TC-07', 'TC-08')
 $actualTcIds = if ($evalJson -and $evalJson.test_cases) { @($evalJson.test_cases | ForEach-Object { $_.id }) } else { @() }
 $uniqueTcCount = ($actualTcIds | Select-Object -Unique).Count
-$sevenCasesCoverage = ($actualTcIds.Count -eq 7) -and ($uniqueTcCount -eq 7) -and ((Compare-Object $actualTcIds $expectedTcIds).Length -eq 0)
+$eightCasesCoverage = ($actualTcIds.Count -eq 8) -and ($uniqueTcCount -eq 8) -and ((Compare-Object $actualTcIds $expectedTcIds).Length -eq 0)
 
 # 2. Required Fields per Test Case
 $caseRequiredFieldsValid = $true
-if ($sevenCasesCoverage) {
+if ($eightCasesCoverage) {
     foreach ($tc in $evalJson.test_cases) {
         $hasRequired = (
             $tc.id -and
@@ -229,8 +229,17 @@ $tc7Semantic = (
     ($tc7.synthetic_output_fixture -match 'scratch_interrupted\.tmp')
 )
 
-$allSevenCasesSemanticValid = (
-    $sevenCasesCoverage -and
+$tc8 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-08' } } else { $null }
+$tc8Semantic = (
+    $tc8 -and
+    ($tc8.synthetic_fixture.attempted_routing.is_destructive_or_security -eq $true) -and
+    ($tc8.synthetic_output_fixture -match '결과:\s*차단') -and
+    ($tc8.synthetic_output_fixture -match 'Exit\s*1') -and
+    ($tc8.synthetic_output_fixture -match '로컬\s*엔진')
+)
+
+$allEightCasesSemanticValid = (
+    $eightCasesCoverage -and
     $caseRequiredFieldsValid -and
     $tc1Semantic -and
     $tc2Semantic -and
@@ -238,7 +247,8 @@ $allSevenCasesSemanticValid = (
     $tc4Semantic -and
     $tc5Semantic -and
     $tc6Semantic -and
-    $tc7Semantic
+    $tc7Semantic -and
+    $tc8Semantic
 )
 
 # 4. Strict A/B Schema and Fixture Constrained Contract Validation
@@ -299,7 +309,7 @@ if ($abSchemaJson -and $abFixtureJson) {
 
 $offlineHarnessSemanticValid = (
     $allJsonSpecsValid -and
-    $allSevenCasesSemanticValid -and
+    $allEightCasesSemanticValid -and
     $abFixtureContractValid
 )
 
@@ -370,6 +380,10 @@ $results = foreach ($target in $rendered) {
     $withinCharacterLimit = $target.MaxCharacters -eq 0 -or $target.Content.Length -le $target.MaxCharacters
     $withinLineLimit = $target.MaxLines -eq 0 -or $lineCount -le $target.MaxLines
 
+    $budgetHeadings = ([regex]::Matches($target.Content, '(?m)^## Token and compute budget governance')).Count
+    $legacyRoutingHeadings = ([regex]::Matches($target.Content, '(?m)^## Deterministic model and reasoning routing')).Count
+    $budgetHeadingsValid = ($budgetHeadings -eq 1) -and ($legacyRoutingHeadings -eq 0)
+
     $p1SafetyPreserved = $target.Content -match 'explain what changes, why it matters, and the smallest useful next action' -and $target.Content -match 'Preserve intent over literal translation' -and $target.Content -match 'unless another format or artifact requires one' -and $target.Content -match 'only when it aids clarity'
     $p4SafetyPreserved = $target.Content -match 'public interfaces' -and $target.Content -match 'exit `0`' -and $target.Content -match 'three times' -and $target.Content -match 'amount, currency, rate, date'
     $p7SafetyPreserved = $target.Content -match 'compact result capsule' -and $target.Content -match 'reduce unnecessary prompt cache invalidation' -and $target.Content -match 'report the cause, completed work, preserved state, remaining risk, and viable alternatives'
@@ -377,6 +391,7 @@ $results = foreach ($target in $rendered) {
     $sourceContractPassed = (
         $masterExists -and ($master -ceq $target.Content) -and
         $withinCharacterLimit -and $withinLineLimit -and
+        $budgetHeadingsValid -and
         $priorityOrderValid -and
         $koreanMirrorVersionMatches -and
         ($duplicateRuleLines -eq 0) -and
@@ -392,7 +407,7 @@ $results = foreach ($target in $rendered) {
         RuntimeMatches = $runtimeExists -and $runtime -ceq $master
         Characters = $target.Content.Length
         Lines = $lineCount
-        FixtureContractValid = if ($offlineHarnessSemanticValid) { 'PASS (7/7 Fixture Semantics + Canary + AB Strict Contract)' } else { 'FAIL' }
+        FixtureContractValid = if ($offlineHarnessSemanticValid) { 'PASS (8/8 Fixture Semantics + Canary + AB Strict Contract)' } else { 'FAIL' }
         SafetyAndCapsule = if ($p1SafetyPreserved -and $p4SafetyPreserved -and $p7SafetyPreserved) { 'PASS' } else { 'FAIL' }
         DuplicateRuleLines = $duplicateRuleLines
     }
@@ -408,7 +423,7 @@ Write-Host "C3P GLOBAL RULES CONTRACT & HARNESS AUDIT SUMMARY:"
 Write-Host "  SourceContractValid    : $(if ($allSourceContractPassed) { 'PASS' } else { 'FAIL' })"
 Write-Host "  RuntimeDeploymentValid : $(if ($allRuntimeMatched) { 'ALIGNED' } else { 'BLOCKED (Runtime Apply Pending Separate Sign-off)' })"
 Write-Host "  Offline Fixture Contract: $offlineHarnessSemanticValid"
-Write-Host "  Seven Cases Semantics  : $(if ($allSevenCasesSemanticValid) { 'PASS (TC-01..TC-07)' } else { 'FAIL' })"
+Write-Host "  Eight Cases Semantics  : $(if ($allEightCasesSemanticValid) { 'PASS (TC-01..TC-08)' } else { 'FAIL' })"
 Write-Host "  AB Constrained Contract: $(if ($abFixtureContractValid) { 'PASS (UNMEASURED / unmeasured or >=0)' } else { 'FAIL' })"
 Write-Host "================================================================="
 

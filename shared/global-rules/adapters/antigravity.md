@@ -1,7 +1,5 @@
 ## Antigravity adapter
 
-- Load `~/.gemini/GEMINI.md`; keep project detail scoped.
-- Keep rules below 12,000 characters; move procedures to skills.
-- Markdown guides; permissions enforce `Deny > Ask > Allow`.
-- Browser and non-workspace access stay `Ask` without narrow approval; preserve terminal and project boundaries. Verify installation before changing plugins, MCP, permissions, or IDE settings.
-- Route only the next turn or a new headless run with a verified model-effort pair.
+- Load `~/.gemini/GEMINI.md`; keep project detail scoped and procedures in skills.
+- Markdown guides; permissions enforce `Deny > Ask > Allow`. Non-workspace and browser access stay `Ask`.
+- Route only next turn or new headless run; select IDE vs CLI by visibility versus automation need. Never claim an active turn switched.
