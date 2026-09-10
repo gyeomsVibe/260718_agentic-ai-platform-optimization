@@ -1,0 +1,24 @@
+{
+  "description": "Antigravity IDE & 2.0 워크스페이스 최적화 에디터 설정",
+  "telemetry.telemetryLevel": "off",
+  "update.mode": "none",
+  "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.scrollback": 10000,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.analysis-tmp/**": true,
+    "**/coverage/**": true,
+    "**/__pycache__/**": true,
+    "**/recovery-*/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/.analysis-tmp": true,
+    "**/coverage": true,
+    "**/__pycache__": true
+  }
+}

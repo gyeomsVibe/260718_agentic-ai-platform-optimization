@@ -18,6 +18,7 @@ IDE에 확장 프로그램이 많으면, 안 써도 백그라운드에서 CPU·�
 | [environment-desktop.md](environment-desktop.md) | 데스크톱 기록 — 확장 **22개 슬림화 결과**, 파이썬 에이전트 스택 |
 | [ide-slimming-plan.md](ide-slimming-plan.md) | IDE 확장 슬림화 **계획** (노트북) — 삭제 대상과 사유 목록 |
 | [ide-slimming-result.md](ide-slimming-result.md) | IDE 확장 슬림화 **결과** 기록 |
+| [antigravity-2.0-optimization-guide.md](antigravity-2.0-optimization-guide.md) | **Antigravity 2.0 최적화 설정 가이드 & 딥리서치 보고서** |
 
 > ⚠️ `.agents/` 설정 파일은 머신 고유 경로·호스트명을 담고 있어 저장소에 커밋하지 않습니다.
 > 이 문서들은 구조와 정리 원칙만 기록합니다.
