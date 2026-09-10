@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "C3P_Continuity_Packet_Schema",
+  "type": "object",
+  "required": [
+    "packet_id",
+    "timestamp",
+    "session_lineage",
+    "baseline_commit",
+    "target_platform",
+    "state_status"
+  ],
+  "properties": {
+    "packet_id": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "session_lineage": { "type": "string" },
+    "baseline_commit": { "type": "string" },
+    "target_platform": { "type": "string" },
+    "state_status": { "type": "string", "enum": ["COMPACTED", "HANDOFF_READY", "INTERRUPTED"] },
+    "supersedes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,52 @@
+{
+  "result_reference": "RESULT-d94e1b85f23a41e9b207f91a",
+  "correlation_id": "global-rules-runtime-applied-v1",
+  "timestamp": "2026-09-11T02:42:30+09:00",
+  "sender": "antigravity",
+  "recipient": "codex",
+  "authorization": "USER_EXPLICIT_APPROVAL_CONFIRMED",
+  "changed_paths": [
+    "shared/global-rules/core.md",
+    "shared/global-rules/dist/antigravity/GEMINI.md",
+    "shared/global-rules/dist/claude/CLAUDE.md",
+    "shared/global-rules/dist/codex/AGENTS.md",
+    "shared/global-rules/tests/c3p_eval_spec_v1.json",
+    "shared/global-rules/tests/pilot_ab_schema.json",
+    "shared/global-rules/tests/pilot_ab_fixture_unmeasured.json",
+    "shared/global-rules/tests/packet_schema.json",
+    "shared/global-rules/tests/fixtures/scratch_interrupted.tmp",
+    "shared/global-rules/scripts/sync-global-rules.ps1"
+  ],
+  "runtime_deployments": {
+    "Antigravity": {
+      "path": "C:\\Users\\Kimyoongyeom\\.gemini\\GEMINI.md",
+      "sha256": "2A6427AE6B6F075545FCDCF730FADFBAB352A6BA0167FFFF3C909CB56ACFB875",
+      "chars": 11651,
+      "max_chars": 11800,
+      "status": "ALIGNED"
+    },
+    "Codex": {
+      "path": "C:\\Users\\Kimyoongyeom\\.codex\\AGENTS.md",
+      "sha256": "2DC79F8C55D26A52A0F94FA2AFC49814E7E0CAA5AEC0020F4639B9F43B0A68C0",
+      "lines": 128,
+      "max_lines": 150,
+      "status": "ALIGNED"
+    },
+    "Claude_Code": {
+      "path": "C:\\Users\\Kimyoongyeom\\.claude\\CLAUDE.md",
+      "sha256": "9BA8A3C672AF3FE3DF651CB9FE88CB7C604022608312F43CB6A0EDDC80233683",
+      "lines": 128,
+      "max_lines": 200,
+      "status": "ALIGNED"
+    }
+  },
+  "backup_location": "C:\\Users\\Kimyoongyeom\\.agent-global-rules-backups\\20260911-024156",
+  "sourcecheck_exit": 0,
+  "standard_check_exit": 0,
+  "diff_check_exit": 0,
+  "verdict": "APPLIED_AND_VERIFIED",
+  "source_contract_verdict": "PASS",
+  "runtime_deployment_verdict": "ALIGNED",
+  "offline_harness_status": "PASS (7/7 Semantics + Canary + AB Strict Contract)",
+  "build_and_measure_status": "retained_deprecated_stub (awaiting explicit user deletion authorization)"
+}

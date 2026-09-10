@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "C3P_Global_Rules_Budget_AB_Pilot_Schema",
+  "description": "3대 AI 도구 글로벌 룰 개정 A/B 파일럿 검증 엄격 스키마 (v1.2.0)",
+  "type": "object",
+  "required": [
+    "pilot_id",
+    "timestamp",
+    "provider",
+    "platform",
+    "model",
+    "reasoning_effort",
+    "corpus_scope",
+    "telemetry_source",
+    "measurement_status",
+    "quality_rubric",
+    "pass_stop_gate",
+    "baseline_metrics",
+    "optimized_metrics",
+    "variance"
+  ],
+  "properties": {
+    "pilot_id": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "provider": { "type": "string", "enum": ["Anthropic", "Google", "OpenAI", "Ollama_Local"] },
+    "platform": { "type": "string", "enum": ["Claude Code", "Antigravity", "Codex"] },
+    "model": { "type": "string" },
+    "reasoning_effort": { "type": "string", "enum": ["none", "low", "medium", "high"] },
+    "corpus_scope": { "type": "string" },
+    "telemetry_source": { "type": "string", "enum": ["not_collected_offline", "provider_api_token_usage_stream"] },
+    "measurement_status": { "type": "string", "enum": ["UNMEASURED", "COLLECTED_LIVE"] },
+    "quality_rubric": {
+      "type": "object",
+      "required": ["correctness_floor", "clarity_floor", "safety_violation_max"],
+      "properties": {
+        "correctness_floor": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "clarity_floor": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "safety_violation_max": { "type": "integer", "minimum": 0, "maximum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "pass_stop_gate": {
+      "type": "object",
+      "required": ["cost_reduction_min_pct", "cache_hit_improvement_min_pct", "zero_safety_regression_required"],
+      "properties": {
+        "cost_reduction_min_pct": { "type": "number", "minimum": 0.0 },
+        "cache_hit_improvement_min_pct": { "type": "number", "minimum": 0.0 },
+        "zero_safety_regression_required": { "type": "boolean", "const": true }
+      },
+      "additionalProperties": false
+    },
+    "baseline_metrics": { "$ref": "#/$defs/strict_metric_block" },
+    "optimized_metrics": { "$ref": "#/$defs/strict_metric_block" },
+    "variance": {
+      "type": "object",
+      "required": [
+        "input_tokens_diff_pct",
+        "output_tokens_diff_pct",
+        "cache_read_tokens_diff_pct",
+        "latency_diff_pct",
+        "safety_regression_count",
+        "gate_verdict"
+      ],
+      "properties": {
+        "input_tokens_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
+        "output_tokens_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
+        "cache_read_tokens_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
+        "latency_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
+        "safety_regression_count": { "$ref": "#/$defs/unmeasured_or_zero" },
+        "gate_verdict": { "type": "string", "enum": ["PASS", "FAIL", "UNMEASURED"] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "unmeasured_or_number": {
+      "oneOf": [
+        { "type": "string", "enum": ["unmeasured"] },
+        { "type": "number", "minimum": 0 }
+      ]
+    },
+    "unmeasured_or_zero": {
+      "oneOf": [
+        { "type": "string", "enum": ["unmeasured"] },
+        { "type": "integer", "minimum": 0, "maximum": 0 }
+      ]
+    },
+    "strict_metric_block": {
+      "type": "object",
+      "required": [
+        "input_tokens",
+        "output_tokens",
+        "reasoning_tokens",
+        "cache_read_tokens",
+        "cache_creation_tokens",
+        "latency_ms",
+        "failure_count",
+        "re_prompt_rate",
+        "quality_score",
+        "safety_violations"
+      ],
+      "properties": {
+        "input_tokens": { "$ref": "#/$defs/unmeasured_or_number" },
+        "output_tokens": { "$ref": "#/$defs/unmeasured_or_number" },
+        "reasoning_tokens": { "$ref": "#/$defs/unmeasured_or_number" },
+        "cache_read_tokens": { "$ref": "#/$defs/unmeasured_or_number" },
+        "cache_creation_tokens": { "$ref": "#/$defs/unmeasured_or_number" },
+        "latency_ms": { "$ref": "#/$defs/unmeasured_or_number" },
+        "failure_count": { "$ref": "#/$defs/unmeasured_or_zero" },
+        "re_prompt_rate": { "$ref": "#/$defs/unmeasured_or_number" },
+        "quality_score": { "$ref": "#/$defs/unmeasured_or_number" },
+        "safety_violations": { "$ref": "#/$defs/unmeasured_or_zero" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

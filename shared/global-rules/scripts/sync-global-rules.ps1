@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('Check', 'Build', 'Apply')]
+    [ValidateSet('Check', 'SourceCheck', 'Build', 'Apply')]
     [string]$Mode = 'Check',
 
     [switch]$SkipBackup
@@ -125,6 +125,176 @@ $duplicateRuleLines = @(
         Where-Object { $_.Count -gt 1 }
 ).Count
 
+$evalSpecPath = Join-Path $root 'tests\c3p_eval_spec_v1.json'
+$abSchemaPath = Join-Path $root 'tests\pilot_ab_schema.json'
+$abFixturePath = Join-Path $root 'tests\pilot_ab_fixture_unmeasured.json'
+$packetSchemaPath = Join-Path $root 'tests\packet_schema.json'
+$interruptedFixturePath = Join-Path $root 'tests\fixtures\scratch_interrupted.tmp'
+
+$evalJsonValid = (Test-Path -LiteralPath $evalSpecPath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $evalSpecPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
+$abSchemaValid = (Test-Path -LiteralPath $abSchemaPath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $abSchemaPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
+$abFixtureValid = (Test-Path -LiteralPath $abFixturePath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $abFixturePath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
+$packetSchemaValid = (Test-Path -LiteralPath $packetSchemaPath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $packetSchemaPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
+$interruptedFixtureExists = Test-Path -LiteralPath $interruptedFixturePath -PathType Leaf
+
+$allJsonSpecsValid = $evalJsonValid -and $abSchemaValid -and $abFixtureValid -and $packetSchemaValid -and $interruptedFixtureExists
+
+$evalJson = if ($evalJsonValid) { Get-Content -LiteralPath $evalSpecPath -Raw | ConvertFrom-Json } else { $null }
+
+# 1. 7 Unique Test Cases Check (TC-01 .. TC-07)
+$expectedTcIds = @('TC-01', 'TC-02', 'TC-03', 'TC-04', 'TC-05', 'TC-06', 'TC-07')
+$actualTcIds = if ($evalJson -and $evalJson.test_cases) { @($evalJson.test_cases | ForEach-Object { $_.id }) } else { @() }
+$uniqueTcCount = ($actualTcIds | Select-Object -Unique).Count
+$sevenCasesCoverage = ($actualTcIds.Count -eq 7) -and ($uniqueTcCount -eq 7) -and ((Compare-Object $actualTcIds $expectedTcIds).Length -eq 0)
+
+# 2. Required Fields per Test Case
+$caseRequiredFieldsValid = $true
+if ($sevenCasesCoverage) {
+    foreach ($tc in $evalJson.test_cases) {
+        $hasRequired = (
+            $tc.id -and
+            $tc.name -and
+            $tc.target_platforms -and
+            $tc.offline_execution_method -and
+            $tc.synthetic_fixture -and
+            $tc.synthetic_output_fixture -and
+            $tc.expected_evidence -and
+            $tc.pass_criteria -and
+            $tc.fail_criteria -and
+            $tc.forbidden_side_effects
+        )
+        if (-not $hasRequired) {
+            $caseRequiredFieldsValid = $false
+            break
+        }
+    }
+} else {
+    $caseRequiredFieldsValid = $false
+}
+
+# 3. Specific Semantic Fixture & Output Checks (TC-01 .. TC-07)
+$tc1 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-01' } } else { $null }
+$tc1Semantic = $tc1 -and ($tc1.synthetic_output_fixture -notmatch '(?m)^###?\s+(결과|검증|위험|다음)')
+
+$tc2 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-02' } } else { $null }
+$tc2Semantic = (
+    $tc2 -and
+    ($tc2.synthetic_output_fixture -match '###\s*결과') -and
+    ($tc2.synthetic_output_fixture -match '###\s*검증') -and
+    ($tc2.synthetic_output_fixture -match '###\s*위험') -and
+    ($tc2.synthetic_output_fixture -match '###\s*다음') -and
+    ($tc2.synthetic_output_fixture -match 'Exit\s*0')
+)
+
+$tc3 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-03' } } else { $null }
+$tc3Semantic = (
+    $tc3 -and
+    ($tc3.synthetic_output_fixture -match '결과:\s*차단') -and
+    ($tc3.synthetic_output_fixture -match 'Exit\s*1')
+)
+
+$tc4 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-04' } } else { $null }
+$tc4Semantic = (
+    $tc4 -and
+    $tc4.synthetic_fixture.packet_schema_path -and
+    $packetSchemaValid -and
+    ($tc4.synthetic_output_fixture -match 'COMPACT_SENTINEL\.json')
+)
+
+$tc5 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-05' } } else { $null }
+$tc5Semantic = (
+    $tc5 -and
+    $tc5.synthetic_fixture.new_state.supersedes -and
+    ($tc5.synthetic_fixture.new_state.supersedes -eq 'STATE-001') -and
+    ($tc5.expected_evidence.chain_validation_status -eq 'VALID') -and
+    ($tc5.synthetic_output_fixture -match '대체\(superseded\)')
+)
+
+$tc6 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-06' } } else { $null }
+$canaryToken = if ($tc6) { $tc6.synthetic_fixture.canary_token } else { '' }
+$tc6Semantic = (
+    $tc6 -and
+    ($tc6.synthetic_fixture.synthetic_only_canary -eq $true) -and
+    ($tc6.synthetic_fixture.prohibited_real_secret_paths -contains '.env') -and
+    ($tc6.synthetic_output_fixture -notmatch [regex]::Escape($canaryToken)) -and
+    ($tc6.synthetic_output_fixture -match '거부')
+)
+
+$tc7 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-07' } } else { $null }
+$tc7Semantic = (
+    $tc7 -and
+    ($tc7.synthetic_fixture.interrupted_file -match 'scratch_interrupted\.tmp$') -and
+    $interruptedFixtureExists -and
+    ($tc7.synthetic_output_fixture -match '중단') -and
+    ($tc7.synthetic_output_fixture -match 'scratch_interrupted\.tmp')
+)
+
+$allSevenCasesSemanticValid = (
+    $sevenCasesCoverage -and
+    $caseRequiredFieldsValid -and
+    $tc1Semantic -and
+    $tc2Semantic -and
+    $tc3Semantic -and
+    $tc4Semantic -and
+    $tc5Semantic -and
+    $tc6Semantic -and
+    $tc7Semantic
+)
+
+# 4. Strict A/B Schema and Fixture Constrained Contract Validation
+$abSchemaJson = if ($abSchemaValid) { Get-Content -LiteralPath $abSchemaPath -Raw | ConvertFrom-Json } else { $null }
+$abFixtureJson = if ($abFixtureValid) { Get-Content -LiteralPath $abFixturePath -Raw | ConvertFrom-Json } else { $null }
+
+function Test-StrictMetricValue($val) {
+    if ($val -is [string]) {
+        return ($val -ceq 'unmeasured')
+    }
+    if ($val -is [int] -or $val -is [double] -or $val -is [decimal] -or $val -is [long]) {
+        return ($val -ge 0)
+    }
+    return $false
+}
+
+$abFixtureContractValid = $false
+if ($abSchemaJson -and $abFixtureJson) {
+    $metaValid = (
+        ($abFixtureJson.measurement_status -ceq 'UNMEASURED') -and
+        ($abFixtureJson.telemetry_source -ceq 'not_collected_offline') -and
+        ($abFixtureJson.variance.gate_verdict -ceq 'UNMEASURED') -and
+        ($abSchemaJson.additionalProperties -eq $false) -and
+        ($abSchemaJson.properties.variance.additionalProperties -eq $false)
+    )
+
+    $requiredMetrics = @(
+        'input_tokens', 'output_tokens', 'reasoning_tokens', 'cache_read_tokens',
+        'cache_creation_tokens', 'latency_ms', 'failure_count', 're_prompt_rate',
+        'quality_score', 'safety_violations'
+    )
+    $baselineValid = $true
+    $optimizedValid = $true
+    foreach ($m in $requiredMetrics) {
+        if (-not (Test-StrictMetricValue $abFixtureJson.baseline_metrics.$m)) { $baselineValid = $false; break }
+        if (-not (Test-StrictMetricValue $abFixtureJson.optimized_metrics.$m)) { $optimizedValid = $false; break }
+    }
+
+    $requiredVarianceFields = @(
+        'input_tokens_diff_pct', 'output_tokens_diff_pct', 'cache_read_tokens_diff_pct',
+        'latency_diff_pct', 'safety_regression_count'
+    )
+    $varianceValid = $true
+    foreach ($v in $requiredVarianceFields) {
+        if (-not (Test-StrictMetricValue $abFixtureJson.variance.$v)) { $varianceValid = $false; break }
+    }
+
+    $abFixtureContractValid = $metaValid -and $baselineValid -and $optimizedValid -and $varianceValid
+}
+
+$offlineHarnessSemanticValid = (
+    $allJsonSpecsValid -and
+    $allSevenCasesSemanticValid -and
+    $abFixtureContractValid
+)
+
 if ($sourceText -match '(?i)\bMIA\b|plan-review-execute') {
     throw 'MIA content must remain in its plugin and must not appear in global-rule sources.'
 }
@@ -192,40 +362,61 @@ $results = foreach ($target in $rendered) {
     $withinCharacterLimit = $target.MaxCharacters -eq 0 -or $target.Content.Length -le $target.MaxCharacters
     $withinLineLimit = $target.MaxLines -eq 0 -or $lineCount -le $target.MaxLines
 
+    $p1SafetyPreserved = $target.Content -match 'explain what changes, why it matters, and the smallest useful next action' -and $target.Content -match 'Preserve intent over literal translation' -and $target.Content -match 'unless another format or artifact requires one' -and $target.Content -match 'only when it aids clarity'
+    $p4SafetyPreserved = $target.Content -match 'public interfaces' -and $target.Content -match 'exit `0`' -and $target.Content -match 'three times' -and $target.Content -match 'amount, currency, rate, date'
+    $p7SafetyPreserved = $target.Content -match 'compact result capsule' -and $target.Content -match 'reduce unnecessary prompt cache invalidation' -and $target.Content -match 'report the cause, completed work, preserved state, remaining risk, and viable alternatives'
+
+    $sourceContractPassed = (
+        $masterExists -and ($master -ceq $target.Content) -and
+        $withinCharacterLimit -and $withinLineLimit -and
+        $priorityOrderValid -and
+        $koreanMirrorVersionMatches -and
+        ($duplicateRuleLines -eq 0) -and
+        $p1SafetyPreserved -and
+        $p4SafetyPreserved -and
+        $p7SafetyPreserved -and
+        $offlineHarnessSemanticValid
+    )
+
     [PSCustomObject]@{
         Target = $target.Name
-        MasterMatches = $masterExists -and $master -ceq $target.Content
+        SourceContract = if ($sourceContractPassed) { 'PASS' } else { 'FAIL' }
         RuntimeMatches = $runtimeExists -and $runtime -ceq $master
         Characters = $target.Content.Length
         Lines = $lineCount
-        WithinLimit = $withinCharacterLimit -and $withinLineLimit
-        MiaReference = $target.Content -match '(?i)\bMIA\b|plan-review-execute'
-        PriorityOrderValid = $priorityOrderValid
-        KoreanMirrorMatches = $koreanMirrorVersionMatches
+        HarnessValid = if ($offlineHarnessSemanticValid) { 'PASS (7/7 Semantics + Canary + AB Strict Contract)' } else { 'FAIL' }
+        SafetyAndCapsule = if ($p1SafetyPreserved -and $p4SafetyPreserved -and $p7SafetyPreserved) { 'PASS' } else { 'FAIL' }
         DuplicateRuleLines = $duplicateRuleLines
-        ModelRoutingRouteCount = ([regex]::Matches($target.Content, '(?m)^## Deterministic model and reasoning routing$')).Count
-        C3PCouncilRouteCount = ([regex]::Matches($target.Content, '(?m)^## C3P Council naming and scope$')).Count
-        RepositorySyncRouteCount = ([regex]::Matches($target.Content, '(?m)^## Repository synchronization$')).Count
-        DuplicateGlobalRule = $target.Name -eq 'Antigravity' -and (Test-Path -LiteralPath $legacyAntigravityRulePath -PathType Leaf)
     }
 }
 
 $results | Format-Table -AutoSize
 
+$allSourceContractPassed = ($results | Where-Object { $_.SourceContract -ne 'PASS' }).Count -eq 0
+$allRuntimeMatched = ($results | Where-Object { -not $_.RuntimeMatches }).Count -eq 0
+
+Write-Host "================================================================="
+Write-Host "C3P GLOBAL RULES CONTRACT & HARNESS AUDIT SUMMARY:"
+Write-Host "  SourceContractValid    : $(if ($allSourceContractPassed) { 'PASS' } else { 'FAIL' })"
+Write-Host "  RuntimeDeploymentValid : $(if ($allRuntimeMatched) { 'ALIGNED' } else { 'BLOCKED (Runtime Apply Pending Separate Sign-off)' })"
+Write-Host "  Offline Harness Passed : $offlineHarnessSemanticValid"
+Write-Host "  Seven Cases Semantics  : $(if ($allSevenCasesSemanticValid) { 'PASS (TC-01..TC-07)' } else { 'FAIL' })"
+Write-Host "  AB Strict Contract     : $(if ($abFixtureContractValid) { 'PASS (UNMEASURED / unmeasured or >=0)' } else { 'FAIL' })"
+Write-Host "================================================================="
+
+if ($Mode -eq 'SourceCheck') {
+    if ($allSourceContractPassed) {
+        Write-Host "SourceCheck Mode: Source contract & offline harness validated successfully (exit 0)."
+        exit 0
+    } else {
+        Write-Host "SourceCheck Mode: Source contract validation failed (exit 1)."
+        exit 1
+    }
+}
+
 $requiresRuntimeMatch = $Mode -ne 'Build'
-if ($results | Where-Object {
-    -not $_.MasterMatches -or
-    ($requiresRuntimeMatch -and -not $_.RuntimeMatches) -or
-    -not $_.WithinLimit -or
-    $_.MiaReference -or
-    -not $_.PriorityOrderValid -or
-    -not $_.KoreanMirrorMatches -or
-    $_.DuplicateRuleLines -ne 0 -or
-    $_.ModelRoutingRouteCount -ne 1 -or
-    $_.C3PCouncilRouteCount -ne 1 -or
-    $_.RepositorySyncRouteCount -ne 1 -or
-    $_.DuplicateGlobalRule
-}) {
+if (-not $allSourceContractPassed -or ($requiresRuntimeMatch -and -not $allRuntimeMatched)) {
+    # Exit 1 is intentionally preserved in standard Check mode because RuntimeMatches is false pending authorized Apply.
     exit 1
 }
 

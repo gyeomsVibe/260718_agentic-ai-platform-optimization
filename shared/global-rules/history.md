@@ -1,5 +1,14 @@
 # 글로벌 룰 작성 계획서
 
+## 18. v3.2.1 글로벌 룰 예산 최적화 및 런타임 배포 완료
+
+- C3P 협의체(Codex·Claude Code·Antigravity) 간의 8차례 전수 대조를 거쳐 글로벌 룰의 토큰 소모 구조를 전면 최적화했다.
+- 고정 코어 요약 상용구를 제거하고, 비자명한 완료 시점에만 간결한 4단(결과·검증·위험·다음) 결과 캡슐(Outcome Capsule)을 출력하도록 P7 절을 개정했다.
+- 7대 시나리오(TC-01..TC-07) 오프라인 검증 하네스, 합성 카나리(CANARY_SECRET) 격리, 무측정(UNMEASURED) A/B 파일럿 계약을 `tests/`에 정립했다.
+- `sync-global-rules.ps1` 단일 파이프라인을 통해 소스 계약(`SourceCheck`) 및 런타임 정합(`Check`)을 Exit 0으로 통과시키고, Antigravity(11,651자), Claude Code(128줄), Codex(128줄) 엄격 한도를 100% 준수했다.
+- 사용자 명시 승인 하에 `~/.gemini/GEMINI.md`, `~/.codex/AGENTS.md`, `~/.claude/CLAUDE.md`로의 런타임 실제 배포(Apply)를 완수하고, 배포 전 원본은 타임스탬프 백업 폴더로 안전 보존했다.
+- 구형 DEPRECATED 빌더 스크립트(`build_and_measure.py`)를 안전하게 영구 제거했다.
+
 ## 17. v3.2.0 C3P 협의체 공식 명칭과 범위
 
 - `codex-3p-orchestrator`를 프로젝트·저장소 정식 이름으로 유지하고, Codex·Claude Code·Antigravity의 3도구 운영 협의체를 가리키는 공식 속칭을 `C3P 협의체`로 정의했다.

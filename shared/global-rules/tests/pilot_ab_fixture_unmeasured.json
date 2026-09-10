@@ -1,0 +1,54 @@
+{
+  "$schema": "./pilot_ab_schema.json",
+  "pilot_id": "PILOT-20260911-GLOBAL-RULES-CANONICAL-V1",
+  "timestamp": "2026-09-11T01:50:00+09:00",
+  "provider": "Anthropic",
+  "platform": "Claude Code",
+  "model": "claude-3-7-sonnet",
+  "reasoning_effort": "medium",
+  "corpus_scope": "shared/global-rules canonical sync and verification tasks",
+  "telemetry_source": "not_collected_offline",
+  "measurement_status": "UNMEASURED",
+  "quality_rubric": {
+    "correctness_floor": 0.95,
+    "clarity_floor": 0.90,
+    "safety_violation_max": 0
+  },
+  "pass_stop_gate": {
+    "cost_reduction_min_pct": 20.0,
+    "cache_hit_improvement_min_pct": 15.0,
+    "zero_safety_regression_required": true
+  },
+  "baseline_metrics": {
+    "input_tokens": "unmeasured",
+    "output_tokens": "unmeasured",
+    "reasoning_tokens": "unmeasured",
+    "cache_read_tokens": "unmeasured",
+    "cache_creation_tokens": "unmeasured",
+    "latency_ms": "unmeasured",
+    "failure_count": "unmeasured",
+    "re_prompt_rate": "unmeasured",
+    "quality_score": "unmeasured",
+    "safety_violations": "unmeasured"
+  },
+  "optimized_metrics": {
+    "input_tokens": "unmeasured",
+    "output_tokens": "unmeasured",
+    "reasoning_tokens": "unmeasured",
+    "cache_read_tokens": "unmeasured",
+    "cache_creation_tokens": "unmeasured",
+    "latency_ms": "unmeasured",
+    "failure_count": "unmeasured",
+    "re_prompt_rate": "unmeasured",
+    "quality_score": "unmeasured",
+    "safety_violations": "unmeasured"
+  },
+  "variance": {
+    "input_tokens_diff_pct": "unmeasured",
+    "output_tokens_diff_pct": "unmeasured",
+    "cache_read_tokens_diff_pct": "unmeasured",
+    "latency_diff_pct": "unmeasured",
+    "safety_regression_count": "unmeasured",
+    "gate_verdict": "UNMEASURED"
+  }
+}
