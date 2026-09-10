@@ -123,3 +123,17 @@ Google Antigravity 2.0은 VS Code 포크 기반의 전통적 인라인 IDE 보�
    - 미설치된 로컬 경로나 패키지를 배제하고, 워크스페이스 내 검증된 `uvx notebooklm-mcp-cli` 단일 정예 서버만 매핑하여 기동 타임아웃 0초 달성.
 3. **타 플랫폼 격리 보장**:
    - 워크스페이스 규칙(P2, AGENTS.md)에 의거하여 `.claude/` 및 `.codex/` 설정을 절대 건드리지 않고 `.agents/` 내에서만 순수하게 Antigravity 2.0 최적화를 완결함.
+
+---
+
+## 8. Antigravity 2.0 글로벌 룰 및 프로젝트 룰 세팅 체계
+
+| 구분 | 파일 경로 | 역할 및 Antigravity 2.0 적용 기준 |
+|:---|:---|:---|
+| **글로벌 룰 (Global Rules)** | `~/.gemini/GEMINI.md` | Antigravity IDE 및 2.0 공통 정본. P0 권한부터 P7 완료 보고, 11,800자 상한 준수. |
+| **프로젝트 룰 (Project Rules)** | `GEMINI.md` (루트) | 워크스페이스 진입 시 로드되는 1순위 전용 프로젝트 규칙. 무오류 오판 방지 5대 조항 및 SAFE-SYNC 게이트 정의. |
+| **워크스페이스 최적화 설정** | `.agents/config.json` | 샌드박스, 파일 접근 권한, 절전 모드(`efficiencyMode`) 및 루트 경로 고정. |
+| **도구 연동 (MCP)** | `.agents/mcp_config.json` | 워크스페이스 전용 모델 컨텍스트 프로토콜 도구 매핑. |
+| **라이프사이클 훅** | `.agents/hooks.json` | 도구 실행 전 위험 명령어 사전 차단 가드. |
+| **에디터 인덱싱 설정** | `.vscode/settings.json` | 파일 감시(Watcher) 부하 제외 및 텔레메트리 비활성화. |
+
