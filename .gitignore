@@ -6,6 +6,7 @@
 Thumbs.db
 .DS_Store
 *.log
+.vs/
 shared/platform-auto-update/scripts/npm-cache/
 
 # 로컬 검증·임시 Skill 설치 영역

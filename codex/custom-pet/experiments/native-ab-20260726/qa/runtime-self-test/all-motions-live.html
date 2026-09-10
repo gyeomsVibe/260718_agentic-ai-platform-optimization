@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><title>Gyeom v2 motion self-test</title>
+<style>
+body{margin:0;background:#181818;color:#eee;font:14px system-ui;padding:24px}
+h1{margin:0 0 8px}p{color:#aaa}.grid{display:grid;grid-template-columns:repeat(3,220px);gap:14px}
+.card{background:#262626;border:1px solid #444;border-radius:12px;padding:10px;text-align:center}
+.sprite{width:192px;height:208px;margin:auto;background-image:url('../../spritesheet.webp');background-size:800% 1100%;image-rendering:auto}
+.name{font-weight:700;margin-bottom:6px}.hover-test{margin-top:24px;width:220px}
+.ok{color:#73d99a}button{background:#3b82f6;color:white;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
+</style>
+<h1>Gyeom v2 — 9 motion live self-test</h1>
+<p class="ok">설치본과 동일한 SHA-256 자산 · Codex 앱 행/프레임 타이밍</p>
+<button id="replay">모두 처음부터 재생</button><div class="grid" id="grid"></div>
+<div class="card hover-test"><div class="name">현재 앱 hover → jumping 트리거</div><div class="sprite" id="hoverSprite"></div><p>캐릭터 위에 마우스를 올려 점프 확인</p></div>
+<script>
+const states={"idle": {"row": 0, "durations": [280, 110, 110, 140, 140, 320], "label": "idle / basic"}, "running-right": {"row": 1, "durations": [120, 120, 120, 120, 120, 120, 120, 220], "label": "move-right"}, "running-left": {"row": 2, "durations": [120, 120, 120, 120, 120, 120, 120, 220], "label": "move-left"}, "waving": {"row": 3, "durations": [140, 140, 140, 280], "label": "waving"}, "jumping": {"row": 4, "durations": [140, 140, 140, 140, 280], "label": "jumping"}, "failed": {"row": 5, "durations": [140, 140, 140, 140, 140, 140, 140, 240], "label": "failed"}, "waiting": {"row": 6, "durations": [150, 150, 150, 150, 150, 260], "label": "waiting"}, "running": {"row": 7, "durations": [120, 120, 120, 120, 120, 220], "label": "working (runtime key: running)"}, "review": {"row": 8, "durations": [150, 150, 150, 150, 150, 280], "label": "review / completed"}}; let started=performance.now(); const grid=document.querySelector('#grid');
+const pos=(row,col)=>`${col/7*100}% ${row/10*100}%`;
+function frameAt(durations,ms){let t=ms%durations.reduce((a,b)=>a+b,0);for(let i=0;i<durations.length;i++){if(t<durations[i])return i;t-=durations[i]}return durations.length-1}
+for(const [name,cfg] of Object.entries(states)){const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="name">row ${cfg.row} · ${cfg.label}</div><div class="sprite"></div>`;grid.append(card);cfg.el=card.querySelector('.sprite')}
+function tick(now){for(const cfg of Object.values(states))cfg.el.style.backgroundPosition=pos(cfg.row,frameAt(cfg.durations,now-started));requestAnimationFrame(tick)}requestAnimationFrame(tick);
+document.querySelector('#replay').onclick=()=>started=performance.now();
+const hover=document.querySelector('#hoverSprite');let hoverStart=0;function hoverTick(now){const jumping=hover.matches(':hover');if(jumping&&hoverStart===0)hoverStart=now;if(!jumping)hoverStart=0;const cfg=jumping?states.jumping:states.idle;hover.style.backgroundPosition=pos(cfg.row,frameAt(cfg.durations,jumping?now-hoverStart:now));requestAnimationFrame(hoverTick)}requestAnimationFrame(hoverTick);
+</script></html>

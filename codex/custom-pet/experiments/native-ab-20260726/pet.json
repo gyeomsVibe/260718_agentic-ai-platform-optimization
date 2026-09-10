@@ -1,0 +1,7 @@
+{
+  "id": "gyeom-v2-ab",
+  "displayName": "Gyeom A/B",
+  "description": "Non-destructive A/B candidate with a visibly animated idle loop.",
+  "spriteVersionNumber": 2,
+  "spritesheetPath": "spritesheet.webp"
+}

@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "chroma_key": {
+    "hex": "#00FF00",
+    "rgb": [
+      0,
+      255,
+      0
+    ],
+    "threshold": 96.0
+  },
+  "rows": [
+    {
+      "state": "idle",
+      "frames": [
+        "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\experiments\\native-ab-20260726\\qa\\idle-ab\\frames-stable\\idle\\00.png",
+        "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\experiments\\native-ab-20260726\\qa\\idle-ab\\frames-stable\\idle\\01.png",
+        "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\experiments\\native-ab-20260726\\qa\\idle-ab\\frames-stable\\idle\\02.png",
+        "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\experiments\\native-ab-20260726\\qa\\idle-ab\\frames-stable\\idle\\03.png",
+        "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\experiments\\native-ab-20260726\\qa\\idle-ab\\frames-stable\\idle\\04.png",
+        "D:\\D_Workspace_NB\\-agentic-ai-workspace\\260718_agentic-ai-platform-optimization\\codex\\custom-pet\\experiments\\native-ab-20260726\\qa\\idle-ab\\frames-stable\\idle\\05.png"
+      ],
+      "method": "stable-slots"
+    }
+  ]
+}

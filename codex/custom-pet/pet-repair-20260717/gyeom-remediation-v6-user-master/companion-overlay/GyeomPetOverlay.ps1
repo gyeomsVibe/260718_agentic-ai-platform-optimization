@@ -122,9 +122,9 @@ $script:nextPersonalityAt = [DateTime]::UtcNow.AddSeconds(4)
 $script:personalityExpiresAt = $null
 $script:personalityPlan = if ($lifeEnabled) {
     @(
-        [pscustomobject]@{ State = 'idle-look'; HoldMs = 0; NextDelaySeconds = 7; Label = 'looking-around' },
-        [pscustomobject]@{ State = 'idle-stretch'; HoldMs = 0; NextDelaySeconds = 9; Label = 'stretching' },
-        [pscustomobject]@{ State = 'idle-yawn'; HoldMs = 0; NextDelaySeconds = 12; Label = 'yawning' },
+        # Idle must stay visually anchored: use only centered life motions.
+        [pscustomobject]@{ State = 'idle-stretch'; HoldMs = 0; NextDelaySeconds = 12; Label = 'stretching' },
+        [pscustomobject]@{ State = 'idle-yawn'; HoldMs = 0; NextDelaySeconds = 16; Label = 'yawning' },
         [pscustomobject]@{ State = 'waving'; HoldMs = 2600; NextDelaySeconds = 14; Label = 'waving' },
         [pscustomobject]@{ State = 'review'; HoldMs = 3200; NextDelaySeconds = 16; Label = 'reviewing' },
         [pscustomobject]@{ State = 'waiting'; HoldMs = 3000; NextDelaySeconds = 18; Label = 'waiting' }
