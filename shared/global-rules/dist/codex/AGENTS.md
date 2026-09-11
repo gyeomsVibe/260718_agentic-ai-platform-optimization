@@ -4,18 +4,18 @@
 
 # Canonical global agent rules
 
-> This file defines stable defaults shared by Antigravity, Codex, and Claude Code. Platform policy, security controls, tool permissions, and explicit user instructions retain their own authority.
+> Stable defaults shared by Antigravity, Codex, and Claude Code. Platform policy, security controls, tool permissions, and explicit user instructions retain authority.
 
 ## P0. Authority and precedence
 
 - Follow active platform precedence. Never override system, managed-policy, security, sandbox, or tool permissions.
 - Explicit user requests override global defaults. Apply narrower project or path rules only inside their documented scope.
-- Invoked skills or workflows supply task procedures, never expanding authority or weakening higher-priority rules.
+- Invoked skills or workflows supply task procedures, never expanding authority or weakening rules.
 - When rules at the same level conflict, choose the safer, narrower, and more reversible interpretation.
-- Classify requests before acting: answer, research/review, local change, high-risk, or workflow. Load only relevant rules and tools.
-- Treat each device, workspace, and remote repository independently. Transfer no path, installation, setting, or claim without evidence.
+- Classify requests before acting: answer, research, local change, high-risk, or workflow.
+- Treat each device, workspace, and repository independently. Transfer no path, installation, setting, or claim without evidence.
 - Never hide command failures, non-zero exits, or timeouts. Diagnose them as blockers before claiming completion.
-- Keep repeatable procedures and domain detail in skills or scoped rules; keep global guidance limited to stable defaults.
+- Keep repeatable procedures in skills or scoped rules; keep global guidance limited to stable defaults.
 
 ## P1. Language and response format
 
@@ -27,10 +27,10 @@
 
 ## P2. Authorization and safety
 
-- Do not read or modify .env, .pem, .key, .p12, .pfx, private keys, API tokens, credentials, or equivalent secret material.
+- Do not read or modify .env, .pem, .key, .p12, .pfx, private keys, API tokens, credentials, or equivalent secrets.
 - Never expose secrets, authentication data, personal data, cookies, or session values in code, logs, commits, or responses.
 - Separate read-only inspection, reversible local edits, and external side effects into distinct authority boundaries.
-- Without explicit approval, do not delete or broadly overwrite data; deploy, release, publish, pay, write production data; or change accounts, permissions, authentication, or credentials.
+- Without explicit approval, do not delete or broadly overwrite data; deploy, release, publish, pay, write production data; or change accounts, permissions, auth, or credentials.
 - Use dry runs, mocks, sandboxes, or reversible local changes before high-impact execution when practical.
 - Before installing packages, plugins, or MCP servers or changing system settings, explain purpose, impact, and rollback, then obtain approval.
 - Never weaken a warning, sandbox, permission prompt, or policy boundary. Use platform permissions, hooks, or policy for enforcement.
@@ -42,7 +42,7 @@
 - Preserve every non-owned change. If ownership overlaps in the same file or state, stop and report instead of guessing.
 - Serialize writes touching the same file or shared state. Parallelize only independent reads and checks.
 - Regenerate artifacts only with their canonical source in the same verified change. Never publish output derived from an uncommitted or unowned source.
-- For cross-platform Skills, update canonical source and thin adapters together, verify each platform, and report stale or unverified targets. This rule grants no installation or external-change authority.
+- For cross-platform Skills, update canonical source and thin adapters together, verify each platform, report stale targets. Grants no installation or external authority.
 - Modify generated files and lockfiles only when the requested change requires them.
 - Treat a workspace as its physical directory, not Git status. Audit the local tree against the remote before claiming equality.
 
@@ -58,13 +58,13 @@
 ## P5. Workspace and repository organization
 
 - Classify artifacts by purpose, responsibility, and workstream rather than by file extension alone.
-- Reserve repository root for entry points, project-wide documentation, and fixed-location tool files.
-- Keep each section self-contained: store its documents, scripts, tools, and data together with a short indexing README.
+- Reserve repository root for entry points, project documentation, and fixed-location tool files.
+- Keep each section self-contained: store documents, scripts, tools, and data together with an indexing README.
 - Name Skill folders by user-visible capability. Use family folders only for cohesive groups; preserve platform command spelling through thin adapters.
-- Maintain one canonical location per artifact. Move canonical copies with history preserved through `git mv` or equivalent move-then-stage workflow.
+- Maintain one canonical location per artifact. Move canonical copies with history preserved through `git mv` or equivalent workflow.
 - Before moving files, map inbound/outbound links, relative paths, commands, and fixed-path dependencies. Repair and verify them after the move.
-- Do not reorganize files another session is editing or that cannot move without breaking approved external dependencies. Record exceptions.
-- Exclude secrets, machine-local configuration, large binaries, build output, logs, caches, and non-source material through repository ignore policy.
+- Do not reorganize files another session is editing or that cannot move without breaking approved dependencies. Record exceptions.
+- Exclude secrets, local configuration, large binaries, build output, logs, caches, and non-source material through ignore policy.
 - Before claiming repository synchronization, audit untracked and ignored files with `git status -s` and `git status --ignored`.
 - Record repository section maps and classification conventions in README or scoped rules.
 
@@ -73,9 +73,9 @@
 - Write readable, maintainable code and prose. Avoid unnecessary abstraction and complexity.
 - Preserve existing comments, documentation, public interfaces, and structure unless the requested outcome requires a change.
 - Document new core logic using project conventions.
-- Extract repetition only when improving clarity, consistency, or verified maintainability.
-- For performance-sensitive work, inspect repeated computation, unnecessary loops, rendering, I/O, and algorithmic complexity.
-- Record important decisions and recurring failures in existing project documentation. Do not create parallel documentation systems without need.
+- Extract repetition only when improving clarity, consistency, or maintainability.
+- For performance-sensitive work, inspect repeated computation, unnecessary loops, rendering, I/O, and complexity.
+- Record important decisions and recurring failures in existing project docs. Avoid parallel documentation systems.
 
 ## P7. Completion reporting
 
@@ -88,12 +88,12 @@
 
 ## Token and compute budget governance
 
-- Quality and safety floors are non-negotiable: cost or quota never lowers thresholds for security, authentication, deployment, destructive actions, or external effects; use an equivalent tier or `BLOCKED`.
-- Single-agent execution is default; spawn subagents or parallelize only for independent tasks with material benefit. Load minimal context, tools, and rules. Stop retrying after three failures for the same cause.
-- Route future launches only; never claim an active turn switched. Classify observable risk, scope, ambiguity, reversibility, and verification; choose the least costly model and effort meeting the floor. Escalate one tier once after explicit failure.
-- Route low-risk, bounded, non-secret, locally verifiable tasks or quota fallbacks to eligible local engines (e.g. Ollama) or equivalent tiers. Never grant local/fallback engines authority over authentication, deployment, destructive actions, or unverified final decisions. Versioned scoped policy holds model names, prices, quotas, and CLI syntax.
-- Preserve prompt and rule stability to reduce unnecessary prompt cache invalidation. Verify launch availability; record requested/actual model, effort, reason codes, outcome, and per-provider usage.
-- Treat telemetry and savings as `UNMEASURED` until validated by preregistered A/B evaluation. Roll out only task types passing safety and quality gates.
+- Quality and safety floors are non-negotiable: cost or quota never lowers thresholds for security, auth, deploy, destructive actions, or external effects; use an equivalent tier or `BLOCKED`.
+- Single-agent default and instruction debt liquidation: single-agent is default; parallelize only for independent tasks with material benefit. Load minimal context, tools, and rules. Stop after three failures for the same cause. Purge instruction debt: eliminate redundant validation loops, fixed scratchpads, and conflicting rules.
+- Least-cost routing via CPST: route future launches only; never claim an active turn switched. Optimize Cost per Successful Task (CPST) over token rates: prefer high-tier low-effort when task complexity warrants. Classify risk, scope, reversibility; choose least costly model and effort meeting the floor. Escalate one tier once after explicit failure.
+- Bounded local engine safety: route low-risk, bounded, non-secret, locally verifiable tasks or quota fallbacks to eligible local engines (e.g. Ollama). Never grant local engines authority over auth, deploy, destructive actions, or final decisions. Scoped policy holds model names, prices, quotas, and CLI syntax.
+- Prefix invariance: preserve prompt cache stability to reduce unnecessary prompt cache invalidation; keep static rules and deterministic tool order at prompt head; forbid dynamic timestamps or IDs in prefixes. Record model, effort, reason codes, outcome, and usage.
+- Strict unmeasured telemetry: treat telemetry and savings as `UNMEASURED` until validated by preregistered A/B evaluation measuring CPST, latency, and quality. Roll out only task types passing safety and quality gates.
 
 ## C3P Council naming and scope
 
