@@ -17,6 +17,16 @@ Claude Code / Codex / Antigravity 세 플랫폼의 최적화·유지관리 워�
 - `shared/global-rules/core.md`가 글로벌 agent 규칙의 정통 소스(Canonical Source)이다.
 - Antigravity (`GEMINI.md`), Claude Code (`CLAUDE.md`), Codex (`AGENTS.md`) 모두에 무오류 오판 방지 5대 조항(물리적 워크스페이스 실측, 컬럼 상호 연관성 검증, 시각적 캡처 실측, 명령 실패 무조건 명시, 전체 트리 추적 감사, 푸시 후 원격 정합성 검증)을 생략 없이 100% 균일 적용한다.
 
+## 워크스페이스 섹션 및 문서 체계 원칙 (Section & Docs Architecture)
+
+- **섹션 루트 보존**: 모든 상위 섹션 폴더(`skills/`, `antigravity/`, `claude/`, `codex/`, `agent-swarm/`, `mcp/`, `ollama/`, `shared/` 등)의 루트에는 진입점 `README.md`와 필수 도구 설정 파일만 유지한다.
+- **`docs/` 폴더 통일 및 자동 생성**: 각 섹션에 속한 모든 보조 문서, 기술 가이드, 설계 계획서, 결과 보고서는 해당 섹션의 `docs/` 폴더 내에 배치한다. 문서 작성 시 해당 섹션에 `docs/` 폴더가 없다면 자동으로 생성한다.
+- **문서 명명 및 순서 정제 원칙**:
+  - **타임라인/보고서/마일스톤 문서**: `YYMMDD_[문서명].md` (예: `260911_보고서.md`) 또는 닫힌 패키지형 일련의 시리즈인 경우 2자리 제로패딩 `00_`, `01_`, ..., `09_` 순차 번호를 부여한다.
+  - **영속 지침/환경설정/운영 가이드**: 시맨틱 케밥케이스(`[topic].md`)를 사용해 불필요한 번호 변경을 방지한다.
+  - **색인 파일(`docs/README.md`) 유지**: 각 `docs/` 폴더마다 `README.md`를 반드시 작성·유지하여 전체 문서의 시간순 타임라인과 논리적 읽기 순서(00_, 01_, ...)를 명시하고 링크를 제공한다.
+- **문서 생성 시 상시 적용**: 이 워크스페이스에서 에이전트가 새 문서를 생성할 때는 반드시 이 규칙에 따라 대상 섹션의 `docs/` 내에 배치하고 해당 `docs/README.md` 색인을 갱신한다.
+
 ## 저장소 동기화 원칙
 
 - **완료 단위 자동 동기화 (2026-07-20 상시 위임)**: 파일 저장·작은 수정·타이머는 동기화
@@ -81,7 +91,7 @@ flowchart TD
 
 이 워크스페이스에는 `notebooklm-mcp` MCP 서버(jacob-bd/notebooklm-mcp-cli, 쿠키+내부 API 방식)가
 세 플랫폼 공용으로 연결되어 있다. MCP 관련 자료는 모두 `mcp/` 섹션에서 관리한다.
-상세 설계: `mcp/notebooklm/MIA_NOTEBOOKLM_MCP_OPTIMIZATION_2026-07-19.md`
+상세 설계: `mcp/docs/01_260719_MIA_NOTEBOOKLM_MCP_OPTIMIZATION.md`
 
 - **캐시 우선**: NotebookLM에 질의하기 전에 `mcp/notebooklm/research-vault/`를 먼저 검색하고,
   새 답변은 그 폴더의 `README.md` 형식으로 저장한다. (무료 쿼터 50쿼리/일)

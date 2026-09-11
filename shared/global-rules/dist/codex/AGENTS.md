@@ -59,9 +59,9 @@
 
 - Classify artifacts by purpose, responsibility, and workstream rather than by file extension alone.
 - Reserve repository root for entry points, project documentation, and fixed-location tool files.
-- Keep each section self-contained: store documents, scripts, tools, and data together with an indexing README.
-- Name Skill folders by user-visible capability. Use family folders only for cohesive groups; preserve platform command spelling through thin adapters.
-- Maintain one canonical location per artifact. Move canonical copies with history preserved through `git mv` or equivalent workflow.
+- Keep each section self-contained: place section documents under '<section>/docs/' with an indexing README.
+- Name Skill folders by user-visible capability. Use family folders for cohesive groups; preserve command spelling via thin adapters.
+- Maintain one canonical location per artifact. Move canonical copies with history preserved via `git mv` or equivalent.
 - Before moving files, map inbound/outbound links, relative paths, commands, and fixed-path dependencies. Repair and verify them after the move.
 - Do not reorganize files another session is editing or that cannot move without breaking approved dependencies. Record exceptions.
 - Exclude secrets, local configuration, large binaries, build output, logs, caches, and non-source material through ignore policy.

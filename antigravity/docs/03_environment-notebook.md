@@ -75,8 +75,8 @@ Antigravity의 워크스페이스 로컬 설정은 `.agents/` 에 있다. **호�
 
 백그라운드 리소스(CPU/RAM)를 점유하는 불필요 확장을 정리한 기록:
 
-- 📋 계획: [`ide-slimming-plan.md`](ide-slimming-plan.md)
-- ✅ 결과: [`ide-slimming-result.md`](ide-slimming-result.md)
+- 📋 계획: [`04_ide-slimming-plan.md`](04_ide-slimming-plan.md)
+- ✅ 결과: [`05_ide-slimming-result.md`](05_ide-slimming-result.md)
 
 핵심 방향: 미사용 언어 서버(Java/PHP/Ruby/Rust/Go 등)·중복 AI 도구·중복 Pyright 정리, 무거운
 SonarLint·GitLens를 경량 대체. (상세 수치는 결과 문서 참조)
@@ -88,6 +88,6 @@ SonarLint·GitLens를 경량 대체. (상세 수치는 결과 문서 참조)
 - 이 문서와 Antigravity는 **`.agents/` · IDE 확장 · `~/.antigravity-ide/` 만** 다룬다.
 - **Claude 설정(`.claude/`)·Codex 설정(`~/.codex/`)은 건드리지 않는다.**
   (이전에 Antigravity가 `.claude/settings.local.json` 추적을 변경했던 이력이 있어, 본 정리에서 도메인 경계를 명문화함.)
-- 관련: [Claude 환경](../claude/environment-notebook.md) · [Codex 환경](../codex/environment-notebook.md)
+- 관련: [Claude 환경](../../claude/docs/02_environment-notebook.md) · [Codex 환경](../../codex/docs/02_environment-notebook.md)
 
 > 보안 주의: 이 문서에는 머신 고유 경로·호스트명 실값을 포함하지 않는다.

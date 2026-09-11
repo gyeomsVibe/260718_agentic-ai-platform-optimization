@@ -4,7 +4,7 @@
 기존 브리지는 위임 1건마다 새 프로세스를 띄웠지만, 이 런타임은 프로세스를 살려두고
 같은 세션에 턴을 이어붙인다. **맥락이 턴 사이에 보존된다.**
 
-설계 배경: [Local Agent Runtime 구현 제안](../../agent-swarm/SYSTEM_DESIGN_CODEX_COMMAND_2026-08-21.md)
+설계 배경: [Local Agent Runtime 구현 제안](../../agent-swarm/docs/02_260821_SYSTEM_DESIGN_CODEX_COMMAND.md)
 
 ## 무엇이 달라지나
 
@@ -99,5 +99,5 @@ local-agent-runtime 으로 claude-code 세션을 열고,
 ## 한계
 
 - **세션은 이 런타임이 살아 있는 동안만 유지된다.** MCP 서버가 재시작되면 모든 세션이 사라진다. 영속이 필요하면 각 CLI의 자체 대화 재개 기능(`claude --resume`, `agy --conversation`)을 함께 써야 한다.
-- **이미 열려 있는 IDE 창을 조종하지는 못한다.** 안티그래비티 IDE에는 `agentapi`라는 제어 표면이 있으나 주소가 에이전트 실행 컨텍스트 안에서만 노출되어 도달하지 못했다 ([경위](../../agent-swarm/USAGE_CODEX_COMMAND.md)).
+- **이미 열려 있는 IDE 창을 조종하지는 못한다.** 안티그래비티 IDE에는 `agentapi`라는 제어 표면이 있으나 주소가 에이전트 실행 컨텍스트 안에서만 노출되어 도달하지 못했다 ([경위](../../agent-swarm/docs/03_260821_USAGE_CODEX_COMMAND.md)).
 - **턴 단위 동시성은 세션당 1개다.** 같은 세션에 `agent_send`를 겹쳐 부르면 순서가 보장되지 않는다. 병렬이 필요하면 세션을 나눈다.

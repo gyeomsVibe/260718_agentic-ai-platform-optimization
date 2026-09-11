@@ -87,7 +87,7 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 
 **추가 2종** — obra/superpowers(MIT)에서 **선별 반입**: `systematic-debugging`,
 `receiving-code-review`. 나머지 12종은 트리거 충돌로 제외했다. 판정표와 근거는
-[`research/MIA_SKILLS_EXPLORATION_2026-07-19.md`](research/MIA_SKILLS_EXPLORATION_2026-07-19.md)의
+[`04_260719_MIA_SKILLS_EXPLORATION.md`](04_260719_MIA_SKILLS_EXPLORATION.md)의
 "재설치 시도와 Pivot" 절에 있다.
 
 > **플러그인으로 설치하지 않았다.** Claude Code 플러그인은 all-or-nothing 이라
@@ -209,7 +209,7 @@ npm install -D @playwright/test
 
 `D:\D_Workspace_NB\-agentic-ai-workspace\.agents\skills` 에 **슬림화 이전 27개**가 남아 있다.
 현재 Codex 배포본은 **10개**다. 이 폴더는 정본이 아니라 2026-05-23 반입 시점의 staging
-사본이며([SOURCE.md](external/eli-kardis/vibe-coding-skills/SOURCE.md)) **과거 기록으로만 유효하다.**
+사본이며([SOURCE.md](../external/eli-kardis/vibe-coding-skills/SOURCE.md)) **과거 기록으로만 유효하다.**
 
 **단순 구버전이 아니다.** 27개와 10개가 겹치는 것은 4개뿐이다
 (`error-path-analysis`, `product-thinking`, `python-refactor`, `web-design-guidelines`).

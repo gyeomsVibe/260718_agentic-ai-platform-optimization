@@ -19,9 +19,9 @@ Claude Code의 "확장"(기능 추가)은 세 층위로 나뉩니다. 이 구분
 | 문서 | 내용 |
 |---|---|
 | [agents/](agents/) | **서브에이전트 정본** — `~/.claude/agents/`로 배포하는 4개(선별·정제 근거 포함) |
-| [plugins.md](plugins.md) | 플러그인 설치 기록 — ⚠️ **2026-08-04 실측 결과 기록된 2개가 현재 미설치**. 문서 상단 경고 참조 |
-| [environment-notebook.md](environment-notebook.md) | 노트북(MSI GL75) 기록 — 플러그인 3층위 개념, **안 쓰는 계정 커넥터 번들 15종 삭제 가이드**(웹 절차 포함) |
-| [environment-desktop.md](environment-desktop.md) | 데스크톱(i7-6700K) 기록 — 플러그인 정리 내역, 자동 실행 권한 설정 |
+| [docs/03_plugins.md](docs/03_plugins.md) | 플러그인 설치 기록 — ⚠️ **2026-08-04 실측 결과 기록된 2개가 현재 미설치**. 문서 상단 경고 참조 |
+| [docs/02_environment-notebook.md](docs/02_environment-notebook.md) | 노트북(MSI GL75) 기록 — 플러그인 3층위 개념, **안 쓰는 계정 커넥터 번들 15종 삭제 가이드**(웹 절차 포함) |
+| [docs/01_environment-desktop.md](docs/01_environment-desktop.md) | 데스크톱(i7-6700K) 기록 — 플러그인 정리 내역, 자동 실행 권한 설정 |
 
 > 노트북과 데스크톱은 다른 PC입니다. 한쪽 설정을 다른 쪽에 그대로 적용하지 마세요.
 

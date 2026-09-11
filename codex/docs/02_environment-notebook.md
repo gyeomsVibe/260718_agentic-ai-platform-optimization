@@ -70,7 +70,7 @@ Codex가 스스로 경고를 띄웠다.
 
 > **부수 발견**: `superpowers:*` 14종이 **Codex 계정 커넥터로 이미 살아 있다.**
 > Claude Code 플러그인 재설치 판단에 영향을 준다 —
-> [`../claude/plugins.md` §6](../claude/plugins.md) 참조.
+> [`../../claude/docs/03_plugins.md` §6](../../claude/docs/03_plugins.md) 참조.
 
 **남은 조치는 사용자 몫이다.** Codex 앱 설정에서 안 쓰는 커넥터(Adobe, Figma, HeyGen, Notion,
 Gmail, Google Drive/Calendar 등)를 해제하면 컨텍스트 예산이 회복된다.
@@ -133,7 +133,7 @@ codex plugin enable  <id>  # 원복
 
 - 이 문서와 Codex는 **`~/.codex/` 만** 다룬다.
 - Claude 설정(`.claude/`)·Antigravity 설정(`.agents/`)은 **건드리지 않는다.**
-- 관련: [Claude 환경](../claude/environment-notebook.md) · [Antigravity 환경](../antigravity/environment-notebook.md)
+- 관련: [Claude 환경](../../claude/docs/02_environment-notebook.md) · [Antigravity 환경](../../antigravity/docs/03_environment-notebook.md)
 
 > 보안 주의: 이 문서에는 토큰·API 키·머신 고유 경로를 포함하지 않는다. `config.toml` 등 인증 파일은 열람·커밋하지 않았다.
 

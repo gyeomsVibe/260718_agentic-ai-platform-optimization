@@ -12,8 +12,8 @@
 
 | 문서 | 용도 | 대상 |
 |---|---|---|
-| [NOTEBOOKLM_MCP_GUIDE.md](NOTEBOOKLM_MCP_GUIDE.md) | **설치·연결·사용법·고장대처**를 담은 사용설명서 | MCP를 처음 쓰는 사람 — 여기부터 |
-| [MIA_NOTEBOOKLM_MCP_OPTIMIZATION_2026-07-19.md](MIA_NOTEBOOKLM_MCP_OPTIMIZATION_2026-07-19.md) | 왜 이 도구를 골랐는지, 위험·복구 절차를 담은 설계 근거 | 판단 배경·유지보수를 알고 싶을 때 |
+| [../docs/02_NOTEBOOKLM_MCP_GUIDE.md](../docs/02_NOTEBOOKLM_MCP_GUIDE.md) | **설치·연결·사용법·고장대처**를 담은 사용설명서 | MCP를 처음 쓰는 사람 — 여기부터 |
+| [../docs/01_260719_MIA_NOTEBOOKLM_MCP_OPTIMIZATION.md](../docs/01_260719_MIA_NOTEBOOKLM_MCP_OPTIMIZATION.md) | 왜 이 도구를 골랐는지, 위험·복구 절차를 담은 설계 근거 | 판단 배경·유지보수를 알고 싶을 때 |
 | [research-vault/](research-vault/) | 받은 답변을 저장해 두는 **캐시 폴더** (쿼터 절약) | 자동으로 채워짐 — 규칙은 폴더 README |
 
 ## 핵심만 (자세한 건 위 가이드)

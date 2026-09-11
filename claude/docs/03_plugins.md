@@ -19,7 +19,7 @@
 > **영향**: 이 두 플러그인의 스킬을 참조하던 설정은 전부 미해소 상태입니다. 실제로
 > `.agents/agents/` 서브에이전트 12개가 `superpowers:writing-plans`,
 > `document-skills:frontend-design` 등을 참조했으나 하나도 발견되지 않아,
-> [`agents/README.md`](agents/README.md) 정제 시 해당 참조를 모두 제거했습니다.
+> [`../agents/README.md`](../agents/README.md) 정제 시 해당 참조를 모두 제거했습니다.
 >
 > **소실 경위 조사 완료 (2026-08-06)** — 아래 §6 참조. 요약하면 **플러그인 서브시스템
 > 전체가 2026-08-02에 초기화**됐습니다. 행위자는 특정하지 못했습니다.
@@ -43,7 +43,7 @@
 ## 3. 설치 배경 (2026-07-23, 영상 근거)
 
 "유명한 Claude Code 플러그인" 소개 영상(6종)을 전수분석하고 **필요한 것만 선별 설치**했습니다.
-선정·기각의 상세 근거와 재평가 기록은 [`../skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md`](../skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md)의 "재평가(2026-07-23)" 절에 있습니다.
+선정·기각의 상세 근거와 재평가 기록은 [`../../skills/docs/04_260719_MIA_SKILLS_EXPLORATION.md`](../../skills/docs/04_260719_MIA_SKILLS_EXPLORATION.md)의 "재평가(2026-07-23)" 절에 있습니다.
 
 **설치 안 한 것과 이유 (중복·리스크 회피):**
 - **Code Review / Security Review** → Claude Code **내장 `/code-review`·`/security-review`** + Superpowers가 커버 → 재설치 불필요
@@ -115,10 +115,10 @@ claude plugin install superpowers@superpowers-dev
 ```
 
 **재설치 여부는 미결입니다.** 판단 근거는
-[`../skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md`](../skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md)의
+[`../../skills/docs/04_260719_MIA_SKILLS_EXPLORATION.md`](../../skills/docs/04_260719_MIA_SKILLS_EXPLORATION.md)의
 재재평가 절에 있습니다. 그 문서의 "실사용 의존도가 낮다" 논거는 이번 조사로 **철회**됐습니다
 (105회 사용). 나머지 논거는 유효합니다.
 
 ## 관련
-- 플러그인 3층위 개념·계정 커넥터 정리: [environment-notebook.md](environment-notebook.md)
+- 플러그인 3층위 개념·계정 커넥터 정리: [02_environment-notebook.md](02_environment-notebook.md)
 - 스킬 탐색·슬림화 정본: [`../skills/`](../skills/)

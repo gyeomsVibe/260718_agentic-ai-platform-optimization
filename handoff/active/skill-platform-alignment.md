@@ -16,6 +16,7 @@ owned_paths:
   - skills/README.md
   - skills/MANUAL.md
   - skills/DEPLOYMENT.md
+  - skills/docs/
   - skills/external/README.md
   - skills/external/eli-kardis/
   - skills/custom/legacy-harness/

@@ -1,6 +1,6 @@
 # claude-code-subordinate — Claude Code를 Codex의 하위 도구로 쓸 때의 안전장치
 
-Codex를 사령탑으로 두고 Claude Code를 MCP 도구로 붙이는 구성([설계계획](../../agent-swarm/SYSTEM_DESIGN_CODEX_COMMAND_2026-08-21.md))에서,
+Codex를 사령탑으로 두고 Claude Code를 MCP 도구로 붙이는 구성([설계계획](../../agent-swarm/docs/02_260821_SYSTEM_DESIGN_CODEX_COMMAND.md))에서,
 위임된 에이전트의 우발적 원격 push를 막기 위한 것이다.
 
 ## 왜 필요한가
@@ -26,7 +26,7 @@ Codex를 사령탑으로 두고 Claude Code를 MCP 도구로 붙이는 구성([�
 > 모든 도구를 노출하고, 승인 통제는 부르는 클라이언트(Codex) 책임으로 넘긴다.
 > 그런데 Codex에도 도구 단위 필터가 없다. **양쪽 어디에도 하드 차단 스위치가 없다.**
 
-이 발견은 [설계계획 §3.4의 E1](../../agent-swarm/SYSTEM_DESIGN_CODEX_COMMAND_2026-08-21.md)을 무효화한다.
+이 발견은 [설계계획 §3.4의 E1](../../agent-swarm/docs/02_260821_SYSTEM_DESIGN_CODEX_COMMAND.md)을 무효화한다.
 E1은 "전환 전에 반드시 설치할 강제 지점"으로 설계됐으나 **실행 불가능한 조치였다.**
 
 ## 그래서 목적지를 막는다

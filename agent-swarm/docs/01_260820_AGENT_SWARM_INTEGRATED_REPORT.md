@@ -38,7 +38,7 @@
 > **바뀌지 않은 것**: 자료 A 원안 폐기, `agent-swarm/`의 재정의, Windows에서 크로스세션 메시징 불가,
 > 감독자-실행자 분리라는 설계 사상 자체.
 >
-> 상세: [실험 1](logs/2026-08-21_exp1_codex-to-antigravity.md) · [실험 2](logs/2026-08-21_exp2_instruction-violation-detection.md) · [실험 3](logs/2026-08-21_exp3_claude-agent-teams.md) · [실험 4·5](logs/2026-08-21_exp4-5_mcp-bridge-delegation.md) · [소스 감사](audits/2026-08-21_mcp-server-google-antigravity.md)
+> 상세: [실험 1](../logs/2026-08-21_exp1_codex-to-antigravity.md) · [실험 2](../logs/2026-08-21_exp2_instruction-violation-detection.md) · [실험 3](../logs/2026-08-21_exp3_claude-agent-teams.md) · [실험 4·5](../logs/2026-08-21_exp4-5_mcp-bridge-delegation.md) · [소스 감사](../audits/2026-08-21_mcp-server-google-antigravity.md)
 
 ### 핵심 실측 사실 5가지
 
@@ -258,8 +258,8 @@ flowchart TD
 | **Codex ↔ Claude Code (MCP)** | ⚠️ 명령만 확인 | `claude mcp serve` + `codex mcp add` 존재 확인. **실제 연결은 미검증** | — |
 | **Codex 폰 원격조종** | ⚠️ 명령만 확인 | `codex remote-control start/pair` 존재 확인. **페어링 미수행** | — |
 | 외부 브리지 `codex-agy-bridge` | ❌ 부적합 | macOS/tmux 전용, `agy 1.0.8` 대상 (우리는 1.1.16 — 버전 드리프트) | 직접 셸 호출 |
-| 외부 브리지 `mcp-server-google-antigravity` (상류 그대로) | 🧪 ❌ **감사 완료 — 부적합** | [소스 감사](audits/2026-08-21_mcp-server-google-antigravity.md): `AGY_AUTO_APPROVE` 기본값이 `true`이고 `--dangerously-skip-permissions`로 직결. **R1을 회피하는 경로가 아니라 R1을 내장한 경로** | ↓ 포크 |
-| **벤더링 포크** [`mcp/antigravity-bridge/`](../mcp/antigravity-bridge/) | 🧪 ✅ **설치·등록·런타임 검증 완료** | 자동승인 기본 off, 샌드박스 기본 on, 파일 도구 6종 제거, 환경변수 허용 목록화. stdio 핸드셰이크로 도구 9종 확인, `antigravity_health`가 하드닝 적용을 런타임에 보고 | Codex에 `antigravity-bridge`로 등록됨 |
+| 외부 브리지 `mcp-server-google-antigravity` (상류 그대로) | 🧪 ❌ **감사 완료 — 부적합** | [소스 감사](../audits/2026-08-21_mcp-server-google-antigravity.md): `AGY_AUTO_APPROVE` 기본값이 `true`이고 `--dangerously-skip-permissions`로 직결. **R1을 회피하는 경로가 아니라 R1을 내장한 경로** | ↓ 포크 |
+| **벤더링 포크** [`mcp/antigravity-bridge/`](../../mcp/antigravity-bridge/) | 🧪 ✅ **설치·등록·런타임 검증 완료** | 자동승인 기본 off, 샌드박스 기본 on, 파일 도구 6종 제거, 환경변수 허용 목록화. stdio 핸드셰이크로 도구 9종 확인, `antigravity_health`가 하드닝 적용을 런타임에 보고 | Codex에 `antigravity-bridge`로 등록됨 |
 
 > **매트릭스 요약 (2026-08-21)**: 이 노트북에서 **오늘 승인 없이 실제로 작동하는 것은 두 가지뿐이다** — `agy` 직접 헤드리스 실행, Claude Code subagent 병렬 조사. 두 도구를 잇는 자동 경로는 전부 승인 대기 상태다.
 
@@ -489,7 +489,7 @@ F17  전송 방식을 바꿔도 전제는 따라온다.
 | R1 | 🔻 **샌드박스 해제** — **더 이상 필요 없다 (실험 4에서 해소)** | Codex의 모든 셸 명령이 무제한이 된다. 글로벌 룰 P2 정면 위반 | **등급 재하향 — 회피 가능.** 실험 1·2 시점에는 "필수 전제"로 상향했으나 **그 판단은 틀렸다.** 셸 경로를 고집할 때만 치르는 대가였고, MCP 경유는 샌드박스를 켠 채 자동승인 없이 성립한다(F18). **이 항목은 이제 채택하지 않는다** |
 | R2 | **24시간 무인 반복 루프** | 비용·파일 오염·되돌리기 어려운 변경 누적 | 마감 + 반복 상한 이중 조건 필수. 첫 도입은 **1시간·5회** 상한. **비용 실측 반영**: 위임 1건이 캐시 포함 60만 토큰 규모다. 24시간 반복의 실제 청구액을 이 배수로 추정할 것 |
 | R3 | **WSL2 설치** (대안 B) | 시스템 설정 변경. 워크스페이스가 `D:\` 네이티브라 경로·성능·권한 이슈 | ⏸ **승인 필요.** 이번 범위 밖 |
-| R4 | ✅ **외부 MCP 브리지 — 해소됨** | 상류 그대로는 부적합(기본값 자동승인, 경로 제한 없는 파일 도구 6종, 5주째 미유지보수). 공급망 지표 자체는 깨끗(설치 시 코드 실행·네트워크·텔레메트리 전부 없음) | **해소.** [감사](audits/2026-08-21_mcp-server-google-antigravity.md) 후 [최소 포크 벤더링](../mcp/antigravity-bridge/SOURCE.md) 완료. 설치는 `--omit=optional --ignore-scripts`로 수행해 전이 의존성의 설치 시 스크립트 실행을 0으로 만들었다. `npm audit` 취약점 0건 |
+| R4 | ✅ **외부 MCP 브리지 — 해소됨** | 상류 그대로는 부적합(기본값 자동승인, 경로 제한 없는 파일 도구 6종, 5주째 미유지보수). 공급망 지표 자체는 깨끗(설치 시 코드 실행·네트워크·텔레메트리 전부 없음) | **해소.** [감사](../audits/2026-08-21_mcp-server-google-antigravity.md) 후 [최소 포크 벤더링](../../mcp/antigravity-bridge/SOURCE.md) 완료. 설치는 `--omit=optional --ignore-scripts`로 수행해 전이 의존성의 설치 시 스크립트 실행을 0으로 만들었다. `npm audit` 취약점 0건 |
 | R5 | **Claude Code 업그레이드** 2.1.220 → 2.1.237 | 낮음. 다만 Windows에서는 크로스세션 메시징이 여전히 안 열림 | 실험 3 F10에 따라 **Agent Teams 재검증의 유일한 전제**다. 세션 중 업그레이드는 실행 중 세션을 흔들 수 있으므로 세션 종료 후 수행 권고 |
 | R6 | **Agent Teams 활성화** | 실험적 기능. 명명된 subagent가 팀메이트로 전환되어 의도치 않은 팀이 생길 수 있음 | ✅ **실험 3에서 켜고 `"0"`으로 원복 완료.** 이 버전에서는 켜도 효과가 없으므로 업그레이드 전까지 다시 켤 이유 없음 |
 | R7 | **`crossSessionInbound` 미설정 상태의 무인 운전** | bypassPermissions 세션은 모든 수신 메시지를 보류하고 5분 뒤 폐기 | Windows에서는 해당 없음. WSL 이주 시 반드시 재검토 |

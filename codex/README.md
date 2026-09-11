@@ -13,7 +13,7 @@
 
 | 섹션 | 무엇인가 | 진입점 |
 |---|---|---|
-| 🧩 **환경설정** | 플러그인·MCP·계정 연동 구조와 정리 원칙, 샌드박스 트러블슈팅 | [environment-notebook.md](environment-notebook.md) |
+| 🧩 **환경설정** | 플러그인·MCP·계정 연동 구조와 정리 원칙, 샌드박스 트러블슈팅 | [docs/02_environment-notebook.md](docs/02_environment-notebook.md) |
 | 🛠 **[app-diagnostics/](app-diagnostics/)** | 앱 진단·오류해결·패치 — 진단 스크립트·복구 배치·검증 보고서를 **한 폴더에** | [app-diagnostics/](app-diagnostics/) |
 | 🐾 **[custom-pet/](custom-pet/)** | 커스텀 반려동물(Pet) 제작·복구·QA 자료 전체 | [custom-pet/PET_LIBRARY.md](custom-pet/PET_LIBRARY.md) |
 
@@ -23,8 +23,8 @@
 
 | 문서 | 내용 |
 |---|---|
-| [environment-notebook.md](environment-notebook.md) | 노트북 환경설정 기록 — `~/.codex/` 구조, "안 쓰는 건 비활성화" 정리 원칙, **트러블슈팅 3건**(샌드박스에서 `gh` 인증 실패 해결, 압축 파일 미리보기 우회, write-root 권한(ACL) 체크리스트) |
-| [environment-desktop.md](environment-desktop.md) | 데스크톱 환경설정 기록 |
+| [docs/02_environment-notebook.md](docs/02_environment-notebook.md) | 노트북 환경설정 기록 — `~/.codex/` 구조, "안 쓰는 건 비활성화" 정리 원칙, **트러블슈팅 3건**(샌드박스에서 `gh` 인증 실패 해결, 압축 파일 미리보기 우회, write-root 권한(ACL) 체크리스트) |
+| [docs/01_environment-desktop.md](docs/01_environment-desktop.md) | 데스크톱 환경설정 기록 |
 
 > 이 두 파일은 다른 저장소·다른 도구 문서에서 링크로 참조하므로 루트에 그대로 둡니다.
 > 세 도구가 함께 쓰는 전역 규칙·자동화는 [`../shared/`](../shared/)에 있습니다.

@@ -12,7 +12,7 @@
   **설정 기록·가이드·문제해결 노트**를 모은 문서 창고입니다.
 - **무엇부터 볼까?** 아래 지도에서 관심 있는 폴더의 README를 먼저 여세요. 각 폴더 README가
   "이게 뭔지 모르는 사람"도 이해할 수 있게 다시 설명해 줍니다.
-- **AI에게 뭘 시킬 수 있는지 알고 싶다면** → **[Skill 사용 매뉴얼](skills/MANUAL.md)**.
+- **AI에게 뭘 시킬 수 있는지 알고 싶다면** → **[Skill 사용 매뉴얼](skills/docs/02_MANUAL.md)**.
   스킬이 뭔지부터 설명하고, 도구별로 **어떤 문장을 말하면 발동하는지** 그대로 적어 뒀습니다.
 
 ## 자주 찾는 문제 해결 바로가기
@@ -41,7 +41,7 @@
 플랫폼별 전수 실행도 완료하지 않았으므로 “3대 도구 전체 실동작 완료”로 표시하지 않습니다.
 
 > **공용 스킬 경로는 없습니다.** 도구마다 읽는 폴더가 다릅니다. 한 도구에서 됐다고
-> 다른 도구도 되리라 넘겨짚지 마세요 — 자세한 내용은 [DEPLOYMENT.md](skills/DEPLOYMENT.md) 2절.
+> 다른 도구도 되리라 넘겨짚지 마세요 — 자세한 내용은 [DEPLOYMENT.md](skills/docs/01_DEPLOYMENT.md) 2절.
 
 스킬 파일이 깨지지 않았는지는 루트에서 한 번에 검사합니다.
 
@@ -58,7 +58,7 @@ npm run skills:audit
 | [antigravity/](antigravity/) | **Antigravity** 플랫폼 섹션 — 환경설정, IDE 확장 슬림화(다이어트) | Antigravity IDE를 가볍게 만들 때 |
 | [ollama/](ollama/) | **Ollama** 로컬 추론 섹션 — D: 모델 저장, GPU 최적화, 초보자용 실행법 | 인터넷 없이 로컬 모델을 실행하거나 설치를 복구할 때 |
 | [mcp/](mcp/) | **MCP 섹션** — AI 도구에 외부 기능을 연결하는 서버들 (현재 NotebookLM) | AI에 외부 자료·도구를 붙일 때 |
-| [skills/](skills/) | **모든 Skill의 정본** — [사용 매뉴얼](skills/MANUAL.md) · [배포 정본](skills/DEPLOYMENT.md) · `custom/mia` 제작 Skill · `external` 외부 도입 · 조사 기록 | 스킬을 **쓰거나** 찾고·수정하고·검증할 때 |
+| [skills/](skills/) | **모든 Skill의 정본** — [사용 매뉴얼](skills/docs/02_MANUAL.md) · [배포 정본](skills/docs/01_DEPLOYMENT.md) · `custom/mia` 제작 Skill · `external` 외부 도입 · 조사 기록 | 스킬을 **쓰거나** 찾고·수정하고·검증할 때 |
 | [shared/](shared/) | **3플랫폼 공용 기반시설** — 전역 규칙과 자동업데이트 | 세 도구가 함께 쓰는 규칙·자동화를 손볼 때 |
 | [handoff/](handoff/) | **GitHub 인계 정본** — 활성 인계, 완료 기록, 계약, SELFREFINE 검증기 | 다른 에이전트가 검증된 기준점에서 작업을 이어받을 때 |
 
@@ -140,7 +140,7 @@ npm run check
 | **정정** | superpowers No-Go 논거 중 "실사용 의존도 낮음"을 **철회**(`usageCount` 105회) |
 | **추가** | superpowers 14종 중 **충돌 없는 2종만 선별 반입** — 플러그인은 all-or-nothing이고 `using-superpowers`가 모든 응답을 가로챔 |
 | **정리** | Codex 로컬 플러그인 5종 비활성화. 계정 커넥터는 서버 측이라 로컬 제거 불가로 확정 |
-| **문서** | [Skill 사용 매뉴얼](skills/MANUAL.md)을 **상황별 역인덱스 우선**으로 재작성 |
+| **문서** | [Skill 사용 매뉴얼](skills/docs/02_MANUAL.md)을 **상황별 역인덱스 우선**으로 재작성 |
 
 ### 2026-08-05 — 3대 도구 스킬 실측·정비
 
@@ -151,8 +151,8 @@ npm run check
 | **복구** | 전역 `CLAUDE.md`가 지시하는 `vibe-check` 스킬을 Claude Code가 **볼 수 없던** 상태를 해소 |
 | **추가** | Claude Code 스킬 3 → 11개, 서브에이전트 0 → 4개 / Antigravity 16 → 19개 (실사용 패턴 실측 기반 선별) |
 | **추가** | [`npm run skills:audit`](skills/custom/mia/scripts/audit-skill-roots.py) — 9개 폴더 110개 스킬을 최엄격(Codex) 규격으로 전수 감사. `npm run check`에 편입 |
-| **판단** | superpowers 재설치 **No-Go** — 14개 스킬 중 12개가 이미 커버되고 트리거가 충돌 ([근거](skills/research/MIA_SKILLS_EXPLORATION_2026-07-19.md)) |
-| **문서** | [Skill 사용 매뉴얼](skills/MANUAL.md) · [배포 정본](skills/DEPLOYMENT.md) 신설 |
+| **판단** | superpowers 재설치 **No-Go** — 14개 스킬 중 12개가 이미 커버되고 트리거가 충돌 ([근거](skills/docs/04_260719_MIA_SKILLS_EXPLORATION.md)) |
+| **문서** | [Skill 사용 매뉴얼](skills/docs/02_MANUAL.md) · [배포 정본](skills/docs/01_DEPLOYMENT.md) 신설 |
 
 ### 2026-08-05 — MIA REDTEAM 스킬 포트폴리오 최적화
 
@@ -161,7 +161,7 @@ npm run check
 | **정리** | 3대 도구 파일 기반 `SKILL.md` **127 → 43(-66.1%)**. 삭제 없이 사용자 홈 백업으로 84개 격리 |
 | **중복 제거** | Antigravity 레거시 루트 6개와 Codex MIA SHA-256 동일본 3개 격리 |
 | **도메인 축소** | 현재 작업 근거가 없는 Antigravity 과학 39종·Android 1종 플러그인 격리 |
-| **문서** | [MIA REDTEAM 전수조사](skills/research/MIA_SKILL_PORTFOLIO_REDTEAM_2026-08-05.md)에 전체 판정·웹 근거·복구 경로 기록 |
+| **문서** | [MIA REDTEAM 전수조사](skills/docs/05_260805_MIA_SKILL_PORTFOLIO_REDTEAM.md)에 전체 판정·웹 근거·복구 경로 기록 |
 | **미완료** | Codex 커넥터 11종 제거는 앱 핸들러 부재로 실패. 3개 CLI 새 세션 검증도 환경 오류로 미통과 |
 
 ### 2026-08-04 — 외부 Skill 반입 계약 정비

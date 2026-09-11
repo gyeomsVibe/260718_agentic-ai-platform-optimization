@@ -164,6 +164,6 @@ nlm login
 
 ## 더 깊이 알고 싶다면
 
-- 왜 이 도구를 골랐는지, 어떤 위험이 있는지: [MIA_NOTEBOOKLM_MCP_OPTIMIZATION_2026-07-19.md](MIA_NOTEBOOKLM_MCP_OPTIMIZATION_2026-07-19.md)
+- 왜 이 도구를 골랐는지, 어떤 위험이 있는지: [01_260719_MIA_NOTEBOOKLM_MCP_OPTIMIZATION.md](01_260719_MIA_NOTEBOOKLM_MCP_OPTIMIZATION.md)
 - 도구 공식 저장소: [jacob-bd/notebooklm-mcp-cli](https://github.com/jacob-bd/notebooklm-mcp-cli)
 - 예비 도구: [PleasePrompto/notebooklm-mcp](https://github.com/PleasePrompto/notebooklm-mcp)

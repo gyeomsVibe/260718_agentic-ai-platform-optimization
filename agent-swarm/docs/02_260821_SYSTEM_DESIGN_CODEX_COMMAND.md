@@ -2,7 +2,7 @@
 
 > **작성일**: 2026-08-21
 > **스킬**: MIA 전략절차 — 기획 → 검토 → 실행 → 검증
-> **선행 근거**: [통합 보고서](AGENT_SWARM_INTEGRATED_REPORT_2026-08-20.md) · [실험 로그 5건](logs/) · [소스 감사](audits/2026-08-21_mcp-server-google-antigravity.md)
+> **선행 근거**: [통합 보고서](01_260820_AGENT_SWARM_INTEGRATED_REPORT.md) · [실험 로그 5건](../logs/) · [소스 감사](../audits/2026-08-21_mcp-server-google-antigravity.md)
 > **결정 과제**: ① 이 세션을 무엇이라 부를 것인가 ② "스킬이냐 글로벌 룰이냐 플러그인이냐"에 답한다 ③ Codex를 사령탑으로 Claude Code·Antigravity를 직접 제어하는 시스템을 설계한다
 
 ---
@@ -241,7 +241,7 @@ codex exec --approve-for-me "..."
 > Codex에도 도구 단위 필터가 없다. **양쪽 어디에도 하드 차단 스위치가 없다.**
 >
 > → **E1을 E1'로 대체한다: 호출자를 막을 수 없으면 목적지를 막는다.**
-> 상세: [mcp/claude-code-subordinate/](../mcp/claude-code-subordinate/README.md)
+> 상세: [mcp/claude-code-subordinate/](../../mcp/claude-code-subordinate/README.md)
 
 | # | 강제 수단 | 층 | 막는 것 |
 |---|---|---|---|

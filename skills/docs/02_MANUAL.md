@@ -142,7 +142,7 @@ DB 테이블 삭제, 클라우드 파일 삭제처럼 **되돌릴 수 없는 작
 여기서 두 가지가 따라옵니다.
 
 - **많다고 좋은 게 아닙니다.** 설명 목록이 길어지면 엉뚱한 스킬이 튀어나옵니다.
-  그래서 127개였던 것을 **43개로 줄였습니다**([DEPLOYMENT.md](DEPLOYMENT.md)).
+  그래서 127개였던 것을 **43개로 줄였습니다**([DEPLOYMENT.md](01_DEPLOYMENT.md)).
 - **말하는 방식이 영향을 줍니다.** 그래서 2장에 실제 문구를 그대로 적어 뒀습니다.
 
 ### 서브에이전트는 뭐가 다른가
@@ -319,7 +319,7 @@ npm run skills:audit
 
 | 문서 | 언제 보나 |
 |---|---|
-| [DEPLOYMENT.md](DEPLOYMENT.md) | 어느 스킬을 어느 도구에 왜 올렸는지 |
+| [DEPLOYMENT.md](01_DEPLOYMENT.md) | 어느 스킬을 어느 도구에 왜 올렸는지 |
 | [custom/mia/AUTHORING_HANDBOOK.md](custom/mia/AUTHORING_HANDBOOK.md) | 새 스킬을 만들 때 |
 | [external/](external/) | 외부에서 가져온 스킬의 출처·라이선스 |
 | [README.md](README.md) | 이 폴더의 분류 원칙 |

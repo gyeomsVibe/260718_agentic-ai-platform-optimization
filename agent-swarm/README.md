@@ -16,7 +16,7 @@ Antigravity CLI, MCP)으로 내장하면서 파일 기반 자작 버스는 열�
 
 | 파일 | 내용 |
 |---|---|
-| [AGENT_SWARM_INTEGRATED_REPORT_2026-08-20.md](AGENT_SWARM_INTEGRATED_REPORT_2026-08-20.md) | 통합 최종보고서. 자료 3건 전수 검증, 대안 비교, MIA Swarm Protocol v2, 실행 실험 3건, 위험·승인 항목 |
+| [docs/01_260820_AGENT_SWARM_INTEGRATED_REPORT.md](docs/01_260820_AGENT_SWARM_INTEGRATED_REPORT.md) | 통합 최종보고서. 자료 3건 전수 검증, 대안 비교, MIA Swarm Protocol v2, 실행 실험 3건, 위험·승인 항목 |
 
 ## 실험 로그 (`logs/`)
 

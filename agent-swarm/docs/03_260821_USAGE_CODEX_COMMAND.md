@@ -1,6 +1,6 @@
 # 사용법 — 코덱스가 클로드 코드와 안티그래비티를 부리기
 
-> 2026-08-21 배선 완료. 검증 로그: [P1~P3](logs/2026-08-21_p1-p3_codex-command-wiring.md)
+> 2026-08-21 배선 완료. 검증 로그: [P1~P3](../logs/2026-08-21_p1-p3_codex-command-wiring.md)
 
 ## 지금 상태
 
@@ -50,11 +50,11 @@ codex exec --approve-for-me "시킬 내용"
 
 **1. `auto_approve: true`를 쓰지 마세요.**
 `agy`에게 이걸 켜줬다가 파일 저장만 시켰는데 커밋과 GitHub 업로드까지 당했습니다
-([실험 6](logs/2026-08-21_exp6_incident-executor-pushed-to-remote.md)).
+([실험 6](../logs/2026-08-21_exp6_incident-executor-pushed-to-remote.md)).
 
 **2. 검사시킬 때 정답을 알려주지 마세요.**
 "9줄이어야 한다"고 쓰면 세지 않고 9라고 답합니다. **"몇 줄인지 세어서 보고하라"** 로 쓰세요
-([F29](logs/2026-08-21_p1-p3_codex-command-wiring.md)).
+([F29](../logs/2026-08-21_p1-p3_codex-command-wiring.md)).
 
 **3. "안 했다"는 보고를 그대로 믿지 마세요.**
 검증이 두 번 연속 서로 다른 이유로 실패했고, 두 번 다 사람이 직접 다시 세어서 잡았습니다.
@@ -67,7 +67,7 @@ codex exec --approve-for-me "시킬 내용"
 ALLOW_PUSH=1 git push origin main
 ```
 
-표시 없는 push는 차단됩니다. 상세: [mcp/claude-code-subordinate/](../mcp/claude-code-subordinate/README.md)
+표시 없는 push는 차단됩니다. 상세: [mcp/claude-code-subordinate/](../../mcp/claude-code-subordinate/README.md)
 
 새 PC에서 저장소를 클론하면 훅이 따라오지 않으므로 다시 설치해야 합니다:
 
