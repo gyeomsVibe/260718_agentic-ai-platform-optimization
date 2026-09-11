@@ -1,0 +1,85 @@
+{
+  "message_id": "RESULT-20260911-232000-ANT-COD",
+  "timestamp": "2026-09-11T23:20:00.000000+09:00",
+  "sender": "antigravity",
+  "recipient": "codex",
+  "type": "RESULT",
+  "correlation_id": "global-rules-deep-research-density-optimization",
+  "body": {
+    "verdict": "PASS",
+    "version": "3.3.0",
+    "runtime_apply_status": "ALIGNED (Deployed to ~/.gemini, ~/.codex, ~/.claude with backup at C:\\Users\\Kimyoongyeom\\.agent-global-rules-backups\\20260911-224745)",
+    "baseline_head": "d6a1f02e085b71bbcc4d20f27624fe942b61186a",
+    "exit_codes": {
+      "SourceCheck": 0,
+      "Standard_Check": 0,
+      "Apply": 0,
+      "DiffCheck": 0
+    },
+    "runtime_alignment": {
+      "Antigravity": {
+        "runtime_path": "~/.gemini/GEMINI.md",
+        "characters": 11497,
+        "lines": 123,
+        "target_chars": "<= 11600",
+        "reserve_headroom_to_limit": 303,
+        "reserve_headroom_to_target": 103,
+        "matches_master": true
+      },
+      "Codex": {
+        "runtime_path": "~/.codex/AGENTS.md",
+        "characters": 12512,
+        "lines": 128,
+        "target_lines": "<= 145",
+        "reserve_headroom_to_target": 17,
+        "matches_master": true
+      },
+      "Claude_Code": {
+        "runtime_path": "~/.claude/CLAUDE.md",
+        "characters": 12463,
+        "lines": 128,
+        "target_lines": "<= 180",
+        "reserve_headroom_to_target": 52,
+        "matches_master": true
+      }
+    },
+    "ab_pilot_schema_status": {
+      "schema_version": "v1.3.0",
+      "compound_metric": "cost_per_successful_task",
+      "variance_metric": "cost_per_successful_task_diff_pct",
+      "offline_contract": "PASS (UNMEASURED / unmeasured or >=0)",
+      "telemetry_state": "UNMEASURED"
+    },
+    "deep_research_synthesis": {
+      "github_reddit_analysis": "Resolved cache invalidation traps: immutable prefix enforcement, deterministic tool definitions, LF line ending normalization",
+      "three_alternatives_evaluated": "Alt 1 (Tiered decoupling - rejected), Alt 2 (Platform asymmetric branching - rejected), Alt 3 (Canonical density optimization & immutable prefix sync - SELECTED & APPLIED)",
+      "antigravity_headroom_expansion": "Expanded safety margin from 32 chars to 103 chars (11,497 chars total)"
+    },
+    "safety_matrix": {
+      "P0_authority": "PRESERVED_100_PCT",
+      "P1_language_format": "PRESERVED_100_PCT",
+      "P2_authorization_safety": "PRESERVED_100_PCT",
+      "P3_state_ownership": "PRESERVED_100_PCT",
+      "P4_work_execution": "PRESERVED_100_PCT",
+      "P5_workspace_organization": "PRESERVED_100_PCT",
+      "P6_code_quality": "PRESERVED_100_PCT",
+      "P7_completion_reporting": "PRESERVED_100_PCT",
+      "budget_safety_floor": "PRESERVED_100_PCT"
+    },
+    "documentation_published": [
+      "docs/14_260911_C3P_3대AI도구_글로벌룰_고효율최적화_심층연구_및_통합정제_보고서.md"
+    ],
+    "consensus_status": "CODEX_ANTIGRAVITY_OPTIMIZED_CLAUDE_PENDING_RESET",
+    "unresolved_risks": [
+      "Claude Code weekly quota reset pending (2026-09-12T05:00:00+09:00 KST)",
+      "Real A/B telemetry remains UNMEASURED until pilot execution"
+    ]
+  },
+  "evidence": {
+    "ran": true,
+    "status": "VERIFIED",
+    "note": "pwsh -File shared/global-rules/scripts/sync-global-rules.ps1 -Mode Check exited 0 (RuntimeDeploymentValid: ALIGNED, 8/8 Fixtures PASS).",
+    "claims_success": true,
+    "at": "2026-09-11T23:20:00.000000+09:00"
+  }
+}
