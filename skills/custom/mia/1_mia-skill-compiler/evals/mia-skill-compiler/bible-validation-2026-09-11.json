@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "candidate": "mia-skill-compiler",
+  "artifact": "candidates/mia-skill-compiler/references/skill-creation-bible.md",
+  "validated_at": "2026-09-11",
+  "status": "STATIC_CANONICAL_CONSOLIDATED",
+  "scope": "Canonical consolidation from -260901_gpt-chatbot-section/docs (11 documents), Agent KMGS 8 Sizing Gates, QVRC, ERR 7, 500-Line Frame-First, Standalone Visual Artifacts, and 04_WORKFLOWS §5 audit completion",
+  "source_inventory": {
+    "canonical_repository": "https://github.com/gyeomsVibe/-260901_gpt-chatbot-section/tree/main/docs",
+    "local_path": "-00_gpt-chatbot-section/docs",
+    "reviewed_documents": [
+      "00_START_HERE.md",
+      "01_BIBLE.md",
+      "02_KMGS.md",
+      "03_QUALITY_CIRCUIT.md",
+      "04_WORKFLOWS.md",
+      "05_MANUAL.md",
+      "06_THEORY_PAPER.md",
+      "07_EVIDENCE.md",
+      "08_LINEAGE.md",
+      "09_PATENT_VIABILITY.md",
+      "10_이_저장소가_만들어진_과정_쉬운해설.md"
+    ],
+    "total_documents_reviewed": 11
+  },
+  "checks": [
+    {
+      "id": "canonical_source_connection",
+      "result": "pass",
+      "evidence": "Section 10 officially links to -260901_gpt-chatbot-section/docs 11 canonical documents."
+    },
+    {
+      "id": "constitutional_completeness",
+      "result": "pass",
+      "expected_principles": 24,
+      "observed_principles": 24
+    },
+    {
+      "id": "agent_kmgs_sizing_gates",
+      "result": "pass",
+      "evidence": "8 Sizing Gates (G1 Identity ~ G8 Maintenance) and Module Budget Rationale are explicitly defined."
+    },
+    {
+      "id": "quality_first_circuit_integration",
+      "result": "pass",
+      "evidence": "QCF 9-step compiler, QVRC 10-step circuit, Evidence Gate R0-R3, ERR 7-item regression, and Q^3 formula are codified."
+    },
+    {
+      "id": "500_line_frame_first_budget",
+      "result": "pass",
+      "evidence": "500-Line Frame-First context budget allocation table is defined in fast-path-budget.md and Principle 5."
+    },
+    {
+      "id": "standalone_visual_artifacts",
+      "result": "pass",
+      "evidence": "Principle 24 and Output Contract define Standalone Visual Artifacts (HTML/Generative UI) as the agentic evolution of HTML-first."
+    },
+    {
+      "id": "workflows_section_5_compliance",
+      "result": "pass",
+      "evidence": "All 6 immutable clauses from 04_WORKFLOWS §5.2 are verified and certified."
+    },
+    {
+      "id": "status_integrity",
+      "result": "pass",
+      "evidence": "Separates STATIC_CANDIDATE, STRUCTURE_VALIDATED, INSTALLED, DISCOVERY, RUNTIME, and VERIFIED_RESULT. Prohibits forbidden transitions."
+    }
+  ],
+  "not_proven": [
+    "Skill discovery in a fresh session",
+    "Runtime trigger execution under user conversational load",
+    "Cross-platform live runtime execution in all three tools"
+  ]
+}

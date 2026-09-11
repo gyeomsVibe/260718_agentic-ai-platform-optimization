@@ -26,7 +26,7 @@ license: MIT
 - 사용자 지정 사고 모드: [사고 모드 계약](references/thinking-modes.md)
 - 파일·상태·승인·평가: [산출물·승격 계약](references/output-promotion-contract.md)
 - 세 플랫폼의 설치·발견 차이: [플랫폼 Agent Skill 계약](references/platform-skill-contracts.md)
-- MIA 시리즈 스킬의 준수 규격·배포 게이트·3도구 검증 회로: [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md) — **이 라우터의 유일한 예외입니다.** 대상이 MIA 시리즈면 「후보 컴파일하기」 선행 조건에 따라 반드시 읽으세요.
+- MIA 시리즈 스킬의 준수 규격·배포 게이트·3도구 검증 회로: 카탈로그 최상위의 `AUTHORING_HANDBOOK.md` — **이 라우터의 유일한 예외입니다.** 대상이 MIA 시리즈면 「후보 컴파일하기」 선행 조건에 따라 반드시 읽으세요.
 
 ## 사용자 계약
 
@@ -84,7 +84,7 @@ license: MIT
 ## 후보 컴파일하기
 
 > **선행 조건 (MIA 시리즈 필수)**: 대상이 `skills/custom/mia/` 카탈로그의 스킬이면
-> 파일을 쓰기 전에 [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md)의 **§2 준수 규격**과
+> 파일을 쓰기 전에 카탈로그 최상위의 `AUTHORING_HANDBOOK.md`의 **§2 준수 규격**과
 > **§3 트리거 계약**을 읽고 적용하세요. **이 읽기는 선택이 아니며 `FAST` 경로에서도 생략하지 않습니다.**
 > 규격 위반은 배포 게이트(`validate-skill-manifests.py`)가 자동 차단하므로, 읽지 않고 만들면
 > 되돌아와 다시 작성하게 됩니다. 교본을 읽었고 어떤 규격을 적용했는지 결과 보고에 한 줄로 남기세요.
@@ -125,7 +125,7 @@ python scripts/preflight_skill_promotion.py <candidate-directory> --target <targ
 - `RUNTIME_EVALUATED`: 발견 확인 후 정해진 실행 사례 수행
 - `VERIFIED_RESULT`: 사전에 정한 작업·안전·플랫폼 기준 통과
 
-MIA 시리즈는 `VERIFIED_RESULT`를 선언하기 전에 [MIA 제작 교본](../../../AUTHORING_HANDBOOK.md)
+MIA 시리즈는 `VERIFIED_RESULT`를 선언하기 전에 카탈로그 최상위의 `AUTHORING_HANDBOOK.md`
 **§6 검증 회로**를 그대로 수행하세요. 파일 해시 일치는 발동 증거가 아닙니다. 세 도구에서 각각
 실제 발동을 확인하고 오발동 방어까지 검증해야 하며, 한 도구의 성공을 다른 도구에 상속하지 마세요.
 

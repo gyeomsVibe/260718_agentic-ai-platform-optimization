@@ -30,6 +30,32 @@
 
 이름, 문체, 파일 수만 다른 것은 차별점으로 인정하지 마세요. 기존 Skill의 수정이 더 작고 효과적이면 새 Skill 대신 개선을 권고하세요.
 
+## User Intent Lock (요구 이탈 방지)
+
+질의 수신 직후 내부적으로 고정하고 최종 출력 직전 대조합니다.
+
+```json
+{
+  "requested_task": "사용자가 요청한 핵심 과업",
+  "target_audience": "모르는 것을 모르는 사용자 / 개발자",
+  "required_depth": "R0|R1|R2|R3",
+  "required_format": "Agent Skill (SKILL.md + references)",
+  "must_include": ["권한 경계", "안전 규칙", "역질문+추천쌍"],
+  "must_exclude": ["비밀키", "미검증 claim", "장황한 챗봇 덤프"],
+  "user_effort_limit": "minimum",
+  "success_condition": "정적 검사 및 3대 플랫폼 규격 통과"
+}
+```
+
+### 금지되는 실패 7종 (이탈 차단)
+1. 분석을 요청했는데 일반론만 설명함.
+2. 파일 생성을 요청했는데 방법만 설명함.
+3. 요약을 요청했는데 원문만 재배열함.
+4. 최신 검증을 요청했는데 기억으로 답변함.
+5. 사용자 대상 브리핑을 요청했는데 장황한 로그를 덤프함.
+6. AI가 직접 처리할 수 있는데 사용자에게 복사·검색·정리를 떠넘김.
+7. 할 수 없는 작업을 할 수 있는 것처럼 주장함.
+
 ## PRD 최소 체크리스트
 
 - 문제와 대상 사용자
@@ -49,16 +75,26 @@ PRD의 편의 요구가 보안, 권한, 근거 상태 또는 플랫폼 계약을
 
 `FAST`에서는 이 목록을 별도 장문 문서로 만들지 말고 후보 생성 전 내부 체크리스트로 사용하세요. 전체 PRD는 복잡한 다중 사용자·다중 도구 설계, 고위험 작업 또는 사용자의 명시 요청이 있을 때만 출력하세요.
 
-## 품질 회귀 점수표
+## ERR (Evidence Regression and Repair) 7대 회귀 검사표
 
-수정 전후를 다음 공통 기준으로 비교하세요. 숫자를 임의로 꾸미지 말고 관찰 가능한 사례와 실패 로그를 근거로 판정하세요.
+초안을 바로 사용자에게 내보내지 않고 7대 항목을 대조합니다. 결함 발견 시 전체를 다시 쓰지 않고 가장 작은 문제 지점만 국소 수정(Local Repair)합니다.
 
-- 요청 충실도와 사용자 핵심 작업 성공
-- 검증된 근거 비율과 반대 근거 처리
-- 기존 안전·권한·출력 계약의 회귀 여부
-- 기능 완결성, 오류 복구와 실행 명확성
-- 검색 정확도와 필요한 컨텍스트 양
-- 상태 표현의 정직성
-- 불필요한 파일, 중복, 검색 단계, 지연, 토큰과 사용자 수고
+| # | 항목 | 핵심 검증 질문 | 통과 기준 |
+|---|---|---|---|
+| 1 | **Intent Regression** | 사용자가 요청한 결과를 실제로 만들었는가? | User Intent Lock과 100% 일치 |
+| 2 | **Evidence Regression** | 외부 사실마다 1차 근거가 있는가? | R0~R3 출처 및 최신성 확인 |
+| 3 | **Hallucination Regression** | 추론을 사실처럼 쓰거나 모르는 내용을 채웠는가? | 미확인은 미확인으로 명시 |
+| 4 | **Constraint Regression** | 고정 요구(안전, 포맷, 라이선스)를 빠뜨렸는가? | 24개 불변원칙 준수 |
+| 5 | **Implementation Regression** | 3대 도구(Antigravity, Claude, Codex)에서 구현 가능한가? | 파서 문법 및 도구 규격 통과 |
+| 6 | **Density Regression** | 핵심 규칙이 빠지거나 쓸데없이 장황한가? | 500줄 코어 유지, 고밀도 정제 |
+| 7 | **User-Effort Regression** | AI가 할 수 있는 일을 사용자에게 떠넘겼는가? | 표적 역질문 1개 + 추천 기본값 제공 |
+
+## Q³ 품질 측정 공식
+
+$$Q^3 = \text{Query Fidelity} \times \text{Verified Evidence} \times \text{Regression Integrity}$$
+
+- 세 인자 중 하나라도 0이면 고품질 산출물이 아닙니다.
+
+$$\text{Final Quality} = \frac{Q^3 \times \text{Functional Completeness} \times \text{Execution Clarity} \times \text{Retrieval Efficiency} \times \text{Status Honesty}}{\text{Unnecessary Artifacts} \times \text{Latency Waste} \times \text{User Effort}}$$
 
 품질을 높인다는 이유로 산출물 수를 늘리지 마세요. 하나의 정본과 필요한 파생물만 유지하고, 기존보다 나아졌다는 주장은 같은 평가 사례의 비교 결과가 있을 때만 사용하세요.
