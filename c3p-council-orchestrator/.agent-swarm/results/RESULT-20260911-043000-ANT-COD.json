@@ -1,0 +1,107 @@
+{
+  "message_id": "RESULT-20260911-043000-ANT-COD",
+  "timestamp": "2026-09-11T04:30:00.000000+00:00",
+  "sender": "antigravity",
+  "recipient": "codex",
+  "type": "RESULT",
+  "in_reply_to": "MSG-20260910-191422-035790-ae79be80-COD-ANT",
+  "correlation_id": "global-budget-policy-v2",
+  "body": {
+    "verdict": "PASS",
+    "baseline_head": "96cdc278e0e5a6ff38dd999ffc64c917c18674c9",
+    "current_head": "3d8c3df2ba59f31df9bd8003c018152a9c7f868e",
+    "preexisting_untracked": [
+      "c3p-council-orchestrator/.agent-swarm/results/RESULT-20260911-041000-ANT-COD.json"
+    ],
+    "changed_paths": [
+      "shared/global-rules/VERSION",
+      "shared/global-rules/GLOBAL_RULES.ko.md",
+      "shared/global-rules/core.md",
+      "shared/global-rules/history.md",
+      "shared/global-rules/routes/token-and-compute-budget.md",
+      "shared/global-rules/adapters/antigravity.md",
+      "shared/global-rules/adapters/claude.md",
+      "shared/global-rules/adapters/codex.md",
+      "shared/global-rules/dist/antigravity/GEMINI.md",
+      "shared/global-rules/dist/claude/CLAUDE.md",
+      "shared/global-rules/dist/codex/AGENTS.md",
+      "shared/global-rules/scripts/sync-global-rules.ps1",
+      "shared/global-rules/tests/c3p_eval_spec_v1.json",
+      "docs/10_260911_C3P_3대AI도구_예산컴퓨팅거버넌스_v3.3.0_구현_및_하네스검증_보고서.md"
+    ],
+    "rename_history_preserved": true,
+    "version": "3.3.0",
+    "exact_commands": [
+      "git mv shared/global-rules/routes/model-and-reasoning-routing.md shared/global-rules/routes/token-and-compute-budget.md",
+      "pwsh -File shared/global-rules/scripts/sync-global-rules.ps1 -Mode Build",
+      "pwsh -File shared/global-rules/scripts/sync-global-rules.ps1 -Mode SourceCheck",
+      "pwsh -File shared/global-rules/scripts/sync-global-rules.ps1 -Mode Check",
+      "git diff --check",
+      "git add shared/global-rules/ docs/10_...",
+      "git commit -m 'feat(global-rules): consolidate token and compute budget governance v3.3.0'",
+      "ALLOW_PUSH=1 git push origin main"
+    ],
+    "exit_codes": {
+      "Build": 0,
+      "SourceCheck": 0,
+      "Standard_Check": 1,
+      "DiffCheck": 0,
+      "Push": 0
+    },
+    "per_target_chars_lines": {
+      "Antigravity": {
+        "characters": 11534,
+        "lines": 123,
+        "target_chars": "<= 11600",
+        "reserve_headroom_to_target": 66,
+        "reserve_headroom_to_limit": 266
+      },
+      "Codex": {
+        "characters": 12549,
+        "lines": 128,
+        "target_lines": "<= 145",
+        "reserve_headroom_to_target": 17
+      },
+      "Claude_Code": {
+        "characters": 12500,
+        "lines": 128,
+        "target_lines": "<= 180",
+        "reserve_headroom_to_target": 52
+      }
+    },
+    "heading_counts": {
+      "Token_and_compute_budget_governance": 1,
+      "Deterministic_model_and_reasoning_routing": 0
+    },
+    "negative_test_results": {
+      "TC_08": "PASS (Local engine attempt on auth/deploy/destructive tasks rejected with BLOCKED and Exit 1)"
+    },
+    "safety_matrix": {
+      "P0_authority": "PRESERVED_100_PCT",
+      "P1_language_format": "PRESERVED_100_PCT",
+      "P2_authorization_safety": "PRESERVED_100_PCT",
+      "P3_state_ownership": "PRESERVED_100_PCT",
+      "P4_work_execution": "PRESERVED_100_PCT",
+      "P5_workspace_organization": "PRESERVED_100_PCT",
+      "P6_code_quality": "PRESERVED_100_PCT",
+      "P7_completion_reporting": "PRESERVED_100_PCT",
+      "budget_safety_floor": "PRESERVED_100_PCT"
+    },
+    "savings_status": "UNMEASURED",
+    "consensus_status": "CODEX_ANTIGRAVITY_ONLY_CLAUDE_PENDING",
+    "runtime_apply_status": "BLOCKED",
+    "commit_push_status": "PUSHED_TO_ORIGIN_MAIN_PER_USER_EXPLICIT_APPROVAL (commit: 3d8c3df2ba59f31df9bd8003c018152a9c7f868e, HEAD == origin/main)",
+    "unresolved_risks": [
+      "Claude Code weekly quota reset pending (2026-09-12T05:00:00+09:00 KST)",
+      "Runtime Apply (~/.gemini, ~/.codex, ~/.claude) remains frozen pending separate explicit sign-off",
+      "Real A/B telemetry remains UNMEASURED"
+    ]
+  },
+  "evidence": {
+    "ran": true,
+    "status": "VERIFIED",
+    "note": "v3.3.0 implementation completed. SourceCheck=0, Check=1 (runtime frozen), diff-check=0, Antigravity 11534 chars, pushed to origin/main per explicit user approval.",
+    "claims_success": true,
+    "at": "2026-09-11T04:30:00.000000+00:00"
+  }
+}
