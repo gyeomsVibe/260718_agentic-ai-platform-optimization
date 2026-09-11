@@ -286,7 +286,7 @@ if ($abSchemaJson -and $abFixtureJson) {
     $requiredMetrics = @(
         'input_tokens', 'output_tokens', 'reasoning_tokens', 'cache_read_tokens',
         'cache_creation_tokens', 'latency_ms', 'failure_count', 're_prompt_rate',
-        'quality_score', 'safety_violations'
+        'quality_score', 'safety_violations', 'cost_per_successful_task'
     )
     $baselineValid = $true
     $optimizedValid = $true
@@ -297,7 +297,7 @@ if ($abSchemaJson -and $abFixtureJson) {
 
     $requiredVarianceFields = @(
         'input_tokens_diff_pct', 'output_tokens_diff_pct', 'cache_read_tokens_diff_pct',
-        'latency_diff_pct', 'safety_regression_count'
+        'latency_diff_pct', 'cost_per_successful_task_diff_pct', 'safety_regression_count'
     )
     $varianceValid = $true
     foreach ($v in $requiredVarianceFields) {

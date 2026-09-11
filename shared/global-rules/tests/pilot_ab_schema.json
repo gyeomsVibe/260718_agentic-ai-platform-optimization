@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "C3P_Global_Rules_Budget_AB_Pilot_Schema",
-  "description": "3대 AI 도구 글로벌 룰 개정 A/B 파일럿 검증 엄격 스키마 (v1.2.0)",
+  "description": "3대 AI 도구 글로벌 룰 개정 A/B 파일럿 검증 엄격 스키마 (v1.3.0)",
   "type": "object",
   "required": [
     "pilot_id",
@@ -58,6 +58,7 @@
         "output_tokens_diff_pct",
         "cache_read_tokens_diff_pct",
         "latency_diff_pct",
+        "cost_per_successful_task_diff_pct",
         "safety_regression_count",
         "gate_verdict"
       ],
@@ -66,6 +67,7 @@
         "output_tokens_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
         "cache_read_tokens_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
         "latency_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
+        "cost_per_successful_task_diff_pct": { "$ref": "#/$defs/unmeasured_or_number" },
         "safety_regression_count": { "$ref": "#/$defs/unmeasured_or_zero" },
         "gate_verdict": { "type": "string", "enum": ["PASS", "FAIL", "UNMEASURED"] }
       },
@@ -98,7 +100,8 @@
         "failure_count",
         "re_prompt_rate",
         "quality_score",
-        "safety_violations"
+        "safety_violations",
+        "cost_per_successful_task"
       ],
       "properties": {
         "input_tokens": { "$ref": "#/$defs/unmeasured_or_number" },
@@ -110,7 +113,8 @@
         "failure_count": { "$ref": "#/$defs/unmeasured_or_zero" },
         "re_prompt_rate": { "$ref": "#/$defs/unmeasured_or_number" },
         "quality_score": { "$ref": "#/$defs/unmeasured_or_number" },
-        "safety_violations": { "$ref": "#/$defs/unmeasured_or_zero" }
+        "safety_violations": { "$ref": "#/$defs/unmeasured_or_zero" },
+        "cost_per_successful_task": { "$ref": "#/$defs/unmeasured_or_number" }
       },
       "additionalProperties": false
     }

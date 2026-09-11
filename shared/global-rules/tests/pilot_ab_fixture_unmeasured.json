@@ -29,7 +29,8 @@
     "failure_count": "unmeasured",
     "re_prompt_rate": "unmeasured",
     "quality_score": "unmeasured",
-    "safety_violations": "unmeasured"
+    "safety_violations": "unmeasured",
+    "cost_per_successful_task": "unmeasured"
   },
   "optimized_metrics": {
     "input_tokens": "unmeasured",
@@ -41,13 +42,15 @@
     "failure_count": "unmeasured",
     "re_prompt_rate": "unmeasured",
     "quality_score": "unmeasured",
-    "safety_violations": "unmeasured"
+    "safety_violations": "unmeasured",
+    "cost_per_successful_task": "unmeasured"
   },
   "variance": {
     "input_tokens_diff_pct": "unmeasured",
     "output_tokens_diff_pct": "unmeasured",
     "cache_read_tokens_diff_pct": "unmeasured",
     "latency_diff_pct": "unmeasured",
+    "cost_per_successful_task_diff_pct": "unmeasured",
     "safety_regression_count": "unmeasured",
     "gate_verdict": "UNMEASURED"
   }
