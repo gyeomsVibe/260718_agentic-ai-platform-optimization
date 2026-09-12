@@ -12,8 +12,8 @@
 | **04** | [04_260719_MIA_SKILLS_EXPLORATION.md](04_260719_MIA_SKILLS_EXPLORATION.md) | 2026-07-19 | MIA 에이전트 스킬 생태계 탐색 및 구조 설계서 |
 | **05** | [05_260805_MIA_SKILL_PORTFOLIO_REDTEAM.md](05_260805_MIA_SKILL_PORTFOLIO_REDTEAM.md) | 2026-08-05 | 스킬 포트폴리오 레드팀 검증 및 위험도 분석 |
 | **06** | [06_260806_MIA_TRIGGER_VERIFICATION_PLAN.md](06_260806_MIA_TRIGGER_VERIFICATION_PLAN.md) | 2026-08-06 | 스킬 트리거 발동 검증 계획 및 시험 설계 |
-| **07** | [07_260911_MIA_Skill_Compiler_implementation_plan.md](07_260911_MIA_Skill_Compiler_implementation_plan.md) | 2026-09-11 | MIA Skill Compiler 및 skill-creation-bible 최적화 정제 구현 계획서 |
-| **08** | [08_260911_MIA_Skill_Compiler_walkthrough.md](08_260911_MIA_Skill_Compiler_walkthrough.md) | 2026-09-11 | MIA Skill Compiler 및 상위원칙 바이블 v2.0.0 정제 완료 보고서 |
+| **07** | [\[구현 계획서\] MIA Skill Compiler 및 skill-creation-bible.md 최적화 정제 (Alternative 2)](../research/07_%5B%EA%B5%AC%ED%98%84%20%EA%B3%84%ED%9A%8D%EC%84%9C%5D%20MIA%20Skill%20Compiler%20%EB%B0%8F%20skill-creation-bible.md%20%EC%B5%9C%EC%A0%81%ED%99%94%20%EC%A0%95%EC%A0%9C%20%28Alternative%202%29%28implementation_plan%29.md) | 2026-09-11 | MIA Skill Compiler 및 skill-creation-bible 최적화 정제 구현 계획서. 정본은 `skills/research/` 에 있다 |
+| **08** | [08_260911_MIA_Skill_Compiler_walkthrough.md](08_260911_MIA_Skill_Compiler_walkthrough.md) | 2026-09-11 | **[전수분석 종합보고서]** MIA Skill Compiler 3대 도구 최적화 정제 및 KMGS-QVRC 체계. `skills/research/08_…` 과 동일 내용이다 |
 
 ## 🧭 문서 작성 및 관리 원칙
 - 본 섹션의 새 문서는 항상 본 \skills/docs/\ 폴더 내에 순차 번호(\9_\, \10_\, ...) 또는 날짜 접두어로 생성하며, 생성 후 본 \README.md\ 목차에 등재합니다.
