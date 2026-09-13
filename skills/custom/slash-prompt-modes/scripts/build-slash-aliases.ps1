@@ -51,7 +51,26 @@ license: MIT
     )
     Copy-Item -LiteralPath $licenseSource -Destination (Join-Path $aliasDirectory 'LICENSE.md')
 
-    if ($content.Contains('System.Collections.Hashtable.Token') -or $content.Contains('$(')) {
+    # 별칭은 "토큰을 명시할 때만" 쓰는 스킬이다. Codex 는 openai.yaml 이 없으면 자동 선택을
+    # 기본 허용하므로, 파일을 만들지 않으면 계약과 반대로 암묵 발동된다. 정본
+    # slash-prompt-modes 와 같은 정책(false)을 어댑터에도 명시한다. (2026-09-13 감사)
+    $agentsDirectory = Join-Path $aliasDirectory 'agents'
+    New-Item -ItemType Directory -Path $agentsDirectory | Out-Null
+    $adapter = @"
+interface:
+  display_name: "$($alias.Token) 모드"
+  short_description: "$($alias.Token) 명시 호출 전용 별칭"
+  default_prompt: "Use `$$($alias.Name) to apply $($alias.Token) to this task."
+policy:
+  allow_implicit_invocation: false
+"@
+    [IO.File]::WriteAllText(
+        (Join-Path $agentsDirectory 'openai.yaml'),
+        $adapter,
+        [Text.UTF8Encoding]::new($false)
+    )
+
+    if ($content.Contains('System.Collections.Hashtable.Token') -or $content.Contains('$(') -or $adapter.Contains('$(')) {
         throw "Alias token interpolation failed: $($alias.name)"
     }
 }

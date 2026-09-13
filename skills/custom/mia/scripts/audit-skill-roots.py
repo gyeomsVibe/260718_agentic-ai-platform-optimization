@@ -57,6 +57,16 @@ for _plugin in sorted((HOME / ".gemini" / "config" / "plugins").glob("*/skills")
 #   ~/.gemini/antigravity/skills 는 config/skills 로의 심볼릭 링크 -> 중복 계상 방지
 NOT_A_SKILL = {".system"}
 
+# sync-mia-catalog.ps1 의 $definitions 가 배포하는 스킬. 이 스크립트는 Claude 어댑터에만
+# 영문 description 을 의도적으로 생성하므로, 그 차이는 결함이 아니다. (목록은 스크립트와 일치해야 한다)
+SYNC_MIA_MANAGED = frozenset({"mia-skill-compiler", "mia-vaccine-test", "mia-strategic"})
+
+# description 에 이 표현이 있으면 "명시 호출 전용" 의도로 본다 (소문자 비교).
+EXPLICIT_ONLY_MARKERS = (
+    "명시할 때만", "명시 호출 전용", "명시적으로 호출", "only when explicitly",
+    "explicitly invoked", "explicit-only", "explicit invocation only",
+)
+
 # 도구 내부가 관리하는 builtin 루트는 사용자 소유가 아니므로 감사하지 않는다.
 
 Finding = collections.namedtuple("Finding", "root skill severity code message")
@@ -150,9 +160,17 @@ def audit_skill(root: str, d: pathlib.Path, out: list) -> str | None:
     # §2.2 Codex 어댑터 계약 - Codex 가 읽는 루트에서만 의미가 있다
     openai_yaml = d / "agents" / "openai.yaml"
     if not openai_yaml.exists():
-        if root.startswith("codex"):
-            add("WARN", "no_openai_yaml",
-                "agents/openai.yaml 없음 - Codex 표시·발동 계약 미이행 (§2.2)")
+        # Codex 공식 규약: openai.yaml 은 선택이며, 없으면 자동 선택이 기본 허용된다.
+        # 따라서 파일 부재 자체는 결함이 아니다. 결함은 "명시할 때만 쓰라"고 선언한
+        # 스킬이 정책을 걸지 않아 Codex 에서 암묵 발동되는 경우뿐이다.
+        # 부재를 일괄 경고하면 외부 스킬 소음이 진짜 결함을 묻어 게이트가 무감각해진다.
+        # (2026-09-13 감사: 경고 20건 중 10건이 이 소음, 10건이 슬래시 별칭의 실제 결함)
+        text_lower = str(description or "").lower()
+        explicit_only = any(m in text_lower for m in EXPLICIT_ONLY_MARKERS)
+        if root.startswith("codex") and explicit_only:
+            add("WARN", "explicit_only_without_policy",
+                "description 은 명시 호출 전용인데 openai.yaml 이 없어 Codex 가 암묵 발동한다 "
+                "- policy.allow_implicit_invocation: false 필요 (§2.2)")
         elif hidden_native:
             add("WARN", "hidden_native_only",
                 "disable-model-invocation=true 이지만 openai.yaml 이 없다 - "
@@ -212,10 +230,26 @@ def main() -> int:
 
     errors = [f for f in findings if f.severity == "ERROR"]
     warnings = [f for f in findings if f.severity == "WARN"]
-    drift = sorted(
+    all_drift = sorted(
         (name, sorted(per)) for name, per in descriptions.items()
         if len(per) > 1 and len({v.strip() for v in per.values()}) > 1
     )
+
+    def expected_drift(name: str) -> bool:
+        """sync-mia-catalog.ps1 이 Claude 어댑터에만 영문 description 을 생성하는 경우인가.
+
+        Claude 루트를 뺀 나머지 루트가 서로 같을 때만 정상으로 본다. 정본 계열
+        (codex·플러그인 등) 사이에 차이가 있으면 진짜 불일치로 남긴다. 이름만으로
+        일괄 면제하면 관리형 스킬의 실제 표류까지 숨게 된다.
+        """
+        if name not in SYNC_MIA_MANAGED:
+            return False
+        per = descriptions[name]
+        rest = {v.strip() for root, v in per.items() if root != "claude"}
+        return "claude" in per and len(rest) <= 1
+
+    managed_drift = [d for d in all_drift if expected_drift(d[0])]
+    drift = [d for d in all_drift if not expected_drift(d[0])]
 
     print("=" * 78)
     print("스킬 배포 루트 엄격 감사 (AUTHORING_HANDBOOK §2 / 최엄격 기준: Codex)")
@@ -240,9 +274,16 @@ def main() -> int:
         print(f"\n[루트 간 description 불일치 {len(drift)}건]")
         for name, roots in drift:
             print(f"  {name:<34} {roots}")
-        print("  주의: MIA 스킬의 Claude 어댑터는 영문 description 을 의도적으로 생성한다.")
-        print("        sync-mia-catalog.ps1 이 관리하는 항목은 불일치가 정상이다.")
 
+    if managed_drift:
+        print(f"\n[관리형 정상 불일치 {len(managed_drift)}건 - 집계 제외]")
+        for name, roots in managed_drift:
+            print(f"  {name:<34} {roots}")
+        print("  sync-mia-catalog.ps1 이 Claude 어댑터에만 영문 description 을 생성한다.")
+        print("  Claude 외 루트끼리는 일치함을 확인했으므로 결함이 아니다.")
+
+    # 이 요약줄은 .vibe-clinic/diagnostics/01_platform_gate.clinic.js 가 파싱하는 계약이다.
+    # 형식을 바꾸면 게이트가 WARN(집계 불가)으로 떨어진다.
     print(f"\n결과: 오류 {len(errors)}건 / 경고 {len(warnings)}건 / 설명 불일치 {len(drift)}건")
 
     if errors:

@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [ValidateSet('Codex', 'ClaudeCode')]
     [string[]]$Platform = @('Codex', 'ClaudeCode'),
