@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [double]$Scale = 1.15,
     [switch]$Demo,

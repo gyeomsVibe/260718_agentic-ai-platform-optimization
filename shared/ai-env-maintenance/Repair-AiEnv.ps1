@@ -1,4 +1,4 @@
-<#
+﻿<#
     Repair-AiEnv.ps1 — 되돌아간 정션을 안전하게 재연결 (쓰기 작업)
     ────────────────────────────────────────────────────────────────
     C3P 합의체(Claude Code·Codex·Antigravity, /CRITIC /REDTEAM /OPTIMIZE)의 반론을 반영한 안전판.
