@@ -23,22 +23,50 @@ function trackedPowerShellFiles() {
     .filter((rel) => existsSync(path.join(repoRoot, rel)));
 }
 
-const HANGUL = /[가-힣]/;
+// 한글만이 아니다. 5.1 은 BOM 없는 UTF-8 의 비ASCII 바이트 전체를 CP949 로 해석하므로
+// 스크립트에 흔한 —, →, ·, 이모지 한 글자도 같은 사고를 낸다. (2026-09-13 검사 범위 확대)
+const NON_ASCII = /[^\x00-\x7F﻿]/;
+
+// 5.1 에서 인코딩을 생략하면 기본값이 ANSI(Set-Content·Add-Content) 또는 UTF-16LE(Out-File)이라
+// 비ASCII 를 쓰면 깨지거나, 다른 도구가 읽지 못하는 파일이 된다.
+const WRITE_CMDLETS = /\b(Set-Content|Add-Content|Out-File)\b/i;
+
+function codeLines(rel) {
+  return readFileSync(path.join(repoRoot, rel), 'utf8')
+    .split(/\r?\n/)
+    .map((line, index) => ({ code: line.replace(/(^|\s)#.*$/, '$1'), number: index + 1 }));
+}
 
 test('추적 중인 PowerShell 스크립트가 하나 이상 있다 (검사 대상 확인)', () => {
   assert.ok(trackedPowerShellFiles().length > 0, 'git ls-files 가 .ps1 을 찾지 못했다 - 검사가 공회전한다');
 });
 
-test('한글이 든 추적 .ps1 은 UTF-8 BOM 을 가진다', () => {
+test('비ASCII 문자가 든 추적 .ps1 은 UTF-8 BOM 을 가진다', () => {
   const offenders = trackedPowerShellFiles().filter((rel) => {
     const bytes = readFileSync(path.join(repoRoot, rel));
     const hasBom = bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
-    return HANGUL.test(bytes.toString('utf8')) && !hasBom;
+    return NON_ASCII.test(bytes.toString('utf8')) && !hasBom;
   });
   assert.deepEqual(
     offenders,
     [],
-    `BOM 없는 한글 .ps1 (PowerShell 5.1 이 CP949 로 오독한다):\n  ${offenders.join('\n  ')}`
+    `BOM 없는 비ASCII .ps1 (PowerShell 5.1 이 CP949 로 오독한다):\n  ${offenders.join('\n  ')}`
+  );
+});
+
+test('Set-Content·Add-Content·Out-File 는 -Encoding 을 지정한다', () => {
+  const offenders = [];
+  for (const rel of trackedPowerShellFiles()) {
+    for (const { code, number } of codeLines(rel)) {
+      if (WRITE_CMDLETS.test(code) && !/-Encoding\b/i.test(code)) {
+        offenders.push(`${rel}:${number}`);
+      }
+    }
+  }
+  assert.deepEqual(
+    offenders,
+    [],
+    `인코딩 미지정 파일 쓰기 (5.1 기본값은 ANSI 또는 UTF-16LE 라 비ASCII 가 깨진다):\n  ${offenders.join('\n  ')}`
   );
 });
 

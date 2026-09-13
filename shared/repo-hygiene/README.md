@@ -24,12 +24,20 @@
 
 `tests/powershell-encoding.test.mjs` (`npm run hygiene:test`, `npm run check` 에 포함)
 
-1. **한글이 든 추적 `.ps1` 은 UTF-8 BOM 을 가진다.**
+1. **비ASCII 문자가 든 추적 `.ps1` 은 UTF-8 BOM 을 가진다.** 한글만이 아니라 `—`, `→`, `·`,
+   이모지 한 글자도 5.1 에서 똑같이 깨집니다.
 2. **`Get-Content` 를 인코딩 지정 없이 `ConvertFrom-Json` 에 넘기지 않는다.**
    5.1 에서 한글이 CP949 로 오독되면 두 가지 중 하나가 일어납니다.
    - **조용히 깨진 값으로 읽힘** — 예외가 없어 발견이 가장 어렵습니다(2026-09-13 재현: `"대기 상태"` → `?湲??곹깭`).
    - **JSON 이 망가져 `ArgumentException`** — `-ErrorAction SilentlyContinue` 로도 막히지 않아 스크립트가 중단됩니다.
    `-Encoding UTF8` 을 붙이거나 `[IO.File]::ReadAllText($path, [Text.Encoding]::UTF8)` 로 읽으세요.
+3. **`Set-Content`·`Add-Content`·`Out-File` 은 `-Encoding` 을 지정한다.** 5.1 의 기본값은
+   ANSI(`Set-Content`·`Add-Content`) 또는 UTF-16LE(`Out-File`)라서 비ASCII 를 쓰면 깨지거나
+   다른 도구가 읽지 못하는 파일이 됩니다.
+
+**알려진 한계**: 검사는 한 줄 단위입니다. `$raw = Get-Content …` 로 읽고 **다른 줄에서**
+`$raw | ConvertFrom-Json` 하는 경우는 잡지 못합니다. 2026-09-13 기준 저장소에 그런 코드는 0건이며,
+정규식으로 변수 흐름을 추적하면 오탐이 많아 넣지 않았습니다. 리뷰에서 확인하세요.
 
 검사는 `git ls-files` 로 **추적 중인 파일만** 봅니다. 로컬 임시 파일이나 무시 대상은 대상이 아닙니다.
 

@@ -11,7 +11,7 @@
 - 새 Skill의 상위 원리부터 배우려면 [스킬 만들기 상위원칙 바이블](custom/mia/1_mia-skill-compiler/candidates/mia-skill-compiler/references/skill-creation-bible.md)을 읽습니다.
 - `/OPTIMIZE` 같은 독립 명령 모드는 [`custom/slash-prompt-modes/`](custom/slash-prompt-modes/)에서 사용법과 검증 상태를 확인합니다.
 - 외부 Skill을 들여오거나 정제하려면 [`external/`](external/)의 반입 계약부터 읽습니다.
-- 조사 기록과 선택 근거는 `research/`에 둡니다. 이 파일들은 설치 대상이 아닙니다.
+- 조사 기록·보고서·선택 근거는 [`docs/`](docs/) 한 곳에 둡니다. 이 파일들은 설치 대상이 아닙니다.
 - **어느 Skill을 어느 도구에 올렸는지와 그 근거는 [`DEPLOYMENT.md`](docs/01_DEPLOYMENT.md)가 정본입니다.**
 - 사용자 홈의 배포 위치는 도구마다 다릅니다. **공용 경로는 없습니다.**
   `.claude/skills`(Claude Code) · `.codex/skills`+`.agents/skills`(Codex) ·
@@ -23,7 +23,7 @@
 |---|---|---|---|
 | 사용자 제작 | [`custom/`](custom/) | 윤겸스가 설계하고 유지 | 각 Skill의 정본 `SKILL.md` |
 | 외부 도입 | [`external/`](external/) | 외부 제작자, 로컬 정제 이력 별도 | 원본 사본과 `SOURCE.md` |
-| 조사·근거 | `research/` | 저장소 운영 기록 | 보고서와 감사 기록 |
+| 조사·근거 | [`docs/`](docs/) | 저장소 운영 기록 | 보고서와 감사 기록 |
 
 출처가 불분명하면 먼저 `external/`로 분류합니다. 사용자 제작으로 확인되기 전에는
 `custom/`으로 옮기지 않습니다.
@@ -50,7 +50,7 @@ skills/
 │  ├─ legacy-harness/           # 대체된 Antigravity 시절 로컬 자산 (보존용)
 │  └─ slash-prompt-modes/       # MIA와 독립된 10개 명시 슬래시 모드
 ├─ external/                    # 외부 Skill과 출처 추적
-└─ research/                    # 설치하지 않는 조사·감사 자료
+└─ docs/                        # 유일한 문서 보관소 — 매뉴얼·배포 정본·조사·보고서
 ```
 
 ## 상태를 읽는 법
