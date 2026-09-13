@@ -126,7 +126,7 @@
 
 ### P3 — 검증 증거를 기계 판독 가능하게 보존
 
-`skills/research/trigger-verification-2026-08.json` 신설. 필드 고정:
+[`skills/docs/10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json`](10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json) 신설 (최초 경로 `skills/research/trigger-verification-2026-08.json`, 2026-09-13 docs 로 통합). 필드 고정:
 
 ```text
 case_id · prompt · expected_skill · observed_skill · tool_calls

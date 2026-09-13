@@ -82,5 +82,6 @@ Available skills 노출을 확인하기 전에는 런타임 성공으로 기록�
 - [대체된 로컬 자산 보존](custom/legacy-harness/)
 - [외부 Skill 반입 계약](external/)
 - [Skill 조사 기록](docs/04_260719_MIA_SKILLS_EXPLORATION.md)
-- [플랫폼 Skill 슬림화 감사](research/MIA_PLATFORM_SLIM_AUDIT_2026-07-19.md)
+- [플랫폼 Skill 슬림화 감사](docs/03_260719_MIA_PLATFORM_SLIM_AUDIT.md)
+- [Skill 문서 보관소 색인](docs/README.md) — 보고서·분석·원자료는 모두 `docs/` 한 곳에 둔다
 - [GitHub README 공식 안내](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)

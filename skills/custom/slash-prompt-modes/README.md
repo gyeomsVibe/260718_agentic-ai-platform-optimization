@@ -148,4 +148,4 @@ Codex와 Claude Code의 대·소문자 인식 매트릭스는 비용이 발생�
 문서는 설계 근거로 링크했을 뿐 해당 원문이나 코드를 이 Skill에 재배포한 것이 아닙니다.
 
 설계 고증과 반증 기록은
-[전수분석 보고서](../../research/p1-gpt-cheatkey-modes-report-source.md)에 보존합니다.
+[전수분석 보고서](../../docs/12_260905_GPT_CHEATKEY_MODES_ANALYSIS_REPORT.md)에 보존합니다.

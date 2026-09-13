@@ -307,7 +307,7 @@ npm run skills:audit
 | 오발동 측정 | **경계 요청 6건 — 어떤 스킬도 안 뜸** |
 | 3대 도구 인식 | Claude Code 12 · Codex 16 · Antigravity 15 |
 
-기계 판독 가능한 원장: [`research/trigger-verification-2026-08.json`](research/trigger-verification-2026-08.json)
+기계 판독 가능한 원장: [`10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json`](10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json)
 
 **아직 모르는 것도 적어 둡니다.** 위 측정은 짧은 단발 실행 기준입니다.
 **긴 대화에서 문맥이 쌓였을 때 엉뚱하게 발동하는지는 아직 모릅니다.**

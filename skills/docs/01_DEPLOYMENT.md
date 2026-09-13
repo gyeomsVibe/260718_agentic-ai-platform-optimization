@@ -72,7 +72,7 @@ Claude Code·Antigravity 는 이 경로의 40개 중 **0개**를 인식한다.
 
 2026-08-05 REDTEAM 전수조사로 파일 기반 Skill을 **127개 → 43개**로 정리했다.
 상세한 개별 판정과 웹 근거는
-[`research/MIA_SKILL_PORTFOLIO_REDTEAM_2026-08-05.md`](research/MIA_SKILL_PORTFOLIO_REDTEAM_2026-08-05.md)가 정본이다.
+[`05_260805_MIA_SKILL_PORTFOLIO_REDTEAM.md`](05_260805_MIA_SKILL_PORTFOLIO_REDTEAM.md)가 정본이다.
 
 | 도구 | 정리 전 | 정리 후 | 유지 기준 |
 |---|---:|---:|---|
@@ -185,7 +185,7 @@ npm install -D @playwright/test
 |---|---|---|
 | **Codex** | ✅ **14/14 정합** | `codex exec` — 12개 노출 + `mia-skill-compiler`·`mia-vaccine-test` 2개는 `allow_implicit_invocation: false` 설계대로 은닉. `failed to load skill` **0건** |
 | **Antigravity** | ✅ **13/13 인식** | `agy --print` — config 12 + 플러그인 1(`mia-strategic`). 격리한 `science` 39종·`android-cli`가 목록에서 사라진 것까지 확인 |
-| **Claude Code** | ✅ 10/10 | 명시 트리거 17문구 + 자동 안전 3사례. [검증 원장](research/trigger-verification-2026-08.json) |
+| **Claude Code** | ✅ 10/10 | 명시 트리거 17문구 + 자동 안전 3사례. [검증 원장](10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json) |
 
 **세 도구 모두 `bc9a700` 슬림화가 런타임에 반영됐다.** 파일 배치와 실제 인식이 일치한다.
 

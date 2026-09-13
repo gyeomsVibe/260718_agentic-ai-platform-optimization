@@ -113,7 +113,7 @@ Claude Code 만 실제 발동을 확인했습니다. 나머지 둘은 네트워�
 
 **증거 등급이 비대칭입니다.** 명시 트리거 17건은 실행 확인만 있고 원시 로그가 없습니다.
 자동 안전 3건만 구조화 보존돼 있습니다. 같은 등급으로 취급하지 마세요 —
-[검증 원장](../../skills/research/trigger-verification-2026-08.json)의 `evidence_level` 이 정본입니다.
+[검증 원장](../../skills/docs/10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json)의 `evidence_level` 이 정본입니다.
 
 ## 시험 설계에서 배운 것
 

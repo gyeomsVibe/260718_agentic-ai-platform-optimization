@@ -12,8 +12,15 @@
 | **04** | [04_260719_MIA_SKILLS_EXPLORATION.md](04_260719_MIA_SKILLS_EXPLORATION.md) | 2026-07-19 | MIA 에이전트 스킬 생태계 탐색 및 구조 설계서 |
 | **05** | [05_260805_MIA_SKILL_PORTFOLIO_REDTEAM.md](05_260805_MIA_SKILL_PORTFOLIO_REDTEAM.md) | 2026-08-05 | 스킬 포트폴리오 레드팀 검증 및 위험도 분석 |
 | **06** | [06_260806_MIA_TRIGGER_VERIFICATION_PLAN.md](06_260806_MIA_TRIGGER_VERIFICATION_PLAN.md) | 2026-08-06 | 스킬 트리거 발동 검증 계획 및 시험 설계 |
-| **07** | [\[구현 계획서\] MIA Skill Compiler 및 skill-creation-bible.md 최적화 정제 (Alternative 2)](../research/07_%5B%EA%B5%AC%ED%98%84%20%EA%B3%84%ED%9A%8D%EC%84%9C%5D%20MIA%20Skill%20Compiler%20%EB%B0%8F%20skill-creation-bible.md%20%EC%B5%9C%EC%A0%81%ED%99%94%20%EC%A0%95%EC%A0%9C%20%28Alternative%202%29%28implementation_plan%29.md) | 2026-09-11 | MIA Skill Compiler 및 skill-creation-bible 최적화 정제 구현 계획서. 정본은 `skills/research/` 에 있다 |
-| **08** | [\[전수분석 종합보고서\] MIA Skill Compiler 3대도구 최적화정제 및 KMGS-QVRC 체계](../research/08_%5B%EC%A0%84%EC%88%98%EB%B6%84%EC%84%9D%20%EC%A2%85%ED%95%A9%EB%B3%B4%EA%B3%A0%EC%84%9C%5D%20MIA%20Skill%20Compiler%203%EB%8C%80%EB%8F%84%EA%B5%AC%20%EC%B5%9C%EC%A0%81%ED%99%94%EC%A0%95%EC%A0%9C%20%EB%B0%8F%20KMGS-QVRC%20%EC%B2%B4%EA%B3%84%28ELI10_EXPERT%29.md) | 2026-09-11 | MIA Skill Compiler 3대 도구 최적화 정제 및 KMGS-QVRC 체계 전수분석. 정본은 `skills/research/` 에 있으며, 보고서 본문(§ 마무리)이 요청한 대로 복사하지 않고 색인에만 등재한다 |
+| **07** | [07_260911_MIA_SKILL_COMPILER_IMPLEMENTATION_PLAN.md](07_260911_MIA_SKILL_COMPILER_IMPLEMENTATION_PLAN.md) | 2026-09-11 | MIA Skill Compiler 및 skill-creation-bible 최적화 정제 구현 계획서 (Alternative 2) |
+| **08** | [08_260911_MIA_SKILL_COMPILER_FULL_ANALYSIS_REPORT.md](08_260911_MIA_SKILL_COMPILER_FULL_ANALYSIS_REPORT.md) | 2026-09-11 | MIA Skill Compiler 3대 도구 최적화 정제 및 KMGS-QVRC 체계 전수분석 종합보고서 |
+| **09** | [09_260804_MODULAR_INTELLIGENCE_AGENT_CONCEPT.md](09_260804_MODULAR_INTELLIGENCE_AGENT_CONCEPT.md) | 2026-08-04 | 모듈형 인공지능 에이전트(Modular Intelligence Agent) 개념 정리 |
+| **10** | [10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json](10_260806_MIA_TRIGGER_VERIFICATION_LEDGER.json) | 2026-08-06 | 스킬 트리거 발동 검증 원장 (기계 판독용 JSON, 06 계획서의 결과 기록) |
+| **11** | [11_260905_GPT_CHEATKEY_MODES_REVISED_SOURCE.md](11_260905_GPT_CHEATKEY_MODES_REVISED_SOURCE.md) | 2026-09-05 | P1. GPT 실전 치트키 모드 검증형 개정판 (slash-prompt-modes 원자료) |
+| **12** | [12_260905_GPT_CHEATKEY_MODES_ANALYSIS_REPORT.md](12_260905_GPT_CHEATKEY_MODES_ANALYSIS_REPORT.md) | 2026-09-05 | GPT 실전 치트키 모드 전수분석 및 독립 Skill 설계 근거 |
 
 ## 🧭 문서 작성 및 관리 원칙
-- 본 섹션의 새 문서는 항상 본 \skills/docs/\ 폴더 내에 순차 번호(\9_\, \10_\, ...) 또는 날짜 접두어로 생성하며, 생성 후 본 \README.md\ 목차에 등재합니다.
+- **`skills/` 섹션의 문서 보관소는 이 `skills/docs/` 하나뿐입니다.** 보고서·분석·원자료·검증 원장을 위해 `research/`, `reports/`, `analysis/` 같은 별도 폴더를 만들지 않습니다. 2026-09-13에 `skills/research/` 6개 파일을 이 폴더(07~12)로 통합했고, 같은 폴더가 다시 생기면 `npm run check`(`skills:test`)가 실패합니다.
+- 새 문서는 이 폴더에 다음 순차 번호(`13_`, `14_`, ...)와 날짜 접두어(`YYMMDD_`)로 생성하고, 생성 직후 이 README 목차에 등재합니다.
+- 파일명에는 공백·대괄호를 쓰지 않습니다. 링크가 URL 인코딩으로 깨지기 쉽기 때문입니다.
+- Skill 실행 패키지 안의 `references/`·`validation-evidence/`는 해당 Skill과 함께 배포되는 자료이므로 이 규칙의 대상이 아닙니다.
