@@ -34,6 +34,22 @@ function Normalize-RuleContent {
     return $normalized.TrimEnd("`n") + "`n"
 }
 
+function Read-JsonFileOrNull {
+    param([Parameter(Mandatory)][string]$Path)
+
+    # Windows PowerShell 5.1 의 Get-Content 는 BOM 없는 UTF-8 을 시스템 코드페이지(CP949)로
+    # 읽는다. 한글이 깨지면서 JSON 이 망가지고 ConvertFrom-Json 이 ArgumentException 을 던지는데,
+    # 이 예외는 -ErrorAction SilentlyContinue 로 막히지 않아 스크립트 전체가 중단됐다.
+    # 인코딩을 명시하고, 파싱 실패는 $null 로 돌려 호출부의 "유효하지 않음" 판정으로 흘려보낸다.
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) { return $null }
+    try {
+        return ([System.IO.File]::ReadAllText((Resolve-Path -LiteralPath $Path).Path, [System.Text.Encoding]::UTF8) | ConvertFrom-Json)
+    }
+    catch {
+        return $null
+    }
+}
+
 function New-GeneratedRule {
     param(
         [Parameter(Mandatory)][string]$ToolName,
@@ -92,7 +108,9 @@ $sourceParts = @(
 )
 $sourceParts += @($targets | ForEach-Object { Read-SourceFile $_.Adapter })
 $sourceText = $sourceParts -join "`n"
-$koreanMirror = Read-SourceFile $koreanMirrorPath
+# (?m)^...$ 판정에서 .NET 의 $ 는 LF 앞에서만 맞는다. core.autocrlf=true 로 새로 체크아웃하면
+# 미러가 CRLF 가 되어 내용이 같아도 버전 판정이 실패했다. 다른 규칙 파일과 같은 정규화를 적용한다.
+$koreanMirror = Normalize-RuleContent (Read-SourceFile $koreanMirrorPath)
 
 $requiredCoreHeadings = @(
     '## P0. Authority and precedence',
@@ -131,15 +149,19 @@ $abFixturePath = Join-Path $root 'tests\pilot_ab_fixture_unmeasured.json'
 $packetSchemaPath = Join-Path $root 'tests\packet_schema.json'
 $interruptedFixturePath = Join-Path $root 'tests\fixtures\scratch_interrupted.tmp'
 
-$evalJsonValid = (Test-Path -LiteralPath $evalSpecPath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $evalSpecPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
-$abSchemaValid = (Test-Path -LiteralPath $abSchemaPath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $abSchemaPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
-$abFixtureValid = (Test-Path -LiteralPath $abFixturePath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $abFixturePath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
-$packetSchemaValid = (Test-Path -LiteralPath $packetSchemaPath -PathType Leaf) -and ($null -ne (Get-Content -LiteralPath $packetSchemaPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue))
+$evalJson = Read-JsonFileOrNull $evalSpecPath
+$abSchemaJson = Read-JsonFileOrNull $abSchemaPath
+$abFixtureJson = Read-JsonFileOrNull $abFixturePath
+$packetSchemaJson = Read-JsonFileOrNull $packetSchemaPath
+$evalJsonValid = $null -ne $evalJson
+$abSchemaValid = $null -ne $abSchemaJson
+$abFixtureValid = $null -ne $abFixtureJson
+$packetSchemaValid = $null -ne $packetSchemaJson
 $interruptedFixtureExists = Test-Path -LiteralPath $interruptedFixturePath -PathType Leaf
 
 $allJsonSpecsValid = $evalJsonValid -and $abSchemaValid -and $abFixtureValid -and $packetSchemaValid -and $interruptedFixtureExists
 
-$evalJson = if ($evalJsonValid) { Get-Content -LiteralPath $evalSpecPath -Raw | ConvertFrom-Json } else { $null }
+
 
 # 1. 8 Unique Test Cases Check (TC-01 .. TC-08)
 $expectedTcIds = @('TC-01', 'TC-02', 'TC-03', 'TC-04', 'TC-05', 'TC-06', 'TC-07', 'TC-08')
@@ -252,8 +274,7 @@ $allEightCasesSemanticValid = (
 )
 
 # 4. Strict A/B Schema and Fixture Constrained Contract Validation
-$abSchemaJson = if ($abSchemaValid) { Get-Content -LiteralPath $abSchemaPath -Raw | ConvertFrom-Json } else { $null }
-$abFixtureJson = if ($abFixtureValid) { Get-Content -LiteralPath $abFixturePath -Raw | ConvertFrom-Json } else { $null }
+
 
 function Test-StrictMetricValue($val) {
     if ($val -is [string]) {
@@ -401,8 +422,24 @@ $results = foreach ($target in $rendered) {
         $offlineHarnessSemanticValid
     )
 
+    $failedClauses = @(
+        if (-not $masterExists) { "dist 파일 없음($($target.MasterPath))" }
+        elseif (-not ($master -ceq $target.Content)) { 'dist 가 소스 합성 결과와 다름(Build 필요)' }
+        if (-not $withinCharacterLimit) { "글자 수 초과($($target.Content.Length)/$($target.MaxCharacters))" }
+        if (-not $withinLineLimit) { "줄 수 초과($lineCount/$($target.MaxLines))" }
+        if (-not $budgetHeadingsValid) { '예산 거버넌스 제목 개수 불일치' }
+        if (-not $priorityOrderValid) { 'core.md P0~P7 제목 순서 불일치' }
+        if (-not $koreanMirrorVersionMatches) { "GLOBAL_RULES.ko.md 의 Canonical version 이 VERSION($version)과 다름" }
+        if ($duplicateRuleLines -ne 0) { "중복 규칙 줄 $duplicateRuleLines 건" }
+        if (-not $p1SafetyPreserved) { 'P1 안전 문구 누락' }
+        if (-not $p4SafetyPreserved) { 'P4 안전 문구 누락' }
+        if (-not $p7SafetyPreserved) { 'P7 안전 문구 누락' }
+        if (-not $offlineHarnessSemanticValid) { '오프라인 하네스 실패(아래 요약 참조)' }
+    )
+
     [PSCustomObject]@{
         Target = $target.Name
+        FailedClauses = $failedClauses
         SourceContract = if ($sourceContractPassed) { 'PASS' } else { 'FAIL' }
         RuntimeMatches = $runtimeExists -and $runtime -ceq $master
         Characters = $target.Content.Length
@@ -413,7 +450,19 @@ $results = foreach ($target in $rendered) {
     }
 }
 
-$results | Format-Table -AutoSize
+$results | Select-Object -Property * -ExcludeProperty FailedClauses | Format-Table -AutoSize
+
+# FAIL 이 났을 때 어떤 조건이 원인인지 바로 보이게 한다. 이전에는 FAIL 만 출력돼
+# 원인 규명에 매번 스크립트를 뜯어봐야 했다. (2026-09-13)
+foreach ($r in $results | Where-Object { $_.SourceContract -ne 'PASS' }) {
+    Write-Host "  [$($r.Target)] 실패 조건: $($r.FailedClauses -join ' / ')"
+}
+if (-not $interruptedFixtureExists) {
+    Write-Host "  [하네스] TC-07 픽스처 없음: $interruptedFixturePath  (git checkout -- shared/global-rules/tests/fixtures/scratch_interrupted.tmp 로 복구)"
+}
+foreach ($pair in @(@('eval spec', $evalJsonValid, $evalSpecPath), @('A/B schema', $abSchemaValid, $abSchemaPath), @('A/B fixture', $abFixtureValid, $abFixturePath), @('packet schema', $packetSchemaValid, $packetSchemaPath))) {
+    if (-not $pair[1]) { Write-Host "  [하네스] JSON 읽기/파싱 실패: $($pair[0]) - $($pair[2])" }
+}
 
 $allSourceContractPassed = ($results | Where-Object { $_.SourceContract -ne 'PASS' }).Count -eq 0
 $allRuntimeMatched = ($results | Where-Object { -not $_.RuntimeMatches }).Count -eq 0
