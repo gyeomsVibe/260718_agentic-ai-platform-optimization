@@ -1,3 +1,0 @@
-# Test-owned temporary fixture for TC-07 interrupt handling simulation
-def scratch_mutation_in_progress():
-    pass

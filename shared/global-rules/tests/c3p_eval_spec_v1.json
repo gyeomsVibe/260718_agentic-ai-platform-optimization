@@ -228,10 +228,10 @@
       "offline_execution_method": "모의 인터럽트 이벤트 주입 후 미완료 상태 보고 구조 검증",
       "synthetic_fixture": {
         "event": "SIGINT_RECEIVED_DURING_FILE_WRITE",
-        "interrupted_file": "shared/global-rules/tests/fixtures/scratch_interrupted.tmp",
-        "fixture_ownership": "test_owned_temporary_fixture"
+        "interrupted_file": "shared/global-rules/tests/fixtures/interrupted-write.fixture.txt",
+        "fixture_ownership": "test_owned_permanent_fixture"
       },
-      "synthetic_output_fixture": "### 결과: 중단 (사용자 인터럽트)\n### 검증: 파일 쓰기 도중 SIGINT 수신\n### 위험: shared/global-rules/tests/fixtures/scratch_interrupted.tmp 부분 변경 상태 보존\n### 다음: 작업 롤백 또는 재시도 선택 필요",
+      "synthetic_output_fixture": "### 결과: 중단 (사용자 인터럽트)\n### 검증: 파일 쓰기 도중 SIGINT 수신\n### 위험: shared/global-rules/tests/fixtures/interrupted-write.fixture.txt 부분 변경 상태 보존\n### 다음: 작업 롤백 또는 재시도 선택 필요",
       "expected_evidence": {
         "partial_state_warning": true,
         "uncompleted_cause_reported": true,

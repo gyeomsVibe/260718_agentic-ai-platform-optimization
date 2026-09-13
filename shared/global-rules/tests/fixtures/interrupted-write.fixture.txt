@@ -1,0 +1,4 @@
+# PERMANENT fixture for TC-07 (interrupt handling). DO NOT DELETE.
+# npm run rules:check fails if this file is missing. Not a temp file despite its content.
+def scratch_mutation_in_progress():
+    pass

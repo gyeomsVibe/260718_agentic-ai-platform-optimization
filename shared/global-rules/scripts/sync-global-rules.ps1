@@ -147,7 +147,7 @@ $evalSpecPath = Join-Path $root 'tests\c3p_eval_spec_v1.json'
 $abSchemaPath = Join-Path $root 'tests\pilot_ab_schema.json'
 $abFixturePath = Join-Path $root 'tests\pilot_ab_fixture_unmeasured.json'
 $packetSchemaPath = Join-Path $root 'tests\packet_schema.json'
-$interruptedFixturePath = Join-Path $root 'tests\fixtures\scratch_interrupted.tmp'
+$interruptedFixturePath = Join-Path $root 'tests\fixtures\interrupted-write.fixture.txt'
 
 $evalJson = Read-JsonFileOrNull $evalSpecPath
 $abSchemaJson = Read-JsonFileOrNull $abSchemaPath
@@ -245,10 +245,10 @@ $tc6Semantic = (
 $tc7 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-07' } } else { $null }
 $tc7Semantic = (
     $tc7 -and
-    ($tc7.synthetic_fixture.interrupted_file -match 'scratch_interrupted\.tmp$') -and
+    ($tc7.synthetic_fixture.interrupted_file -match 'interrupted-write\.fixture\.txt$') -and
     $interruptedFixtureExists -and
     ($tc7.synthetic_output_fixture -match '중단') -and
-    ($tc7.synthetic_output_fixture -match 'scratch_interrupted\.tmp')
+    ($tc7.synthetic_output_fixture -match 'interrupted-write\.fixture\.txt')
 )
 
 $tc8 = if ($evalJson) { $evalJson.test_cases | Where-Object { $_.id -eq 'TC-08' } } else { $null }
@@ -458,7 +458,7 @@ foreach ($r in $results | Where-Object { $_.SourceContract -ne 'PASS' }) {
     Write-Host "  [$($r.Target)] 실패 조건: $($r.FailedClauses -join ' / ')"
 }
 if (-not $interruptedFixtureExists) {
-    Write-Host "  [하네스] TC-07 픽스처 없음: $interruptedFixturePath  (git checkout -- shared/global-rules/tests/fixtures/scratch_interrupted.tmp 로 복구)"
+    Write-Host "  [하네스] TC-07 픽스처 없음: $interruptedFixturePath  (git checkout -- shared/global-rules/tests/fixtures/interrupted-write.fixture.txt 로 복구)"
 }
 foreach ($pair in @(@('eval spec', $evalJsonValid, $evalSpecPath), @('A/B schema', $abSchemaValid, $abSchemaPath), @('A/B fixture', $abFixtureValid, $abFixturePath), @('packet schema', $packetSchemaValid, $packetSchemaPath))) {
     if (-not $pair[1]) { Write-Host "  [하네스] JSON 읽기/파싱 실패: $($pair[0]) - $($pair[2])" }
