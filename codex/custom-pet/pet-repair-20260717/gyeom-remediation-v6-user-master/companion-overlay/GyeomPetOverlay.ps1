@@ -246,7 +246,7 @@ function Read-RequestedState {
     try {
         $stamp = (Get-Item -LiteralPath $stateFile).LastWriteTimeUtc
         if ($stamp -gt $script:stateFileStamp) {
-            $request = Get-Content -LiteralPath $stateFile -Raw | ConvertFrom-Json
+            $request = Get-Content -LiteralPath $stateFile -Raw -Encoding UTF8 | ConvertFrom-Json
             $requestedState = [string]$request.state
             if ($requestedState -eq 'idle' -or $states.ContainsKey($requestedState)) {
                 Set-OverlayState $requestedState

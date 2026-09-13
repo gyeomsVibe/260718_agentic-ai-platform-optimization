@@ -161,7 +161,7 @@ try {
         $sheet.Dispose()
     }
 
-    $diagnostics = Get-Content -LiteralPath $diagnosticsPath -Raw | ConvertFrom-Json
+    $diagnostics = Get-Content -LiteralPath $diagnosticsPath -Raw -Encoding UTF8 | ConvertFrom-Json
     $stateCounts = [ordered]@{}
     foreach ($group in $grouped) { $stateCounts[$group.Name] = $group.Count }
     $required = @('idle-breathe', 'idle-look', 'idle-stretch', 'idle-yawn', 'waving', 'review')

@@ -14,7 +14,8 @@
 
 | 항목 | 내용 |
 |---|---|
-| [global-rules/](global-rules/) | 전역 행동 규칙 영문 정본 v3.1.0 — 공통 모델·추론 배차 원칙 + 도구별 어댑터 → `dist/`(CLAUDE.md·AGENTS.md·GEMINI.md) 생성. 동기화: `scripts/sync-global-rules.ps1` |
+| [global-rules/](global-rules/) | 전역 행동 규칙 영문 정본 (버전은 [`VERSION`](global-rules/VERSION) 파일이 정본) — 공통 원칙 + 도구별 어댑터 → `dist/`(CLAUDE.md·AGENTS.md·GEMINI.md) 생성. 동기화: `scripts/sync-global-rules.ps1`, 소스 검사: `npm run rules:check` |
+| [repo-hygiene/](repo-hygiene/) | 저장소 전체에 걸쳐 반복된 사고 유형을 막는 검사. 현재: 한글 `.ps1` BOM 필수, 인코딩 미지정 JSON 읽기 금지 (`npm run hygiene:test`) |
 | [global-rules/history.md](global-rules/history.md) | 글로벌 룰 작성·적용 이력 |
 | [repository-sync/](repository-sync/) | 워크스페이스와 GitHub를 안전하게 최신 상태로 유지하는 SAFE-SYNC 정본·연구보고서·운영 매뉴얼 |
 | [platform-auto-update/OPERATIONS.md](platform-auto-update/OPERATIONS.md) | Codex·Claude Code·Antigravity 로그인 자동업데이트 운영 가이드 및 검증 절차 |
