@@ -2,9 +2,9 @@
 
 > 사용자 열람용 번역본입니다. 실제 실행 기준은 영문 정본이며, 충돌하면 영문 정본이 우선합니다.
 >
-> Canonical version: 4.0.0
+> Canonical version: 4.1.0
 
-Antigravity·Codex·Claude Code에 공통으로 적용하는 경량 글로벌 규칙입니다. 프로젝트별 역할·명령·워크플로는 각 프로젝트 규칙과 스킬에 둡니다.
+Antigravity·Codex에 공통으로 적용하는 경량 글로벌 규칙입니다. 프로젝트별 역할·명령·워크플로는 각 프로젝트 규칙과 스킬에 둡니다.
 
 ## 소통
 
@@ -41,7 +41,7 @@ Antigravity·Codex·Claude Code에 공통으로 적용하는 경량 글로벌 �
 
 ## 범위
 
-- 프로젝트 역할·명령·워크플로는 이 파일이 아니라 프로젝트의 AGENTS.md·CLAUDE.md·GEMINI.md나 스킬에 둡니다.
+- 프로젝트 역할·명령·워크플로는 이 파일이 아니라 프로젝트의 AGENTS.md·GEMINI.md나 스킬에 둡니다.
 
 ## 도구별 어댑터
 
@@ -49,4 +49,3 @@ Antigravity·Codex·Claude Code에 공통으로 적용하는 경량 글로벌 �
 |---|---|---|
 | Codex | `~/.codex/AGENTS.md` | 지휘. 다른 AI 도구에 위임할 때는 `antigravity-bridge` MCP로만 하고(Codex 자체 하위 에이전트는 허용), 빈 출력은 실패로 판정하며, 위임 결과를 직접 검증 |
 | Antigravity | `~/.gemini/GEMINI.md` | 작업자. Codex가 맡긴 범위만 수행하고 커밋·푸시·병합·삭제 금지 |
-| Claude Code | `~/.claude/CLAUDE.md` | 독립 사용. Codex 위임 체계에 속하지 않음 |

@@ -1,10 +1,10 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v4.0.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v4.1.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
-> Shared by Antigravity, Codex, and Claude Code. Explicit user instructions, platform policy, sandbox, and permission settings take precedence over this file.
+> Shared by Antigravity and Codex. Explicit user instructions, platform policy, sandbox, and permission settings take precedence over this file.
 
 ## Communication
 
@@ -41,7 +41,7 @@
 
 ## Scope
 
-- Project roles, commands, and workflows belong in the project's own AGENTS.md, CLAUDE.md, or GEMINI.md, or in skills, not here.
+- Project roles, commands, and workflows belong in the project's own AGENTS.md or GEMINI.md, or in skills, not here.
 
 ## Antigravity adapter
 

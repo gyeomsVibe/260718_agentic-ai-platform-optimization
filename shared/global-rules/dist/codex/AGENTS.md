@@ -1,10 +1,10 @@
 # Codex Global Rules
 
-<!-- GENERATED from English canonical rules v4.0.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v4.1.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
-> Shared by Antigravity, Codex, and Claude Code. Explicit user instructions, platform policy, sandbox, and permission settings take precedence over this file.
+> Shared by Antigravity and Codex. Explicit user instructions, platform policy, sandbox, and permission settings take precedence over this file.
 
 ## Communication
 
@@ -41,10 +41,10 @@
 
 ## Scope
 
-- Project roles, commands, and workflows belong in the project's own AGENTS.md, CLAUDE.md, or GEMINI.md, or in skills, not here.
+- Project roles, commands, and workflows belong in the project's own AGENTS.md or GEMINI.md, or in skills, not here.
 
 ## Codex adapter
 
 - Load from the Codex home `AGENTS.md`; nearer `AGENTS.md` and `AGENTS.override.md` files refine it for their scope.
-- When delegating to another AI tool, use the `antigravity-bridge` MCP only; Claude Code is not a delegate. Codex's own subagents stay allowed. Give one goal, allowed files, and done criteria.
+- When delegating to another AI tool, use the `antigravity-bridge` MCP only; Codex's own subagents stay allowed. Give one goal, allowed files, and done criteria.
 - Treat empty output or a missing artifact as FAILED even with exit code 0. Review and test delegated changes yourself, and never forward a delegate's push or merge.

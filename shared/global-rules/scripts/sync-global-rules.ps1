@@ -78,14 +78,6 @@ $targets = @(
         Adapter = Join-Path $root 'adapters\codex.md'
         MaxCharacters = 0
         MaxLines = 0
-    },
-    [PSCustomObject]@{
-        Name = 'Claude Code'
-        RuntimePath = Join-Path $HOME '.claude\CLAUDE.md'
-        MasterPath = Join-Path $root 'dist\claude\CLAUDE.md'
-        Adapter = Join-Path $root 'adapters\claude.md'
-        MaxCharacters = 0
-        MaxLines = 200
     }
 )
 

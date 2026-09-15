@@ -1,11 +1,11 @@
 # 글로벌 룰 영문 정본
 
-이 디렉터리는 Antigravity·Codex·Claude Code의 전역 행동 규칙을 생성하는 단일 영문 정본(Source of Truth)이다. v4.0.0부터 항상 로드되는 규칙을 약 40줄로 줄였다.
+이 디렉터리는 Antigravity·Codex의 전역 행동 규칙을 생성하는 단일 영문 정본(Source of Truth)이다. v4.0.0부터 항상 로드되는 규칙을 약 40줄로 줄였다.
 
 ## 정본 구조
 
 - `core.md`: 세 도구가 공유하는 경량 핵심 규칙(소통·안전·소유권·검증·보고·범위)
-- `adapters/`: 도구별 2~3줄 어댑터(Codex 지휘, Antigravity 작업자, Claude Code 독립)
+- `adapters/`: 도구별 2~3줄 어댑터(Codex 지휘, Antigravity 작업자)
 - `dist/`: 세 도구에 장착되는 생성본
 - `GLOBAL_RULES.ko.md`: 사용자 열람용 한글 해설본. 런타임에는 포함하지 않음
 - `scripts/sync-global-rules.ps1`: 생성, 백업, 장착, 정합성 검사
@@ -20,7 +20,6 @@ MIA(Modular Intelligence Architect)는 별도 사용자 제작 Skill이므로 �
 |---|---|---|
 | Antigravity | `dist/antigravity/GEMINI.md` | `~/.gemini/GEMINI.md` |
 | Codex | `dist/codex/AGENTS.md` | `~/.codex/AGENTS.md` |
-| Claude Code | `dist/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
 
 Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. 과거 보조 글로벌 룰 `~/.gemini/config/AGENTS.md`가 발견되면 `Check`는 실패하고 `Apply`는 백업 후 제거한다.
 
@@ -38,8 +37,6 @@ Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. �
 - [Antigravity IDE 규칙](https://antigravity.google/docs/ide-rules)
 - [Antigravity IDE 설정](https://antigravity.google/docs/ide-settings)
 - [OpenAI Codex AGENTS.md 안내](https://developers.openai.com/codex/guides/agents-md)
-- [Claude Code 모범 사례](https://code.claude.com/docs/en/best-practices)
-- [Claude Code 기능 개요](https://code.claude.com/docs/en/features-overview)
 
 ## 운영
 
