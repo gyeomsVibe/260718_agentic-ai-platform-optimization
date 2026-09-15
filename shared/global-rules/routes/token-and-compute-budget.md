@@ -1,8 +1,0 @@
-## Token and compute budget governance
-
-- Quality and safety floors are non-negotiable: cost or quota never lowers thresholds for security, auth, deploy, destructive actions, or external effects; use an equivalent tier or `BLOCKED`.
-- Single-agent default and instruction debt liquidation: single-agent is default; parallelize only for independent tasks with material benefit. Load minimal context, tools, and rules. Stop after three failures for the same cause. Purge instruction debt: eliminate redundant validation loops, fixed scratchpads, and conflicting rules.
-- Least-cost routing via CPST: route future launches only; never claim an active turn switched. Optimize Cost per Successful Task (CPST) over token rates: prefer high-tier low-effort when task complexity warrants. Classify risk, scope, reversibility; choose least costly model and effort meeting the floor. Escalate one tier once after explicit failure.
-- Bounded local engine safety: route low-risk, bounded, non-secret, locally verifiable tasks or quota fallbacks to eligible local engines (e.g. Ollama). Never grant local engines authority over auth, deploy, destructive actions, or final decisions. Scoped policy holds model names, prices, quotas, and CLI syntax.
-- Prefix invariance: preserve prompt cache stability to reduce unnecessary prompt cache invalidation; keep static rules and deterministic tool order at prompt head; forbid dynamic timestamps or IDs in prefixes. Record model, effort, reason codes, outcome, and usage.
-- Strict unmeasured telemetry: treat telemetry and savings as `UNMEASURED` until validated by preregistered A/B evaluation measuring CPST, latency, and quality. Roll out only task types passing safety and quality gates.

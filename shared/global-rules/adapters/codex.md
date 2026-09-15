@@ -1,7 +1,5 @@
 ## Codex adapter
 
-- Load this generated file from the Codex home `AGENTS.md`. Respect `AGENTS.override.md` and project or path-scoped discovery precedence.
-- Keep global guidance reusable. Put repository commands, architecture, validation, and review expectations in the nearest applicable `AGENTS.md`.
-- Treat Markdown guidance as behavioral context. Use Codex sandbox, approval policy, hooks, and checked-in validation tools for deterministic controls.
-- Before changing plugins, connectors, MCP servers, or Codex settings, inspect supported commands and active state. Credentials and caches are never canonical configuration.
-- Apply routing only when creating a new task, subagent, or CLI run through supported model and reasoning controls. Never claim an active turn switched; preserve existing selection when no route is requested.
+- Load from the Codex home `AGENTS.md`; nearer `AGENTS.md` and `AGENTS.override.md` files refine it for their scope.
+- When delegating to another AI tool, use the `antigravity-bridge` MCP only; Claude Code is not a delegate. Codex's own subagents stay allowed. Give one goal, allowed files, and done criteria.
+- Treat empty output or a missing artifact as FAILED even with exit code 0. Review and test delegated changes yourself, and never forward a delegate's push or merge.

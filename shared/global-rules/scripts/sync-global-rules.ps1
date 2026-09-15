@@ -57,18 +57,9 @@ function New-GeneratedRule {
     )
 
     $core = Read-SourceFile (Join-Path $root 'core.md')
-    $budgetRoute = Read-SourceFile (Join-Path $root 'routes\token-and-compute-budget.md')
-    $c3pCouncilRoutePath = if ($ToolName -eq 'Antigravity') {
-        Join-Path $root 'routes\c3p-council-naming-antigravity.md'
-    } else {
-        Join-Path $root 'routes\c3p-council-naming.md'
-    }
-    $c3pCouncilRoute = Read-SourceFile $c3pCouncilRoutePath
-    $vibeCheckRoute = Read-SourceFile (Join-Path $root 'routes\vibe-check.md')
-    $repositorySyncRoute = Read-SourceFile (Join-Path $root 'routes\repository-sync.md')
     $adapter = Read-SourceFile $AdapterPath
     $header = "# $ToolName Global Rules`n`n<!-- GENERATED from English canonical rules v$version. Edit the source files, not this deployment. -->"
-    return "$header`n`n$core`n`n$budgetRoute`n`n$c3pCouncilRoute`n`n$vibeCheckRoute`n`n$repositorySyncRoute`n`n$adapter`n"
+    return "$header`n`n$core`n`n$adapter`n"
 }
 
 $targets = @(
@@ -100,11 +91,6 @@ $targets = @(
 
 $sourceParts = @(
     (Read-SourceFile (Join-Path $root 'core.md'))
-    (Read-SourceFile (Join-Path $root 'routes\token-and-compute-budget.md'))
-    (Read-SourceFile (Join-Path $root 'routes\c3p-council-naming.md'))
-    (Read-SourceFile (Join-Path $root 'routes\c3p-council-naming-antigravity.md'))
-    (Read-SourceFile (Join-Path $root 'routes\vibe-check.md'))
-    (Read-SourceFile (Join-Path $root 'routes\repository-sync.md'))
 )
 $sourceParts += @($targets | ForEach-Object { Read-SourceFile $_.Adapter })
 $sourceText = $sourceParts -join "`n"
@@ -113,14 +99,12 @@ $sourceText = $sourceParts -join "`n"
 $koreanMirror = Normalize-RuleContent (Read-SourceFile $koreanMirrorPath)
 
 $requiredCoreHeadings = @(
-    '## P0. Authority and precedence',
-    '## P1. Language and response format',
-    '## P2. Authorization and safety',
-    '## P3. State, ownership, and concurrency',
-    '## P4. Work execution and verification',
-    '## P5. Workspace and repository organization',
-    '## P6. Code and artifact quality',
-    '## P7. Completion reporting'
+    '## Communication',
+    '## Safety',
+    '## Ownership',
+    '## Verification',
+    '## Reporting',
+    '## Scope'
 )
 $coreText = Read-SourceFile (Join-Path $root 'core.md')
 $priorityOrderValid = $true
@@ -401,24 +385,19 @@ $results = foreach ($target in $rendered) {
     $withinCharacterLimit = $target.MaxCharacters -eq 0 -or $target.Content.Length -le $target.MaxCharacters
     $withinLineLimit = $target.MaxLines -eq 0 -or $lineCount -le $target.MaxLines
 
-    $budgetHeadings = ([regex]::Matches($target.Content, '(?m)^## Token and compute budget governance')).Count
-    $legacyRoutingHeadings = ([regex]::Matches($target.Content, '(?m)^## Deterministic model and reasoning routing')).Count
-    $budgetHeadingsValid = ($budgetHeadings -eq 1) -and ($legacyRoutingHeadings -eq 0)
-
-    $p1SafetyPreserved = $target.Content -match 'explain what changes, why it matters, and the smallest useful next action' -and $target.Content -match 'Preserve intent over literal translation' -and $target.Content -match 'unless another format or artifact requires one' -and $target.Content -match 'only when it aids clarity'
-    $p4SafetyPreserved = $target.Content -match 'public interfaces' -and $target.Content -match 'exit `0`' -and $target.Content -match 'three times' -and $target.Content -match 'amount, currency, rate, date'
-    $p7SafetyPreserved = $target.Content -match 'compact result capsule' -and $target.Content -match 'reduce unnecessary prompt cache invalidation' -and $target.Content -match 'report the cause, completed work, preserved state, remaining risk, and viable alternatives'
+    $communicationPreserved = $target.Content -match 'natural Korean' -and $target.Content -match 'Lead with the outcome'
+    $safetyPreserved = $target.Content -match 'Never read, print, or commit secrets' -and $target.Content -match 'never transfers to other actions' -and $target.Content -match 'Never weaken sandboxing'
+    $verificationPreserved = $target.Content -match 'exact commands and exit codes' -and $target.Content -match 'three failures' -and $target.Content -match 'UNMEASURED'
 
     $sourceContractPassed = (
         $masterExists -and ($master -ceq $target.Content) -and
         $withinCharacterLimit -and $withinLineLimit -and
-        $budgetHeadingsValid -and
         $priorityOrderValid -and
         $koreanMirrorVersionMatches -and
         ($duplicateRuleLines -eq 0) -and
-        $p1SafetyPreserved -and
-        $p4SafetyPreserved -and
-        $p7SafetyPreserved -and
+        $communicationPreserved -and
+        $safetyPreserved -and
+        $verificationPreserved -and
         $offlineHarnessSemanticValid
     )
 
@@ -427,13 +406,12 @@ $results = foreach ($target in $rendered) {
         elseif (-not ($master -ceq $target.Content)) { 'dist 가 소스 합성 결과와 다름(Build 필요)' }
         if (-not $withinCharacterLimit) { "글자 수 초과($($target.Content.Length)/$($target.MaxCharacters))" }
         if (-not $withinLineLimit) { "줄 수 초과($lineCount/$($target.MaxLines))" }
-        if (-not $budgetHeadingsValid) { '예산 거버넌스 제목 개수 불일치' }
-        if (-not $priorityOrderValid) { 'core.md P0~P7 제목 순서 불일치' }
+        if (-not $priorityOrderValid) { 'core.md 필수 제목 순서 불일치' }
         if (-not $koreanMirrorVersionMatches) { "GLOBAL_RULES.ko.md 의 Canonical version 이 VERSION($version)과 다름" }
         if ($duplicateRuleLines -ne 0) { "중복 규칙 줄 $duplicateRuleLines 건" }
-        if (-not $p1SafetyPreserved) { 'P1 안전 문구 누락' }
-        if (-not $p4SafetyPreserved) { 'P4 안전 문구 누락' }
-        if (-not $p7SafetyPreserved) { 'P7 안전 문구 누락' }
+        if (-not $communicationPreserved) { '소통 필수 문구 누락' }
+        if (-not $safetyPreserved) { '안전 필수 문구 누락' }
+        if (-not $verificationPreserved) { '검증 필수 문구 누락' }
         if (-not $offlineHarnessSemanticValid) { '오프라인 하네스 실패(아래 요약 참조)' }
     )
 
@@ -445,7 +423,7 @@ $results = foreach ($target in $rendered) {
         Characters = $target.Content.Length
         Lines = $lineCount
         FixtureContractValid = if ($offlineHarnessSemanticValid) { 'PASS (8/8 Fixture Semantics + Canary + AB Strict Contract)' } else { 'FAIL' }
-        SafetyAndCapsule = if ($p1SafetyPreserved -and $p4SafetyPreserved -and $p7SafetyPreserved) { 'PASS' } else { 'FAIL' }
+        EssentialPhrases = if ($communicationPreserved -and $safetyPreserved -and $verificationPreserved) { 'PASS' } else { 'FAIL' }
         DuplicateRuleLines = $duplicateRuleLines
     }
 }
@@ -468,7 +446,7 @@ $allSourceContractPassed = ($results | Where-Object { $_.SourceContract -ne 'PAS
 $allRuntimeMatched = ($results | Where-Object { -not $_.RuntimeMatches }).Count -eq 0
 
 Write-Host "================================================================="
-Write-Host "C3P GLOBAL RULES CONTRACT & HARNESS AUDIT SUMMARY:"
+Write-Host "GLOBAL RULES CONTRACT & HARNESS AUDIT SUMMARY:"
 Write-Host "  SourceContractValid    : $(if ($allSourceContractPassed) { 'PASS' } else { 'FAIL' })"
 Write-Host "  RuntimeDeploymentValid : $(if ($allRuntimeMatched) { 'ALIGNED' } else { 'BLOCKED (Runtime Apply Pending Separate Sign-off)' })"
 Write-Host "  Offline Fixture Contract: $offlineHarnessSemanticValid"

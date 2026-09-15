@@ -1,22 +1,18 @@
 # 글로벌 룰 영문 정본
 
-이 디렉터리는 노트북 환경의 Antigravity·Codex·Claude Code 전역 행동 규칙을 생성하는 단일 영문 정본(Source of Truth)이다. 규칙 본문과 도구별 어댑터는 영어로 관리하고, 사용자 고유 이름과 명시 호출 문구만 원문을 유지한다.
+이 디렉터리는 Antigravity·Codex·Claude Code의 전역 행동 규칙을 생성하는 단일 영문 정본(Source of Truth)이다. v4.0.0부터 항상 로드되는 규칙을 약 40줄로 줄였다.
 
 ## 정본 구조
 
-- `core.md`: 세 도구가 공유하는 영어 핵심 규칙
-- `routes/model-and-reasoning-routing.md`: 모델·추론 강도 사전 배차의 안정적인 공통 계약
-- `routes/c3p-council-naming.md`: `codex-3p-orchestrator`와 공식 속칭 `C3P 협의체`의 범위·표기 계약
-- `routes/c3p-council-naming-antigravity.md`: 11,800자 내부 상한을 지키는 Antigravity용 동의어 압축본
-- `routes/vibe-check.md`: Vibe Check의 영어 라우팅과 원문 트리거
-- `routes/repository-sync.md`: 자동 Git 동기화·명시형 handoff의 공통 안전 계약
-- `adapters/`: 각 도구의 로딩·권한·컨텍스트 특성에 맞춘 영어 어댑터
-- `dist/`: 세 도구에 장착되는 완성형 영어 정본
-- `GLOBAL_RULES.ko.md`: 사용자가 읽는 통합 한글 해설본. 런타임에는 포함하지 않음
-- `scripts/sync-global-rules.ps1`: 정본 생성, 백업, 장착, 정합성 검사
+- `core.md`: 세 도구가 공유하는 경량 핵심 규칙(소통·안전·소유권·검증·보고·범위)
+- `adapters/`: 도구별 2~3줄 어댑터(Codex 지휘, Antigravity 작업자, Claude Code 독립)
+- `dist/`: 세 도구에 장착되는 생성본
+- `GLOBAL_RULES.ko.md`: 사용자 열람용 한글 해설본. 런타임에는 포함하지 않음
+- `scripts/sync-global-rules.ps1`: 생성, 백업, 장착, 정합성 검사
+- `tests/`: 오프라인 행동 픽스처와 A/B 측정 스키마
 - `VERSION`: 정본 버전
 
-MIA(Modular Intelligence Architect)는 별도 사용자 제작 Skill이므로 글로벌 룰에 포함하지 않는다. MIA의 발동과 전체 절차는 [`../../skills/custom/mia/`](../../skills/custom/mia/)에서 관리한다.
+MIA(Modular Intelligence Architect)는 별도 사용자 제작 Skill이므로 글로벌 룰에 포함하지 않는다. [`../../skills/custom/mia/`](../../skills/custom/mia/)에서 관리한다.
 
 ## 완성형 영문 정본과 장착 위치
 
@@ -26,20 +22,16 @@ MIA(Modular Intelligence Architect)는 별도 사용자 제작 Skill이므로 �
 | Codex | `dist/codex/AGENTS.md` | `~/.codex/AGENTS.md` |
 | Claude Code | `dist/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
 
-Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. 과거 Vibe Check 보조 글로벌 룰이었던 `~/.gemini/config/AGENTS.md`가 발견되면 `Check`는 실패하고, `Apply`는 해당 파일을 백업한 뒤 제거한다. 상세 절차는 설치된 `vibe-check` 스킬과 프로젝트 범위 규칙에서 관리한다.
+Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. 과거 보조 글로벌 룰 `~/.gemini/config/AGENTS.md`가 발견되면 `Check`는 실패하고 `Apply`는 백업 후 제거한다.
 
 ## 설계 기준
 
-- Antigravity: 전역 `GEMINI.md`의 공식 12,000자 제한보다 200자 낮은 11,800자 내부 상한과 IDE 권한·비작업공간 접근 경계를 지킨다.
-- Codex: 전역 `AGENTS.md`, `AGENTS.override.md`, 프로젝트·경로 지침의 발견 우선순위를 보존한다.
-- Claude Code: 항상 로드되는 `CLAUDE.md`를 200줄 이하로 유지하고 절차는 스킬로 분리한다.
-- 공통: 짧고 명령형이며 검증 가능한 문장만 항상 로드하고, 장기 절차는 전용 스킬에 둔다.
-- 배차: 안정적인 품질·안전 원칙만 글로벌로 유지하고 모델명·가격·한도·임계값은 버전이 있는 범위 정책에 둔다.
-- C3P 명칭: 글로벌에는 공식 속칭과 적용 범위만 두고 실행 절차·정족수·명령은 프로젝트 범위 규칙에 둔다.
-- 중복 방지: 글로벌 룰은 도구별 한 개의 정본만 장착하고, 기능별 상세 절차를 별도 글로벌 파일로 중복 등록하지 않는다.
-- 우선순위: 영문 정본은 P0 권한부터 P7 완료 보고 순서로 배치하고, 더 중요한 규칙을 먼저 읽게 한다.
-- 강제 경계: Markdown은 행동 지침이다. 예외 없이 지켜야 하는 조건은 도구별 Permission·Hook·Sandbox·Policy로 구현한다.
-- 번역본: 한글본은 사용자 검토용이며 `Canonical version`이 `VERSION`과 일치해야 한다.
+- 항상 로드되는 규칙은 짧게 유지한다. 규칙이 길수록 각 규칙의 준수율이 떨어진다.
+- 코드를 읽으면 알 수 있는 내용, 모델 기본 동작과 겹치는 일반론, 측정되지 않은 최적화 이론은 넣지 않는다.
+- 특정 저장소 전용 역할·호출문·진단 워크플로는 해당 저장소 규칙이나 스킬에 둔다.
+- Markdown은 행동 지침이다. 예외 없이 지켜야 하는 조건은 도구별 Permission·Hook·Sandbox·Policy로 강제한다.
+- `Check`는 필수 제목 순서, 소통·안전·검증 필수 문구, 규칙 줄 중복, 한글본 버전, 오프라인 픽스처 계약을 검사한다.
+- 한글본은 사용자 검토용이며 `Canonical version`이 `VERSION`과 일치해야 한다.
 
 공식 기준:
 
