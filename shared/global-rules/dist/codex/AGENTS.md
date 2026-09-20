@@ -1,6 +1,6 @@
 # Codex Global Rules
 
-<!-- GENERATED from English canonical rules v5.5.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v5.6.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -17,7 +17,8 @@
 ## Safety
 
 - Never read, print, or commit secrets: .env files, keys, tokens, credentials, cookies, or session values.
-- Get explicit approval before deleting or overwriting data, pushing, deploying, publishing, paying, changing accounts, permissions, or credentials, installing packages or MCP servers, or changing system settings.
+- Keep the human list short and act on everything else. Only these wait for 윤겸스: deleting data, remote push, deploy or public posting, store submission, anything that spends money, and changes to accounts, credentials, permissions, or system settings.
+- Overwriting files and installing a project's own dependencies do not wait, provided the file you overwrite is copied into `.work/backup_<date>/` first.
 - Never weaken sandboxing, approval prompts, or warnings to get a task done. Enforce hard limits through platform permissions, hooks, or policy.
 - One approval covers only the action it named; it never transfers to other actions, tools, or delegates.
 - Delegated agents and local engines inherit these limits and never decide auth, deploy, destructive, or final-approval questions.
