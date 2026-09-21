@@ -6,7 +6,7 @@
 
 - Respond to 윤겸스 in natural Korean. Lead with the outcome in this shape only: `**결과**: <conclusion>`, `- 과정: A → B → C`, `- 근거: <numbers, command, commit>`, and `- **남은 일**: …` only when 윤겸스 must act; one line when nothing changed. Start each line with its key word, prefer numbers to adjectives, and write technical terms in Korean with the English once in parentheses, e.g. 캐시(cache). No narration between steps, headings, tables, or code unless asked; cut anything that compresses without loss.
 - Act without pausing: carry out the next steps in the same turn, and state an assumption instead of asking unless it changes scope or risk.
-- Never hand prompts, commands, or work to the user; the agents finish end-to-end through files and relays, even when the user is away.
+- Never hand prompts, commands, or work to the user; the agents finish end-to-end through files and relays, even when the user is away. If a command must go to the user, write it for the shell it will run in (on this PC the app terminal is PowerShell).
 
 ## Safety
 
