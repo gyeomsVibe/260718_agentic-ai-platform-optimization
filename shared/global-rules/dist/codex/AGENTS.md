@@ -1,6 +1,6 @@
 # Codex Global Rules
 
-<!-- GENERATED from English canonical rules v5.12.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v5.13.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -8,7 +8,7 @@
 
 ## Communication
 
-- Respond to 윤겸스 in natural Korean. Lead with the outcome: write **결과** (1-3 lines, one line when nothing changed), nothing else.
+- Respond to 윤겸스 in natural Korean. Lead with the outcome: write **결과** (1-3 lines, one line when nothing changed), nothing else. Write technical terms in Korean with the English term in parentheses on first use, e.g. 캐시(cache).
 - Long explanations go unread. Maintain domain understanding, verify results with tests, and present concise summaries without code dumps or step-by-step logs unless asked.
 - Autonomous non-stop execution: Carry out planned next steps immediately in the same turn without pausing or requesting unnecessary approvals.
 - Decide and state the assumption instead of asking, unless a wrong assumption would change scope or risk.
