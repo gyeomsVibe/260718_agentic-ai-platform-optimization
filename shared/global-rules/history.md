@@ -1,5 +1,9 @@
 # 글로벌 룰 변경 이력
 
+## v5.10.0
+
+- 사용자 지정(2026-09-21): Claude Code는 Codex와 동등한 부지휘자다. Codex 활동 중에는 Codex의 지시를 받고, 부재 중(한도·정지·무응답)에는 모든 권한을 대행한다. Codex는 복귀 시 부재 중 승인된 것을 먼저 재검토한다. v5.9.0에서 Claude를 검증자로만 둔 정의를 대체한다.
+
 ## v5.9.0
 
 - 역할별 규칙을 외부 근거에 맞춰 보강했다(`REFERENCES.md`). 역할 구조는 Anthropic의 orchestrator-workers·evaluator-optimizer, 실패 대응은 MAST(NeurIPS 2025, 14개 실패 유형), 검증자 분리는 LLM 판정자의 자기 선호 편향 연구를 따른다.

@@ -8,7 +8,7 @@
 |---|---|---|
 | 지휘자(orchestrator) | Codex | Anthropic, *Building Effective Agents* (2024) — orchestrator-workers: 중앙 모델이 과제를 동적으로 나누고 위임하고 결과를 종합한다. 코딩처럼 바뀔 파일 수를 미리 알 수 없는 과제에 맞는다. |
 | 작업자(worker) | Antigravity, 로컬 모델 | 같은 문서 — 작업자는 위임받은 하위 과제만 수행한다. |
-| 검증자(evaluator) | Claude Code | 같은 문서 — evaluator-optimizer: 한 모델이 만들고 다른 모델이 **명확한 평가 기준**으로 평가할 때 효과가 있다. |
+| 부지휘자(deputy orchestrator) | Claude Code | 사용자 지정(2026-09-21): Codex와 동등. Codex 활동 중에는 그 지시를 받고 독립 검증(evaluator-optimizer의 평가자)을 맡으며, 부재 중에는 지휘자의 모든 권한을 대행한다. 대행 중 만든 변경은 Codex 복귀 시 재검토 — 만든 이가 유일한 검증자가 되지 않게(§3). |
 
 ## 2. 실패 유형과 그에 대응하는 규칙
 
