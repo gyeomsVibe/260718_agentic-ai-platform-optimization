@@ -46,6 +46,9 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 | RouteLLM (ICLR 2025) | 강·약 모델 라우팅으로 비용 85% 이상 절감, 강 모델 성능의 95% 유지 | 판단이 필요하면 강 모델로 올림 |
 | GitHub 위임 도구(claude-sidekick, mcp-local-llm, ollama-mcp-server 등) | "생각은 비싼 모델이, 기계적인 일은 로컬이" 분업이 공통 패턴 | ask/edit/find 세 용도로 한정 |
 | 이 프로젝트 벤치 v2 | 로컬 실패 축은 지시의 모호함 하나 | 정확히 적을 수 있는 수정만 `olla edit` |
+| LLMLingua (Jiang et al., EMNLP 2023, arXiv:2310.05736) | 작은 모델로 입력을 최대 20배 압축해도 성능 손실이 적다 | 큰 읽기는 `olla digest` 요약본을 먼저 |
+| 에이전트 비용 공학 실무 보고(ReAct 류는 매 턴 문맥 재전송으로 비용이 5~7배 증가, 토큰의 40~60%가 줄일 수 있는 낭비) | 읽은 내용은 이후 턴마다 다시 과금된다 | 추정에 재전송 3턴을 포함 |
+| 이 프로젝트 실측 | 753줄 파일 10,464 → 855토큰(−91.8%), 보조 경로 1곳 누락 | 요약본은 지도, 줄은 직접 확인 |
 
 ## 출처
 
@@ -60,3 +63,6 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 - claude-sidekick — https://github.com/andrewbrereton/claude-sidekick
 - mcp-local-llm — https://github.com/aplaceforallmystuff/mcp-local-llm
 - ollama-mcp-server — https://github.com/Shahriar-Hossein/ollama-mcp-server
+- LLMLingua — https://arxiv.org/abs/2310.05736
+- Token-Budget-Aware LLM Reasoning — https://arxiv.org/abs/2412.18547
+- LLM cost optimization for agent workflows — https://dev.to/omnithium/llm-cost-optimization-for-agent-workflows-a-practical-guide-49c1
