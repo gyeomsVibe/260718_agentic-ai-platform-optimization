@@ -38,6 +38,15 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 - 짧고 구체적으로: "모범 사례를 따르라" 대신 정확한 명령·경계·파일을 적는다. 긴 규칙 파일은 중요한 규칙이 묻힌다. ([agentsmd/agents.md](https://github.com/agentsmd/agents.md), [OpenAI Codex AGENTS.md 가이드](https://developers.openai.com/codex/guides/agents-md))
 - 문서만으로는 준수율이 낮고(실무 보고 25~40%) 런타임 강제(훅·게이트)는 훨씬 높다(약 95%). 그래서 이 프로젝트는 핵심 규칙을 문장이 아니라 **파일럿 게이트**로 강제한다. 이 수치는 실무자 보고이며 통제 실험이 아니다.
 
+## 5. 로컬 모델 캐스케이드 (`olla`)
+
+| 근거 | 내용 | 규칙 |
+|---|---|---|
+| FrugalGPT (Chen et al., arXiv:2305.05176) | 싼 모델부터 쓰고 부족할 때만 비싼 모델로 넘기는 캐스케이드로 최대 98% 비용 절감, 최고 모델 성능 유지 | 기계적인 일은 로컬 먼저 |
+| RouteLLM (ICLR 2025) | 강·약 모델 라우팅으로 비용 85% 이상 절감, 강 모델 성능의 95% 유지 | 판단이 필요하면 강 모델로 올림 |
+| GitHub 위임 도구(claude-sidekick, mcp-local-llm, ollama-mcp-server 등) | "생각은 비싼 모델이, 기계적인 일은 로컬이" 분업이 공통 패턴 | ask/edit/find 세 용도로 한정 |
+| 이 프로젝트 벤치 v2 | 로컬 실패 축은 지시의 모호함 하나 | 정확히 적을 수 있는 수정만 `olla edit` |
+
 ## 출처
 
 - Anthropic, Building Effective AI Agents — https://www.anthropic.com/engineering/building-effective-agents
@@ -46,3 +55,8 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 - How Independent are Large Language Models? — https://arxiv.org/abs/2604.07650
 - agentsmd/agents.md — https://github.com/agentsmd/agents.md
 - AGENTS.md 실무 가이드(준수율 보고 포함) — https://www.betterclaw.io/blog/agents-md-best-practices
+- FrugalGPT — https://arxiv.org/abs/2305.05176
+- RouteLLM — https://github.com/lm-sys/RouteLLM
+- claude-sidekick — https://github.com/andrewbrereton/claude-sidekick
+- mcp-local-llm — https://github.com/aplaceforallmystuff/mcp-local-llm
+- ollama-mcp-server — https://github.com/Shahriar-Hossein/ollama-mcp-server

@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v5.10.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v5.11.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -56,6 +56,7 @@
 - Keep one folder per project at the workspace root. Samples, staging, `--work-dir`, measurement copies, and backups go under `<project>/.work/<purpose>_<id>`, which stays out of manifests, staging, builds, and commits.
 - Give each step only the files and context it needs, and carry decisions forward in the plan and cards rather than in chat history.
 - Mark each deliverable as disposable or maintained. Disposable work may be regenerated; maintained work needs recorded intent and tests.
+- Spend a local model before your own quota on mechanical work, in any project: `olla ask` for drafts, summaries, and classification; `olla edit -f <file> "<exact instruction>"` for edits you can state precisely (it backs up and prints the diff); `olla find` to locate files by meaning. Escalate to yourself only when the instruction needs judgment or the local result fails your check. You still verify what it produced; the local model never decides a verdict.
 
 ## Antigravity adapter
 
