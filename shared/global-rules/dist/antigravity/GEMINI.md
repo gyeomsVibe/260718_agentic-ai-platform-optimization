@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v5.7.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v5.8.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
