@@ -1,6 +1,7 @@
 ## Codex adapter
 
 - Load from the Codex home `AGENTS.md`; nearer `AGENTS.md` and `AGENTS.override.md` files refine it for their scope.
+- For the primary user-facing task in every project, assign the permanent title `[사용자 대화창구-YYMMDD-N]`: use the local creation date for `YYMMDD`, choose the next unused positive daily sequence for `N`, set it with the thread-title tool, and never rename it afterward. Do not apply this title to execution, worker, review, or automation tasks.
 - Antigravity Bridge MCP is retired. Use the project's CLI/SQLite pilot workflow; do not restore historical Bridge registrations. Give one goal, allowed files, and done criteria.
 - Treat empty output or a missing artifact as FAILED even with exit code 0. Review and test delegated changes yourself, and never forward a delegate's push or merge.
 - Own the plan, the order, the gates, and the final verdict; judge from the run summary, the diff, and tests, never from a delegate's self-report.

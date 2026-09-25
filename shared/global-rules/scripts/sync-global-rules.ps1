@@ -68,6 +68,7 @@ $targets = @(
         RuntimePath = Join-Path $HOME '.gemini\GEMINI.md'
         MasterPath = Join-Path $root 'dist\antigravity\GEMINI.md'
         Adapter = Join-Path $root 'adapters\antigravity.md'
+        SourcePath = $null
         MaxCharacters = 11600
         MaxLines = 0
     },
@@ -76,6 +77,16 @@ $targets = @(
         RuntimePath = Join-Path $HOME '.codex\AGENTS.md'
         MasterPath = Join-Path $root 'dist\codex\AGENTS.md'
         Adapter = Join-Path $root 'adapters\codex.md'
+        SourcePath = $null
+        MaxCharacters = 0
+        MaxLines = 0
+    },
+    [PSCustomObject]@{
+        Name = 'Claude'
+        RuntimePath = Join-Path $HOME '.claude\CLAUDE.md'
+        MasterPath = Join-Path $root 'dist\claude\CLAUDE.md'
+        Adapter = $null
+        SourcePath = Join-Path $root 'claude.md'
         MaxCharacters = 0
         MaxLines = 0
     }
@@ -84,7 +95,7 @@ $targets = @(
 $sourceParts = @(
     (Read-SourceFile (Join-Path $root 'core.md'))
 )
-$sourceParts += @($targets | ForEach-Object { Read-SourceFile $_.Adapter })
+$sourceParts += @($targets | Where-Object { $null -ne $_.Adapter } | ForEach-Object { Read-SourceFile $_.Adapter })
 $sourceText = $sourceParts -join "`n"
 # (?m)^...$ 판정에서 .NET 의 $ 는 LF 앞에서만 맞는다. core.autocrlf=true 로 새로 체크아웃하면
 # 미러가 CRLF 가 되어 내용이 같아도 버전 판정이 실패했다. 다른 규칙 파일과 같은 정규화를 적용한다.
@@ -315,7 +326,14 @@ if ($sourceText -match '(?i)\bMIA\b|plan-review-execute') {
 }
 
 $rendered = foreach ($target in $targets) {
-    $content = Normalize-RuleContent (New-GeneratedRule -ToolName $target.Name -AdapterPath $target.Adapter)
+    # Claude's established Korean global rules are standalone; preserving them
+    # avoids silently replacing its existing deputy/safety contract with the
+    # Codex/Antigravity adapter format.
+    $content = if ($null -ne $target.SourcePath) {
+        Normalize-RuleContent (Read-SourceFile $target.SourcePath)
+    } else {
+        Normalize-RuleContent (New-GeneratedRule -ToolName $target.Name -AdapterPath $target.Adapter)
+    }
     [PSCustomObject]@{
         Name = $target.Name
         RuntimePath = $target.RuntimePath
@@ -377,9 +395,15 @@ $results = foreach ($target in $rendered) {
     $withinCharacterLimit = $target.MaxCharacters -eq 0 -or $target.Content.Length -le $target.MaxCharacters
     $withinLineLimit = $target.MaxLines -eq 0 -or $lineCount -le $target.MaxLines
 
-    $communicationPreserved = $target.Content -match 'natural Korean' -and $target.Content -match 'Lead with the outcome'
-    $safetyPreserved = $target.Content -match 'Never read, print, or commit secrets' -and $target.Content -match 'never transfers to other actions' -and $target.Content -match 'Never weaken sandboxing'
-    $verificationPreserved = $target.Content -match 'exact commands and exit codes' -and $target.Content -match 'three failures' -and $target.Content -match 'UNMEASURED'
+    if ($target.Name -eq 'Claude') {
+        $communicationPreserved = $target.Content.Contains('brief-ko') -and $target.Content.Contains('초보자')
+        $safetyPreserved = $target.Content.Contains('멈추고 물을 것') -and $target.Content.Contains('자격증명')
+        $verificationPreserved = $target.Content.Contains('원문 인용') -and $target.Content.Contains('UNMEASURED') -and $target.Content.Contains('독립 검사')
+    } else {
+        $communicationPreserved = $target.Content -match 'natural Korean' -and $target.Content -match 'Lead with the outcome'
+        $safetyPreserved = $target.Content -match 'Never read, print, or commit secrets' -and $target.Content -match 'never transfers to other actions' -and $target.Content -match 'Never weaken sandboxing'
+        $verificationPreserved = $target.Content -match 'exact commands and exit codes' -and $target.Content -match 'three failures' -and $target.Content -match 'UNMEASURED'
+    }
 
     $sourceContractPassed = (
         $masterExists -and ($master -ceq $target.Content) -and
