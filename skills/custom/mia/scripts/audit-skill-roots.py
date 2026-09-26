@@ -54,8 +54,12 @@ for _plugin in sorted((HOME / ".gemini" / "config" / "plugins").glob("*/skills")
 
 # 감사 대상에서 제외한다.
 #   .system      Codex 내부 디렉터리 (스킬 아님)
+#   synced       Claude Code 가 관리하는 동기화 컨테이너. 그 아래는 스킬이 아니라
+#                `<uuid>_<uuid>/` 버킷이고 SKILL.md 대신 manifest.json 을 갖는다.
+#                우리가 만들지도 지우지도 않는 경로이므로 no_skill_md 로 보지 않는다.
+#                (2026-09-27 확인: ~/.claude/skills/synced/…/manifest.json)
 #   ~/.gemini/antigravity/skills 는 config/skills 로의 심볼릭 링크 -> 중복 계상 방지
-NOT_A_SKILL = {".system"}
+NOT_A_SKILL = {".system", "synced"}
 
 # sync-mia-catalog.ps1 의 $definitions 가 배포하는 스킬. 이 스크립트는 Claude 어댑터에만
 # 영문 description 을 의도적으로 생성하므로, 그 차이는 결함이 아니다. (목록은 스크립트와 일치해야 한다)
