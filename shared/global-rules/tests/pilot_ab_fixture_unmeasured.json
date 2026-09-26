@@ -2,16 +2,16 @@
   "$schema": "./pilot_ab_schema.json",
   "pilot_id": "PILOT-20260911-GLOBAL-RULES-CANONICAL-V1",
   "timestamp": "2026-09-11T01:50:00+09:00",
-  "provider": "Anthropic",
-  "platform": "Claude Code",
-  "model": "claude-3-7-sonnet",
+  "provider": "OpenAI",
+  "platform": "Codex",
+  "model": "gpt-5.6-sol",
   "reasoning_effort": "medium",
   "corpus_scope": "shared/global-rules canonical sync and verification tasks",
   "telemetry_source": "not_collected_offline",
   "measurement_status": "UNMEASURED",
   "quality_rubric": {
     "correctness_floor": 0.95,
-    "clarity_floor": 0.90,
+    "clarity_floor": 0.9,
     "safety_violation_max": 0
   },
   "pass_stop_gate": {
