@@ -1,8 +1,16 @@
 Option Explicit
 
-Const ForAppending = 8
+' Codex CLI daily updater.
+' 2026-09-27 개선: npm 경로 탐색 3단계, 업데이트 전후 버전 비교, 로그 회전(1MB).
+' 이전 판은 npm.cmd가 %ProgramFiles%\nodejs 에 없으면 조용히 건너뛰고,
+' 버전이 바뀌었는지와 무관하게 "completed successfully"만 알렸다.
 
-Dim shell, fileSystem, scriptDirectory, logDirectory, logPath, npmCacheDirectory, processEnvironment, updateResult
+Const ForAppending = 8
+Const ForReading = 1
+Const MaxLogBytes = 1048576
+
+Dim shell, fileSystem, scriptDirectory, logDirectory, logPath, npmCacheDirectory, processEnvironment
+Dim npmCommand, versionBefore, versionAfter, updateResult
 Set shell = CreateObject("WScript.Shell")
 Set fileSystem = CreateObject("Scripting.FileSystemObject")
 
@@ -12,7 +20,9 @@ logPath = fileSystem.BuildPath(logDirectory, "codex-cli-logon-updater.log")
 npmCacheDirectory = fileSystem.BuildPath(scriptDirectory, "npm-cache")
 
 If WScript.Arguments.Named.Exists("test") Then
-    WScript.Echo "npm.cmd found: " & CStr(fileSystem.FileExists(shell.ExpandEnvironmentStrings("%ProgramFiles%") & "\nodejs\npm.cmd"))
+    npmCommand = ResolveNpm()
+    WScript.Echo "npm.cmd resolved: " & npmCommand
+    WScript.Echo "codex version: " & ReadCodexVersion(npmCommand)
     If WScript.Arguments.Named.Exists("notify") Then
         Notify "Codex CLI auto-update", "Windows notification test sent."
     End If
@@ -26,30 +36,109 @@ End If
 Set processEnvironment = shell.Environment("Process")
 processEnvironment("npm_config_cache") = npmCacheDirectory
 
-WriteLog "Logon update check started."
-updateResult = UpdateCodexCli()
-WriteLog "Logon update check finished."
-Notify "Codex CLI auto-update", updateResult
+RotateLog
+WriteLog "Daily update check started."
 
-Function UpdateCodexCli()
-    Dim npmCommand, exitCode
-    npmCommand = shell.ExpandEnvironmentStrings("%ProgramFiles%") & "\nodejs\npm.cmd"
+npmCommand = ResolveNpm()
+If npmCommand = "" Then
+    WriteLog "Skipped: npm.cmd was not found in Program Files, PATH, or APPDATA."
+    Notify "Codex CLI auto-update", "Skipped: npm.cmd was not found."
+    WScript.Quit 0
+End If
 
-    If Not fileSystem.FileExists(npmCommand) Then
-        WriteLog "Skipped: npm.cmd was not found in the Node.js installation directory."
-        UpdateCodexCli = "Skipped: npm.cmd was not found."
+versionBefore = ReadCodexVersion(npmCommand)
+updateResult = RunUpdate(npmCommand)
+
+If updateResult = 0 Then
+    versionAfter = ReadCodexVersion(npmCommand)
+    If versionBefore = versionAfter Then
+        WriteLog "Latest already installed: " & versionAfter
+        Notify "Codex CLI auto-update", "latest (" & versionAfter & ")"
+    Else
+        WriteLog "Updated: " & versionBefore & " -> " & versionAfter
+        Notify "Codex CLI auto-update", "updated " & versionBefore & " -> " & versionAfter
+    End If
+Else
+    WriteLog "Update failed with exit code " & CStr(updateResult) & ". Installed version stays " & versionBefore & "."
+    Notify "Codex CLI auto-update", "failed (" & CStr(updateResult) & "), still " & versionBefore
+End If
+
+WriteLog "Daily update check finished."
+
+' npm.cmd 를 세 곳에서 찾는다. 이전 판은 첫 번째만 보고 없으면 건너뛰었다.
+Function ResolveNpm()
+    Dim candidate
+
+    candidate = shell.ExpandEnvironmentStrings("%ProgramFiles%") & "\nodejs\npm.cmd"
+    If fileSystem.FileExists(candidate) Then
+        ResolveNpm = candidate
         Exit Function
     End If
 
-    exitCode = shell.Run(Chr(34) & npmCommand & Chr(34) & " install -g @openai/codex@latest --no-audit --no-fund", 0, True)
-
-    If exitCode = 0 Then
-        WriteLog "CLI update check completed successfully."
-        UpdateCodexCli = "Update check completed successfully."
-    Else
-        WriteLog "CLI update check failed with exit code " & CStr(exitCode) & "."
-        UpdateCodexCli = "Update check failed (code " & CStr(exitCode) & ")."
+    candidate = Trim(CaptureOutput("where npm.cmd"))
+    If candidate <> "" Then
+        candidate = Split(candidate, vbCrLf)(0)
+        If fileSystem.FileExists(candidate) Then
+            ResolveNpm = candidate
+            Exit Function
+        End If
     End If
+
+    candidate = shell.ExpandEnvironmentStrings("%APPDATA%") & "\npm\npm.cmd"
+    If fileSystem.FileExists(candidate) Then
+        ResolveNpm = candidate
+        Exit Function
+    End If
+
+    ResolveNpm = ""
+End Function
+
+Function RunUpdate(npmPath)
+    RunUpdate = shell.Run(Chr(34) & npmPath & Chr(34) & " install -g @openai/codex@latest --no-audit --no-fund", 0, True)
+End Function
+
+' 설치된 버전을 읽는다. 실패하면 unknown 을 돌려주고 흐름은 멈추지 않는다.
+Function ReadCodexVersion(npmPath)
+    Dim output, marker, position, rest
+
+    If npmPath = "" Then
+        ReadCodexVersion = "unknown"
+        Exit Function
+    End If
+
+    output = CaptureOutput(Chr(34) & npmPath & Chr(34) & " ls -g --depth=0 @openai/codex")
+    marker = "@openai/codex@"
+    position = InStr(output, marker)
+    If position = 0 Then
+        ReadCodexVersion = "not installed"
+        Exit Function
+    End If
+
+    rest = Mid(output, position + Len(marker))
+    rest = Split(Replace(Replace(rest, vbCr, vbLf), vbTab, vbLf), vbLf)(0)
+    ReadCodexVersion = Trim(Split(rest & " ", " ")(0))
+End Function
+
+' 콘솔 창 없이 표준 출력을 읽는다.
+Function CaptureOutput(command)
+    Dim exec, output
+
+    On Error Resume Next
+    Set exec = shell.Exec("cmd.exe /c " & command & " 2>&1")
+    If Err.Number <> 0 Then
+        CaptureOutput = ""
+        Err.Clear
+        On Error GoTo 0
+        Exit Function
+    End If
+    On Error GoTo 0
+
+    Do While exec.Status = 0
+        WScript.Sleep 200
+    Loop
+
+    output = exec.StdOut.ReadAll()
+    CaptureOutput = output
 End Function
 
 Sub Notify(title, message)
@@ -67,6 +156,25 @@ Sub Notify(title, message)
         "[Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('WindowsPowerShell').Show($toast)"
     command = "powershell.exe -NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -Command " & Chr(34) & toastScript & Chr(34)
     shell.Run command, 0, False
+End Sub
+
+' 로그가 1MB를 넘으면 .1 로 한 번만 밀어낸다. 무한 증가를 막는다.
+Sub RotateLog()
+    Dim rotatedPath
+
+    If Not fileSystem.FileExists(logPath) Then
+        Exit Sub
+    End If
+
+    If fileSystem.GetFile(logPath).Size <= MaxLogBytes Then
+        Exit Sub
+    End If
+
+    rotatedPath = logPath & ".1"
+    If fileSystem.FileExists(rotatedPath) Then
+        fileSystem.DeleteFile rotatedPath, True
+    End If
+    fileSystem.MoveFile logPath, rotatedPath
 End Sub
 
 Sub WriteLog(message)
