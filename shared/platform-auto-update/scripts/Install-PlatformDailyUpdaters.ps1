@@ -21,6 +21,14 @@ $scripts = @(
         Time = "15:20"
         Script = "Update-GitHubCliDaily.vbs"
         Desc = "Daily automatic update for GitHub CLI via winget."
+    },
+    @{
+        # Claude Code의 내장 자동업데이트는 .claude.json의 autoUpdates 값에 좌우된다.
+        # 그 값이 false로 돌아가도 갱신이 멈추지 않도록 바깥쪽에서 claude update를 돌린다.
+        TaskName = "Claude Code CLI Daily Update"
+        Time = "15:30"
+        Script = "Update-ClaudeCodeCliAtLogon.vbs"
+        Desc = "Daily automatic update for Claude Code CLI via claude update, independent of the in-app autoUpdates flag."
     }
 )
 
@@ -66,7 +74,7 @@ foreach ($item in $scripts) {
     # //B = 배치(무음) 모드. 스크립트 오류·경로 문제 시에도 대화상자를 띄우지 않는다.
     $action = New-ScheduledTaskAction -Execute "$env:SystemRoot\System32\wscript.exe" -Argument ('//B "{0}"' -f $scriptPath)
     
-    # 15:00 / 15:10 / 15:20 매일 실행 트리거 정의
+    # 15:00 / 15:10 / 15:20 / 15:30 매일 실행 트리거 정의
     $trigger = New-ScheduledTaskTrigger -Daily -At $item.Time
     
     $principal = New-ScheduledTaskPrincipal -UserId $currentUser -LogonType Interactive -RunLevel Limited

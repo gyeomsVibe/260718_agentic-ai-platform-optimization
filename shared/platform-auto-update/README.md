@@ -1,13 +1,12 @@
 # Windows 플랫폼 자동업데이트: 처음 보는 사람을 위한 안내
 
-이 폴더는 Windows **작업 스케줄러가 하루 1회 정시에** Antigravity·Codex CLI·GitHub CLI의
-업데이트를 조용히 확인하고, 결과를 Windows 알림으로 알려 주는 구성의 정본이다.
-(Claude Code는 제품 내장 자동업데이트를 쓰므로 여기서 다루지 않는다.)
+이 폴더는 Windows **작업 스케줄러가 하루 1회 정시에** Antigravity·Codex CLI·GitHub CLI·
+Claude Code CLI의 업데이트를 조용히 확인하고, 결과를 Windows 알림으로 알려 주는 구성의 정본이다.
 
 ## 한눈에 보기
 
-1. 매일 정시(15:00·15:10·15:20)에 예약 작업이 이 폴더의 VBS 스크립트를 무음으로 실행한다.
-2. Antigravity IDE·2.0·CLI, Codex CLI, GitHub CLI의 업데이트를 각각 확인한다.
+1. 매일 정시(15:00·15:10·15:20·15:30)에 예약 작업이 이 폴더의 VBS 스크립트를 무음으로 실행한다.
+2. Antigravity IDE·2.0·CLI, Codex CLI, GitHub CLI, Claude Code CLI의 업데이트를 각각 확인한다.
 3. 작업이 끝나면 화면 오른쪽 아래와 알림 센터에 결과가 표시된다.
 4. PC가 그 시각에 꺼져 있었으면 다음에 켤 때 한 번 보충 실행된다.
 
@@ -27,7 +26,8 @@
 | [scripts/Update-AntigravityAtLogon.vbs](scripts/Update-AntigravityAtLogon.vbs) | Antigravity IDE → 2.0 → CLI 순서로 갱신하고 결과를 하나의 알림으로 보낸다. |
 | [scripts/Update-CodexCliAtLogon.vbs](scripts/Update-CodexCliAtLogon.vbs) | npm으로 Codex CLI의 최신 버전을 확인하고 Windows 알림을 보낸다. |
 | [scripts/Update-GitHubCliDaily.vbs](scripts/Update-GitHubCliDaily.vbs) | winget으로 GitHub CLI를 갱신하고 Windows 알림을 보낸다. |
-| [scripts/Install-PlatformDailyUpdaters.ps1](scripts/Install-PlatformDailyUpdaters.ps1) | 위 세 작업을 등록·해제·경로 재설정하는 정본 설치 스크립트. `-Remove`로 전체 해제. |
+| [scripts/Update-ClaudeCodeCliAtLogon.vbs](scripts/Update-ClaudeCodeCliAtLogon.vbs) | `claude update`로 Claude Code CLI를 갱신하고, 내장 자동업데이트가 꺼져 있으면 알림에 함께 표시한다. |
+| [scripts/Install-PlatformDailyUpdaters.ps1](scripts/Install-PlatformDailyUpdaters.ps1) | 위 네 작업을 등록·해제·경로 재설정하는 정본 설치 스크립트. `-Remove`로 전체 해제. |
 | [OPERATIONS.md](OPERATIONS.md) | 명령, 로그, 복구 방법을 포함한 상세 운영 가이드다. |
 
 ## 알림 읽는 법
@@ -65,18 +65,27 @@ cscript //NoLogo .\shared\platform-auto-update\scripts\Update-AntigravityAtLogon
 
 - 스크립트 이름이나 폴더 위치(저장소 경로 포함)를 바꾸면, 새 위치에서 `Install-PlatformDailyUpdaters.ps1`을 한 번 실행해 예약 작업 경로를 재등록해야 한다. (안 하면 "스크립트 파일을 찾을 수 없습니다" 오류가 난다.)
 - 이 구성은 현재 사용자 계정에만 적용된다. 다른 Windows 계정에는 별도로 등록해야 한다.
-- Claude Code는 제품 내장 자동업데이트를 사용하므로 이 폴더에 별도 업데이트 스크립트가 없다.
+- Claude Code CLI는 예약 작업으로 갱신한다. `.claude.json`의 `autoUpdates`가 꺼져 있어도
+  갱신이 이어지므로, 그 값을 되돌리려고 애쓸 필요가 없다. 현재 값은
+  `cscript //NoLogo scripts\Update-ClaudeCodeCliAtLogon.vbs /test`로 확인한다.
 
 ## 하루 1회 정시 갱신 체계 (2026-07-19 최종 재설계)
 
 모든 자동업데이트는 **로그온마다가 아니라 하루 1회**, 작업 스케줄러가 정시에 실행한다.
-Claude Code의 **자체 업데이트**만 제품 내장 기능으로 유지한다.
+
+> **2026-09-27 변경**: Claude Code CLI도 이 체계에 넣었다. 내장 자동업데이트는
+> `%USERPROFILE%\.claude.json`의 `autoUpdates` 값이 `false`가 되면 조용히 멈춘다.
+> 실측 당시 값이 `false`였고 버전이 2.1.281로 두 판 뒤처져 있었다. CLI는 앱과 달리
+> 설정 하나로 갱신이 끊기면 안 되므로, 설정값을 읽지 않는 바깥쪽 예약 작업이
+> 매일 `claude update`를 직접 실행한다. 설정이 다시 꺼져도 갱신은 계속되고,
+> 꺼져 있다는 사실은 알림과 로그에 남는다.
 
 | 작업 스케줄러 이름 | 시각 | 무엇을 갱신 |
 |---|---|---|
 | `Codex CLI Daily Update` | 매일 **15:00** | Codex CLI (npm) |
 | `Antigravity Daily Update` | 매일 **15:10** | Antigravity IDE·2.0·CLI (winget) |
 | `GitHub CLI Daily Update` | 매일 **15:20** | GitHub CLI (winget) |
+| `Claude Code CLI Daily Update` | 매일 **15:30** | Claude Code CLI (`claude update`) |
 
 > **왜 15시대인가?** 30일 부팅·종료 이벤트 분석 결과: 부팅 피크가 **14시**(49회 중 11회),
 > 사용 창은 14시~새벽 3시, 오전은 거의 꺼져 있음. 15:00은 ① 켜져 있을 확률이 가장 높은

@@ -15,15 +15,19 @@ Windows 로그인 직후 사용자에게 창을 표시하지 않고 다음 개�
 | Antigravity IDE + 2.0 + CLI | winget(IDE·2.0) + `agy update`(CLI) | 예약 작업 `Antigravity Daily Update` |
 | Codex CLI | npm 전역 설치 갱신 (`@openai/codex`) | 예약 작업 `Codex CLI Daily Update` |
 | GitHub CLI | winget 무인 갱신 (`GitHub.cli`) | 예약 작업 `GitHub CLI Daily Update` |
-| Claude Code | 제품 **내장** 자동 업데이트 | 별도 스크립트 없음 (Claude Code 자체 처리) |
+| Claude Code CLI | `claude update` (Native 설치본 갱신) | 예약 작업 `Claude Code CLI Daily Update` |
 
-- Claude Code CLI는 Native 설치본이 스스로 업데이트하므로 외부 스크립트를 두지 않는다.
+- Claude Code CLI는 2026-09-27부터 예약 작업으로 갱신한다. 내장 자동업데이트는
+  `%USERPROFILE%\.claude.json`의 `autoUpdates` 값에 좌우되는데, 이 값이 `false`로 바뀌면
+  조용히 멈춘다(2026-09-27 실측: `autoUpdates: false`, 버전이 2.1.281로 두 판 뒤처짐).
+  예약 작업은 그 값과 무관하게 `claude update`를 직접 실행하므로 설정이 다시 꺼져도 갱신이 이어진다.
+  알림에는 `in-app autoUpdates=false, covered by schedule`을 덧붙여 설정이 꺼진 사실을 함께 알린다.
 - Codex 데스크톱 앱(스토어)도 자체 업데이트한다. 위 `Codex CLI`는 npm 설치본 CLI만 대상이다.
 - 이 구성은 실행 중인 Windows 바이너리를 강제 교체하지 않으며, 업데이트가 없으면 정상 종료한다.
 
 ## 활성 예약 작업 (Scheduled Tasks)
 
-현재 방식은 **Windows 작업 스케줄러의 일일 정시 작업 3개**다. (과거 로그온 Run 키·시작 감시
+현재 방식은 **Windows 작업 스케줄러의 일일 정시 작업 4개**다. (과거 로그온 Run 키·시작 감시
 방식은 앱 시작 병목의 주원인으로 확인되어 폐지했다 — 아래 "하루 1회 정시 갱신 체계" 참조.)
 모두 `wscript.exe //B`(무음 배치)로 실행하므로 콘솔 창이나 오류 대화상자가 뜨지 않는다.
 
@@ -32,6 +36,7 @@ Windows 로그인 직후 사용자에게 창을 표시하지 않고 다음 개�
 | `Antigravity Daily Update` | 15:10 | `Update-AntigravityAtLogon.vbs` (IDE → 2.0 → CLI) |
 | `Codex CLI Daily Update` | 15:00 | `Update-CodexCliAtLogon.vbs` (npm 전역 갱신) |
 | `GitHub CLI Daily Update` | 15:20 | `Update-GitHubCliDaily.vbs` (winget 갱신) |
+| `Claude Code CLI Daily Update` | 15:30 | `Update-ClaudeCodeCliAtLogon.vbs` (`claude update`) |
 
 - 등록·해제·경로 재설정은 정본 설치 스크립트 [`scripts/Install-PlatformDailyUpdaters.ps1`](scripts/Install-PlatformDailyUpdaters.ps1)로 한다.
   이 스크립트는 자신이 놓인 위치(`$PSScriptRoot`) 기준으로 작업을 재등록하므로,
@@ -73,9 +78,13 @@ Codex CLI와 Antigravity 순차 업데이터는 각 실행이 끝나면 Windows 
 
 ### Claude Code
 
-- Native 설치본의 내장 자동 업데이트를 사용한다. 별도 시작 프로그램을 만들지 않는다.
-- 시작 시와 실행 중에 백그라운드로 업데이트를 확인하며, 다음 실행 때 적용한다.
-- 상태 점검: `claude doctor`
+- 예약 작업이 매일 15:30에 `claude update`를 실행한다. `.claude.json`의 `autoUpdates` 값에
+  의존하지 않는 바깥쪽 경로이므로, 설정이 `false`로 돌아가도 갱신이 멈추지 않는다.
+- `claude.exe`를 찾는 순서: `%USERPROFILE%\.local\bin\claude.exe` → `where claude` → `%APPDATA%\npm\claude.cmd`.
+- 실행 전후 `claude --version`을 비교해 `latest (2.1.283)` 또는 `updated 2.1.281 -> 2.1.283`으로 알린다.
+- 설치기가 남기는 `claude.exe.old.*`(1개당 약 230MB)는 7일이 지나면 개수를 로그에 기록한다.
+  실제 삭제는 `/prune` 인자를 직접 붙여 실행할 때만 한다.
+- 점검: `cscript //NoLogo scripts\Update-ClaudeCodeCliAtLogon.vbs /test`, `claude doctor`
 
 ### Antigravity
 
@@ -127,11 +136,13 @@ Antigravity 로그에서 마지막 실행이 `Antigravity IDE is already up to d
 
 ### 하루 1회 정시 갱신 체계 (2026-07-19 최종)
 
-- Claude Code 자체는 Native 설치본의 내장 업데이트를 계속 사용한다.
+- Claude Code CLI는 2026-09-27부터 같은 체계에 편입했다(15:30). 내장 업데이트가 설정 하나로
+  꺼지는 것을 확인했기 때문이다.
 - 로그온 트리거(Run 키)와 "Claude Code 시작 감시"(15초 폴링 + 열 때 winget)는
   **앱 시작 병목의 주원인**으로 확인되어 전부 폐지했다.
 - 현재 방식 — 작업 스케줄러 일일 정시 실행 (30일 사용 로그 분석으로 15시대 선정):
   `Codex CLI Daily Update`(15:00) · `Antigravity Daily Update`(15:10) ·
-  `GitHub CLI Daily Update`(15:20). 꺼져 있던 날은 다음 부팅 때 1회 보충 실행.
+  `GitHub CLI Daily Update`(15:20) · `Claude Code CLI Daily Update`(15:30).
+  꺼져 있던 날은 다음 부팅 때 1회 보충 실행.
 - 상세 설계·근거: [README.md](README.md)의 "하루 1회 정시 갱신 체계" 절.
 - 점검: `schtasks /query /tn "Codex CLI Daily Update"` (다른 두 작업 동일).
