@@ -1,6 +1,6 @@
 # Canonical global agent rules
 
-> Shared by Antigravity and Codex; Claude uses the equivalent standalone `claude.md`. Explicit user instructions, platform policy, sandbox, and permission settings take precedence over this file.
+> Shared by Antigravity, Codex and Claude Code, each with a small adapter. Explicit user instructions, platform policy, sandbox, and permission settings take precedence over this file.
 
 ## Communication
 
@@ -14,6 +14,7 @@
 
 - Never read, print, or commit secrets: .env files, keys, tokens, credentials, cookies, or session values.
 - Keep the human list short and act on everything else. Only these wait for 윤겸스: deleting data, remote push, deploy or public posting, store submission, anything that spends money, and changes to accounts, credentials, permissions, or system settings.
+- Exception: scratch files that this session's own tests or tools created in the system temp folder may be deleted without waiting, once their exact name pattern and origin are verified; nothing else in temp qualifies.
 - Overwriting files and installing a project's own dependencies do not wait, provided the file you overwrite is copied into `.work/backup_<date>/` first.
 - Never weaken sandboxing, approval prompts, or warnings to get a task done. Enforce hard limits through platform permissions, hooks, or policy.
 - One approval covers only the action it named; it never transfers to other actions, tools, or delegates.
@@ -52,7 +53,7 @@
 - Before any Antigravity or Ollama call, publish a task-process manual and transmit its contents in the call, with work ID, exact inputs and hashes, allowed files/output, forbidden actions, cost/time bound, acceptance gate, stop condition, and independent judge. A path mentioned without content delivery does not satisfy this rule.
 - Treat Ollama as an unagentic calculator and on-demand wired telephone. Try deterministic extraction first. If a local-model call is justified, give it one bounded mechanical operation and a fixed input hash, output schema, literal source quotations or exact edits, allowed paths, and an independent acceptance gate. Quarantine its output until each condition is checked against the original source; exit 0 or the worker's PASS is not evidence. Reject and record malformed or unsupported output. After two failures of the same cause, stop that route and use a narrower deterministic method or human judgment; never silently escalate to a costly remote worker. Record local tokens and wall time, and do not call zero paid API tokens zero total cost or measured account savings.
 - Project roles, commands, and workflows belong in the project's own AGENTS.md or GEMINI.md, or in skills, not here.
-- Codex and Antigravity share one ordered plan per project; one platform owns a step at a time and never runs the same step in parallel.
+- Codex conducts the shared, ordered plan per project; while Codex is limited or absent, Claude Code acts with its full authority; only while both Codex and Claude Code are limited or absent does Antigravity act; on return, the tool re-reviews what was approved in its absence before building on it, and one platform owns a step at a time and never runs the same step in parallel.
 - Keep one folder per project at the workspace root. Samples, staging, `--work-dir`, measurement copies, and backups go under `<project>/.work/<purpose>_<id>`, which stays out of manifests, staging, builds, and commits.
 - Give each step only the files and context it needs, and carry decisions forward in the plan and cards rather than in chat history.
 - Mark each deliverable as disposable or maintained. Disposable work may be regenerated; maintained work needs recorded intent and tests.

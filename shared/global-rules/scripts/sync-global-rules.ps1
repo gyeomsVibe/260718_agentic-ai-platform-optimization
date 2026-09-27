@@ -85,8 +85,8 @@ $targets = @(
         Name = 'Claude'
         RuntimePath = Join-Path $HOME '.claude\CLAUDE.md'
         MasterPath = Join-Path $root 'dist\claude\CLAUDE.md'
-        Adapter = $null
-        SourcePath = Join-Path $root 'claude.md'
+        Adapter = Join-Path $root 'adapters\claude.md'
+        SourcePath = $null
         MaxCharacters = 0
         MaxLines = 0
     }
@@ -395,14 +395,13 @@ $results = foreach ($target in $rendered) {
     $withinCharacterLimit = $target.MaxCharacters -eq 0 -or $target.Content.Length -le $target.MaxCharacters
     $withinLineLimit = $target.MaxLines -eq 0 -or $lineCount -le $target.MaxLines
 
+    # U45 G7: Claude is generated from the same English core now, so all three targets keep the same core phrases.
+    $communicationPreserved = $target.Content -match 'natural Korean' -and $target.Content -match 'Lead with the outcome'
+    $safetyPreserved = $target.Content -match 'Never read, print, or commit secrets' -and $target.Content -match 'never transfers to other actions' -and $target.Content -match 'Never weaken sandboxing'
+    $verificationPreserved = $target.Content -match 'exact commands and exit codes' -and $target.Content -match 'three failures' -and $target.Content -match 'UNMEASURED'
     if ($target.Name -eq 'Claude') {
-        $communicationPreserved = $target.Content.Contains('brief-ko') -and $target.Content.Contains('초보자')
-        $safetyPreserved = $target.Content.Contains('멈추고 물을 것') -and $target.Content.Contains('자격증명')
-        $verificationPreserved = $target.Content.Contains('원문 인용') -and $target.Content.Contains('UNMEASURED') -and $target.Content.Contains('독립 검사')
-    } else {
-        $communicationPreserved = $target.Content -match 'natural Korean' -and $target.Content -match 'Lead with the outcome'
-        $safetyPreserved = $target.Content -match 'Never read, print, or commit secrets' -and $target.Content -match 'never transfers to other actions' -and $target.Content -match 'Never weaken sandboxing'
-        $verificationPreserved = $target.Content -match 'exact commands and exit codes' -and $target.Content -match 'three failures' -and $target.Content -match 'UNMEASURED'
+        # Its adapter must still name the brief-ko output style it reports in.
+        $communicationPreserved = $communicationPreserved -and $target.Content.Contains('brief-ko')
     }
 
     $sourceContractPassed = (
