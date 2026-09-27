@@ -14,7 +14,7 @@ Claude Code / Codex / Antigravity 세 플랫폼의 최적화·유지관리 워�
 
 ## 글로벌 룰 최적화 원칙
 
-- `shared/global-rules/core.md`가 글로벌 agent 규칙의 정통 소스(Canonical Source)이다.
+- `shared/global-rules/core.md`와 도구별 `adapters/`는 Codex·Antigravity 글로벌 규칙의 정본이다. Claude의 기존 한국어 역할·안전 규칙은 `shared/global-rules/claude.md`가 별도 정본이며, 세 장착본은 같은 동기화 스크립트로 검증한다.
 - Antigravity (`GEMINI.md`), Claude Code (`CLAUDE.md`), Codex (`AGENTS.md`) 모두에 무오류 오판 방지 5대 조항(물리적 워크스페이스 실측, 컬럼 상호 연관성 검증, 시각적 캡처 실측, 명령 실패 무조건 명시, 전체 트리 추적 감사, 푸시 후 원격 정합성 검증)을 생략 없이 100% 균일 적용한다.
 
 ## 워크스페이스 섹션 및 문서 체계 원칙 (Section & Docs Architecture)
