@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v5.27.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v5.28.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -21,6 +21,7 @@
 - Exception: scratch files that this session's own tests or tools created in the system temp folder may be deleted without waiting, once their exact name pattern and origin are verified; nothing else in temp qualifies.
 - Overwriting files and installing a project's own dependencies do not wait, provided the file you overwrite is copied into `.work/backup_<date>/` first.
 - Never weaken sandboxing, approval prompts, or warnings to get a task done. Enforce hard limits through platform permissions, hooks, or policy.
+- Zero-paid-token calls (local-model olla tools, reads, searches, tests, builds) run without approval prompts, by 윤겸스's standing approval (2026-09-28), set through each tool's allow rules; the human list, secrets, deny rules, and sandboxes still apply.
 - One approval covers only the action it named; it never transfers to other actions, tools, or delegates.
 - Delegated agents and local engines inherit these limits and never decide auth, deploy, destructive, or final-approval questions.
 
@@ -55,13 +56,13 @@
 
 - Turn raw user ideas into explicit goals, unknown prerequisites, and small testable contracts. When freshness or evidence matters, research primary documentation, actual GitHub implementations, and relevant papers; use Reddit as anecdotal counterexample, not proof. Label facts, inferences, and unmeasured claims.
 - Before any Antigravity or Ollama call, publish a task-process manual and transmit its contents in the call, with work ID, exact inputs and hashes, allowed files/output, forbidden actions, cost/time bound, acceptance gate, stop condition, and independent judge. A path mentioned without content delivery does not satisfy this rule.
-- Treat Ollama as an unagentic calculator and on-demand wired telephone. Try deterministic extraction first. If a local-model call is justified, give it one bounded mechanical operation and a fixed input hash, output schema, literal source quotations or exact edits, allowed paths, and an independent acceptance gate. Quarantine its output until each condition is checked against the original source; exit 0 or the worker's PASS is not evidence. Reject and record malformed or unsupported output. After two failures of the same cause, stop that route and use a narrower deterministic method or human judgment; never silently escalate to a costly remote worker. Record local tokens and wall time, and do not call zero paid API tokens zero total cost or measured account savings.
+- Token-thrift mode is the default: send every mechanical step (file map, summary, extraction, draft, commit message, classification) to the local model first and keep paid models for judgment, design, and final acceptance; deterministic extraction beats both when cheaper to validate. Tools: `local_read_map` before reading more than ~300 lines (confirm the lines), `local_draft` (format, length, one example; korean only for text 윤겸스 reads), `local_search` by meaning.
 - Project roles, commands, and workflows belong in the project's own AGENTS.md or GEMINI.md, or in skills, not here.
 - Codex conducts the shared, ordered plan per project; while Codex is limited or absent, Claude Code acts with its full authority; only while both Codex and Claude Code are limited or absent does Antigravity act; on return, the tool re-reviews what was approved in its absence before building on it, and one platform owns a step at a time and never runs the same step in parallel.
 - Keep one folder per project at the workspace root. Samples, staging, `--work-dir`, measurement copies, and backups go under `<project>/.work/<purpose>_<id>`, which stays out of manifests, staging, builds, and commits.
 - Give each step only the files and context it needs, and carry decisions forward in the plan and cards rather than in chat history.
 - Mark each deliverable as disposable or maintained. Disposable work may be regenerated; maintained work needs recorded intent and tests.
-- The local model consumes no paid API tokens but does consume local inference tokens, wall time, and electricity. Plan its bounded share before a task; do not call it when validation would cost more than deterministic extraction. Its MCP tools are in your tool list: `local_read_map` before reading more than ~300 lines to understand a file (a map, so confirm the lines), `local_draft` for drafts, summaries, and commit messages (format, length, one example; korean only for text 윤겸스 reads), `local_search` to find files by meaning. Do it yourself when judgment is needed or the local result fails its check; the local model never decides a verdict.
+- Treat Ollama as an unagentic calculator: one bounded operation with fixed inputs, output schema, and an independent acceptance gate; quarantine its output until checked against the source (exit 0 or its PASS is not evidence) and never let it decide a verdict. Judge by the final artifact's gate, not by which model ran: after two same-cause local failures, do it yourself or escalate once, recorded. Record local tokens and wall time; zero paid tokens is not zero cost or measured savings.
 
 <!-- UAOS:BEGIN (install_uaos_everywhere.py; source uaos_everywhere/uaos_global_rule_block.md) -->
 ## UAOS — 모든 프로젝트에 공통인 협업 운영 체계(Unified Agent Operating System)
