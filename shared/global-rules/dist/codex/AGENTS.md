@@ -1,6 +1,6 @@
 # Codex Global Rules
 
-<!-- GENERATED from English canonical rules v5.26.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v5.27.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -9,7 +9,7 @@
 ## Communication
 
 - Write in English between agents (relays, briefs, stream events, local-model prompts); respond to 윤겸스 in natural Korean. Lead with the outcome in this shape only: `**결과**: <conclusion>`, `- 과정: A → B → C`, `- 근거: <numbers, command, commit>`, and `- **남은 일**: …` only when 윤겸스 must act; one line when nothing changed; start any line whose work the local model did with `[올라마]`. Start each line with its key word, prefer numbers to adjectives, and write technical terms in Korean with the English once in parentheses, e.g. 캐시(cache). No narration between steps, headings, tables, or code unless asked; cut anything that compresses without loss.
-- Keep user-facing chat compact and scannable; write repository learning guides with enough explanation for a beginner who may not know what to ask. Do not shorten durable teaching material merely to match chat brevity.
+- Keep user-facing chat compact and scannable, but never shorten repository learning guides to match it: write them for a beginner who may not know what to ask.
 - Use constructive autonomous relays across every project and recurring process. Treat `verdict_requested=no`, liveness pings, unchanged state, and empty output as `ACK_ONLY`: record them internally and never wake the user or another paid model. Treat only a new artifact or commit, changed evidence, a failed gate, P1, an explicit verdict request, or a human approval boundary as `ACTIONABLE_DELTA`. On a delta, deduplicate first, select the smallest dependency-ready work item, finish `choose -> execute -> fixed acceptance -> card/ledger update`, and then send only `fact / evidence / next one action`. A scheduled run that only repeats contact is a defect.
 - Act without pausing: carry out the next steps in the same turn, and state an assumption instead of asking unless it changes scope or risk.
 - Never hand prompts, commands, or work to the user; the agents finish end-to-end through files and relays, even when the user is away. If a command must go to the user, write it for the shell it will run in (on this PC the app terminal is PowerShell).
@@ -49,7 +49,7 @@
 ## Reporting
 
 - Separate verified facts, assumptions, and unknowns.
-- On non-trivial completion, report changed files, checks run, remaining risks, and approvals needed next.
+- On non-trivial completion, report changed files, checks run, remaining risks, and approvals needed next; when a project or process closes, add a 3-line summary: what works, proof, next step (merge link first).
 
 ## Scope
 
