@@ -64,6 +64,8 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 | JetBrains, caveman 실측(2026-07, SkillsBench 82쌍) | 측정 실험 | 실제 에이전트 과제에서 출력 토큰 −8.5%, 비용 약 −10%, 품질 차이 없음(p=0.82). 출력 대부분이 코드·도구 호출이라 말투 압축 효과가 작다 | 절감은 측정 전까지 UNMEASURED |
 | JuliusBrussee/caveman (GitHub) | 저장소 주장 | 군더더기·인사·도구 예고·결과 되풀이를 빼서 출력 토큰 65~75% 절감을 주장(자체 10문항) | 도구 예고·되풀이 금지는 이미 규칙, 과장 수치는 미채택 |
 | r/ClaudeAI caveman 글(400여 댓글), Decrypt 기사 | 경험담·기사 | 실사용 절감은 30~50%라는 반론, "출력은 청구서에서 가장 싼 부분"이라는 지적(대화형 작업은 입력 문맥이 대부분) | 입력 절약(요약본·캐시)과 함께 본다 |
+| Zheng et al., *When "A Helpful Assistant" Is Not Really Helpful* (arXiv:2311.10054, EMNLP Findings 2024) | 논문 | 162개 역할 페르소나를 시스템 프롬프트에 넣어도 사실 질문 2,410개 정확도가 오르지 않음 | v6.2.1: 역할 문구 대신 목적(정보의 질)을 규칙에 |
+| Yang et al., *Large Language Models as Optimizers* (OPRO, arXiv:2309.03409, 2023) | 논문 | "Take a deep breath… step-by-step"은 PaLM 2-L·GSM8K에서 찾은 최적 문구(80.2%), 모델마다 최적 문구가 다름 | 단계별 사고는 관문·카드 순환으로, 출력 독백은 금지 |
 
 ## 출처
 
@@ -90,3 +92,5 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 - JuliusBrussee/caveman — https://github.com/juliusbrussee/caveman
 - Decrypt, Devs Are Making Claude Talk Like a Caveman — https://decrypt.co/363440/devs-claude-talk-like-caveman-cut-costs-work-better
 - andrew.ooo, Caveman Review (real-world 30–50%) — https://andrew.ooo/posts/caveman-claude-code-skill-token-savings-review/
+- Personas in System Prompts Do Not Improve Performances — https://arxiv.org/abs/2311.10054
+- Large Language Models as Optimizers (OPRO) — https://arxiv.org/abs/2309.03409

@@ -1,6 +1,6 @@
 # Claude Global Rules
 
-<!-- GENERATED from English canonical rules v6.2.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v6.2.1. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -19,7 +19,7 @@
 
 ## Communication
 
-- Use English between agents and natural Korean with 윤겸스. Lead with the outcome: `**결과**:` 1–2 plain sentences on what now works or where things stand, no IDs; `- 근거:` steps with numbers, commands, commits; `- 위험:`, `- 다음:` (next automatic action) and `- **남은 일**:` (human action only) only when present. Several projects or cards: one `- <name>: <state> → <next>` line each. State each fact once; cut words, never facts (changed files, failed checks, risks, human actions). One line for no change; prefix local work `[올라마]`; key words first, numbers over adjectives, translate terms once.
+- Use English between agents and natural Korean with 윤겸스. Lead with the outcome: `**결과**:` 1–2 plain sentences on what now works or where things stand, no IDs; `- 근거:` steps with numbers, commands, commits; `- 위험:`, `- 다음:` (next automatic action) and `- **남은 일**:` (human action only) only when present. Per project or card: one `- <name>: <state> → <next>` line. Optimize information quality, not length: State each fact once, specific and decision-relevant; cut words, never facts (changed files, failed checks, risks, human actions). One line for no change; prefix local work `[올라마]`; key words first, numbers over adjectives, translate terms once.
 - Keep chat compact; repository learning guides remain beginner-complete.
 - Use constructive autonomous relays. `verdict_requested=no`, liveness, unchanged state, and empty output are `ACK_ONLY`: log silently. New artifacts, commits, evidence, failed gates, P1, requested verdicts, or human boundaries are `ACTIONABLE_DELTA`; deduplicate and finish the smallest dependency-ready item through fixed acceptance and ledger update.
 - On any material change to requirements, evidence, design, ownership, or a confirmed tool route (UNKNOWN is not one), re-plan: invalidate affected assumptions/cards; update design, fixed acceptance, and contract manual; then execute, independently critique, verify, and repeat. Re-plan a card at most twice, then change route once; a 3x cost regression is a failed gate.
@@ -50,7 +50,7 @@
 
 ## Verification
 
-- Implement first, then correct from verification results; copy any file you overwrite into `.work/backup_<date>/` first.
+- Implement first, then correct from verification results.
 - Run the relevant tests or checks after editing and report exact commands and exit codes.
 - Never claim an unrun check or hide failures, non-zero exits, or timeouts. Missing evidence is UNKNOWN; if independent review is unavailable, record UNKNOWN, never self-approve, and choose another ready card.
 - After three failures with the same cause, stop and report evidence and options.
