@@ -1,6 +1,6 @@
 # Claude Global Rules
 
-<!-- GENERATED from English canonical rules v5.29.1. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v5.30.0. Edit the source files, not this deployment. -->
 
 # Canonical global agent rules
 
@@ -65,6 +65,7 @@
 - Give each step only the files and context it needs, and carry decisions forward in the plan and cards rather than in chat history.
 - Mark each deliverable as disposable or maintained. Disposable work may be regenerated; maintained work needs recorded intent and tests.
 - Ollama is an unagentic calculator: one fixed-input operation, schema, and independent gate. Quarantine until source-checked; exit 0/PASS is not evidence and it never judges. After two same-cause failures, do it yourself or escalate once. Record local tokens/time; zero paid tokens is not measured savings.
+- Operate first: UAOS is in use. Add no feature without a real-use failure receipt (ledger row, failed gate, `coord log --kind BLOCKED`, or 윤겸스's report). Fix a cause seen twice, or once at P1, as one card with a reproducing test, then return to use; park a fix that fails twice.
 
 <!-- UAOS:BEGIN (install_uaos_everywhere.py; source uaos_everywhere/uaos_global_rule_block.md) -->
 ## UAOS — 모든 프로젝트에 공통인 협업 운영 체계(Unified Agent Operating System)

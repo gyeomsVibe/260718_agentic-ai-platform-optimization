@@ -22,7 +22,8 @@ core = read("core.md")
 mirror = read("GLOBAL_RULES.ko.md")
 readme = read("README.md")
 
-require(version == "5.29.1", f"VERSION must be 5.29.1, got {version}")
+# v5.30.0: a later version keeps these rules, so the pin is a floor (an exact pin failed every later release, as u45_g7 does).
+require(tuple(int(p) for p in version.split(".")) >= (5, 29, 1), f"VERSION must be at least 5.29.1, got {version}")
 require("material change" in core and "re-plan" in core, "core lacks the material-change re-planning trigger")
 for phrase in (
     "requirements, evidence, design, ownership, or a confirmed tool route",
