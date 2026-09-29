@@ -4,7 +4,7 @@
 
 ## 정본 구조
 
-- `core.md`: 세 도구가 공유하는 경량 핵심 규칙(소통·안전·소유권·검증·보고·범위)
+- `core.md`: 세 도구가 공유하는 UAOS-RSI 핵심 규칙(UAOS-RSI·방법(MIA)·자율·소통·안전·소유권·검증·보고·범위)
 - `claude.md`: 마이그레이션 전 한국어 Claude 규칙의 참고용 보존본(생성·배포에는 사용하지 않음)
 - `adapters/`: Codex·Claude·Antigravity의 작은 도구별 어댑터
 - `dist/`: 세 도구에 장착되는 생성본

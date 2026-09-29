@@ -321,8 +321,28 @@ $offlineHarnessSemanticValid = (
     $abFixtureContractValid
 )
 
-if ($sourceText -match '(?i)\bMIA\b|plan-review-execute') {
-    throw 'MIA content must remain in its plugin and must not appear in global-rule sources.'
+# v7.0.0 (윤겸스, 2026-09-29): the rules now think by the MIA procedure, so its name and four stages may appear.
+# Its detailed workflow and artifacts still live only in the mia-strategic skill; copying them here fails.
+if ($sourceText -match '(?i)plan-review-execute|Opportunity Brief|Decision Memo|Delivery Card|Learning Report') {
+    throw 'MIA workflow detail must remain in its skill and must not appear in global-rule sources.'
+}
+# Codex CANON-V700 P2: a name ban alone let renamed workflow detail in. The Method section is pinned byte for
+# byte (LF, trimmed), and MIA may be named only in its heading, so added or renamed detail anywhere fails.
+# Changing the Method section therefore needs a reviewed update of this hash.
+$methodHeading = '## Method: MIA strategic procedure (`mia-strategic` skill)'
+$pinnedMethodSha256 = 'd06bb83d3825021fb3a7f64b9e75fc2a7559d5d5a0249447e0f23e9fb8ebb716'
+$coreLf = ($sourceParts[0] -replace "`r`n", "`n")
+$methodMatch = [regex]::Match($coreLf, '(?s)' + [regex]::Escape($methodHeading) + '\n.*?(?=\n## |\z)')
+if (-not $methodMatch.Success) {
+    throw 'core.md lacks the pinned MIA Method section.'
+}
+$methodBytes = [System.Text.Encoding]::UTF8.GetBytes($methodMatch.Value.Trim())
+$methodSha256 = -join ([System.Security.Cryptography.SHA256]::Create().ComputeHash($methodBytes) | ForEach-Object { $_.ToString('x2') })
+if ($methodSha256 -ne $pinnedMethodSha256) {
+    throw "The MIA Method section changed (sha256 $methodSha256); workflow detail stays in the mia-strategic skill."
+}
+if ([regex]::Matches($sourceText, '(?i)\bMIA\b|mia-strategic').Count -ne 2) {
+    throw 'MIA may be named only in the Method heading of core.md.'
 }
 
 $rendered = foreach ($target in $targets) {
