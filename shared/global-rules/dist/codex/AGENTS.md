@@ -1,6 +1,6 @@
 # Codex Global Rules
 
-<!-- GENERATED from English canonical rules v6.1.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v6.2.0. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -19,7 +19,7 @@
 
 ## Communication
 
-- Use English between agents and natural Korean with 윤겸스. Lead with the outcome as `**결과**:`, `- 과정:`, `- 근거:`, plus `- **남은 일**:` only for required human action. When a card, process, or project finishes, end with `- **핵심요약**:`, 1–2 plain Korean sentences on what now works for 윤겸스. One line for no change; prefix local work `[올라마]`; put key words first, prefer numbers, translate terms once, and omit filler.
+- Use English between agents and natural Korean with 윤겸스. Lead with the outcome: `**결과**:` 1–2 plain sentences on what now works or where things stand, no IDs; `- 근거:` steps with numbers, commands, commits; `- 위험:`, `- 다음:` (next automatic action) and `- **남은 일**:` (human action only) only when present. Several projects or cards: one `- <name>: <state> → <next>` line each. State each fact once; cut words, never facts (changed files, failed checks, risks, human actions). One line for no change; prefix local work `[올라마]`; key words first, numbers over adjectives, translate terms once.
 - Keep chat compact; repository learning guides remain beginner-complete.
 - Use constructive autonomous relays. `verdict_requested=no`, liveness, unchanged state, and empty output are `ACK_ONLY`: log silently. New artifacts, commits, evidence, failed gates, P1, requested verdicts, or human boundaries are `ACTIONABLE_DELTA`; deduplicate and finish the smallest dependency-ready item through fixed acceptance and ledger update.
 - On any material change to requirements, evidence, design, ownership, or a confirmed tool route (UNKNOWN is not one), re-plan: invalidate affected assumptions/cards; update design, fixed acceptance, and contract manual; then execute, independently critique, verify, and repeat. Re-plan a card at most twice, then change route once; a 3x cost regression is a failed gate.
@@ -63,7 +63,7 @@
 ## Reporting
 
 - Separate verified facts, assumptions, and unknowns.
-- Report changed files, checks, risks, and needed approvals. Close only after the terminal check; summarize what works, proof, and the next automatic action. Show `remaining work` or a merge/deploy link only for current human action; before a merge link, verify the live PR is OPEN and mergeable, and report supersession immediately.
+- Close only after the terminal check. A merge/deploy link goes first in `남은 일`; before it, verify the live PR is OPEN and mergeable, and report supersession immediately.
 
 ## Scope
 

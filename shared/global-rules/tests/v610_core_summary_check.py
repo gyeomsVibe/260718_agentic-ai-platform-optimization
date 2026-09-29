@@ -2,6 +2,10 @@
 
 Receipt (2026-09-29): 윤겸스 reported the closing user summary asked for in v5.27.0 was not followed. The line had
 been blurred into general Reporting wording and was absent from the report shape itself, so no tool wrote it.
+
+v6.2.0 (user report the same day): the separate `핵심요약` line repeated `결과`, so the plain summary moved into
+`결과` itself. This check keeps guarding the v6.1.0 intent — a plain summary for 윤겸스 in the report shape — and
+v620_minimal_report_check.py guards that no second summary line returns.
 """
 
 from pathlib import Path
@@ -9,7 +13,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parent.parent
-LINE = "`- **핵심요약**:`"
+LINE = "`**결과**:` 1–2 plain sentences on what now works"
 DISTS = ("dist/claude/CLAUDE.md", "dist/codex/AGENTS.md", "dist/antigravity/GEMINI.md")
 
 
@@ -32,10 +36,9 @@ def communication(text: str) -> str:
 version = read("VERSION").strip()
 require(tuple(int(p) for p in version.split(".")) >= (6, 1, 0), f"VERSION must be at least 6.1.0, got {version}")
 shape = communication(read("core.md"))
-require(LINE in shape, "core report shape lacks the core-summary line")
-# The summary closes finished work only; a mid-progress report must not grow a second summary.
-require("finishes" in shape and "1–2 plain Korean sentences" in shape, "core-summary line lacks its trigger or size")
-require("`- **핵심요약**: …`" in read("GLOBAL_RULES.ko.md"), "ko mirror lacks the core-summary line")
+require(LINE in shape, "core report shape lacks the plain summary")
+require("no IDs" in shape, "plain summary lacks its no-ID condition")
+require("`**결과**:` 이제 무엇이 되는지" in read("GLOBAL_RULES.ko.md"), "ko mirror lacks the plain summary")
 for dist in DISTS:
     text = read(dist)
     require(f"v{version}" in text, f"{dist} is stale: run sync-global-rules.ps1 -Mode Build")

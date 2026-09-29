@@ -50,6 +50,21 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 | 에이전트 비용 공학 실무 보고(ReAct 류는 매 턴 문맥 재전송으로 비용이 5~7배 증가, 토큰의 40~60%가 줄일 수 있는 낭비) | 읽은 내용은 이후 턴마다 다시 과금된다 | 추정에 재전송 3턴을 포함 |
 | 이 프로젝트 실측 | 753줄 파일 10,464 → 855토큰(−91.8%), 보조 경로 1곳 누락 | 요약본은 지도, 줄은 직접 확인 |
 
+## 6. 출력 최소화: 결론 먼저, 사실은 한 번, 누락 없이 (v6.2.0)
+
+사용자 보고 화면을 받아 조사했다(2026-09-29). 표의 "종류"는 근거의 무게다: 논문·공식 자료 > 측정된 공개 실험 > 저장소 주장 > 레딧·기사(경험담).
+
+| 근거 | 종류 | 핵심 | 규칙에 반영 |
+|---|---|---|---|
+| Anthropic API 가격(2026-09, 제3자 정리) | 공식 가격 | 모든 모델에서 출력 토큰 단가가 입력의 5배(Opus 5.5 $4/$20) | 사용자 출력은 줄일 가치가 크다 |
+| Xu et al., *Chain of Draft* (arXiv:2502.18600, 2025) | 논문 | 단계당 5단어 이내 초안으로 CoT와 비슷한 정확도, 토큰은 최저 7.6% | 줄 하나에 핵심어·숫자만 |
+| *Brevity Constraints Reverse Performance Hierarchies* (arXiv:2604.00025, 2026) | 논문 | 31개 모델에서 큰 모델의 장황함이 오류를 만들고, 간결 제약이 정확도를 26%p 올림 | 짧게 쓰는 것이 품질도 지킨다 |
+| Adams et al., *Chain of Density* (arXiv:2309.04269, NewSum 2023) | 논문 | 같은 길이에 빠진 핵심 개체를 채워 넣은 조밀한 요약을 사람이 더 선호. 정보량과 가독성은 맞바꿈 관계 | 줄이되 사실은 빼지 않는다(길이 고정, 밀도 증가) |
+| BLUF, 미 육군 AR 25-50 | 작성 표준 | 첫 문장에 결론·요청, 이유는 뒤에. 신문의 역피라미드와 같다 | 쉬운 요약은 맨 위 `결과` 한 곳 |
+| JetBrains, caveman 실측(2026-07, SkillsBench 82쌍) | 측정 실험 | 실제 에이전트 과제에서 출력 토큰 −8.5%, 비용 약 −10%, 품질 차이 없음(p=0.82). 출력 대부분이 코드·도구 호출이라 말투 압축 효과가 작다 | 절감은 측정 전까지 UNMEASURED |
+| JuliusBrussee/caveman (GitHub) | 저장소 주장 | 군더더기·인사·도구 예고·결과 되풀이를 빼서 출력 토큰 65~75% 절감을 주장(자체 10문항) | 도구 예고·되풀이 금지는 이미 규칙, 과장 수치는 미채택 |
+| r/ClaudeAI caveman 글(400여 댓글), Decrypt 기사 | 경험담·기사 | 실사용 절감은 30~50%라는 반론, "출력은 청구서에서 가장 싼 부분"이라는 지적(대화형 작업은 입력 문맥이 대부분) | 입력 절약(요약본·캐시)과 함께 본다 |
+
 ## 출처
 
 - Anthropic, Building Effective AI Agents — https://www.anthropic.com/engineering/building-effective-agents
@@ -66,3 +81,12 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 - LLMLingua — https://arxiv.org/abs/2310.05736
 - Token-Budget-Aware LLM Reasoning — https://arxiv.org/abs/2412.18547
 - LLM cost optimization for agent workflows — https://dev.to/omnithium/llm-cost-optimization-for-agent-workflows-a-practical-guide-49c1
+- Claude API pricing (2026-09) — https://benchlm.ai/anthropic/api-pricing
+- Chain of Draft — https://arxiv.org/abs/2502.18600
+- Brevity Constraints Reverse Performance Hierarchies in Language Models — https://arxiv.org/abs/2604.00025
+- Chain of Density — https://aclanthology.org/2023.newsum-1.7/
+- BLUF (communication) — https://en.wikipedia.org/wiki/BLUF_(communication)
+- JetBrains, Speaking to AI Agents like Cavemen — https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/
+- JuliusBrussee/caveman — https://github.com/juliusbrussee/caveman
+- Decrypt, Devs Are Making Claude Talk Like a Caveman — https://decrypt.co/363440/devs-claude-talk-like-caveman-cut-costs-work-better
+- andrew.ooo, Caveman Review (real-world 30–50%) — https://andrew.ooo/posts/caveman-claude-code-skill-token-savings-review/
