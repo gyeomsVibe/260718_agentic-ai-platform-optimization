@@ -4,9 +4,9 @@
 
 ## 정본 구조
 
-- `core.md`: Codex·Antigravity가 공유하는 경량 핵심 규칙(소통·안전·소유권·검증·보고·범위)
-- `claude.md`: 기존 한국어 Claude 전역 규칙을 보존하는 별도 정본
-- `adapters/`: 도구별 2~3줄 어댑터(Codex 지휘, Antigravity 작업자)
+- `core.md`: 세 도구가 공유하는 경량 핵심 규칙(소통·안전·소유권·검증·보고·범위)
+- `claude.md`: 마이그레이션 전 한국어 Claude 규칙의 참고용 보존본(생성·배포에는 사용하지 않음)
+- `adapters/`: Codex·Claude·Antigravity의 작은 도구별 어댑터
 - `dist/`: 세 도구에 장착되는 생성본
 - `GLOBAL_RULES.ko.md`: 사용자 열람용 한글 해설본. 런타임에는 포함하지 않음
 - `scripts/sync-global-rules.ps1`: 생성, 백업, 장착, 정합성 검사
@@ -54,7 +54,7 @@ Antigravity의 글로벌 룰은 `~/.gemini/GEMINI.md` 하나만 사용한다. �
 ./scripts/sync-global-rules.ps1 -Mode Apply
 ```
 
-규칙을 변경할 때는 `dist/`나 실제 장착 파일을 직접 편집하지 않는다. Codex·Antigravity는 `core.md`와 `adapters/`, Claude는 `claude.md`를 고치고 `VERSION`을 올린 뒤 `Build`와 `SourceCheck`로 정본을 확인한다. 실제 사용자 홈에는 사전 검증 후 `Apply`를 사용하고 `Check`로 세 런타임의 일치를 확인한다.
+규칙을 변경할 때는 `dist/`나 실제 장착 파일을 직접 편집하지 않는다. 공통 규칙은 `core.md`, 도구별 규칙은 해당 `adapters/`를 고치고 `VERSION`을 올린 뒤 `Build`와 `SourceCheck`로 확인한다. 실제 사용자 홈에는 사전 검증 후 `Apply`를 사용하고 `Check`로 세 런타임의 일치를 확인한다.
 
 `Check`는 LF와 CRLF의 줄바꿈 차이를 정규화해 비교한다. 따라서 실제 내용이 같은데 운영체제 줄바꿈만 달라서 동기화 실패로 오인하지 않는다. 또한 P0~P7 순서, 한글본 버전, 정본의 완전 중복 규칙, `Repository synchronization` 섹션 수를 검사한다.
 
