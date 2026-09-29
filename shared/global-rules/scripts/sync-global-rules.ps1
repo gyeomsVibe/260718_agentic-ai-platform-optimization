@@ -321,8 +321,10 @@ $offlineHarnessSemanticValid = (
     $abFixtureContractValid
 )
 
-if ($sourceText -match '(?i)\bMIA\b|plan-review-execute') {
-    throw 'MIA content must remain in its plugin and must not appear in global-rule sources.'
+# v7.0.0 (윤겸스, 2026-09-29): the rules now think by the MIA procedure, so its name and four stages may appear.
+# Its detailed workflow and artifacts still live only in the mia-strategic skill; copying them here fails.
+if ($sourceText -match '(?i)plan-review-execute|Opportunity Brief|Decision Memo|Delivery Card|Learning Report') {
+    throw 'MIA workflow detail must remain in its skill and must not appear in global-rule sources.'
 }
 
 $rendered = foreach ($target in $targets) {

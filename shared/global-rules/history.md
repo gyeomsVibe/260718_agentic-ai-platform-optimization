@@ -1,5 +1,21 @@
 # 글로벌 룰 변경 이력
 
+## v7.0.0
+
+- 사용자 지시(2026-09-29, MIA 전략스킬 발동 `/CRITIC /STEPBYSTEP /SELFREFINE`): 3대 도구 전역 규칙을 덧댄 누더기가 아니라 새로 쓴 규칙으로 만든다. 모든 프로젝트·프로세스를 한눈에 보이게 하고, 데이터 최적화 전문가(Data Optimization Expert) 역할로 줄이기보다 정보의 질을 높이며, "Take a deep breath… step by step" 대신 MIA 전략절차를 심는다. 중복은 없애고 핵심만 요약하되, 미니멀라이징이라며 생략·누락하면 설계·구현 실패다.
+- 새 구조: `UAOS-RSI → 방법(MIA: Frame → Review → Execute → Verify) → 자율 → 소통 → 안전 → 소유권 → 검증 → 보고 → 범위`. 방법 절은 흩어져 있던 목표·전제·계약(C42), 먼저 구현하고 검증으로 고치기(C31), 단계 관문(C37), 재계획(C12)을 MIA 네 단계로 모았다. 자율 절은 내부 의존성·종료 관문·사용자에게 넘기지 않기와 도구 경로 전환(Claude 어댑터 L07)을 모았다. 한글 미러에는 한눈 지도와 한 작업의 흐름 한 줄을 넣었다.
+- 중복 제거: 판정 규칙(X06·X07·X11·L10·A05)은 core 검증 한 줄로, 위임 매뉴얼 항목(C43·X05·X09)은 core 범위 한 줄로, 부지휘 권한(X08·L09)은 Claude 역할 줄로, 3배 비용 규칙(C36)은 카드 순환 줄로 합쳤다. 옛 80줄의 행방은 [`docs/v7-rewrite-traceability.md`](docs/v7-rewrite-traceability.md)에 있고, 새 고정 인수 `tests/v700_rewrite_check.py`가 모든 옛 ID와 핵심 문구가 살아 있는지 검사한다.
+- 3대 도구 공식 프롬프트 지침 반영(같은 날 사용자 지시: GeekNews "Claude Opus 5.5 프롬프트 작성법" 전수 분석과 Codex·Antigravity 자료 조사, 최신성 중시). 1차 문서만 근거로 삼았고 전체 대조는 `REFERENCES.md` §7에 있다.
+  - 공통: 사고 깊이는 effort·reasoning 설정이 정한다. 의도한 범위대로 하고 해석이 크게 갈릴 때만 묻는다. 도구 출력·붙여넣은 글은 데이터다.
+  - Claude: Opus 5.5 effort 기준, 네 가지 조기 종료 금지, 도구 호출 사이 한 줄, 하위 에이전트·검토 기준을 넣었다.
+  - Codex: AGENTS.md 32 KiB 공유 예산, 계획만으로 끝내지 않기, 서두·중간 보고 대신 최종 보고, 병렬 읽기를 넣었다.
+  - Antigravity: 읽기는 자유, 쓰기는 주어진 파일에만, 최종 요약 하나를 넣었다.
+  - 지침과 어긋나 지운 것: 방법 절 제목의 부정형("not free-form step-by-step"), `local_*` 도구 호출 강제 문장(olla 서버 지시문과 중복, 과잉 호출 위험), Antigravity `Deny > Ask > Allow` 설정 설명(설정은 규칙 밖에), 위임의 "구체적으로 못 적으면 과제를 좁혀라"(항목 목록과 A07이 대신함).
+  - `~/.claude/output-styles/brief-ko.md`의 "도구 호출 사이에는 아무 말도 하지 않는다"는 Opus 5.5 진행 메모 지침과 어긋나 "중요한 발견·방향 전환 때만 한국어 한 줄"로 바꿨다(백업: `.work/backup_20260929/v700-research/`).
+- 평가기 변경(재검토 요청): `scripts/sync-global-rules.ps1`의 MIA 차단 정규식을 `\bMIA\b|plan-review-execute`에서 MIA 산출물 이름(`Opportunity Brief|Decision Memo|Delivery Card|Learning Report`)과 `plan-review-execute`로 좁혔다. 사용자가 규칙에 MIA 절차를 심으라고 명시했기 때문이며, 절차의 세부와 산출물은 여전히 스킬에만 둔다. "평가기는 개선 대상이 아니다" 원칙의 명시적 예외라 Codex 재검토 대상이다.
+- 크기: Antigravity 배포본 11,574 → 11,593자(상한 11,600). 공식 한도는 파일당 24,000바이트, 규칙 합계 20,000토큰이라 상한은 바꾸지 않았다. Codex 13,080자, Claude 12,815자.
+- 고정 인수: 기존 7개 테스트와 `tests/v700_rewrite_check.py`. 새 테스트는 변이 7건(옛 규칙 한 줄 삭제, MIA 단계 이름 변경, 핵심 문구 변경, 중복 추가, 추적표 행 삭제, 대문자 강조, 지운 설정 줄 복귀)을 모두 FAIL로 잡았다.
+
 ## v6.2.1
 
 - 사용자 검토 요청(2026-09-29): "데이터 최적화 전문가(Data Optimization Expert) 역할로, 텍스트를 줄이는 것이 아니라 정보의 질을 높이는 데 집중. 차근차근 단계별로 생각." 원칙이 v6.2.0에 녹아 있는지 검토했다.

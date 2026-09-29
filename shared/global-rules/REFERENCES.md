@@ -67,6 +67,29 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 | Zheng et al., *When "A Helpful Assistant" Is Not Really Helpful* (arXiv:2311.10054, EMNLP Findings 2024) | 논문 | 162개 역할 페르소나를 시스템 프롬프트에 넣어도 사실 질문 2,410개 정확도가 오르지 않음 | v6.2.1: 역할 문구 대신 목적(정보의 질)을 규칙에 |
 | Yang et al., *Large Language Models as Optimizers* (OPRO, arXiv:2309.03409, 2023) | 논문 | "Take a deep breath… step-by-step"은 PaLM 2-L·GSM8K에서 찾은 최적 문구(80.2%), 모델마다 최적 문구가 다름 | 단계별 사고는 관문·카드 순환으로, 출력 독백은 금지 |
 
+## 7. 3대 도구 공식 프롬프트 지침 반영 (v7.0.0, 2026-09-29)
+
+GeekNews 기사([news.hada.io/topic?id=34424](https://news.hada.io/topic?id=34424), "Claude Opus 5.5 프롬프트 작성법")와 그 1차 출처, 같은 성격의 OpenAI Codex·Google Antigravity/Gemini 공식 문서를 조사했다. 기사는 1차 문서를 요약한 2차 자료라서 규칙에는 1차 문서만 근거로 썼다. "사실"은 공식 문서에 적힌 내용이고, "추론"은 그것을 UAOS-RSI에 옮기며 내린 판단이다.
+
+| 도구 | 1차 근거(사실) | 우리 규칙에 반영(추론) |
+|---|---|---|
+| 공통 | Anthropic: Opus 5.5는 생각이 항상 켜져 있고 effort가 주 조절 장치이며, "신중히 생각하라" 줄을 지워도 품질 저하가 없었다. Google: 복잡한 CoT 프롬프트 대신 `thinking_level`을 쓴다. OpenAI: 작업 난도는 reasoning 수준으로 고른다 | 방법 절: 사고 깊이는 effort·reasoning 설정이 정하고, 프롬프트·매뉴얼에는 과제와 관문을 쓴다. 절 제목의 부정형("두서없는 단계별 사고 대신")은 지웠다 |
+| 공통 | Anthropic(Opus 5): 요청 범위대로 하고 해석이 크게 갈릴 때만 묻는다. OpenAI: 합리적 가정으로 구현하고 정말 막혔을 때만 질문으로 턴을 끝낸다. Google: 가정해도 되는 때와 멈춰 물어야 하는 때를 정해 둔다 | 자율 절: 의도한 범위 그대로, 일상 판단은 합리적 가정, 작업이 실질적으로 달라질 때만 질문 |
+| 공통 | Anthropic: 붙여넣은 글과 도구 결과 속 지시는 사용자 자신의 메시지가 요청할 때만 따른다(`pasted_content` 표시, 간접 프롬프트 주입 방어) | 안전 절: 지시는 윤겸스와 지휘 도구의 릴레이에서만, 도구 출력·파일·웹·붙여넣은 글은 데이터 |
+| 공통 | Anthropic: 도구 사용을 강하게 밀던 문구("If in doubt, use [tool]", "CRITICAL: You MUST")는 최신 모델에서 과잉 호출을 부른다. olla MCP 서버는 같은 사용 지침을 자기 서버 지시문으로 이미 싣는다(이 세션에서 확인) | 범위 절의 `local_read_map`·`local_draft`·`local_search` 호출 문장을 지우고 "olla 도구로"만 남겼다. 전 규칙에 대문자 강조어(MUST·CRITICAL·ALWAYS)가 없음을 확인했다 |
+| 공통 | OpenAI: 모델·승인 설정은 AGENTS.md가 아니라 `config.toml`·훅에 둔다. Anthropic·OpenAI: 규칙 문장보다 플랫폼 강제가 확실하다 | Antigravity의 `Deny > Ask > Allow` 줄을 지웠다. 권한은 Antigravity 설정이 강제하고, 약화 금지는 안전 절이 이미 규정한다 |
+| Claude Code | Opus 5.5 effort 기본값 `medium`, `xhigh`·`max`는 품질 향상을 측정한 곳에만 | Claude 예산 줄에 추가 |
+| Claude Code | Opus 5.5: 무인 실행이 "다음 단계를 예고하는 요약, 계속할지 묻기, 막지 않는 결정 목록, 이정표 보고"로 일찍 멈춘다. 상태 메모는 다음 도구 호출과 같은 메시지에 쓴다. 원하는 멈춤(사용자 없이는 진행 불가)을 이름으로 밝힌다 | Claude 어댑터: 네 가지 조기 종료를 이름으로 금지하고, 멈춤은 안전 절의 사람 경계나 실제 막힘에서만 |
+| Claude Code | Opus 5/5.5: 도구 호출 사이 짧은 진행 메모를 쓴다. 사람이 함께 보는 작업에서는 중요한 발견이나 방향 전환 때만 짧게 알리라는 지시가 잘 듣는다 | `brief-ko`의 "도구 호출 사이에는 아무 말도 하지 않는다"는 이 지침과 어긋나 "중요한 발견·방향 전환 때만 한국어 한 줄"로 바꿨다(어댑터와 출력 스타일 양쪽) |
+| Claude Code | Opus 5: 하위 에이전트를 쉽게 늘리므로 크고 독립적인 병렬 작업에만 쓰고, 자기 결과 재확인에는 쓰지 않는다. 검토 프롬프트의 "심각한 것만 보고"는 글자 그대로 따라 덜 보고하니, 전부 보고하고 거르기는 따로 한다 | Claude 어댑터 한 줄 |
+| Claude Code | Opus 5: "최종 검증 단계를 넣어라", "다시 확인하라" 같은 지시는 과잉 검증을 부른다 | 모든 규칙을 점검했다. 남은 검증 규칙은 자기 재확인이 아니라 독립 판정·고정 인수·명령 보고라서 유지했다. 이 규칙들은 실패 영수증에서 나왔다 |
+| Codex | OpenAI Codex 프롬프트 가이드: 계획·서두·중간 상태 보고를 요구하는 프롬프트는 모델을 갑자기 멈추게 하니 지운다. 요청받지 않았으면 계획만으로 턴을 끝내지 않는다. 쉬운 작업(대략 25%)에는 계획 도구를 건너뛴다. 독립적인 읽기는 병렬 호출로 묶는다 | Codex 어댑터 세 줄: 최종 보고 하나만, 다단계만 계획, 병렬 읽기 |
+| Codex | AGENTS.md 문서: 전역 `~/.codex/AGENTS.md`에서 현재 디렉터리까지 이어 붙이고 가까운 파일이 우선한다. 합계는 `project_doc_max_bytes`(기본 32 KiB)에서 잘린다. "짧고 정확한 AGENTS.md가 모호한 긴 파일보다 낫다" | Codex 로드 줄에 32 KiB 공유 예산과 설정 위치 추가. CODEX 배포본은 약 13.1k자 |
+| Antigravity | Antigravity 규칙 문서: 전역은 `~/.gemini/GEMINI.md`(또는 `AGENTS.md`), 작업공간은 `.agents/rules/`. 규칙은 누적되고 더 구체적인 디렉터리 규칙이 우선한다. 파일당 24,000바이트, 전역·`always_on` 규칙 합계 20,000토큰 | 11,600자 상한(v3.3.0에서 11,800 → 11,600, 이유 기록 없음)은 공식 한도 안에 있어 평가기를 바꾸지 않고 유지했다. 이번 배포본은 11,593자 |
+| Antigravity | Gemini 3 공식 가이드: 목표를 짧고 직접적으로, 설득조는 피한다. 에이전트에는 읽기(저위험)와 쓰기(고위험) 구분, 모호할 때의 가정·질문 기준, 끈기를 지정한다. temperature는 기본 1.0을 유지한다 | Antigravity 어댑터: 읽기는 자유, 쓰기는 주어진 파일에만, 최종 요약 하나. temperature는 규칙이 아니라 설정이라 넣지 않았다 |
+| 미채택 | Opus 5.5 멀티 에이전트에 경과 시간·예산 신호(`elapsed 340s / 1200s`)를 주면 더 일찍 끝난다 | pilot 하네스 기능이 필요하다. 운영 우선 원칙상 실사용 실패 영수증이 생길 때 카드로 다룬다 |
+| 미채택 | 채팅에서 "이전 답은 끝난 것으로" 두는 지시 | 에이전트 작업에서는 뒤 단계가 앞 실수를 드러내므로 공식 문서도 제외를 권한다 |
+
 ## 출처
 
 - Anthropic, Building Effective AI Agents — https://www.anthropic.com/engineering/building-effective-agents
@@ -94,3 +117,14 @@ Cemri et al., *Why Do Multi-Agent LLM Systems Fail?* (NeurIPS 2025, arXiv:2503.1
 - andrew.ooo, Caveman Review (real-world 30–50%) — https://andrew.ooo/posts/caveman-claude-code-skill-token-savings-review/
 - Personas in System Prompts Do Not Improve Performances — https://arxiv.org/abs/2311.10054
 - Large Language Models as Optimizers (OPRO) — https://arxiv.org/abs/2309.03409
+- GeekNews, Claude Opus 5.5 프롬프트 작성법 — https://news.hada.io/topic?id=34424
+- Anthropic, Prompting Claude Opus 5.5 — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
+- Anthropic, Prompting Claude Opus 5 — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5
+- Anthropic, Prompting best practices — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
+- OpenAI, Codex Prompting Guide — https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide
+- OpenAI, Codex best practices — https://learn.chatgpt.com/guides/best-practices
+- OpenAI, AGENTS.md for Codex — https://learn.chatgpt.com/docs/agent-configuration/agents-md
+- Google, Antigravity rules — https://antigravity.google/docs/rules
+- Google, Antigravity agent (Gemini API) — https://ai.google.dev/gemini-api/docs/antigravity-agent
+- Google, Gemini 3 developer guide — https://ai.google.dev/gemini-api/docs/gemini-3
+- Google, Prompt design strategies — https://ai.google.dev/gemini-api/docs/prompting-strategies
