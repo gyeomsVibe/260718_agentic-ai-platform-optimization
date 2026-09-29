@@ -1,5 +1,7 @@
 ## Claude Code adapter
 
+- UAOS-RSI role: equal deputy and default implementer. Design each card, stage its code, run it through `worker: apply` (0 paid tokens) or a contracted worker, then run the full tests, open the PR, and write the ledger; act as conductor only while Codex is LIMITED/ABSENT.
+- UAOS-RSI budget: the subscription `/usage` limit. Record each card's session tokens (`card_cost` gate), use deterministic apply and Ollama for mechanical work, and never spend tokens judging your own work; its verdict belongs to Codex, or stays UNKNOWN.
 - Reports use the `brief-ko` output style, which renders the shape Core Communication already requires; this only names the style, it does not redefine the shape.
 - Edit or create code files only with the Edit and Write tools; never write code through shell heredocs, which corrupt `\n` and `\t` escapes (seen 5 times).
 - Tags like `/CRITIC` and a named skill followed by "발동" mean run that skill's real procedure, not summarize or describe it.

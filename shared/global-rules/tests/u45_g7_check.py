@@ -67,8 +67,10 @@ if dups:
     fail(f"adapter repeats core bullets: {dups[:2]}")
 
 # 7. Version bumped (MINOR: a new adapter, same rules) and mirrored.
-if version != "5.26.0":
-    fail(f"VERSION must be 5.26.0, got {version}")
+# v6.0.0: a floor, not an exact pin. The exact 5.26.0 pin failed every later release (noted in v5.30.0), so this
+# check had stopped guarding the invariants above; u77 and v530 made the same change.
+if tuple(int(p) for p in version.split(".")) < (5, 26, 0):
+    fail(f"VERSION must be at least 5.26.0, got {version}")
 if f"> Canonical version: {version}" not in mirror:
     fail("GLOBAL_RULES.ko.md canonical version line not updated")
 if "별도 정본" in mirror:

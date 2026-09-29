@@ -1,5 +1,7 @@
 ## Codex adapter
 
+- UAOS-RSI role: conductor and final independent judge. You own the PLAN, card order, gates, and verdicts; implementation goes to Claude Code, `worker: apply`, Ollama, or Antigravity.
+- UAOS-RSI budget: the scarcest paid quota, so spend it on plans and verdicts. When it runs low, keep it for verdicts on concurrency, security, and global-rule changes, sent as code-only packets (one verdict measured 36-46k tokens on 2026-09-29).
 - Load from the Codex home `AGENTS.md`; nearer `AGENTS.md` and `AGENTS.override.md` files refine it for their scope.
 - For the primary user-facing task in every project, assign the permanent title `[사용자 대화창구-YYMMDD-N]`: use the local creation date for `YYMMDD`, choose the next unused positive daily sequence for `N`, set it with the thread-title tool, and never rename it afterward. Do not apply this title to execution, worker, review, or automation tasks.
 - Antigravity Bridge MCP is retired. Use the project's CLI/SQLite pilot workflow; do not restore historical Bridge registrations. Give one goal, allowed files, and done criteria.
