@@ -15,6 +15,10 @@
 - 평가기 변경(재검토 요청): `scripts/sync-global-rules.ps1`의 MIA 차단 정규식을 `\bMIA\b|plan-review-execute`에서 MIA 산출물 이름(`Opportunity Brief|Decision Memo|Delivery Card|Learning Report`)과 `plan-review-execute`로 좁혔다. 사용자가 규칙에 MIA 절차를 심으라고 명시했기 때문이며, 절차의 세부와 산출물은 여전히 스킬에만 둔다. "평가기는 개선 대상이 아니다" 원칙의 명시적 예외라 Codex 재검토 대상이다.
 - 크기: Antigravity 배포본 11,574 → 11,593자(상한 11,600). 공식 한도는 파일당 24,000바이트, 규칙 합계 20,000토큰이라 상한은 바꾸지 않았다. Codex 13,080자, Claude 12,815자.
 - 고정 인수: 기존 7개 테스트와 `tests/v700_rewrite_check.py`. 새 테스트는 변이 7건(옛 규칙 한 줄 삭제, MIA 단계 이름 변경, 핵심 문구 변경, 중복 추가, 추적표 행 삭제, 대문자 강조, 지운 설정 줄 복귀)을 모두 FAIL로 잡았다.
+- Codex 판정 REJECT → 재작업(CANON-V700, head de73c62).
+  - P1 위임 계약 축소: 초안은 위임 계약을 Antigravity·Ollama로 좁혀, Codex가 구현을 맡기는 Claude Code·`worker: apply`에는 공통 계약이 없었다. 이제 모든 구현 경로가 목표·허용 파일·기계 검사 합격 명령·종료 조건을 갖추고, 못 적으면 준비 안 됨으로 먼저 좁힌다(X09 복원). 매뉴얼 전달 항목은 Ollama·Antigravity에만 더한다. v700 검사는 Codex 어댑터의 구현 경로 목록을 읽어 하나라도 빠지면 실패한다.
+  - P2 평가기 구멍: 이름 금지만으로는 이름을 바꾼 MIA 세부가 통과했다. 이제 core 방법 절 전체를 SHA-256으로 고정하고, MIA라는 이름은 그 절 제목에서만 허용한다. v700 검사는 실제 SourceCheck를 변이 복사본에 돌려, 방법 절에 넣은 이름 바꾼 세부와 어댑터에 넣은 MIA 세부가 둘 다 실패하는지 확인한다. 남은 한계: MIA를 부르지 않고 방법 절 밖에 쓴 세부는 기계로 못 잡고 리뷰가 잡는다.
+  - 크기 맞추기: 계약 복원으로 늘어난 90자는 말만 줄여 흡수했다(Ollama 줄의 "exit 0/PASS는 증거 아님"은 core 검증의 «FAILED even at exit 0»이 잇는다). Antigravity 배포본 11,600자(상한 11,600), Codex 13,087자, Claude 12,822자.
 
 ## v6.2.1
 

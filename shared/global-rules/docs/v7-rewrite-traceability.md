@@ -58,7 +58,7 @@ v7.0.0은 v6.2.1의 전역 규칙 80줄을 누더기처럼 고치지 않고 새�
 | C46 | core 범위 | «one folder per project» | 유지 | |
 | C47 | core 범위 | «carry decisions forward in the plan and cards» | 유지 | |
 | C48 | core 범위 | «disposable (may be regenerated)» | 유지 | |
-| C49 | core 범위 | «unagentic calculator» | 합침 | C44와 한 줄 |
+| C49 | core 범위 | «unagentic calculator» | 합침 | C44와 한 줄. "종료 코드 0/PASS는 증거가 아님"은 core 검증의 «FAILED even at exit 0»·«never a self-report»가 모든 위임 결과에 대해 잇는다 |
 | X01 | Codex | «conductor and final independent judge» | 유지 | |
 | X02 | Codex | «the scarcest paid quota» | 유지 | |
 | X03 | Codex | «`AGENTS.override.md`» | 유지 | 32 KiB 공유 예산을 더했다 |
@@ -67,7 +67,7 @@ v7.0.0은 v6.2.1의 전역 규칙 80줄을 누더기처럼 고치지 않고 새�
 | X06 | core 검증 | «FAILED even at exit 0» | 합침 | X07·X11·L10·A05와 판정 한 줄 |
 | X07 | core 검증 | «never a self-report» | 합침 | 계획·순서·관문 소유는 X01에 있다 |
 | X08 | core 권한·Claude | «hold all its authority» | 합침 | L09와 한 줄 |
-| X09 | core 범위 | «machine-checkable pass command» | 합침 | "구체적으로 못 적으면 과제를 좁혀라"는 삭제했다: 항목 목록이 이미 구체성을 요구하고, 작업자 쪽은 A07이 멈추게 한다(Antigravity 상한) |
+| X09 | core 범위 | «Every delegation to any worker (Claude Code, `worker: apply`, Ollama, Antigravity) states its goal, allowed files, machine-checkable pass command, and stop condition, or it is not ready: tighten it first» | 합침 | 처음 초안은 이 계약을 Antigravity·Ollama로 좁히고 "먼저 좁혀라"를 뺐다. Codex 판정(CANON-V700 P1)에 따라 모든 구현 경로와 준비 안 됨·먼저 좁히기 조건을 되살렸고, v700 검사가 경로 하나라도 빠지면 실패한다 |
 | X10 | Codex | «already done or in flight» | 유지 | "작성자가 유일한 검증자가 되면 안 된다"는 core 검증의 «never self-approve»가 잇는다 |
 | X11 | core 검증 | «branches on the test runner or fixtures» | 합침 | |
 | X12 | Codex | «byte-identical» | 유지 | |

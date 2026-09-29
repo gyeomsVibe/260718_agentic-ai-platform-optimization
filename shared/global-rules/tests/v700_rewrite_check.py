@@ -8,7 +8,10 @@ Antigravity prompting guides, removing rules that contradict them.
 
 from pathlib import Path
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # a Korean console (cp949) cannot print every FAIL
@@ -55,7 +58,58 @@ for artifact in ("Opportunity Brief", "Decision Memo", "Delivery Card", "Learnin
     require(artifact not in rules, f"MIA workflow detail {artifact!r} leaked into the rules")
 guard = read("scripts/sync-global-rules.ps1")
 require("Opportunity Brief|Decision Memo|Delivery Card|Learning Report" in guard, "build guard no longer bans MIA workflow detail")
+require("$pinnedMethodSha256" in guard, "build guard no longer pins the MIA Method section")
 require("not free-form step-by-step" not in core and "deep breath" not in core, "negative or legacy thinking prompt came back")
+
+
+def source_check(mutate) -> int:
+    """Run the real SourceCheck on a mutated copy; the guard must refuse what a name ban alone let through."""
+    with tempfile.TemporaryDirectory(prefix="v700_mutant_") as temp:
+        copy = Path(temp) / "global-rules"
+        shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns("__pycache__"))  # SourceCheck compares dist
+        mutate(copy)
+        command = ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+                   str(copy / "scripts" / "sync-global-rules.ps1"), "-Mode", "SourceCheck"]
+        return subprocess.run(command, capture_output=True, timeout=120).returncode
+
+
+def append(relative: str, old: str, new: str):
+    def mutate(copy: Path) -> None:
+        path = copy / relative
+        text = path.read_text(encoding="utf-8")
+        require(old in text, f"mutation anchor {old!r} missing from {relative}")
+        path.write_text(text.replace(old, new, 1), encoding="utf-8")
+    return mutate
+
+
+# Codex CANON-V700 P2 counterexample: detailed MIA workflow under renamed artifact names must fail the build guard.
+renamed_detail = "- Frame artifact: write an Opportunity Summary with stakeholders, deadline, and an evidence ledger.\n"
+require(source_check(lambda copy: None) == 0, "SourceCheck fails on the unmutated copy, so the mutations prove nothing")
+require(source_check(append("core.md", "- Effort or reasoning", renamed_detail + "- Effort or reasoning")) != 0,
+        "renamed MIA workflow detail inside the Method section passed the build guard")
+require(source_check(append("adapters/codex.md", "## Codex adapter\n", "## Codex adapter\n\n- Run MIA as a Decision Brief.\n")) != 0,
+        "MIA workflow detail outside the Method section passed the build guard")
+
+# Codex CANON-V700 P1: the delegation contract binds every implementation route the conductor may use, not a subset.
+routes_line = next(line for line in read("adapters/codex.md").splitlines() if "implementation goes to " in line)
+routes = re.split(r", or |, ", routes_line.split("implementation goes to ", 1)[1].rstrip("."))
+require(len(routes) >= 4, f"could not read the implementation routes from the Codex adapter: {routes}")
+
+
+def delegation_gaps(line: str) -> list:
+    # Routes are read from the bound list itself; the same line names Ollama and Antigravity again for the manual.
+    bound = re.search(r"Every delegation to any worker \(([^)]*)\)", line)
+    listed_routes = bound.group(1).split(", ") if bound else []
+    terms = ["goal", "allowed files", "machine-checkable pass command", "stop condition", "not ready", "tighten it first"]
+    return [r for r in routes if r not in listed_routes] + [t for t in terms if t not in line]
+
+
+delegation = next((line for line in core.splitlines() if "Every delegation to any worker" in line), "")
+require(not delegation_gaps(delegation), f"the delegation contract misses {delegation_gaps(delegation)}")
+listed = re.search(r"Every delegation to any worker \(([^)]*)\)", delegation).group(1).split(", ")
+for route in routes:
+    narrowed = delegation.replace("(" + ", ".join(listed) + ")", "(" + ", ".join(r for r in listed if r != route) + ")")
+    require(delegation_gaps(narrowed) == [route], f"removing the route {route!r} from the delegation contract went unnoticed")
 
 # Criterion: every project and process at a glance, by a data optimization expert.
 require("a briefing lists all of them" in core, "core lacks the brief-everything rule")
