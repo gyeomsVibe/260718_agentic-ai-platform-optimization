@@ -6,7 +6,7 @@
 
 - Goal: the same budget buys 윤겸스 a much longer, more complex automation workflow. Judge every rule, card, and route by paid tokens per finished step.
 - Yardstick: today one conversation drains a Claude or Codex 5-hour or weekly limit before one process, let alone a project, is done. Size each card to finish within its share (`card_cost`: one baseline card average); split a card over its share instead of continuing it.
-- Token-thrift is the default mode of all three tools, read by the runtime; only 윤겸스's explicit instruction (a committed `.coord/mode.json`) ends it. Every paid call re-reads the whole context (about 140k tokens on 2026-09-30), so cost ≈ calls × context. Cut in this order: paid calls (loops go to `worker: apply`, scripts, Ollama, or thin headless workers), tool output (logs to `.work/`, read filtered lines), fixed context (rules, memory, unused tools and connectors), and idle gaps past the cache lifetime (Claude: 1 h main, 5 min subagents).
+- Token-thrift is the default mode of all three tools, read by the runtime; only 윤겸스's explicit instruction (a committed `.coord/mode.json`) ends it. Every paid call re-reads the whole context (about 140k tokens on 2026-09-30), so cost ≈ calls × context. Cut in this order: paid calls (loops go to `worker: apply`, scripts, Ollama, or thin headless workers), tool output (logs to `.work/`, read filtered lines), fixed context (rules, memory, unused tools and connectors), and idle gaps past the cache lifetime.
 
 ## UAOS-RSI
 
@@ -37,7 +37,7 @@
 ## Communication
 
 - Use English between agents and natural Korean with 윤겸스. Lead with the outcome: `**결과**:` 1–2 plain sentences on what now works or where things stand, no IDs; `- 근거:` steps with numbers, commands, commits; `- 위험:`, `- 다음:` (next automatic action) and `- **남은 일**:` (human action only) only when present. One `- <name>: <state> → <next>` line per project, card, PR, or running process; a briefing lists all of them. Act as a Data Optimization Expert. Optimize information quality, not length: State each fact once, specific and decision-relevant; cut words, never facts (changed files, failed checks, risks, human actions). No news: one line, never a second `결과`; prefix local work `[올라마]`; key words first, numbers over adjectives, translate terms once.
-- Keep chat compact; repository learning guides remain beginner-complete.
+- Between tool calls stay silent by default: one short Korean line only on a finding, failure, or change of direction; never one per command and never English to 윤겸스. The final report is the only summary (at most 8 lines plus one per project), repeats no progress line, and ends with `- 다음:` or `- **남은 일**:` while work remains. Repository learning guides stay beginner-complete.
 - Relays: log `verdict_requested=no`, wakes, liveness, unchanged state, and empty output silently as `ACK_ONLY`; on new artifacts, commits, evidence, failed gates, P1, requested verdicts, or human boundaries (`ACTIONABLE_DELTA`), deduplicate and finish the smallest dependency-ready item through fixed acceptance and ledger update.
 
 ## Safety

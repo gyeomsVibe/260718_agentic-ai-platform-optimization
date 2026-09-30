@@ -42,7 +42,7 @@ require("새 소식이 없는 턴(깨움·전달)은 한 줄이고 `결과`를 �
 require("`verdict_requested=no`·깨움·" in mirror, "ko mirror relay line lacks wake-ups")
 for dist in DISTS:
     require(f"v{version}" in read(dist), f"{dist} is stale: run sync-global-rules.ps1 -Mode Build")
-require(len(read("dist/antigravity/GEMINI.md")) <= 12600, "dist/antigravity/GEMINI.md exceeds 12600 characters")  # v7.1.0 cap
+require(len(read("dist/antigravity/GEMINI.md")) <= 13500, "dist/antigravity/GEMINI.md exceeds 13500 characters")  # v7.2.0 cap (윤겸스 2026-09-30: 제한선을 여유있게)
 
 print("PASS v711_no_news_check")
 sys.exit(0)

@@ -50,7 +50,7 @@ for dist, heading in TOOLS.items():
             f"{dist} lacks exactly one role and one budget line in {heading}")
     for other in set(TOOLS.values()) - {heading}:
         require(other not in text, f"{dist} carries another tool's adapter: {other}")
-require(len(read("dist/antigravity/GEMINI.md")) <= 12600, "dist/antigravity/GEMINI.md exceeds 12600 characters")  # v7.1.0 cap
+require(len(read("dist/antigravity/GEMINI.md")) <= 13500, "dist/antigravity/GEMINI.md exceeds 13500 characters")  # v7.2.0 cap (윤겸스 2026-09-30: 제한선을 여유있게)
 
 print("PASS v600_uaos_rsi_check")
 sys.exit(0)

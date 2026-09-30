@@ -60,7 +60,7 @@ for phrase in RETIRED:
     require(phrase not in mirror.split("## 소통", 1)[1].split("\n## ", 1)[0], f"ko mirror still carries {phrase!r}")
 for dist in DISTS:
     require(f"v{version}" in read(dist), f"{dist} is stale: run sync-global-rules.ps1 -Mode Build")
-require(len(read("dist/antigravity/GEMINI.md")) <= 12600, "dist/antigravity/GEMINI.md exceeds 12600 characters")  # v7.1.0 cap
+require(len(read("dist/antigravity/GEMINI.md")) <= 13500, "dist/antigravity/GEMINI.md exceeds 13500 characters")  # v7.2.0 cap (윤겸스 2026-09-30: 제한선을 여유있게)
 
 print("PASS v620_minimal_report_check")
 sys.exit(0)
