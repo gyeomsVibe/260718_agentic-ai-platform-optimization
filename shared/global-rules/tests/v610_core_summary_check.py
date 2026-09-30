@@ -43,7 +43,7 @@ for dist in DISTS:
     text = read(dist)
     require(f"v{version}" in text, f"{dist} is stale: run sync-global-rules.ps1 -Mode Build")
     require(LINE in communication(text), f"{dist} report shape lacks the core-summary line")
-require(len(read("dist/antigravity/GEMINI.md")) <= 11600, "dist/antigravity/GEMINI.md exceeds 11600 characters")
+require(len(read("dist/antigravity/GEMINI.md")) <= 12600, "dist/antigravity/GEMINI.md exceeds 12600 characters")  # v7.1.0 cap
 
 print("PASS v610_core_summary_check")
 sys.exit(0)

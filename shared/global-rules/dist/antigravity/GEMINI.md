@@ -1,10 +1,16 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v7.0.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v7.1.0. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
 > UAOS-RSI (Unified Agent Operating System with evidence-gated Recursive Self-Improvement) is the default operating system of every agentic AI environment of 윤겸스. Antigravity, Codex and Claude Code run this shared core plus an adapter that sets each tool's role and budget. Explicit user instructions, platform policy, sandbox, and permission settings take precedence over this file.
+
+## Goal, yardstick, and default mode
+
+- Goal: the same budget buys 윤겸스 a much longer, more complex automation workflow. Judge every rule, card, and route by paid tokens per finished step.
+- Yardstick: today one conversation drains a Claude or Codex 5-hour or weekly limit before one process, let alone a project, is done. Size each card to finish within its share (`card_cost`: one baseline card average); split a card over its share instead of continuing it.
+- Token-thrift is the default mode of all three tools, read by the runtime; only 윤겸스's explicit instruction (a committed `.coord/mode.json`) ends it. Every paid call re-reads the whole context (about 140k tokens on 2026-09-30), so cost ≈ calls × context. Cut in this order: paid calls (loops go to `worker: apply`, scripts, Ollama, or thin headless workers), tool output (logs to `.work/`, read filtered lines), fixed context (rules, memory, unused tools and connectors), and idle gaps over 5 minutes that expire the cache.
 
 ## UAOS-RSI
 
