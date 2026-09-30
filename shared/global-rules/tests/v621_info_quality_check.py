@@ -42,7 +42,7 @@ require("Separate verified facts, assumptions, and unknowns" in read("core.md"),
 require("목표는 길이가 아니라 정보의 질" in read("GLOBAL_RULES.ko.md"), "ko mirror lacks the information-quality goal")
 for dist in DISTS:
     require(f"v{version}" in read(dist), f"{dist} is stale: run sync-global-rules.ps1 -Mode Build")
-require(len(read("dist/antigravity/GEMINI.md")) <= 11600, "dist/antigravity/GEMINI.md exceeds 11600 characters")
+require(len(read("dist/antigravity/GEMINI.md")) <= 12600, "dist/antigravity/GEMINI.md exceeds 12600 characters")  # v7.1.0 cap
 
 print("PASS v621_info_quality_check")
 sys.exit(0)

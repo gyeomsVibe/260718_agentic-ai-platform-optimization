@@ -69,7 +69,9 @@ $targets = @(
         MasterPath = Join-Path $root 'dist\antigravity\GEMINI.md'
         Adapter = Join-Path $root 'adapters\antigravity.md'
         SourcePath = $null
-        MaxCharacters = 11600
+        # v7.1.0: 11,600 -> 12,600 for the owner-mandated Goal section (+914 chars). The official limit is
+        # 24,000 bytes per file; the cap stays near the real size so any other growth still has to be paid for.
+        MaxCharacters = 12600
         MaxLines = 0
     },
     [PSCustomObject]@{

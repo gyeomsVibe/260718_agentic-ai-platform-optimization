@@ -106,3 +106,7 @@ v7.0.0은 v6.2.1의 전역 규칙 80줄을 누더기처럼 고치지 않고 새�
 | N14 | Codex | «mid-run status updates» | 신규 | Codex 프롬프트 가이드 |
 | N15 | Codex | «parallel tool calls» | 신규 | Codex 프롬프트 가이드 |
 | N16 | Antigravity | «read freely» | 신규 | Gemini 3: 읽기·쓰기 위험 구분 |
+| N17 | core 목표 | «the same budget buys 윤겸스 a much longer, more complex automation workflow» | 신규(v7.1.0) | 윤겸스 지시 2026-09-30: 목표를 운영체제의 근간으로 |
+| N18 | core 목표 | «drains a Claude or Codex 5-hour or weekly limit» | 신규(v7.1.0) | 같은 지시의 전제조건을 척도(yardstick)로 |
+| N19 | core 목표 | «Token-thrift is the default mode of all three tools, read by the runtime» | 신규(v7.1.0) | 기본 모드; 런타임 판독은 diet 저장소 U95-T `thrift.py` |
+| N20 | core 목표 | «cost ≈ calls × context» | 신규(v7.1.0) | 2026-09-30 실측(호출당 맥락 13.7만~14.7만 토큰, 캐시 읽기 97% 이상) |
