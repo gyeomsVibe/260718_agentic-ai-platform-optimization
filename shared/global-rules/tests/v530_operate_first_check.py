@@ -35,7 +35,7 @@ for phrase in ("먼저 쓰고 고칩니다", "실사용 실패 영수증", "두 
 for dist in ("dist/claude/CLAUDE.md", "dist/codex/AGENTS.md", "dist/antigravity/GEMINI.md"):
     require("Operate first" in read(dist), f"{dist} lacks the operate-first rule: run sync-global-rules.ps1 -Mode Build")
 # Antigravity's global rule file limit (MaxCharacters in sync-global-rules.ps1).
-require(len(read("dist/antigravity/GEMINI.md")) <= 12600, "dist/antigravity/GEMINI.md exceeds 12600 characters")  # v7.1.0 cap
+require(len(read("dist/antigravity/GEMINI.md")) <= 13500, "dist/antigravity/GEMINI.md exceeds 13500 characters")  # v7.2.0 cap (윤겸스 2026-09-30: 제한선을 여유있게)
 
 print("PASS v530_operate_first_check")
 sys.exit(0)

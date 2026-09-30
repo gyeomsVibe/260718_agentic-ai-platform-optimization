@@ -68,7 +68,7 @@ for phrase in ("같은 예산으로 훨씬 길고 복잡한 실무 자동화 워
 
 size = len(read("dist/codex/AGENTS.md").encode("utf-8"))
 require(size <= CODEX_GLOBAL_MAX_BYTES, f"Codex global AGENTS.md is {size} bytes > {CODEX_GLOBAL_MAX_BYTES}")
-require("MaxCharacters = 12600" in read("scripts/sync-global-rules.ps1"), "Antigravity cap moved without this check")
+require("MaxCharacters = 13500" in read("scripts/sync-global-rules.ps1"), "Antigravity cap moved without this check")
 
 trace = read("docs/v7-rewrite-traceability.md")
 for row in ("N17", "N18", "N19", "N20"):

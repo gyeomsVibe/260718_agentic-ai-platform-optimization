@@ -71,7 +71,9 @@ $targets = @(
         SourcePath = $null
         # v7.1.0: 11,600 -> 12,600 for the owner-mandated Goal section (+914 chars). The official limit is
         # 24,000 bytes per file; the cap stays near the real size so any other growth still has to be paid for.
-        MaxCharacters = 12600
+        # v7.2.0 (윤겸스, 2026-09-30: "제한선을 여유있게"): 12,600 -> 13,500 for the shared progress-line rule
+        # (+349 chars before trims, 12869 after). About 4% headroom, still 44% under the official limit.
+        MaxCharacters = 13500
         MaxLines = 0
     },
     [PSCustomObject]@{
