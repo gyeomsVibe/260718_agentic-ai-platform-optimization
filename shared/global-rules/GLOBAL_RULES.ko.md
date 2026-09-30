@@ -34,7 +34,7 @@ UAOS-RSI(Unified Agent Operating System with evidence-gated Recursive Self-Impro
 - `uaos` = `python "$HOME/.uaos/uaos.py"`, 설치된 런타임입니다. 재설치할 때마다 설치 점검에 어긋남(drift)이 없어야 합니다.
 - 폴더 안이나 위에 `.coord/PLAN.md`가 있으면 UAOS-RSI 프로젝트입니다. 시작할 때 계획·소유자·`uaos coord inbox --project <루트>`를 읽고, `uaos coord watch --project <루트> --target <자기>`를 백그라운드로 켜 둡니다(0토큰). 도구끼리는 `uaos coord deliver`로 주고받고, 프로젝트 밖의 다도구 작업은 덮어쓰지 않는 `uaos coord init`으로 시작합니다.
 - 먼저 쓰고 고칩니다(Operate first): UAOS-RSI는 운영 중이며 쓰면서 고칩니다. 실사용 실패 영수증(장부 행, 실패한 관문, `coord log --kind BLOCKED`, 윤겸스의 보고) 없이 새 기능을 만들지 않습니다. 같은 원인이 두 번(P1은 한 번) 나오면 재현 테스트가 있는 카드 하나로 고친 뒤 사용으로 돌아가고, 두 번 실패한 수정은 키우지 않고 보류합니다.
-- 범용이 기본입니다(Universal by default): UAOS-RSI는 모든 프로젝트와 세 도구에서 도는 운영체제입니다. 훅·알림·규칙·연결을 바꿀 때는 Claude Code·Codex·Antigravity 셋 모두에 한꺼번에, 도구마다 훅 형식과 예산에 맞게 조율해 만들고, 프로젝트 경로를 코드에 고정하지 않으며, 세 도구 모두를 테스트합니다. 편지나 알림은 받는 도구의 훅 출력에 실제로 나타나야 전달된 것입니다.
+- 범용이 기본입니다(Universal by default): UAOS-RSI는 모든 프로젝트와 세 도구에서 도는 운영체제이고, 그래서 운영체제급입니다. 어느 도구가 만들든 코드·훅·규칙·작업 흐름·경로는 만든 도구 자신이나 한 프로젝트만을 위한 것이 아닙니다. Claude Code·Codex·Antigravity 셋 모두에 함께, 도구마다 특성(역할·훅 형식·예산)에 맞게 다르게 조율해 만들고, 프로젝트 경로를 코드에 고정하지 않으며, 세 도구 모두를 테스트합니다. 편지나 알림은 받는 도구의 훅 출력에 실제로 나타나야 전달된 것입니다.
 - 카드 순환: 영수증 → 계약 매뉴얼 → pilot 실행 → 고정 인수와 전체 테스트 → 독립 판정 → PR → 사람 병합 → 런타임 재설치 → 사용. 카드마다 유료 토큰과 벽시계 시간을 장부에 남기고, 직전 실행 대비 3배 악화는 테스트가 통과해도 실패 관문입니다.
 - 권한: Codex가 ACTIVE면 지휘하고, 아니면 ACTIVE인 Claude가, 둘 다 LIMITED/ABSENT일 때만 Antigravity가 대행합니다. UNKNOWN은 대행 근거가 아니며 `uaos coord route`가 fail-closed 합니다. 복귀한 도구는 우편함과 대행 diff를 재검토한 뒤 지휘를 재개합니다. 한 단계의 소유자는 한 플랫폼이고 병렬로 돌리지 않습니다.
 - 예산: 유료 작업자마다 토큰/USD/시간 상한을 따로 두고 넘친 결과는 승인하지 않으며, 잔여율·리셋 창을 토큰으로 환산하지 않습니다. 도구별 예산은 아래 어댑터가 정합니다.

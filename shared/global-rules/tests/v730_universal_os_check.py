@@ -13,7 +13,7 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # a Korean console (cp949) cannot print every FAIL
 ROOT = Path(__file__).resolve().parent.parent
 DISTS = ("dist/claude/CLAUDE.md", "dist/codex/AGENTS.md", "dist/antigravity/GEMINI.md")
-UNIVERSAL = "Universal by default: UAOS-RSI runs every project and all three tools."
+UNIVERSAL = "Whatever any tool builds (code, hook, rule, workflow, route) is never for the builder or one project alone"
 RECEIVER = "delivered only once the receiver's own hook output shows it"
 KO = "범용이 기본입니다(Universal by default)"
 # Same cap and reason as v720_quiet_output_check.py (Codex's 32 KiB shared AGENTS.md budget).
