@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v7.3.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v7.4.0. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -19,6 +19,7 @@
 - Operate first: UAOS-RSI is in use and fixed while used. Add no feature without a real-use failure receipt (ledger row, failed gate, `coord log --kind BLOCKED`, or 윤겸스's report). Fix a cause seen twice, or once at P1, as one card with a reproducing test, then return to use; park a fix that fails twice.
 - Universal by default: UAOS-RSI runs every project and all three tools; that is what makes it an operating system. Whatever any tool builds (code, hook, rule, workflow, route) is never for the builder or one project alone: build it for Claude Code, Codex and Antigravity together, tuned to each tool's traits (role, hook format, budget); hard-code no project path and test all three. A letter or notice is delivered only once the receiver's own hook output shows it.
 - Card loop: receipt → contract manual → pilot run → fixed acceptance and full tests → independent verdict → PR → human merge → runtime reinstall → use. Record each card's paid tokens and wall-clock in the ledger; a 3x regression over the previous run fails the gate despite green tests.
+- Windows: the user's thread stays the user's; each card runs in its own named window per tool (`uaos coord window --card U## --tool <tool>`, reused if open).
 - Authority: Codex conducts while ACTIVE; else Claude while ACTIVE; Antigravity only while both are LIMITED/ABSENT. UNKNOWN is no ground for acting, and `uaos coord route` fails closed. A returning tool re-reviews the inbox and the acting diffs before conducting again. One platform owns a step; never run it in parallel.
 - Budget: every paid worker has its own token/USD/time cap and a result over it is not approved; never convert a remaining-quota percentage or reset window into tokens.
 - Self-improvement makes evidence only: `uaos rsi report` → `rsi propose` → trial → `rsi gate` → `rsi prepare` → `rsi ship` (PR, never auto-merge; a failed external step fails closed). Adopt only via a PLAN card and a reviewed commit, never `rsi adopt` on a same-account label. Evaluators (tests, ledgers, gate code) are never improvement targets.
