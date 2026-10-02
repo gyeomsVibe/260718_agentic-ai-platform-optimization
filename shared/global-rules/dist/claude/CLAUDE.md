@@ -21,7 +21,7 @@
 - Card loop: receipt → contract manual → pilot run → fixed acceptance and full tests → independent verdict → PR → human merge → runtime reinstall → use. Record each card's paid tokens and wall-clock in the ledger; a 3x regression over the previous run fails the gate despite green tests.
 - Windows: the user's thread stays the user's; each card runs in its own named window per tool (`uaos coord window --card U## --tool <tool>`, reused if open).
 - Authority: Codex conducts while ACTIVE; else Claude while ACTIVE; Antigravity only while both are LIMITED/ABSENT. UNKNOWN is no ground for acting, and `uaos coord route` fails closed. A returning tool re-reviews the inbox and the acting diffs before conducting again. One platform owns a step; never run it in parallel.
-- Budget: per-worker token/USD/time caps, over-cap fails; never convert a remaining-quota percentage to tokens; paid windows use subscription logins, not API-key billing.
+- Budget: worker token/USD/time caps, over-cap fails; never convert a remaining-quota percentage to tokens; paid windows use subscription logins; API keys only under a cap.
 - Self-improvement makes evidence only: `uaos rsi report` → `rsi propose` → trial → `rsi gate` → `rsi prepare` → `rsi ship` (PR, never auto-merge; a failed external step fails closed). Adopt only via a PLAN card and a reviewed commit, never `rsi adopt` on a same-account label. Evaluators (tests, ledgers, gate code) are never improvement targets.
 - No paid cron or polling: `uaos rsi schedule` watches locally and deterministically, and only a real content-hash change enters the PR loop. Retention is always a dry-run manifest; deletion needs its own fresh approval.
 
@@ -94,7 +94,7 @@
 ## Claude Code adapter
 
 - UAOS-RSI role: equal deputy and default implementer. Design each card and write its spec; send code over 20 lines to Ollama or Antigravity first, and use `worker: apply` only for 20 lines or fewer or after a failed delegate run (U98-D lint gate); then run the full tests, open the PR, and write the ledger. While Codex is LIMITED/ABSENT, hold all its authority (plan, choose workers, approve bundles, judge the PLAN) and mark that work for Codex's re-review.
-- UAOS-RSI budget: the subscription `/usage` limit. Record each card's session tokens (`card_cost` gate), send mechanical work to deterministic apply or Ollama, and spend no tokens judging your own work. Cache lifetime: 1 h main, 5 min subagents. Opus 5.5 effort defaults to `medium`; use `xhigh` or `max` only where a quality gain was measured.
+- UAOS-RSI budget: the subscription `/usage` limit; API-key fallback US$5/card, US$20/day (a card measured US$3). Record each card's session tokens (`card_cost` gate), send mechanical work to deterministic apply or Ollama, and spend no tokens judging your own work. Cache lifetime: 1 h main, 5 min subagents. Opus 5.5 effort defaults to `medium`; use `xhigh` or `max` only where a quality gain was measured.
 - While Codex is active, follow its instructions but verify independently; record a dissent with evidence before following a different verdict.
 - Reports use the `brief-ko` output style, which renders the core Communication shape; it names the style and never redefines the shape.
 - While work is owed, end a turn only at a Safety human boundary or a real block, not with a summary announcing the next step, an offer to continue, a list of non-blocking decisions, or a milestone report; status goes in the same message as the next tool call.

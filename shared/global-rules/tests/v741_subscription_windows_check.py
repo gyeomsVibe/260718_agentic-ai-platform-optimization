@@ -12,7 +12,7 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # a Korean console (cp949) cannot print every FAIL
 ROOT = Path(__file__).resolve().parent.parent
 DISTS = ("dist/claude/CLAUDE.md", "dist/codex/AGENTS.md", "dist/antigravity/GEMINI.md")
-RULE = "paid windows use subscription logins, not API-key billing"
+RULE = "paid windows use subscription logins; API keys only under a cap"
 KO = "유료 창·작업자는 구독 로그인으로만 열고"
 # Same cap and reason as v720_quiet_output_check.py (Codex's 32 KiB shared AGENTS.md budget).
 MAX_DIST_BYTES = 15_000
