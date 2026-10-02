@@ -1,6 +1,6 @@
 # Claude Global Rules
 
-<!-- GENERATED from English canonical rules v7.4.0. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v7.4.1. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -21,7 +21,7 @@
 - Card loop: receipt → contract manual → pilot run → fixed acceptance and full tests → independent verdict → PR → human merge → runtime reinstall → use. Record each card's paid tokens and wall-clock in the ledger; a 3x regression over the previous run fails the gate despite green tests.
 - Windows: the user's thread stays the user's; each card runs in its own named window per tool (`uaos coord window --card U## --tool <tool>`, reused if open).
 - Authority: Codex conducts while ACTIVE; else Claude while ACTIVE; Antigravity only while both are LIMITED/ABSENT. UNKNOWN is no ground for acting, and `uaos coord route` fails closed. A returning tool re-reviews the inbox and the acting diffs before conducting again. One platform owns a step; never run it in parallel.
-- Budget: every paid worker has its own token/USD/time cap and a result over it is not approved; never convert a remaining-quota percentage or reset window into tokens.
+- Budget: per-worker token/USD/time caps, over-cap fails; never convert a remaining-quota percentage to tokens; paid windows use subscription logins, not API-key billing.
 - Self-improvement makes evidence only: `uaos rsi report` → `rsi propose` → trial → `rsi gate` → `rsi prepare` → `rsi ship` (PR, never auto-merge; a failed external step fails closed). Adopt only via a PLAN card and a reviewed commit, never `rsi adopt` on a same-account label. Evaluators (tests, ledgers, gate code) are never improvement targets.
 - No paid cron or polling: `uaos rsi schedule` watches locally and deterministically, and only a real content-hash change enters the PR loop. Retention is always a dry-run manifest; deletion needs its own fresh approval.
 
