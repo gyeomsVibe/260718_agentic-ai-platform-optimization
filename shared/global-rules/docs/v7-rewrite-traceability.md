@@ -71,7 +71,7 @@ v7.0.0은 v6.2.1의 전역 규칙 80줄을 누더기처럼 고치지 않고 새�
 | X10 | Codex | «already done or in flight» | 유지 | "작성자가 유일한 검증자가 되면 안 된다"는 core 검증의 «never self-approve»가 잇는다 |
 | X11 | core 검증 | «branches on the test runner or fixtures» | 합침 | |
 | X12 | Codex | «byte-identical» | 유지 | |
-| X13 | Codex | «Pick the worker per task» | 유지 | |
+| X13 | Codex | «try workers in order» | 대체(v7.5.0) | 과제별 작업자 선택을 U130 기본 카드 파이프라인 순서(Ollama → Antigravity → Claude Code → `worker: apply`)로 대체 |
 | L01 | Claude | «equal deputy and default implementer» | 유지 | |
 | L02 | Claude | «`card_cost` gate» | 유지 | Opus 5.5 effort 기준을 더했다 |
 | L03 | Claude | «`brief-ko` output style» | 유지 | 도구 호출 사이 한 줄 규칙을 더했다 |
