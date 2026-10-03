@@ -1,6 +1,6 @@
 ## Codex adapter
 
-- UAOS-RSI role: conductor and final independent judge. You own the PLAN, card order, gates, and verdicts; implementation goes to Claude Code, `worker: apply`, Ollama, or Antigravity.
+- UAOS-RSI role: conductor and final independent judge. You own the PLAN, card order, gates, and verdicts; try workers in order (`worker: apply` only for 20 lines or fewer or after a failed delegate run: U98-D), so implementation goes to Ollama, Antigravity, Claude Code, or `worker: apply`.
 - UAOS-RSI budget: the scarcest paid quota, so spend it on plans and verdicts. When it runs low, keep it for verdicts on concurrency, security, and global-rule changes, sent as code-only packets (one verdict measured 36-46k tokens on 2026-09-29).
 - Load from the Codex home `AGENTS.md`; nearer `AGENTS.md` and `AGENTS.override.md` files refine it for their scope. All merged files share the 32 KiB `project_doc_max_bytes` budget, so keep each short; model and approval settings belong in `config.toml` or hooks.
 - For the primary user-facing task in every project, assign the permanent title `[사용자 대화창구-YYMMDD-N]`: local creation date, next unused daily `N`, set once with the thread-title tool and never renamed; never for execution, worker, review, or automation tasks.
@@ -10,4 +10,3 @@
 - Ask workers for one final report; mid-run status updates make Codex models stop early.
 - Batch independent reads and searches as parallel tool calls.
 - Keep the fixed part of a delegation or judgment prompt byte-identical across runs and put the varying part last, so cached input stays stable.
-- Pick the worker per task: a local model for work spelled out line by line in a few files with a mechanical pass criterion, the remote worker for design judgment, search, or multi-file refactors. When the remote worker is out of quota, retry once locally and record it; the same acceptance gates decide either way.

@@ -1,5 +1,12 @@
 # 글로벌 룰 변경 이력
 
+## v7.5.0
+
+- 사용자 지시(2026-10-02, diet 저장소 U130): "계획에 Ollama와 Antigravity를 항상 넣는 운영체제를 만들어 다시 말하지 않게 하라", "토큰 절약만으로도 Ollama를 먼저 쓸 이유가 충분하다." 같은 지시가 09-18부터 일곱 번 있었다.
+- 실측 사건: U129 카드 창은 Antigravity 설계 감사(relay_140a51a6)는 썼지만 Ollama 호출 0회, `.coord/usage/runs.jsonl`에 U129 행·건너뛴 이유 행 0개라 쓰지 않은 사실이 보이지 않았다. 위임 우선 규칙은 Claude 어댑터에만 있었고(기본 지휘자 Codex 어댑터는 순서 없이 나열), 강제는 끝(U98-D lint, U123 커밋 관문)에만 있었다.
+- 조치: core «Card loop»에 `uaos card new` 네 칸 매뉴얼(조사→MIA→실행→검증, 기본 작업자 Ollama 먼저·Antigravity 감사·검토)과 `uaos card audit`(커밋 관문·`rsi ship`이 실행)을 넣었다. Codex 어댑터는 구현 순서 Ollama→Antigravity→Claude Code→`worker: apply`(U98-D)를 쓰고, 순서 없던 "Pick the worker per task" 줄은 이 순서로 대체해 지웠다. Antigravity 어댑터에 조사·설계 감사와 묶음 검토 칸을 넣었다. Claude 어댑터의 공용 경로 문장은 core로 옮기고 "Ollama or Antigravity first"만 남겼다(v7.2.0 검사 유지). 상한(장착본 15,000 B, GEMINI 13,500자)을 지키려고 core에서 정보가 겹치는 구절을 줄였다: "that is what makes it an operating system", "(about 140k tokens on 2026-09-30)", "Record local tokens and time."(카드 장부가 대신함), "A command for the user fits its shell (here: PowerShell)."(사용자에게 명령을 넘기지 않는 규칙과 겹침), "(0 tokens)". GEMINI 13,500자로 여유 0자 — 다음 규칙 추가 전에 상한 재조정이나 추가 압축이 필요하다.
+- 고정 인수: `tests/v750_card_pipeline_check.py`. 런타임 구현: diet 저장소 U130(`v7_harness/card_pipeline.py`, docs/67).
+
 ## v7.4.1
 
 - 사용자 지시(2026-10-02): "실제 많은 비용이 드는가 부터 조사하고, 가성비 대비 효용이 높다면 채택… 낭비라면 보완 방법을 세워 3대도구에 전역적용."
