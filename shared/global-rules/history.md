@@ -1,5 +1,12 @@
 # 글로벌 룰 변경 이력
 
+## v7.5.1
+
+- 사용자 지시(2026-10-03, 사용자 대화창 경유): 카드 창마다 오가며 병합하기 어려우니, 카드 결과를 사용자 대화창에 모아 한 번에 처리하게 하라(임시 규칙 RESULT_RELAY.md). 정본 규칙 grep 결과 이 규칙 0건.
+- 실측 사건: U132 카드 작업 트리에서 기준 체크아웃의 `.coord/results/U132.md` 쓰기가 데스크톱 앱 작업 트리 훅에 막혔다(플랫폼 권한이라 완화하지 않음).
+- 조치: core «Windows» 줄에 "끝난 카드는 자기 체크아웃에 `.coord/results/<card>.md`를 쓰고 RESULT 한 줄(카드, PR 주소, 병합 가능, 테스트, 막힘)을 사용자 대화창에 보내고, 사용자 대화창이 병합을 한 보고로 모은다"를 넣었다. GEMINI가 13,500자 상한에 붙어 있어 같은 양 이상을 줄였다(GEMINI 13,500 → 13,486자): 고정 맥락 괄호 예시, "via each tool's allow rules", "(role, hook format, budget)", "translate terms once", "even while the user is away", "assume reasonably on routine calls", "read filtered lines"(각각 같은 줄의 다른 말과 겹침). 한글 해설본에 같은 문장.
+- 고정 인수: `tests/v751_result_relay_check.py`. 런타임 구현: diet 저장소 U135(`uaos card result`·`uaos card results`, 카드 매뉴얼 마지막 단계).
+
 ## v7.5.0
 
 - 사용자 지시(2026-10-02, diet 저장소 U130): "계획에 Ollama와 Antigravity를 항상 넣는 운영체제를 만들어 다시 말하지 않게 하라", "토큰 절약만으로도 Ollama를 먼저 쓸 이유가 충분하다." 같은 지시가 09-18부터 일곱 번 있었다.
