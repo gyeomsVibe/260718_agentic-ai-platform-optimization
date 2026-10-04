@@ -334,7 +334,7 @@ if ($sourceText -match '(?i)plan-review-execute|Opportunity Brief|Decision Memo|
 # byte (LF, trimmed), and MIA may be named only in its heading, so added or renamed detail anywhere fails.
 # Changing the Method section therefore needs a reviewed update of this hash.
 $methodHeading = '## Method: MIA strategic procedure (`mia-strategic` skill)'
-$pinnedMethodSha256 = 'd06bb83d3825021fb3a7f64b9e75fc2a7559d5d5a0249447e0f23e9fb8ebb716'
+$pinnedMethodSha256 = '3ec4585fbd329a0582f597d6d35b6f1607022799979e1b20327190352f05055c'
 $coreLf = ($sourceParts[0] -replace "`r`n", "`n")
 $methodMatch = [regex]::Match($coreLf, '(?s)' + [regex]::Escape($methodHeading) + '\n.*?(?=\n## |\z)')
 if (-not $methodMatch.Success) {
