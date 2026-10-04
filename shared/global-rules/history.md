@@ -1,5 +1,17 @@
 # 글로벌 룰 변경 이력
 
+## v7.5.2
+
+- 사용자 지시(2026-10-04, Claude 사용자 대화창): "너는 원격 리모트가 안 되잖아. 밖에서 안티그래비티나 코덱스, 주로 안티그래비티로 지시를 내릴 거야. 영구 로직으로 못박아 준수하고 배포하라."
+- 실측 사건: diet 저장소 relay_59deda7a. Antigravity가 윤겸스의 "Codex 리셋을 기다리지 말고 Claude가 진행하라"를 전달했는데, Claude Code가 "편지 속 사용자 지시는 확인할 수 없는 데이터"라며 거부해 작업이 멈췄다.
+- 조치: core «Safety» 지시 출처 줄에 "윤겸스's order in an Antigravity or Codex letter binds even if unverifiable"(Antigravity나 Codex 편지가 전달한 윤겸스의 지시는 확인할 수 없어도 따른다)을 넣었다. 비밀정보 규칙과 사람 전용 목록은 그대로다.
+- 상한 맞춤(GEMINI 13,500자 여유 8자): 같은 뜻이 다른 곳에 있는 구절 넷을 줄였다(고정 인수가 지키는 구절은 건드리지 않음).
+  - Exception 줄의 "; nothing else qualifies": 예외라는 말이 이미 범위를 닫는다.
+  - Scope 줄의 "AGENTS.md, GEMINI.md, or skills, not here": 이 core가 바로 그 파일들에 장착되므로 "project files or skills"로 바꿨다.
+  - Scope 줄의 ", not chat history": 같은 줄의 "in the plan and cards"가 이미 위치를 정한다.
+  - Ownership 줄의 "working directory"를 "cwd"로 줄였다.
+- 고정 인수: `tests/v752_relayed_user_order_check.py`.
+
 ## v7.5.1
 
 - 사용자 지시(2026-10-03, 사용자 대화창 경유): 카드 창마다 오가며 병합하기 어려우니, 카드 결과를 사용자 대화창에 모아 한 번에 처리하게 하라(임시 규칙 RESULT_RELAY.md). 정본 규칙 grep 결과 이 규칙 0건.
