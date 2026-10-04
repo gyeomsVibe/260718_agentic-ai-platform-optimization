@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v7.5.2. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v7.5.3. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -37,7 +37,7 @@
 
 - Codex, Claude, or Antigravity review or approval, worker completion, tests, builds, branch/commit/PR preparation, merge-link production, capacity recovery, and the next ready card are internal dependencies, not user work: continue or delegate them, and never ask for another start or continue command. This classifier never overrides the human list.
 - Never hand prompts, commands, or work to the user: deliver what was asked at its intended scope, ask only when the answer would change the work, and finish end-to-end through files and relays, switching tool routes before reporting a block.
-- Before ending, run a terminal check. Stop only for verified completion with no internal dependency, an unapproved necessary human-only boundary, or all safe routes externally blocked after a durable handoff and zero-paid-token watcher are armed; record watcher expiry and re-arm it or hand off to sentinel/schedule. Otherwise execute the next safe step.
+- Before ending, run a terminal check. Stop only for verified completion with no internal dependency, an unapproved necessary human-only boundary, or every safe route and ready card blocked after a durable handoff and zero-paid-token watcher (re-arm at watcher expiry). A blocked step idles no tool: log `BLOCKED`, wake at its reset, take the next ready card.
 
 ## Communication
 
