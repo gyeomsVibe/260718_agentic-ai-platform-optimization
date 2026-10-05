@@ -8,6 +8,8 @@
 - 상한: 추가가 63자라 GEMINI 13,500자와 dist 15,000바이트 안에 들어가 다른 구절을 줄이지 않았다.
 - 참고: v7.5.4(ecbeade)는 로컬 main에만 있고 origin에 없어 이 브랜치가 그 위에서 시작한다. 이 PR이 v7.5.4도 함께 올린다.
 - 고정 인수: `tests/v755_tiki_taka_check.py`.
+- 독립 판정 수정(Codex `codex exec -s read-only`, VERDICT: FAIL, P2): v7.5.4가 상한을 맞추려 검사 대상 문구를 깎아 기존 검사 7개(u77·v530·v700·v710·v730·v740·v751)가 실패했고, 영문 의미가 한국어판과 갈라졌다. 깎인 문구(Yardstick·real-use·return to use·Universal·Windows·machine-checkable·independent judge·another start)를 v7.5.3 원문으로 되살렸다. Safety의 병합 중복 문장은 Autonomy·Card loop와 같은 내용이라 지웠다. 상한은 검사·추적표·빌드 필수 구절이 잠그지 않은 군더더기 단어만 줄여 맞췄다(GEMINI 13,488자, Claude 14,912바이트, Codex 14,799바이트). 검사 21개 모두 통과, Build exit 0.
+- 판정 이견 기록: `rsi ship`의 "never auto-merge"는 RSI 파이프라인 자신이 병합하지 않는다는 뜻이다. 병합은 Card loop의 도구 병합 단계가 독립 판정 뒤에 한다. 두 규칙은 충돌하지 않아 문구를 바꾸지 않았다(상한 여유 12자).
 
 ## v7.5.3
 
