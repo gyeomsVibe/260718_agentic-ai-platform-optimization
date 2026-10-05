@@ -1,5 +1,16 @@
 # 글로벌 룰 변경 이력
 
+## v7.5.5
+
+- 사용자 지시: "티키타카를 전역 규칙으로 정의" (2026-10-05, MIA 전략절차 발동 인수), 마스터 스케줄 P4.
+- 실측 사건: diet 저장소 U172(PR #135, 001d1e5)가 티키타카 줄을 이식용 블록 `uaos_everywhere/uaos_global_rule_block.md`에만 넣었다. 이 PC의 세 규칙 파일은 이 정본에서 생성되므로(설치 `--check`: "global-rules canon owns this generated file") 반영되지 않았다(세 파일 grep 0건).
+- 조치: core «UAOS-RSI» 프로젝트 줄의 "Tools talk through `uaos coord deliver`" 뒤에 "by tiki-taka (≤5 evidence turns a decision; non-author judges)"를 붙였다. 한국어판도 같은 자리에 넣었다. 침묵한 도구 제외(U166)는 diet 런타임 훅이 집행하므로 정본에 따로 적지 않았다.
+- 상한: 추가가 63자라 GEMINI 13,500자와 dist 15,000바이트 안에 들어가 다른 구절을 줄이지 않았다.
+- 참고: v7.5.4(ecbeade)는 로컬 main에만 있고 origin에 없어 이 브랜치가 그 위에서 시작한다. 이 PR이 v7.5.4도 함께 올린다.
+- 고정 인수: `tests/v755_tiki_taka_check.py`.
+- 독립 판정 수정(Codex `codex exec -s read-only`, VERDICT: FAIL, P2): v7.5.4가 상한을 맞추려 검사 대상 문구를 깎아 기존 검사 7개(u77·v530·v700·v710·v730·v740·v751)가 실패했고, 영문 의미가 한국어판과 갈라졌다. 깎인 문구(Yardstick·real-use·return to use·Universal·Windows·machine-checkable·independent judge·another start)를 v7.5.3 원문으로 되살렸다. Safety의 병합 중복 문장은 Autonomy·Card loop와 같은 내용이라 지웠다. 상한은 검사·추적표·빌드 필수 구절이 잠그지 않은 군더더기 단어만 줄여 맞췄다(GEMINI 13,488자, Claude 14,912바이트, Codex 14,799바이트). 검사 21개 모두 통과, Build exit 0.
+- 판정 이견 기록: `rsi ship`의 "never auto-merge"는 RSI 파이프라인 자신이 병합하지 않는다는 뜻이다. 병합은 Card loop의 도구 병합 단계가 독립 판정 뒤에 한다. 두 규칙은 충돌하지 않아 문구를 바꾸지 않았다(상한 여유 12자).
+
 ## v7.5.3
 
 - 사용자 지시(2026-10-04 22:20, Claude 사용자 대화창): "너희 모두가 어디 하나에 막혀서 대기하면 내가 컴퓨터를 켜고 잘 이유가 없잖아." 22:50 재확인: "이건 야간 로직이 아니라 평상시 기본 로직이다." MIA 전략스킬로 기본 로직화·전역 배포 지시.
