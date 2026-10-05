@@ -1,5 +1,14 @@
 # 글로벌 룰 변경 이력
 
+## v7.5.5
+
+- 사용자 지시: "티키타카를 전역 규칙으로 정의" (2026-10-05, MIA 전략절차 발동 인수), 마스터 스케줄 P4.
+- 실측 사건: diet 저장소 U172(PR #135, 001d1e5)가 티키타카 줄을 이식용 블록 `uaos_everywhere/uaos_global_rule_block.md`에만 넣었다. 이 PC의 세 규칙 파일은 이 정본에서 생성되므로(설치 `--check`: "global-rules canon owns this generated file") 반영되지 않았다(세 파일 grep 0건).
+- 조치: core «UAOS-RSI» 프로젝트 줄의 "Tools talk through `uaos coord deliver`" 뒤에 "by tiki-taka (≤5 evidence turns a decision; non-author judges)"를 붙였다. 한국어판도 같은 자리에 넣었다. 침묵한 도구 제외(U166)는 diet 런타임 훅이 집행하므로 정본에 따로 적지 않았다.
+- 상한: 추가가 63자라 GEMINI 13,500자와 dist 15,000바이트 안에 들어가 다른 구절을 줄이지 않았다.
+- 참고: v7.5.4(ecbeade)는 로컬 main에만 있고 origin에 없어 이 브랜치가 그 위에서 시작한다. 이 PR이 v7.5.4도 함께 올린다.
+- 고정 인수: `tests/v755_tiki_taka_check.py`.
+
 ## v7.5.3
 
 - 사용자 지시(2026-10-04 22:20, Claude 사용자 대화창): "너희 모두가 어디 하나에 막혀서 대기하면 내가 컴퓨터를 켜고 잘 이유가 없잖아." 22:50 재확인: "이건 야간 로직이 아니라 평상시 기본 로직이다." MIA 전략스킬로 기본 로직화·전역 배포 지시.

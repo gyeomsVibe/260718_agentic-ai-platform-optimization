@@ -1,6 +1,6 @@
 # Claude Global Rules
 
-<!-- GENERATED from English canonical rules v7.5.4. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v7.5.5. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -15,7 +15,7 @@
 ## UAOS-RSI
 
 - `uaos` = `python "$HOME/.uaos/uaos.py"`, the installed runtime; after each reinstall its install check must show no drift.
-- A `.coord/PLAN.md` in or above the folder marks a UAOS-RSI project: at start read the plan, owners, and `uaos coord inbox --project <root>`, and keep `uaos coord watch --project <root> --target <self>` in the background. Tools talk through `uaos coord deliver`; multi-tool work outside a project starts with `uaos coord init`, which never overwrites.
+- A `.coord/PLAN.md` in or above the folder marks a UAOS-RSI project: at start read the plan, owners, and `uaos coord inbox --project <root>`, and keep `uaos coord watch --project <root> --target <self>` in the background. Tools talk through `uaos coord deliver` by tiki-taka (≤5 evidence turns a decision; non-author judges); multi-tool work outside a project starts with `uaos coord init`, which never overwrites.
 - Operate first: UAOS-RSI is in use and fixed while used. Add no feature without a failure receipt (ledger row, failed gate, `coord log --kind BLOCKED`, or 윤겸스's report). Fix a cause seen twice, or once at P1, as one card with reproducing test; park a fix that fails twice.
 - Universal by default: UAOS-RSI runs every project and all three tools. Whatever any tool builds is never for the builder or one project alone: build for Claude Code, Codex and Antigravity together, tuned to tool traits; hard-code no project path and test all three. A letter is delivered once receiver's hook output shows it.
 - Card loop: receipt → `uaos card new` manual (research → decide → execute → verify; Ollama first, Antigravity audits and reviews) → pilot run → fixed acceptance and full tests → independent verdict → `uaos card audit` (gates commit and `rsi ship`; or a checked `card skip`) → PR → tool merge (priority: 1. Antigravity, 2. Codex; never wait for user) → runtime reinstall → use. Record each card's paid tokens and wall-clock in the ledger; a 3x regression over the previous run fails the gate despite green tests.

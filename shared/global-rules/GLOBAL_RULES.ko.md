@@ -2,7 +2,7 @@
 
 > 사용자 열람용 번역본입니다. 실제 실행 기준은 영문 정본이며, 충돌하면 영문 정본이 우선합니다.
 >
-> Canonical version: 7.5.4
+> Canonical version: 7.5.5
 
 UAOS-RSI(Unified Agent Operating System with evidence-gated Recursive Self-Improvement, 증거 관문식 자가개선 통합 에이전트 운영체제)는 윤겸스의 모든 agentic AI 환경의 기본 운영체제입니다. 이름이 곧 운영 방식입니다: 세 도구가 하나의 운영체제(UAOS)로 협업하고, 쓰면서 실패 증거로만 스스로 고칩니다(RSI). Antigravity·Codex·Claude Code는 같은 핵심 규칙(core)에 도구마다 역할과 토큰 예산을 정한 어댑터(adapter)를 더해 적용합니다. 사용자의 명시 지시·플랫폼 정책·샌드박스·권한 설정이 이 파일보다 우선합니다.
 
@@ -32,7 +32,7 @@ UAOS-RSI(Unified Agent Operating System with evidence-gated Recursive Self-Impro
 ## UAOS-RSI
 
 - `uaos` = `python "$HOME/.uaos/uaos.py"`, 설치된 런타임입니다. 재설치할 때마다 설치 점검에 어긋남(drift)이 없어야 합니다.
-- 폴더 안이나 위에 `.coord/PLAN.md`가 있으면 UAOS-RSI 프로젝트입니다. 시작할 때 계획·소유자·`uaos coord inbox --project <루트>`를 읽고, `uaos coord watch --project <루트> --target <자기>`를 백그라운드로 켜 둡니다(0토큰). 도구끼리는 `uaos coord deliver`로 주고받고, 프로젝트 밖의 다도구 작업은 덮어쓰지 않는 `uaos coord init`으로 시작합니다.
+- 폴더 안이나 위에 `.coord/PLAN.md`가 있으면 UAOS-RSI 프로젝트입니다. 시작할 때 계획·소유자·`uaos coord inbox --project <루트>`를 읽고, `uaos coord watch --project <루트> --target <자기>`를 백그라운드로 켜 둡니다(0토큰). 도구끼리는 `uaos coord deliver`로 티키타카(한 결정당 증거 턴 최대 5회, 판정은 작성하지 않은 도구)로 주고받고, 프로젝트 밖의 다도구 작업은 덮어쓰지 않는 `uaos coord init`으로 시작합니다.
 - 먼저 쓰고 고칩니다(Operate first): UAOS-RSI는 운영 중이며 쓰면서 고칩니다. 실사용 실패 영수증(장부 행, 실패한 관문, `coord log --kind BLOCKED`, 윤겸스의 보고) 없이 새 기능을 만들지 않습니다. 같은 원인이 두 번(P1은 한 번) 나오면 재현 테스트가 있는 카드 하나로 고친 뒤 사용으로 돌아가고, 두 번 실패한 수정은 키우지 않고 보류합니다.
 - 범용이 기본입니다(Universal by default): UAOS-RSI는 모든 프로젝트와 세 도구에서 도는 운영체제이고, 그래서 운영체제급입니다. 어느 도구가 만들든 코드·훅·규칙·작업 흐름·경로는 만든 도구 자신이나 한 프로젝트만을 위한 것이 아닙니다. Claude Code·Codex·Antigravity 셋 모두에 함께, 도구마다 특성(역할·훅 형식·예산)에 맞게 다르게 조율해 만들고, 프로젝트 경로를 코드에 고정하지 않으며, 세 도구 모두를 테스트합니다. 편지나 알림은 받는 도구의 훅 출력에 실제로 나타나야 전달된 것입니다.
 - 카드 순환: 영수증 → `uaos card new` 매뉴얼(조사 → 판단 → 실행 → 검증 네 칸, 칸마다 기본 작업자: 초안·읽기·코드는 Ollama 먼저, 출처·설계 감사와 묶음 검토는 Antigravity) → pilot 실행 → 고정 인수와 전체 테스트 → 독립 판정 → `uaos card audit`(실제 Ollama 호출과 Antigravity 감사·검토, 또는 확인된 `card skip`; 커밋 관문과 `rsi ship`이 실행) → PR → 도구 자동 병합(우선순위: 1순위 Antigravity, 2순위 Codex; 게이트 통과 후 사람 대기 없이 자동 완결) → 런타임 재설치 → 사용. 카드마다 유료 토큰과 벽시계 시간을 장부에 남기고, 직전 실행 대비 3배 악화는 테스트가 통과해도 실패 관문입니다.
