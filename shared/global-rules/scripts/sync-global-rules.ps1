@@ -73,7 +73,9 @@ $targets = @(
         # 24,000 bytes per file; the cap stays near the real size so any other growth still has to be paid for.
         # v7.2.0 (윤겸스, 2026-09-30: "제한선을 여유있게"): 12,600 -> 13,500 for the shared progress-line rule
         # (+349 chars before trims, 12869 after). About 4% headroom, still 44% under the official limit.
-        MaxCharacters = 13500
+        # v7.5.6: owner-requested account-wide GitHub discovery adds one shared rule.
+        # 14,000 accommodates that rule without removing existing behavior; no safety gate changes.
+        MaxCharacters = 14000
         MaxLines = 0
     },
     [PSCustomObject]@{

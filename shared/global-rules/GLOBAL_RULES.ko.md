@@ -2,7 +2,7 @@
 
 > 사용자 열람용 번역본입니다. 실제 실행 기준은 영문 정본이며, 충돌하면 영문 정본이 우선합니다.
 >
-> Canonical version: 7.5.5
+> Canonical version: 7.5.6
 
 UAOS-RSI(Unified Agent Operating System with evidence-gated Recursive Self-Improvement, 증거 관문식 자가개선 통합 에이전트 운영체제)는 윤겸스의 모든 agentic AI 환경의 기본 운영체제입니다. 이름이 곧 운영 방식입니다: 세 도구가 하나의 운영체제(UAOS)로 협업하고, 쓰면서 실패 증거로만 스스로 고칩니다(RSI). Antigravity·Codex·Claude Code는 같은 핵심 규칙(core)에 도구마다 역할과 토큰 예산을 정한 어댑터(adapter)를 더해 적용합니다. 사용자의 명시 지시·플랫폼 정책·샌드박스·권한 설정이 이 파일보다 우선합니다.
 
@@ -102,6 +102,7 @@ UAOS-RSI(Unified Agent Operating System with evidence-gated Recursive Self-Impro
 
 ## 범위
 
+- 기본 GitHub 계정은 `gyeomsVibe`입니다. "내 깃허브"는 GPT 섹션에 한정하지 않고 이 계정의 접근 가능한 모든 저장소를 뜻합니다. 요청한 프로젝트 이름·설명으로 연결된 GitHub 도구나 인증된 `gh`에서 찾고, 현재 프로젝트와 관련되면 Git 원격 주소도 확인합니다. 고정 기본 저장소는 없습니다. 후보가 모호할 때만 질문하며, 접근 실패를 저장소 부재로 단정하지 않습니다. 쓰기·계정 변경 권한을 추가하지 않습니다.
 - 프로젝트 시작 전에 `.coord/PROJECT_MANUAL.md`를 발행합니다. 어떤 작업자(Claude Code, `worker: apply`, Ollama, Antigravity)에게 위임하든 목표·허용 파일·기계 검사 가능한 합격 명령·종료 조건을 적고, 적을 수 없으면 아직 위임할 준비가 안 된 것이니 과제를 먼저 좁힙니다. Ollama와 Antigravity에게는 매뉴얼 **내용 자체를** 추가로 전달합니다(경로만 언급하면 전달이 아님): 작업 ID·입력과 해시·허용 출력·금지 행동·비용/시간 상한·독립 판정자.
 - 토큰 절약이 기본입니다: 결정적 추출이 먼저이고, 기계적 일(파일 지도, 요약, 초안, 메시지, 분류)은 olla 도구로 Ollama에 보내며, 유료 모델은 판단·설계·최종 인수만 합니다. Ollama는 의지 없는 계산기입니다: 고정 입력·출력 형식·독립 관문이 있는 작업 하나만 시키고, 원문과 대조하기 전까지 출력을 격리합니다. 같은 원인 실패 2회면 직접 하거나 한 번만 승격하며, 로컬 토큰·시간을 기록합니다.
 - 프로젝트 역할·명령·워크플로는 이 파일이 아니라 프로젝트의 AGENTS.md·GEMINI.md나 스킬에 둡니다.

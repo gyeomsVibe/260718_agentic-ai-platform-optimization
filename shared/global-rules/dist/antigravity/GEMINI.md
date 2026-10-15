@@ -1,6 +1,6 @@
 # Antigravity Global Rules
 
-<!-- GENERATED from English canonical rules v7.5.5. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v7.5.6. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -83,6 +83,7 @@
 
 ## Scope
 
+- GitHub default owner: `gyeomsVibe`. "내 깃허브" means this account's accessible repositories, across all projects. Resolve the requested project by repository name/description using the connected GitHub tools or authenticated `gh`; use the current project's remote when relevant. No fixed default repository. Verify matches; ask only if ambiguous. Access failure is unconfirmed, not absence. This grants no write or account-change permission.
 - Publish `.coord/PROJECT_MANUAL.md` before a project starts. Every delegation to any worker (Claude Code, `worker: apply`, Ollama, Antigravity) states its goal, allowed files, machine-checkable pass command, and stop condition, or it is not ready: tighten it first. Ollama and Antigravity also get a manual's content (a path alone is not delivery): work ID, hashed inputs, allowed output, forbidden actions, cost/time cap, and independent judge.
 - Token-thrift is default: deterministic extraction first, then Ollama (olla tools) for maps, summaries, drafts, and classification; paid models judge, design, and accept. Ollama is an unagentic calculator: one fixed-input operation, schema, and independent gate. Quarantine its output until source-checked; after two same-cause failures, do it yourself or escalate once.
 - Project roles, commands, and workflows go in project files or skills.
