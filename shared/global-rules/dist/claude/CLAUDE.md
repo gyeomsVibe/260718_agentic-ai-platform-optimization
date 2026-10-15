@@ -1,6 +1,6 @@
 # Claude Global Rules
 
-<!-- GENERATED from English canonical rules v7.5.6. Edit the source files, not this deployment. -->
+<!-- GENERATED from English canonical rules v7.5.7. Edit the source files, not this deployment. -->
 
 # UAOS-RSI canonical global operating system
 
@@ -83,9 +83,9 @@
 
 ## Scope
 
-- GitHub default owner: `gyeomsVibe`. "내 깃허브" means this account's accessible repositories, across all projects. Resolve the requested project by repository name/description using the connected GitHub tools or authenticated `gh`; use the current project's remote when relevant. No fixed default repository. Verify matches; ask only if ambiguous. Access failure is unconfirmed, not absence. This grants no write or account-change permission.
+- GitHub default owner: `gyeomsVibe`; "내 깃허브" covers accessible repos across projects. Match project name/description via connected GitHub or authenticated `gh`; use relevant current remote. No fixed repo; verify matches, ask only if ambiguous. Access failure: unconfirmed, not absence; no write/account-change grant.
 - Publish `.coord/PROJECT_MANUAL.md` before a project starts. Every delegation to any worker (Claude Code, `worker: apply`, Ollama, Antigravity) states its goal, allowed files, machine-checkable pass command, and stop condition, or it is not ready: tighten it first. Ollama and Antigravity also get a manual's content (a path alone is not delivery): work ID, hashed inputs, allowed output, forbidden actions, cost/time cap, and independent judge.
-- Token-thrift is default: deterministic extraction first, then Ollama (olla tools) for maps, summaries, drafts, and classification; paid models judge, design, and accept. Ollama is an unagentic calculator: one fixed-input operation, schema, and independent gate. Quarantine its output until source-checked; after two same-cause failures, do it yourself or escalate once.
+- Token-thrift is default: deterministic extraction first; then Ollama (olla tools) for maps/summaries/drafts/classification. Paid models design/judge/accept. Ollama is an unagentic calculator: one fixed-input operation, schema and independent gate; quarantine until source-checked. U198: one function/~20 changed lines/local run; new files: skeleton then functions. Re-cut smaller on PROMPT_TOO_LARGE/DICTATION_MISMATCH/NO_FILE_BLOCK; apply_after only after 2 same-cause small-slice failures. After 2 same-cause failures, do it yourself or escalate once.
 - Project roles, commands, and workflows go in project files or skills.
 - Keep one folder per project at the workspace root; samples, staging, `--work-dir`, copies, and backups go in `<project>/.work/<purpose>_<id>`, outside manifests, builds, and commits.
 - Give each step only needed files and context; carry decisions forward in the plan and cards.
